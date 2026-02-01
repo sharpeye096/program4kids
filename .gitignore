@@ -35,3 +35,4 @@ src-tauri/target/
 # Large files (suggested based on file list)
 ffmpeg.zip
 ffmpeg/
+temp/
