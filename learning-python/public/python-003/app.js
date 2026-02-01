@@ -97,14 +97,14 @@ class SlideDeck {
         controls.className = 'controls';
 
         const homeBtn = document.createElement('button');
-        homeBtn.innerHTML = `<svg width="24" height="24" viewBox="0 0 24 24" fill="#3b82f6"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>`;
+        homeBtn.innerHTML = `<svg viewBox="0 0 24 24" ><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>`;
         homeBtn.className = 'nav-btn';
         homeBtn.onclick = () => window.location.href = '../index.html';
         controls.appendChild(homeBtn);
 
         const prevBtn = document.createElement('button');
         prevBtn.innerHTML = `
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="#8b5cf6" xmlns="http://www.w3.org/2000/svg">
+            <svg viewBox="0 0 24 24"  >
                 <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
             </svg>
         `;
@@ -113,7 +113,7 @@ class SlideDeck {
 
         const nextBtn = document.createElement('button');
         nextBtn.innerHTML = `
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="#8b5cf6" xmlns="http://www.w3.org/2000/svg">
+            <svg viewBox="0 0 24 24"  >
                 <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
             </svg>
         `;
