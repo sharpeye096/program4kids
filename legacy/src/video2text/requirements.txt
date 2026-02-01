@@ -1,0 +1,18 @@
+# Video to Text Extraction Dependencies
+
+# Video/Audio processing
+moviepy>=1.0.3
+pydub>=0.25.1
+
+# Local speech recognition (Whisper)
+openai-whisper>=20231117
+
+# Cloud speech recognition (Azure)
+azure-cognitiveservices-speech>=1.34.0
+
+# Utilities
+requests>=2.31.0
+click>=8.1.7
+
+# Note: FFmpeg is required as a system dependency
+# Install FFmpeg separately for your OS
