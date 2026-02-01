@@ -1,4 +1,4 @@
-/* Kid-Friendly Tech Theme - Lesson 4 */
+/* Kid-Friendly Tech Theme - Lesson 6 (Magic & Math) */
 *,
 *::before,
 *::after {
@@ -8,18 +8,18 @@
 }
 
 :root {
-    --bg-color: #fce7f3;
-    --bg-gradient: linear-gradient(135deg, #f0fdf4 0%, #fef3c7 100%);
+    --bg-color: #f5f3ff;
+    --bg-gradient: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
     --card-bg: #ffffff;
-    --primary: #8b5cf6;
-    --secondary: #f472b6;
+    --primary: #7c3aed;
+    --secondary: #db2777;
     --accent: #f59e0b;
-    --text-primary: #1f2937;
-    --text-secondary: #4b5563;
-    --code-bg: #1e293b;
-    --code-text: #a5b4fc;
+    --text-primary: #1e1b4b;
+    --text-secondary: #4c1d95;
+    --code-bg: #2e1065;
+    --code-text: #e9d5ff;
     --shadow-pop: 5px 5px 0px rgba(0, 0, 0, 0.1);
-    --shadow-float: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    --shadow-float: 0 10px 25px -5px rgba(124, 58, 237, 0.15);
     --font-main: 'Fredoka', cursive, sans-serif;
 }
 
@@ -34,24 +34,25 @@ body {
 }
 
 body::before {
-    content: "📝";
+    content: "🁠";
     position: absolute;
     top: 5%;
     left: 5%;
-    font-size: 15rem;
+    font-size: 10rem;
     opacity: 0.1;
-    transform: rotate(-20deg);
+    transform: rotate(-15deg);
     z-index: 0;
+    color: var(--primary);
 }
 
 body::after {
-    content: "🔧";
+    content: "🎩";
     position: absolute;
     bottom: 5%;
     right: 5%;
     font-size: 12rem;
     opacity: 0.1;
-    transform: rotate(20deg);
+    transform: rotate(15deg);
     z-index: 0;
 }
 
@@ -173,63 +174,46 @@ code {
 .nav-btn {
     background: #fff;
     border: 3px solid var(--primary);
-    color: var(--primary);
     width: 60px;
     height: 60px;
     border-radius: 50%;
     cursor: pointer;
-    font-size: 1.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: 0 5px 0 rgba(139, 92, 246, 0.3);
+    transition: all 0.2s;
+    box-shadow: 0 5px 0 rgba(124, 58, 237, 0.3);
 }
 
 .nav-btn:hover {
     transform: translateY(-4px);
     background: var(--primary);
-    color: #fff;
-    box-shadow: 0 8px 0 rgba(139, 92, 246, 0.3);
+    box-shadow: 0 8px 0 rgba(124, 58, 237, 0.3);
+}
+
+.nav-btn path {
+    fill: var(--primary);
+}
+
+.nav-btn:hover path {
+    fill: #fff;
 }
 
 .nav-btn:active {
     transform: translateY(0);
-    box-shadow: 0 2px 0 rgba(139, 92, 246, 0.3);
+    box-shadow: 0 2px 0 rgba(124, 58, 237, 0.3);
 }
 
-.emoji-lg {
-    font-size: 6rem;
-    display: block;
-    margin-bottom: 1.5rem;
-    animation: bounce 2s infinite;
-}
-
-@keyframes bounce {
-
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-10px);
-    }
-}
-
-input {
-    padding: 12px;
-    border-radius: 12px;
-    border: 3px solid #ddd;
-    font-size: 1.1rem;
-    font-family: var(--font-main);
-}
-
+input,
 textarea {
     padding: 12px;
     border-radius: 12px;
     border: 3px solid #ddd;
     font-size: 1rem;
+    font-family: var(--font-main);
+}
+
+textarea {
     font-family: 'Consolas', monospace;
     resize: vertical;
 }
@@ -253,38 +237,36 @@ button:active {
     box-shadow: 0 1px 0 #d97706;
 }
 
-.concept-card {
-    background: #fff;
-    padding: 15px 25px;
-    border-radius: 15px;
-    border: 3px solid var(--primary);
-    text-align: center;
-    transition: transform 0.2s;
-}
-
-.concept-card:hover {
-    transform: scale(1.03);
-}
-
-.fib-tree {
+.domino-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
     gap: 10px;
+    margin: 20px 0;
+    perspective: 1000px;
 }
 
-.fib-node {
-    background: var(--primary);
-    color: #fff;
-    padding: 8px 16px;
-    border-radius: 10px;
-    font-weight: bold;
-    font-size: 1rem;
+.domino {
+    width: 40px;
+    height: 80px;
+    background: var(--text-primary);
+    border-radius: 4px;
+    position: relative;
+    transform-origin: bottom right;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
-.fib-children {
-    display: flex;
-    gap: 20px;
+.domino::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.domino.fallen {
+    transform: rotate(70deg) translateY(10px);
 }
 
 

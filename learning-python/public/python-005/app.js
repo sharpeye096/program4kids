@@ -1,4 +1,4 @@
-// Minimal HTML tag function
+// Minimal HTML tag function for syntax highlighting and processing
 export const html = (strings, ...values) => {
     return String.raw({ raw: strings }, ...values);
 };
@@ -12,8 +12,7 @@ class SlideDeck {
             'page-3.js',
             'page-4.js',
             'page-5.js',
-            'page-6.js',
-            'page-7.js'
+            'page-6.js'
         ];
         this.appElement = document.getElementById('app');
         this.init();
@@ -54,16 +53,23 @@ class SlideDeck {
     }
 
     handleKeydown(e) {
-        if (e.key === 'ArrowRight' || e.key === ' ') this.next();
-        else if (e.key === 'ArrowLeft') this.prev();
+        if (e.key === 'ArrowRight' || e.key === ' ') {
+            this.next();
+        } else if (e.key === 'ArrowLeft') {
+            this.prev();
+        }
     }
 
     next() {
-        if (this.currentSlideIndex < this.slides.length - 1) this.loadSlide(this.currentSlideIndex + 1);
+        if (this.currentSlideIndex < this.slides.length - 1) {
+            this.loadSlide(this.currentSlideIndex + 1);
+        }
     }
 
     prev() {
-        if (this.currentSlideIndex > 0) this.loadSlide(this.currentSlideIndex - 1);
+        if (this.currentSlideIndex > 0) {
+            this.loadSlide(this.currentSlideIndex - 1);
+        }
     }
 
     renderControls() {

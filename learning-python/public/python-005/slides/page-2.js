@@ -1,40 +1,36 @@
 import { html } from '../app.js';
 
 export default html`
-    <h2>字符串基础 🔤</h2>
+    <h2>函数是什么？🤔</h2>
     
-    <p style="font-size: 1.2rem;">字符串就是<strong>文字</strong>，用<strong>引号</strong>包起来！</p>
+    <p style="font-size: 1.3rem;">函数就像一个<strong>魔法盒子</strong>！</p>
     
-    <div style="display: flex; justify-content: center; gap: 25px; margin: 20px 0; flex-wrap: wrap;">
-        <div class="concept-card">
-            <p style="font-size: 1.8rem; margin: 0; color: var(--primary);">'单引号'</p>
+    <div style="display: flex; justify-content: center; align-items: center; gap: 20px; margin: 25px 0; font-size: 2rem;">
+        <div style="text-align: center;">
+            <div style="font-size: 3rem;">📥</div>
+            <p style="font-size: 1rem; margin: 5px 0;">输入</p>
         </div>
-        <div class="concept-card">
-            <p style="font-size: 1.8rem; margin: 0; color: var(--secondary);">"双引号"</p>
+        <span style="font-size: 2.5rem;">→</span>
+        <div style="background: linear-gradient(135deg, #8b5cf6, #a78bfa); padding: 25px 35px; border-radius: 20px; color: #fff;">
+            <div style="font-size: 2.5rem;">🔧</div>
+            <p style="font-size: 1.1rem; margin: 5px 0;">函数</p>
+        </div>
+        <span style="font-size: 2.5rem;">→</span>
+        <div style="text-align: center;">
+            <div style="font-size: 3rem;">📤</div>
+            <p style="font-size: 1rem; margin: 5px 0;">输出</p>
         </div>
     </div>
     
-    <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin: 15px 0;">
-        <!-- Code -->
-        <div style="background: #1e293b; padding: 15px 20px; border-radius: 15px; text-align: left; font-family: 'Consolas', monospace; font-size: 0.95rem; color: #e2e8f0;">
-            <pre style="margin: 0; background: transparent; border: none; box-shadow: none; padding: 0; color: inherit;">
-<span style="color: #7dd3fc;">name</span> = <span style="color: #98c379;">"小明"</span>
-<span style="color: #7dd3fc;">greeting</span> = <span style="color: #98c379;">'你好'</span>
-
-<span style="color: #5c6370;"># 拼接 (+)</span>
-<span style="color: #e5c07b;">print</span>(<span style="color: #7dd3fc;">greeting</span> + <span style="color: #7dd3fc;">name</span>)
-
-<span style="color: #5c6370;"># 重复 (*)</span>
-<span style="color: #e5c07b;">print</span>(<span style="color: #98c379;">"哈"</span> * <span style="color: #d19a66;">3</span>)
-            </pre>
+    <div style="display: flex; gap: 25px; justify-content: center; flex-wrap: wrap; margin-top: 20px;">
+        <div style="background: #f0fdf4; padding: 15px 20px; border-radius: 12px; border: 2px solid #22c55e;">
+            <p style="margin: 0; font-size: 1rem; color: #166534;">✅ 代码可以重复使用</p>
         </div>
-        
-        <!-- Output -->
-        <div style="background: #fef3c7; padding: 15px 20px; border-radius: 15px; border: 2px solid #f59e0b;">
-            <p style="margin: 0 0 8px 0; font-size: 1rem; color: #92400e; font-weight: bold;">📝 输出：</p>
-            <p style="margin: 0; font-family: 'Consolas', monospace; color: #92400e; line-height: 2;">
-                你好小明<br>哈哈哈
-            </p>
+        <div style="background: #f0fdf4; padding: 15px 20px; border-radius: 12px; border: 2px solid #22c55e;">
+            <p style="margin: 0; font-size: 1rem; color: #166534;">✅ 让程序更整齐</p>
+        </div>
+        <div style="background: #f0fdf4; padding: 15px 20px; border-radius: 12px; border: 2px solid #22c55e;">
+            <p style="margin: 0; font-size: 1rem; color: #166534;">✅ 容易理解和修改</p>
         </div>
     </div>
 `;

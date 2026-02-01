@@ -1,48 +1,29 @@
 import { html } from '../app.js';
 
 export default html`
-    <h2>多米诺效应 🁠</h2>
+    <h2>列表是什么？🧐</h2>
     
-    <p style="font-size: 1.1rem;">想让一排骨牌<strong>全部倒下</strong>，只需要满足两个条件：</p>
+    <p style="font-size: 1.2rem;">就像一个<strong>有顺序的背包</strong>，可以装很多东西！</p>
     
-    <div class="domino-container" id="dominoes" style="min-height: 100px; justify-content: center; align-items: flex-end;">
-        <div class="domino"></div>
-        <div class="domino"></div>
-        <div class="domino"></div>
-        <div class="domino"></div>
-        <div class="domino"></div>
-        <div class="domino"></div>
-        <div class="domino"></div>
-        <div class="domino"></div>
+    <div style="display: flex; gap: 30px; justify-content: center; align-items: center; margin: 30px 0;">
+        <div style="text-align: center;">
+            <p style="margin: 0;">普通的变量</p>
+            <div style="font-size: 3rem; margin: 10px;">📦</div>
+            <p style="font-size: 0.9rem; color: #666;">只能装 1 个</p>
+        </div>
+        
+        <div style="font-size: 2rem;">vs</div>
+        
+        <div style="text-align: center;">
+            <p style="margin: 0; color: var(--primary); font-weight: bold;">列表 List</p>
+            <div style="font-size: 3rem; margin: 10px; background: #fff; border: 3px solid var(--primary); border-radius: 15px; padding: 10px; display: inline-flex; gap: 10px;">
+                <span>🍎</span><span>🍌</span><span>🍇</span>
+            </div>
+            <p style="font-size: 0.9rem; color: #666;">可以装很多个！</p>
+        </div>
     </div>
     
-    <div style="display: flex; gap: 20px; justify-content: center; margin-top: 20px;">
-        <button id="push-btn" style="background: var(--primary);">👆 推第一张！</button>
-        <button id="reset-btn" style="background: var(--secondary);">🔄 扶起来</button>
-    </div>
-
-    <div style="background: #fff; padding: 15px 25px; border-radius: 15px; border: 3px solid var(--primary); margin-top: 25px; text-align: left;">
-        <p style="margin: 0; font-size: 1rem;">
-            1. <strong>第一张倒下</strong> (Base Case)<br>
-            2. <strong>如果前一张倒下，后一张也会倒下</strong> (Inductive Step)
-        </p>
-    </div>
+    <p style="font-size: 1.1rem; color: var(--secondary); font-weight: bold;">
+        用 [方括号] 把东西包起来，中间用逗号 , 分开
+    </p>
 `;
-
-export const onMount = (container) => {
-    const pushBtn = container.querySelector('#push-btn');
-    const resetBtn = container.querySelector('#reset-btn');
-    const dominoes = container.querySelectorAll('.domino');
-
-    pushBtn.onclick = () => {
-        dominoes.forEach((d, i) => {
-            setTimeout(() => {
-                d.classList.add('fallen');
-            }, i * 200); // Chain reaction
-        });
-    };
-
-    resetBtn.onclick = () => {
-        dominoes.forEach(d => d.classList.remove('fallen'));
-    };
-};

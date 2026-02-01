@@ -1,33 +1,26 @@
 import { html } from '../app.js';
 
 export default html`
-    <h2>字典是什么？📚</h2>
+    <h2>While 的概念 💡</h2>
     
-    <p style="font-size: 1.2rem;">就像真的字典一样！<br>通过<strong>关键词 (Key)</strong> 找到 <strong>内容 (Value)</strong></p>
+    <p style="font-size: 1.2rem;">While 的意思是 <strong>"当...的时候"</strong></p>
     
-    <div style="display: flex; gap: 40px; justify-content: center; align-items: center; margin: 30px 0;">
-        <div style="text-align: center; opacity: 0.6;">
-            <p style="margin: 0; font-size: 1.1rem;">列表 List</p>
-            <div style="background: #e5e7eb; padding: 15px; border-radius: 10px; margin-top: 5px;">
-                [0] ➔ "Arthur"<br>
-                [1] ➔ 100
-            </div>
-            <p style="font-size: 1rem; color: #666; margin-top: 10px;">只能用数字编号</p>
+    <div style="background: #fff; border: 3px solid var(--primary); border-radius: 20px; padding: 20px; margin: 20px 0; max-width: 600px;">
+        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+            <div style="background: #fbcfe8; padding: 10px; border-radius: 50%;">🥣</div>
+            <p style="margin: 0; text-align: left;"><strong>当</strong> (肚子饿) <strong>的时候</strong>：<br>&nbsp;&nbsp;&nbsp;&nbsp;吃饭 🍚</p>
         </div>
-        
-        <div style="font-size: 2rem; color: var(--primary);">vs</div>
-        
-        <div style="text-align: center;">
-            <p style="margin: 0; font-size: 1.1rem; font-weight: bold; color: var(--primary);">字典 Dictionary</p>
-            <div style="background: #fff; border: 3px solid var(--primary); padding: 15px; border-radius: 10px; margin-top: 5px; box-shadow: 5px 5px 0 #d97706;">
-                "name" ➔ "Arthur"<br>
-                "hp" &nbsp;&nbsp;➔ 100
-            </div>
-            <p style="font-size: 1rem; color: #d97706; margin-top: 10px;">可以用名字查找！</p>
+        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+             <div style="background: #fbcfe8; padding: 10px; border-radius: 50%;">🔋</div>
+             <p style="margin: 0; text-align: left;"><strong>当</strong> (电量 < 100) <strong>的时候</strong>：<br>&nbsp;&nbsp;&nbsp;&nbsp;充电 ⚡</p>
+        </div>
+        <div style="display: flex; align-items: center; gap: 15px;">
+             <div style="background: #fbcfe8; padding: 10px; border-radius: 50%;">🎮</div>
+             <p style="margin: 0; text-align: left;"><strong>当</strong> (没有 Game Over) <strong>的时候</strong>：<br>&nbsp;&nbsp;&nbsp;&nbsp;继续玩 🕹️</p>
         </div>
     </div>
     
-    <p style="font-size: 1.1rem; color: var(--text-secondary);">
-        数据是成对出现的：<strong>键 (Key) : 值 (Value)</strong>
+    <p style="color: var(--secondary); font-weight: bold;">
+        只要条件是真的 (True)，它就一直做！
     </p>
 `;

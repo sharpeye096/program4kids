@@ -1,29 +1,40 @@
 import { html } from '../app.js';
 
 export default html`
-    <h2>列表是什么？🧐</h2>
+    <h2>字符串基础 🔤</h2>
     
-    <p style="font-size: 1.2rem;">就像一个<strong>有顺序的背包</strong>，可以装很多东西！</p>
+    <p style="font-size: 1.2rem;">字符串就是<strong>文字</strong>，用<strong>引号</strong>包起来！</p>
     
-    <div style="display: flex; gap: 30px; justify-content: center; align-items: center; margin: 30px 0;">
-        <div style="text-align: center;">
-            <p style="margin: 0;">普通的变量</p>
-            <div style="font-size: 3rem; margin: 10px;">📦</div>
-            <p style="font-size: 0.9rem; color: #666;">只能装 1 个</p>
+    <div style="display: flex; justify-content: center; gap: 25px; margin: 20px 0; flex-wrap: wrap;">
+        <div class="concept-card">
+            <p style="font-size: 1.8rem; margin: 0; color: var(--primary);">'单引号'</p>
         </div>
-        
-        <div style="font-size: 2rem;">vs</div>
-        
-        <div style="text-align: center;">
-            <p style="margin: 0; color: var(--primary); font-weight: bold;">列表 List</p>
-            <div style="font-size: 3rem; margin: 10px; background: #fff; border: 3px solid var(--primary); border-radius: 15px; padding: 10px; display: inline-flex; gap: 10px;">
-                <span>🍎</span><span>🍌</span><span>🍇</span>
-            </div>
-            <p style="font-size: 0.9rem; color: #666;">可以装很多个！</p>
+        <div class="concept-card">
+            <p style="font-size: 1.8rem; margin: 0; color: var(--secondary);">"双引号"</p>
         </div>
     </div>
     
-    <p style="font-size: 1.1rem; color: var(--secondary); font-weight: bold;">
-        用 [方括号] 把东西包起来，中间用逗号 , 分开
-    </p>
+    <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin: 15px 0;">
+        <!-- Code -->
+        <div style="background: #1e293b; padding: 15px 20px; border-radius: 15px; text-align: left; font-family: 'Consolas', monospace; font-size: 0.95rem; color: #e2e8f0;">
+            <pre style="margin: 0; background: transparent; border: none; box-shadow: none; padding: 0; color: inherit;">
+<span style="color: #7dd3fc;">name</span> = <span style="color: #98c379;">"小明"</span>
+<span style="color: #7dd3fc;">greeting</span> = <span style="color: #98c379;">'你好'</span>
+
+<span style="color: #5c6370;"># 拼接 (+)</span>
+<span style="color: #e5c07b;">print</span>(<span style="color: #7dd3fc;">greeting</span> + <span style="color: #7dd3fc;">name</span>)
+
+<span style="color: #5c6370;"># 重复 (*)</span>
+<span style="color: #e5c07b;">print</span>(<span style="color: #98c379;">"哈"</span> * <span style="color: #d19a66;">3</span>)
+            </pre>
+        </div>
+        
+        <!-- Output -->
+        <div style="background: #fef3c7; padding: 15px 20px; border-radius: 15px; border: 2px solid #f59e0b;">
+            <p style="margin: 0 0 8px 0; font-size: 1rem; color: #92400e; font-weight: bold;">📝 输出：</p>
+            <p style="margin: 0; font-family: 'Consolas', monospace; color: #92400e; line-height: 2;">
+                你好小明<br>哈哈哈
+            </p>
+        </div>
+    </div>
 `;

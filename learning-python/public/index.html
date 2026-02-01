@@ -58,8 +58,8 @@
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
             margin-bottom: 60px;
         }
 
@@ -85,18 +85,18 @@
         }
 
         .card-icon {
-            font-size: 4rem;
+            font-size: 3.5rem;
             margin-bottom: 15px;
         }
 
         .card h3 {
-            font-size: 1.5rem;
-            margin: 0 0 10px 0;
+            font-size: 1.4rem;
+            margin: 0 0 8px 0;
             color: var(--primary);
         }
 
         .card p {
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: #64748b;
             margin: 0;
             line-height: 1.5;
@@ -198,14 +198,6 @@
             line-height: 1.6;
         }
 
-        code {
-            background: #f1f5f9;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-family: 'Consolas', monospace;
-            color: #dc2626;
-        }
-
         .code-block {
             background: #1e293b;
             color: #e2e8f0;
@@ -238,67 +230,76 @@
             <!-- L1 -->
             <a href="python-001/" class="card">
                 <div class="card-icon">👋</div>
-                <h3>第一课：你好世界</h3>
-                <p>认识 Python，写下第一行代码！</p>
+                <h3>1. 你好世界</h3>
+                <p>Hello World! 认识 Python 的第一步。</p>
             </a>
 
             <!-- L2 -->
             <a href="python-002/" class="card">
                 <div class="card-icon">⚖️</div>
-                <h3>第二课：如果那么</h3>
+                <h3>2. 如果那么</h3>
                 <p>学会用 if/else 做决定，还有幸运抛硬币！</p>
             </a>
 
             <!-- L3 -->
             <a href="python-003/" class="card">
                 <div class="card-icon">🧮</div>
-                <h3>第三课：数学与循环</h3>
+                <h3>3. 循环魔法</h3>
                 <p>For 循环帮你做重复的计算。</p>
             </a>
 
-            <!-- L4 -->
-            <a href="python-004/" class="card">
-                <div class="card-icon">🔧</div>
-                <h3>第四课：魔法函数</h3>
-                <p>自定义咒语 (def) 和递归魔法。</p>
+            <!-- L4 (New Turtle) -->
+            <a href="python-004/" class="card" style="border-color: #22c55e;">
+                <span class="badge" style="background: #22c55e;">NEW</span>
+                <div class="card-icon">🐢</div>
+                <h3>4. 海龟画画</h3>
+                <p>用代码控制海龟，画出漂亮的几何图形！</p>
             </a>
 
-            <!-- L5 -->
+            <!-- L5 (Old L4) -->
             <a href="python-005/" class="card">
-                <div class="card-icon">💬</div>
-                <h3>第五课：聊天机器人</h3>
-                <p>学习字符串及如何与电脑对话 (Input)。</p>
+                <div class="card-icon">🔧</div>
+                <h3>5. 积木工坊</h3>
+                <p>学习定义函数 (def)，把代码变成积木。</p>
             </a>
 
-            <!-- L6 - Advanced -->
+            <!-- L6 (Old L7) -->
             <a href="python-006/" class="card">
-                <span class="badge badge-tooltip" style="background: #7c3aed;"
-                    data-tooltip="💡 进阶内容，低龄小朋友可跳过，但强烈建议学有余力的同学尝试！">进阶</span>
-                <div class="card-icon">🪜</div>
-                <h3>第六课：数学归纳</h3>
-                <p>从多米诺骨牌理解递归的奥秘。</p>
-            </a>
-
-            <!-- L7 -->
-            <a href="python-007/" class="card">
                 <div class="card-icon">🎒</div>
-                <h3>第七课：神奇列表</h3>
-                <p>用背包管理宝物，还能自选午餐！</p>
+                <h3>6. 神奇列表</h3>
+                <p>用列表管理宝物，还能自选午餐！</p>
             </a>
 
-            <!-- L8 -->
+            <!-- L7 (Old L5) -->
+            <a href="python-007/" class="card">
+                <div class="card-icon">💬</div>
+                <h3>7. 聊天机器人</h3>
+                <p>学习字符串，做一个会说话的机器人。</p>
+            </a>
+
+            <!-- L8 (Old L9) -->
             <a href="python-008/" class="card">
-                <div class="card-icon">🎮</div>
-                <h3>第八课：游戏引擎</h3>
-                <p>While 循环制作猜数字游戏。</p>
+                <div class="card-icon">📜</div>
+                <h3>8. 角色属性</h3>
+                <p>用字典 (Dict) 管理 RPG 游戏数据。</p>
             </a>
 
-            <!-- L9 -->
+            <!-- L9 (Old L8) -->
             <a href="python-009/" class="card">
-                <div class="card-icon">📜</div>
-                <h3>第九课：角色属性</h3>
-                <p>用字典管理 RPG 游戏数据。</p>
+                <div class="card-icon">🎮</div>
+                <h3>9. 游戏引擎</h3>
+                <p>综合运用！用 While 循环做猜数字游戏。</p>
             </a>
+
+            <!-- L10 (Old L6) -->
+            <a href="python-010/" class="card" style="border-color: #f59e0b;">
+                <span class="badge badge-tooltip" style="background: #7c3aed;"
+                    data-tooltip="💡 挑战关卡！学习计算机科学中核心的递归思想。">挑战</span>
+                <div class="card-icon">🪜</div>
+                <h3>10. 盗梦空间</h3>
+                <p>探索递归的奥秘（数学归纳法）。</p>
+            </a>
+
         </div>
 
         <h2 class="section-title">👨‍👩‍👧‍👦 家长指南：环境准备</h2>
@@ -307,119 +308,23 @@
             <p style="margin-bottom: 15px;">亲爱的家长，为了让孩子顺利开始编程之旅，我们需要您帮忙在电脑上准备一个小工具 —— <strong>Python</strong>。</p>
 
             <p
-                style="background: #fef3c7; padding: 12px 15px; border-radius: 10px; border-left: 4px solid #f59e0b; margin-bottom: 25px; font-size: 0.95rem; color: #92400e;">
-                💡 <strong>温馨提示</strong>：如果您希望帮助孩子自学 Python，建议您自己也具备一些基础知识，至少了解如何运行 Python
-                以及一些基本语法。这样在孩子遇到问题时，您可以更好地引导他们。
-            </p>
-
-            <p
                 style="background: #ecfdf5; padding: 12px 15px; border-radius: 10px; border-left: 4px solid #10b981; margin-bottom: 25px; font-size: 0.95rem; color: #065f46;">
                 🖥️ <strong>简易模式</strong>：如果您是通过 <code
                     style="background: #d1fae5; color: #065f46;">learning-python.exe</code> 直接运行本课程，则无需安装 Python
                 或启动本地服务器，可直接使用！<strong>但仍强烈建议安装 Python，方便孩子自行练习和编写代码。</strong>
             </p>
 
-            <div class="step">
-                <div class="step-num">1</div>
-                <div class="step-content">
-                    <h4>下载 Python</h4>
-                    <p>访问官网 <a href="https://www.python.org/downloads/" target="_blank"
-                            style="color: var(--primary);">python.org</a>，点击黄色按钮 <strong>Download Python</strong> 下载安装包。
-                    </p>
-                </div>
-            </div>
-
-            <div class="step">
-                <div class="step-num">2</div>
-                <div class="step-content">
-                    <h4>安装 (关键步骤！)</h4>
-                    <p>运行安装包时，<strong>务必勾选底部的 "Add Python to PATH"</strong> (将 Python 添加到系统变量)，然后点击 "Install Now"。</p>
-                </div>
-            </div>
-
-            <div class="step">
-                <div class="step-num">3</div>
-                <div class="step-content">
-                    <h4>验证安装</h4>
-                    <p>按 <code>Win + R</code>，输入 <code>cmd</code> 回车，在黑框框里输入：</p>
-                    <div class="code-block">python --version</div>
-                    <p style="margin-top: 5px;">如果看到类似 <code>Python 3.x.x</code> 的字样，说明安装成功！</p>
-                </div>
-            </div>
-
-            <div class="step">
-                <div class="step-num">4</div>
-                <div class="step-content">
-                    <h4>启动课程服务器</h4>
-                    <p>我们的课程需要在更加即时互动的网页环境中运行。在当前课程目录打开命令行，输入：</p>
-                    <div class="code-block">python server.py</div>
-                    <p style="margin-top: 8px; font-size: 0.9rem; color: #64748b;">
-                        💡 提示：如果该命令无效，请尝试输入 <code>python3 server.py</code> 或 <code>py server.py</code>
-                    </p>
-                    <p style="margin-top: 5px;">然后在浏览器访问：<a href="http://localhost:8000" target="_blank"
-                            style="color: var(--primary);">http://localhost:8000</a></p>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <div style="margin-top: 80px; text-align: left; max-width: 900px; margin-left: auto; margin-right: auto;">
-        <h2 class="section-title" style="border-bottom-color: var(--primary); color: var(--primary);">写给家长的话 💌</h2>
-
-        <div
-            style="background: linear-gradient(to right, #ffffff, #f0f9ff); padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(59, 130, 246, 0.1); border: 1px solid #e2e8f0;">
-            <h3 style="color: var(--text-main); font-size: 1.5rem; margin-top: 0;">为什么让孩子学习 Python？</h3>
-            <p style="font-size: 1.1rem; color: #475569; line-height: 1.8;">
-                这份课件只是孩子编程之旅的<strong style="color: var(--primary);">起点</strong>。通过这9节课，孩子不仅学会了写代码，更锻炼了<strong
-                    style="color: var(--secondary);">逻辑思维</strong>和<strong
-                    style="color: var(--secondary);">数学素养</strong>（如归纳法、函数思想）。
-            </p>
-
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 30px 0;">
-                <div>
-                    <h4 style="color: var(--primary); display: flex; align-items: center; gap: 10px;">
-                        <span style="background: #dbeafe; padding: 5px 10px; border-radius: 8px;">🤖 AI 时代的通用语言</span>
-                    </h4>
-                    <p style="color: #64748b; font-size: 0.95rem;">
-                        在人工智能爆发的今天，Python 是最核心的语言。掌握它，孩子就拥有了与 AI 对话、指挥 AI 工作的能力，成为未来的创造者而非单纯的使用者。
-                    </p>
-                </div>
-                <div>
-                    <h4 style="color: var(--accent); display: flex; align-items: center; gap: 10px;">
-                        <span style="background: #fef3c7; padding: 5px 10px; border-radius: 8px;">📐 数学与逻辑的基石</span>
-                    </h4>
-                    <p style="color: #64748b; font-size: 0.95rem;">
-                        编程通过实践让抽象的数学概念（如变量、函数、逻辑判断）变得直观可感。它是连接数学理论与解决实际问题之间的桥梁。
-                    </p>
-                </div>
-            </div>
-
-            <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 30px 0;">
-
-            <h3 style="color: var(--text-main); font-size: 1.3rem;">🚀 接下来的路该怎么走？</h3>
-            <p style="color: #475569; line-height: 1.7;">
-                完成这9个入门课程后，建议孩子在以下方向继续深入：
-            </p>
-            <ul style="color: #475569; line-height: 1.8; list-style-type: none; padding: 0;">
-                <li style="margin-bottom: 10px;">🔹 <strong>基础巩固</strong>：通过 <a href="https://leetcode.com/"
-                        target="_blank" style="color: var(--primary); text-decoration: underline;">LeetCode</a>
-                    或类似平台练习简单的算法题，训练解题思维。</li>
-                <li style="margin-bottom: 10px;">🔹 <strong>项目实战</strong>：尝试用 <a href="https://www.pygame.org/"
-                        target="_blank" style="color: var(--primary); text-decoration: underline;">Pygame</a>
-                    开发更复杂的图形化游戏。</li>
-                <li style="margin-bottom: 10px;">🔹 <strong>数据科学</strong>：学习如何用 Python 处理数据，绘制图表，这也是衔接高中/大学数学的重要技能。</li>
-            </ul>
-            <p style="margin-top: 20px; font-weight: bold; color: var(--primary);">
-                编程不仅是一项技能，更是一种思考世界的方式。保持好奇心，继续探索吧！✨
+            <p style="text-align: right; margin-top: -10px;">
+                <a href="https://www.python.org/downloads/" target="_blank"
+                    style="color: var(--primary); font-weight: bold;">➡️ 前往下载 Python</a>
             </p>
         </div>
+
     </div>
 
     <footer>
-        Made with ❤️ by AI Assistant for Future Coders
+        Made with ❤️ for the next generation of programmers
     </footer>
-    </div>
 
 </body>
 

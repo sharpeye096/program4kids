@@ -1,58 +1,26 @@
 import { html } from '../app.js';
 
 export default html`
-    <h2>字符串操作 ✂️</h2>
+    <h2>用 def 定义函数 📝</h2>
     
-    <p style="font-size: 1.1rem;">可以获取字符串的长度、单个字符、或者一部分！</p>
+    <p style="font-size: 1.2rem;"><code style="background: #e2e8f0; padding: 3px 8px; border-radius: 5px; font-weight: bold;">def</code> 是 define（定义）的缩写！</p>
     
-    <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin: 12px 0;">
-        <!-- Code -->
-        <div style="background: #1e293b; padding: 12px 18px; border-radius: 15px; text-align: left; font-family: 'Consolas', monospace; font-size: 0.85rem; color: #e2e8f0;">
-            <pre style="margin: 0; background: transparent; border: none; box-shadow: none; padding: 0; color: inherit;">
-<span style="color: #7dd3fc;">text</span> = <span style="color: #98c379;">"Python"</span>
+    <div style="background: #1e293b; padding: 20px 28px; border-radius: 15px; text-align: left; font-family: 'Consolas', monospace; font-size: 1.05rem; color: #e2e8f0; margin: 20px 0;">
+        <pre style="margin: 0; background: transparent; border: none; box-shadow: none; padding: 0; color: inherit;">
+<span style="color: #5c6370;"># 定义一个打招呼的函数</span>
+<span style="color: #c678dd;">def</span> <span style="color: #61afef;">say_hello</span>():
+    <span style="color: #e5c07b;">print</span>(<span style="color: #98c379;">"你好！"</span>)
+    <span style="color: #e5c07b;">print</span>(<span style="color: #98c379;">"欢迎学习Python！"</span>)
 
-<span style="color: #e5c07b;">print</span>(<span style="color: #e5c07b;">len</span>(<span style="color: #7dd3fc;">text</span>))    <span style="color: #5c6370;"># 长度: 6</span>
-<span style="color: #e5c07b;">print</span>(<span style="color: #7dd3fc;">text</span>[<span style="color: #d19a66;">0</span>])     <span style="color: #5c6370;"># 第1个: P</span>
-<span style="color: #e5c07b;">print</span>(<span style="color: #7dd3fc;">text</span>[<span style="color: #d19a66;">0</span>:<span style="color: #d19a66;">3</span>])   <span style="color: #5c6370;"># 0到3: Pyt</span>
-<span style="color: #e5c07b;">print</span>(<span style="color: #7dd3fc;">text</span>[:<span style="color: #d19a66;">3</span>])    <span style="color: #5c6370;"># 前3个: Pyt</span>
-<span style="color: #e5c07b;">print</span>(<span style="color: #7dd3fc;">text</span>[<span style="color: #d19a66;">3</span>:])   <span style="color: #5c6370;"># 第4个起: hon</span>
-            </pre>
-        </div>
-        
-        <!-- Slice explanation -->
-        <div style="background: #f0fdf4; padding: 12px 18px; border-radius: 15px; border: 2px solid #22c55e; text-align: left;">
-            <p style="margin: 0 0 8px 0; font-size: 1rem; color: #166534; font-weight: bold;">✂️ 切片语法</p>
-            <p style="margin: 0; font-size: 0.9rem; color: #166534; line-height: 1.8;">
-                <code>a[开始:结束]</code> 从开始到结束<br>
-                <code>a[:3]</code> 从头到第3个<br>
-                <code>a[3:]</code> 从第4个到结尾
-            </p>
-        </div>
+<span style="color: #5c6370;"># 调用函数（使用函数）</span>
+<span style="color: #61afef;">say_hello</span>()   <span style="color: #5c6370;"># 输出: 你好！欢迎学习Python！</span>
+<span style="color: #61afef;">say_hello</span>()   <span style="color: #5c6370;"># 可以调用很多次！</span>
+        </pre>
     </div>
     
-    <div style="background: #fef3c7; padding: 12px 15px; border-radius: 12px; border: 2px solid #f59e0b; margin: 8px 0;">
-        <p style="margin: 0 0 10px 0; font-size: 0.95rem; color: #92400e;">
-            ⚠️ 编程中数数从 <strong>0</strong> 开始！
+    <div style="background: #fef3c7; padding: 15px 20px; border-radius: 12px; border: 2px solid #f59e0b;">
+        <p style="margin: 0; font-size: 1.1rem; color: #92400e;">
+            ⚠️ <strong>注意</strong>：函数里面的代码要<strong>缩进</strong>（按 Tab 键）！
         </p>
-        <div style="display: flex; justify-content: center; gap: 0;">
-            <div style="display: flex; flex-direction: column; font-family: 'Consolas', monospace; text-align: center;">
-                <div style="display: flex;">
-                    <span style="width: 40px; height: 40px; background: #fff; border: 2px solid #f59e0b; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; font-weight: bold; color: #1e40af;">P</span>
-                    <span style="width: 40px; height: 40px; background: #fff; border: 2px solid #f59e0b; border-left: none; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; font-weight: bold; color: #1e40af;">y</span>
-                    <span style="width: 40px; height: 40px; background: #fff; border: 2px solid #f59e0b; border-left: none; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; font-weight: bold; color: #1e40af;">t</span>
-                    <span style="width: 40px; height: 40px; background: #fff; border: 2px solid #f59e0b; border-left: none; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; font-weight: bold; color: #1e40af;">h</span>
-                    <span style="width: 40px; height: 40px; background: #fff; border: 2px solid #f59e0b; border-left: none; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; font-weight: bold; color: #1e40af;">o</span>
-                    <span style="width: 40px; height: 40px; background: #fff; border: 2px solid #f59e0b; border-left: none; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; font-weight: bold; color: #1e40af;">n</span>
-                </div>
-                <div style="display: flex;">
-                    <span style="width: 40px; height: 30px; background: #fde68a; display: flex; align-items: center; justify-content: center; font-size: 1rem; color: #92400e; font-weight: bold;">0</span>
-                    <span style="width: 40px; height: 30px; background: #fde68a; display: flex; align-items: center; justify-content: center; font-size: 1rem; color: #92400e; font-weight: bold;">1</span>
-                    <span style="width: 40px; height: 30px; background: #fde68a; display: flex; align-items: center; justify-content: center; font-size: 1rem; color: #92400e; font-weight: bold;">2</span>
-                    <span style="width: 40px; height: 30px; background: #fde68a; display: flex; align-items: center; justify-content: center; font-size: 1rem; color: #92400e; font-weight: bold;">3</span>
-                    <span style="width: 40px; height: 30px; background: #fde68a; display: flex; align-items: center; justify-content: center; font-size: 1rem; color: #92400e; font-weight: bold;">4</span>
-                    <span style="width: 40px; height: 30px; background: #fde68a; display: flex; align-items: center; justify-content: center; font-size: 1rem; color: #92400e; font-weight: bold;">5</span>
-                </div>
-            </div>
-        </div>
     </div>
 `;
