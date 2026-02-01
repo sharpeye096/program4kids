@@ -1,21 +1,51 @@
 import { html } from '../app.js';
 
 export default html`
-    <h2>高斯的魔法公式 ⚡</h2>
+    <h2>随机选择 (random.choice) 🎲</h2>
     
-    <p style="font-size: 1.1rem;">数学家高斯小时候发现了一个<strong>快速公式</strong>：</p>
+    <p style="font-size: 1.1rem;">不知道选哪个？让电脑帮你选！</p>
     
-    <div style="background: #fff; padding: 25px 40px; border-radius: 20px; border: 4px solid var(--accent); margin: 25px 0; display: inline-block; box-shadow: var(--shadow-float);">
-        <h3 style="margin: 0; font-size: 2.5rem; color: var(--accent); font-family: 'Times New Roman', serif; font-style: italic;">
-            sum = n × (n + 1) / 2
-        </h3>
+    <div style="background: #0f172a; padding: 15px 25px; border-radius: 15px; text-align: left; font-family: 'Consolas', monospace; font-size: 1rem; color: #bef264; margin: 20px 0;">
+        <pre style="margin: 0; background: transparent; border: none; box-shadow: none; padding: 0; color: inherit;">
+<span style="color: #c678dd;">import</span> <span style="color: #e06c75;">random</span>
+
+<span style="color: #38bdf8;">options</span> = [<span style="color: #fca5a5;">"看书"</span>, <span style="color: #fca5a5;">"游戏"</span>, <span style="color: #fca5a5;">"运动"</span>]
+
+<span style="color: #38bdf8;">choice</span> = <span style="color: #e06c75;">random</span>.<span style="color: #61afef;">choice</span>(<span style="color: #38bdf8;">options</span>)
+<span style="color: #eab308;">print</span>(<span style="color: #38bdf8;">choice</span>)
+        </pre>
     </div>
     
-    <div style="background: #f0fdf4; padding: 15px 25px; border-radius: 12px; border: 2px solid #22c55e; max-width: 600px; margin: 0 auto; text-align: left;">
-        <p style="margin: 0; font-size: 1rem; color: #166534;">
-            例如 n=100:<br>
-            递归要算 100 次... 😫<br>
-            公式只要算 1 次！ ⚡ 100 × 101 / 2 = 5050
-        </p>
+    <div style="position: relative; height: 100px; display: flex; justify-content: center; align-items: center;">
+        <div id="wheel" style="font-size: 2rem;">❓</div>
     </div>
+    
+    <button id="pick-btn" style="background: #8b5cf6;">帮我选！</button>
 `;
+
+export const onMount = (container) => {
+    const btn = container.querySelector('#pick-btn');
+    const wheel = container.querySelector('#wheel');
+    const options = ["📚 看书", "🎮 游戏", "🏀 运动"];
+
+    btn.onclick = () => {
+        let count = 0;
+        btn.disabled = true;
+
+        const interval = setInterval(() => {
+            const temp = options[Math.floor(Math.random() * options.length)];
+            wheel.innerHTML = temp;
+            count++;
+            if (count > 10) {
+                clearInterval(interval);
+                wheel.style.transform = "scale(1.2)";
+                wheel.style.color = "#7c3aed";
+                wheel.style.fontWeight = "bold";
+                btn.disabled = false;
+                setTimeout(() => {
+                    wheel.style.transform = "scale(1)";
+                }, 200);
+            }
+        }, 100);
+    };
+};

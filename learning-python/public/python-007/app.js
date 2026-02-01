@@ -13,8 +13,7 @@ class SlideDeck {
             'page-4.js',
             'page-5.js',
             'page-6.js',
-            'page-7.js',
-            'page-8.js'
+            'page-7.js'
         ];
         this.appElement = document.getElementById('app');
         this.init();

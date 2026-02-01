@@ -1,68 +1,42 @@
 import { html } from '../app.js';
 
 export default html`
-    <h2>添加元素 (.append & .insert) 🎒</h2>
+    <h2>比较与逻辑运算 🔍</h2>
     
-    <p style="font-size: 1rem;">捡到新宝贝！放进背包！</p>
+    <p style="font-size: 1.1rem;">比较会产生布尔值！还可以用逻辑运算组合条件！</p>
     
-    <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin: 15px 0;">
-        <!-- append example -->
-        <div style="background: #0f172a; padding: 12px 18px; border-radius: 12px; text-align: left; font-family: 'Consolas', monospace; font-size: 0.9rem; color: #bef264;">
-            <p style="margin: 0 0 8px 0; color: #94a3b8; font-size: 0.85rem;">📦 append() - 放到末尾</p>
-            <pre style="margin: 0; background: transparent; border: none; box-shadow: none; padding: 0; color: inherit;">
-<span style="color: #38bdf8;">bag</span> = [<span style="color: #fca5a5;">"书"</span>, <span style="color: #fca5a5;">"笔"</span>]
-<span style="color: #38bdf8;">bag</span>.<span style="color: #61afef;">append</span>(<span style="color: #fca5a5;">"水杯"</span>)
-
-<span style="color: #64748b;"># 结果: ["书", "笔", "水杯"]</span>
-            </pre>
+    <div style="display: flex; gap: 25px; flex-wrap: wrap; justify-content: center; margin: 15px 0;">
+        <div style="background: #f0f9ff; padding: 15px; border-radius: 12px; border: 2px solid #3b82f6; text-align: left;">
+            <p style="margin: 0 0 8px 0; font-size: 1rem; color: #1e40af; font-weight: bold;">🔢 比较运算符</p>
+            <p style="margin: 0; font-family: 'Consolas', monospace; font-size: 0.9rem; line-height: 1.7;">
+                5 == 5 → True<br>
+                5 != 3 → True<br>
+                5 > 3 → True<br>
+                5 <= 3 → False
+            </p>
         </div>
         
-        <!-- insert example -->
-        <div style="background: #0f172a; padding: 12px 18px; border-radius: 12px; text-align: left; font-family: 'Consolas', monospace; font-size: 0.9rem; color: #bef264;">
-            <p style="margin: 0 0 8px 0; color: #94a3b8; font-size: 0.85rem;">📍 insert(i, x) - 插入到第 i 位</p>
-            <pre style="margin: 0; background: transparent; border: none; box-shadow: none; padding: 0; color: inherit;">
-<span style="color: #38bdf8;">bag</span> = [<span style="color: #fca5a5;">"书"</span>, <span style="color: #fca5a5;">"笔"</span>]
-<span style="color: #38bdf8;">bag</span>.<span style="color: #61afef;">insert</span>(<span style="color: #d19a66;">1</span>, <span style="color: #fca5a5;">"橡皮"</span>)
+        <div style="background: #fdf4ff; padding: 15px; border-radius: 12px; border: 2px solid #a855f7; text-align: left;">
+            <p style="margin: 0 0 8px 0; font-size: 1rem; color: #7e22ce; font-weight: bold;">🔗 逻辑运算符</p>
+            <p style="margin: 0; font-family: 'Consolas', monospace; font-size: 0.9rem; line-height: 1.7;">
+                <span style="color: #c678dd;">and</span> = 并且（都要真）<br>
+                <span style="color: #c678dd;">or</span> = 或者（一个真就行）<br>
+                <span style="color: #c678dd;">not</span> = 反转（真变假）
+            </p>
+        </div>
+    </div>
+    
+    <div style="background: #1e293b; padding: 12px 18px; border-radius: 12px; text-align: left; font-family: 'Consolas', monospace; font-size: 0.95rem; color: #e2e8f0;">
+        <pre style="margin: 0; background: transparent; border: none; box-shadow: none; padding: 0; color: inherit;">
+<span style="color: #5c6370;"># and: 两边都要 True</span>
+<span style="color: #e5c07b;">print</span>(<span style="color: #d19a66;">True</span> <span style="color: #c678dd;">and</span> <span style="color: #d19a66;">True</span>)   <span style="color: #5c6370;"># True</span>
+<span style="color: #e5c07b;">print</span>(<span style="color: #d19a66;">True</span> <span style="color: #c678dd;">and</span> <span style="color: #d19a66;">False</span>)  <span style="color: #5c6370;"># False</span>
 
-<span style="color: #64748b;"># 结果: ["书", "橡皮", "笔"]</span>
-            </pre>
-        </div>
-    </div>
-    
-    <div class="backpack-anim" style="display: flex; gap: 10px; align-items: center; justify-content: center; height: 60px;">
-        <div class="item-box">📖 书</div>
-        <div id="insert-item" style="opacity: 0; width: 0; overflow: hidden; transition: all 0.5s;">
-            <div class="item-box" style="border-color: #f59e0b; background: #fef3c7;">🧹 橡皮</div>
-        </div>
-        <div class="item-box">✏️ 笔</div>
-        <div id="append-item" style="opacity: 0; transform: translateX(-20px); transition: all 0.5s;">
-            <div class="item-box" style="border-color: #0ea5e9; background: #e0f2fe;">🥤 水杯</div>
-        </div>
-    </div>
-    
-    <div style="display: flex; gap: 15px; justify-content: center; margin-top: 10px;">
-        <button id="insert-btn" style="padding: 8px 16px; font-size: 0.9rem; background: #f59e0b; box-shadow: 0 4px 0 #d97706;">insert(1, 橡皮)</button>
-        <button id="append-btn" style="padding: 8px 16px; font-size: 0.9rem;">append(水杯)</button>
+<span style="color: #5c6370;"># or: 一边 True 就行</span>
+<span style="color: #e5c07b;">print</span>(<span style="color: #d19a66;">False</span> <span style="color: #c678dd;">or</span> <span style="color: #d19a66;">True</span>)  <span style="color: #5c6370;"># True</span>
+
+<span style="color: #5c6370;"># not: 反转</span>
+<span style="color: #e5c07b;">print</span>(<span style="color: #c678dd;">not</span> <span style="color: #d19a66;">True</span>)       <span style="color: #5c6370;"># False</span>
+        </pre>
     </div>
 `;
-
-export const onMount = (container) => {
-    const insertBtn = container.querySelector('#insert-btn');
-    const appendBtn = container.querySelector('#append-btn');
-    const insertItem = container.querySelector('#insert-item');
-    const appendItem = container.querySelector('#append-item');
-
-    insertBtn.onclick = () => {
-        insertItem.style.opacity = '1';
-        insertItem.style.width = 'auto';
-        insertBtn.disabled = true;
-        insertBtn.innerText = "已插入！✅";
-    };
-
-    appendBtn.onclick = () => {
-        appendItem.style.opacity = '1';
-        appendItem.style.transform = 'translateX(0)';
-        appendBtn.disabled = true;
-        appendBtn.innerText = "已添加！✅";
-    };
-};

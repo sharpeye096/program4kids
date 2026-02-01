@@ -1,24 +1,58 @@
 import { html } from '../app.js';
 
 export default html`
-    <h2>创建列表 📝</h2>
+    <h2>字符串操作 ✂️</h2>
     
-    <div style="background: #0f172a; padding: 20px 30px; border-radius: 15px; text-align: left; font-family: 'Consolas', monospace; font-size: 1.1rem; color: #bef264; margin: 20px 0;">
-        <pre style="margin: 0; background: transparent; border: none; box-shadow: none; padding: 0; color: inherit;">
-<span style="color: #64748b;"># 水果列表</span>
-<span style="color: #38bdf8;">fruits</span> = [<span style="color: #fca5a5;">"苹果"</span>, <span style="color: #fca5a5;">"香蕉"</span>, <span style="color: #fca5a5;">"橘子"</span>]
+    <p style="font-size: 1.1rem;">可以获取字符串的长度、单个字符、或者一部分！</p>
+    
+    <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin: 12px 0;">
+        <!-- Code -->
+        <div style="background: #1e293b; padding: 12px 18px; border-radius: 15px; text-align: left; font-family: 'Consolas', monospace; font-size: 0.85rem; color: #e2e8f0;">
+            <pre style="margin: 0; background: transparent; border: none; box-shadow: none; padding: 0; color: inherit;">
+<span style="color: #7dd3fc;">text</span> = <span style="color: #98c379;">"Python"</span>
 
-<span style="color: #64748b;"># 数字列表</span>
-<span style="color: #38bdf8;">scores</span> = [<span style="color: #fca5a5;">100</span>, <span style="color: #fca5a5;">95</span>, <span style="color: #fca5a5;">88</span>]
-
-<span style="color: #64748b;"># 混合列表</span>
-<span style="color: #38bdf8;">backpack</span> = [<span style="color: #fca5a5;">"宝剑"</span>, <span style="color: #fca5a5;">"药水"</span>, <span style="color: #fca5a5;">50</span>]
-        </pre>
+<span style="color: #e5c07b;">print</span>(<span style="color: #e5c07b;">len</span>(<span style="color: #7dd3fc;">text</span>))    <span style="color: #5c6370;"># 长度: 6</span>
+<span style="color: #e5c07b;">print</span>(<span style="color: #7dd3fc;">text</span>[<span style="color: #d19a66;">0</span>])     <span style="color: #5c6370;"># 第1个: P</span>
+<span style="color: #e5c07b;">print</span>(<span style="color: #7dd3fc;">text</span>[<span style="color: #d19a66;">0</span>:<span style="color: #d19a66;">3</span>])   <span style="color: #5c6370;"># 0到3: Pyt</span>
+<span style="color: #e5c07b;">print</span>(<span style="color: #7dd3fc;">text</span>[:<span style="color: #d19a66;">3</span>])    <span style="color: #5c6370;"># 前3个: Pyt</span>
+<span style="color: #e5c07b;">print</span>(<span style="color: #7dd3fc;">text</span>[<span style="color: #d19a66;">3</span>:])   <span style="color: #5c6370;"># 第4个起: hon</span>
+            </pre>
+        </div>
+        
+        <!-- Slice explanation -->
+        <div style="background: #f0fdf4; padding: 12px 18px; border-radius: 15px; border: 2px solid #22c55e; text-align: left;">
+            <p style="margin: 0 0 8px 0; font-size: 1rem; color: #166534; font-weight: bold;">✂️ 切片语法</p>
+            <p style="margin: 0; font-size: 0.9rem; color: #166534; line-height: 1.8;">
+                <code>a[开始:结束]</code> 从开始到结束<br>
+                <code>a[:3]</code> 从头到第3个<br>
+                <code>a[3:]</code> 从第4个到结尾
+            </p>
+        </div>
     </div>
     
-    <div style="display: flex; gap: 15px; justify-content: center; margin-top: 20px;">
-        <div class="item-box">🍎 苹果</div>
-        <div class="item-box">🍌 香蕉</div>
-        <div class="item-box">🍊 橘子</div>
+    <div style="background: #fef3c7; padding: 12px 15px; border-radius: 12px; border: 2px solid #f59e0b; margin: 8px 0;">
+        <p style="margin: 0 0 10px 0; font-size: 0.95rem; color: #92400e;">
+            ⚠️ 编程中数数从 <strong>0</strong> 开始！
+        </p>
+        <div style="display: flex; justify-content: center; gap: 0;">
+            <div style="display: flex; flex-direction: column; font-family: 'Consolas', monospace; text-align: center;">
+                <div style="display: flex;">
+                    <span style="width: 40px; height: 40px; background: #fff; border: 2px solid #f59e0b; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; font-weight: bold; color: #1e40af;">P</span>
+                    <span style="width: 40px; height: 40px; background: #fff; border: 2px solid #f59e0b; border-left: none; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; font-weight: bold; color: #1e40af;">y</span>
+                    <span style="width: 40px; height: 40px; background: #fff; border: 2px solid #f59e0b; border-left: none; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; font-weight: bold; color: #1e40af;">t</span>
+                    <span style="width: 40px; height: 40px; background: #fff; border: 2px solid #f59e0b; border-left: none; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; font-weight: bold; color: #1e40af;">h</span>
+                    <span style="width: 40px; height: 40px; background: #fff; border: 2px solid #f59e0b; border-left: none; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; font-weight: bold; color: #1e40af;">o</span>
+                    <span style="width: 40px; height: 40px; background: #fff; border: 2px solid #f59e0b; border-left: none; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; font-weight: bold; color: #1e40af;">n</span>
+                </div>
+                <div style="display: flex;">
+                    <span style="width: 40px; height: 30px; background: #fde68a; display: flex; align-items: center; justify-content: center; font-size: 1rem; color: #92400e; font-weight: bold;">0</span>
+                    <span style="width: 40px; height: 30px; background: #fde68a; display: flex; align-items: center; justify-content: center; font-size: 1rem; color: #92400e; font-weight: bold;">1</span>
+                    <span style="width: 40px; height: 30px; background: #fde68a; display: flex; align-items: center; justify-content: center; font-size: 1rem; color: #92400e; font-weight: bold;">2</span>
+                    <span style="width: 40px; height: 30px; background: #fde68a; display: flex; align-items: center; justify-content: center; font-size: 1rem; color: #92400e; font-weight: bold;">3</span>
+                    <span style="width: 40px; height: 30px; background: #fde68a; display: flex; align-items: center; justify-content: center; font-size: 1rem; color: #92400e; font-weight: bold;">4</span>
+                    <span style="width: 40px; height: 30px; background: #fde68a; display: flex; align-items: center; justify-content: center; font-size: 1rem; color: #92400e; font-weight: bold;">5</span>
+                </div>
+            </div>
+        </div>
     </div>
 `;

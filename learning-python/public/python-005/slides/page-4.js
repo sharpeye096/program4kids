@@ -1,30 +1,28 @@
 import { html } from '../app.js';
 
 export default html`
-    <h2>布尔类型 ✅❌</h2>
+    <h2>函数的参数 📥</h2>
     
-    <p style="font-size: 1.2rem;">布尔只有两个值：<strong>真</strong> 或 <strong>假</strong>！</p>
+    <p style="font-size: 1.2rem;">参数就是传给函数的<strong>输入值</strong>！</p>
     
-    <div style="display: flex; justify-content: center; gap: 50px; margin: 25px 0;">
-        <div class="concept-card" style="border-color: #22c55e; min-width: 140px;">
-            <div style="font-size: 3rem;">✅</div>
-            <p style="font-size: 1.5rem; margin: 10px 0 0 0; color: #22c55e; font-weight: bold;">True</p>
-            <p style="font-size: 1rem; margin: 5px 0 0 0;">真 / 对</p>
-        </div>
-        <div class="concept-card" style="border-color: #ef4444; min-width: 140px;">
-            <div style="font-size: 3rem;">❌</div>
-            <p style="font-size: 1.5rem; margin: 10px 0 0 0; color: #ef4444; font-weight: bold;">False</p>
-            <p style="font-size: 1rem; margin: 5px 0 0 0;">假 / 错</p>
-        </div>
-    </div>
-    
-    <div style="background: #1e293b; padding: 15px 22px; border-radius: 15px; text-align: left; font-family: 'Consolas', monospace; font-size: 1rem; color: #e2e8f0;">
+    <div style="background: #1e293b; padding: 20px 28px; border-radius: 15px; text-align: left; font-family: 'Consolas', monospace; font-size: 1rem; color: #e2e8f0; margin: 20px 0;">
         <pre style="margin: 0; background: transparent; border: none; box-shadow: none; padding: 0; color: inherit;">
-<span style="color: #7dd3fc;">is_sunny</span> = <span style="color: #d19a66;">True</span>    <span style="color: #5c6370;"># 今天是晴天</span>
-<span style="color: #7dd3fc;">is_raining</span> = <span style="color: #d19a66;">False</span>  <span style="color: #5c6370;"># 没有下雨</span>
+<span style="color: #5c6370;"># 带一个参数的函数</span>
+<span style="color: #c678dd;">def</span> <span style="color: #61afef;">greet</span>(<span style="color: #7dd3fc;">name</span>):
+    <span style="color: #e5c07b;">print</span>(<span style="color: #98c379;">"你好，"</span> + <span style="color: #7dd3fc;">name</span> + <span style="color: #98c379;">"！"</span>)
 
-<span style="color: #e5c07b;">print</span>(<span style="color: #d19a66;">5</span> > <span style="color: #d19a66;">3</span>)      <span style="color: #5c6370;"># 输出: True (5比3大)</span>
-<span style="color: #e5c07b;">print</span>(<span style="color: #d19a66;">2</span> == <span style="color: #d19a66;">5</span>)     <span style="color: #5c6370;"># 输出: False (2不等于5)</span>
+<span style="color: #61afef;">greet</span>(<span style="color: #98c379;">"小明"</span>)   <span style="color: #5c6370;"># 输出: 你好，小明！</span>
+<span style="color: #61afef;">greet</span>(<span style="color: #98c379;">"小红"</span>)   <span style="color: #5c6370;"># 输出: 你好，小红！</span>
+
+<span style="color: #5c6370;"># 带两个参数的函数</span>
+<span style="color: #c678dd;">def</span> <span style="color: #61afef;">add</span>(<span style="color: #7dd3fc;">a</span>, <span style="color: #7dd3fc;">b</span>):
+    <span style="color: #e5c07b;">print</span>(<span style="color: #7dd3fc;">a</span> + <span style="color: #7dd3fc;">b</span>)
+
+<span style="color: #61afef;">add</span>(<span style="color: #d19a66;">3</span>, <span style="color: #d19a66;">5</span>)       <span style="color: #5c6370;"># 输出: 8</span>
         </pre>
     </div>
+    
+    <p style="font-size: 1.1rem; background: linear-gradient(135deg, #8b5cf6, #f472b6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: bold;">
+        💡 参数让函数变得更灵活，可以处理不同的数据！
+    </p>
 `;

@@ -1,142 +1,102 @@
 import { html } from '../app.js';
 
 export default html`
-    <h2>终极PK：递归 vs 公式 ⚔️</h2>
+    <h2>练习：午餐生成器 🍱</h2>
     
-    <div style="display: flex; flex-direction: column; gap: 15px; align-items: center; width: 100%;">
+    <p style="font-size: 1.1rem;">创建你喜欢的食物列表，然后随机选一个！</p>
+    
+    <div style="display: flex; gap: 20px; width: 100%; max-width: 900px; height: 50vh;">
         
-        <!-- N Value Input -->
-        <div style="background: #fff; padding: 10px 20px; border-radius: 10px; border: 3px solid var(--primary); display: flex; align-items: center; gap: 15px;">
-            <label style="font-size: 1.1rem; font-weight: bold;">计算 1+2+...+n, n =</label>
-            <input type="number" id="n-value" value="100" min="1" max="500" style="width: 80px; font-size: 1.1rem; text-align: center;" />
-        </div>
-        
-        <!-- Code Editor -->
-        <div style="display: flex; gap: 10px; width: 100%; max-width: 800px;">
-            <div style="flex: 1; text-align: left;">
-                <p style="font-size: 0.9rem; margin-bottom: 5px; color: var(--secondary);">📝 递归函数 sum_recursive(n):</p>
-                <textarea id="code-recursive" style="width: 100%; height: 120px; background: #2e1065; color: #e9d5ff; border: 2px solid var(--secondary); font-size: 0.9rem;" placeholder="def sum_recursive(n):
-    if n == 1:
-        return 1
-    else:
-        return n + sum_recursive(n-1)"></textarea>
+        <!-- Editor -->
+        <div style="flex: 1; display: flex; flex-direction: column;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                <p style="margin: 0; font-size: 0.9rem; color: #666;">✏️ 这里写 Python 代码：</p>
+                <button id="fill-btn" style="padding: 2px 8px; font-size: 0.8rem; background: #94a3b8; box-shadow: none;">填入示例 ✨</button>
             </div>
-            <div style="flex: 1; text-align: left;">
-                <p style="font-size: 0.9rem; margin-bottom: 5px; color: var(--accent);">⚡ 公式函数 sum_formula(n):</p>
-                <textarea id="code-formula" style="width: 100%; height: 120px; background: #fffbeb; color: #92400e; border: 2px solid var(--accent); font-size: 0.9rem;" placeholder="def sum_formula(n):
-    return n * (n + 1) // 2"></textarea>
-            </div>
-        </div>
-        
-        <!-- Buttons -->
-        <div style="display: flex; gap: 15px;">
-            <button id="run-btn" style="padding: 12px 30px; font-size: 1.2rem;">开始对决！🚀</button>
-            <button id="answer-btn" style="background: #10b981; box-shadow: 0 4px 0 #059669;">填入答案 ✨</button>
+            <textarea id="code-input" style="flex: 1; background: #0f172a; color: #e2e8f0; border-radius: 10px; padding: 15px; font-family: 'Consolas', monospace; font-size: 1rem; border: none; resize: none;" 
+placeholder="import random
+
+foods = ['汉堡', '披萨', '面条']
+lunch = random.choice(foods)
+
+print('今天午餐吃：' + lunch)"></textarea>
+            <button id="run-btn" style="margin-top: 10px; width: 100%;">运行 ▶️</button>
         </div>
         
         <!-- Result -->
-        <div id="result" style="width: 100%; max-width: 600px; min-height: 80px;"></div>
+        <div style="flex: 1; flex-direction: column; display: flex; gap: 15px;">
+             <div style="flex: 1; background: #fff; border: 3px solid var(--secondary); border-radius: 15px; padding: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <p style="margin: 0; color: #666;">🖥️ 运行结果：</p>
+                <div id="output-display" style="font-size: 1.5rem; font-weight: bold; color: var(--text-primary); margin-top: 15px; text-align: center;">
+                    ...
+                </div>
+             </div>
+             
+             <div style="background: #f0fdf4; padding: 15px; border-radius: 10px; text-align: left; font-size: 0.9rem;">
+                 <p style="margin: 0 0 5px 0; font-weight: bold; color: #166534;">💡 提示：</p>
+                 <ul style="margin: 0; padding-left: 20px; color: #15803d;">
+                     <li style="padding: 0; margin: 5px 0;">记得 import random</li>
+                     <li style="padding: 0; margin: 5px 0;">用 ['a', 'b'] 创建列表</li>
+                     <li style="padding: 0; margin: 5px 0;">用 random.choice(列表)</li>
+                 </ul>
+             </div>
+        </div>
     </div>
 `;
 
 export const onMount = (container) => {
-    const nInput = container.querySelector('#n-value');
-    const codeRec = container.querySelector('#code-recursive');
-    const codeForm = container.querySelector('#code-formula');
+    const codeInput = container.querySelector('#code-input');
     const runBtn = container.querySelector('#run-btn');
-    const answerBtn = container.querySelector('#answer-btn');
-    const result = container.querySelector('#result');
+    const fillBtn = container.querySelector('#fill-btn');
+    const outputDisplay = container.querySelector('#output-display');
 
-    // Internal implementations for verification
-    const solveRecursive = (n) => {
-        if (n === 1) return 1;
-        return n + solveRecursive(n - 1);
+    fillBtn.onclick = () => {
+        codeInput.value = `import random
+
+foods = ['汉堡', '披萨', '面条', '寿司', '火锅']
+lunch = random.choice(foods)
+
+print('今天午餐吃：' + lunch)`;
     };
 
-    const solveFormula = (n) => {
-        return Math.floor(n * (n + 1) / 2);
-    };
-
-    // Handle Tab key in textareas to insert spaces instead of switching focus
-    const handleTab = (textarea) => {
-        textarea.addEventListener('keydown', (e) => {
-            if (e.key === 'Tab') {
-                e.preventDefault();
-                const start = textarea.selectionStart;
-                const end = textarea.selectionEnd;
-                textarea.value = textarea.value.substring(0, start) + '    ' + textarea.value.substring(end);
-                textarea.selectionStart = textarea.selectionEnd = start + 4;
-            }
-        });
-    };
-    handleTab(codeRec);
-    handleTab(codeForm);
-
-    const validateRecursive = (code) => {
-        const hasDef = /def\s+sum_recursive\s*\(\s*n\s*\)/.test(code);
-        const hasBase = /if\s+n\s*==\s*1/.test(code) && /return\s+1/.test(code);
-        const hasRec = /return\s+n\s*\+\s*sum_recursive\s*\(\s*n\s*-\s*1\s*\)/.test(code);
-        return hasDef && hasBase && hasRec;
-    };
-
-    const validateFormula = (code) => {
-        const hasDef = /def\s+sum_formula\s*\(\s*n\s*\)/.test(code);
-        // Accept both n*(n+1)/2 and n*(n+1)//2, with or without spaces
-        const hasMath = /return\s+n\s*\*\s*\(\s*n\s*\+\s*1\s*\)\s*(\/\/|\/)\s*2/.test(code);
-        return hasDef && hasMath;
-    };
-
-    answerBtn.onclick = () => {
-        codeRec.value = `def sum_recursive(n):
-    if n == 1:
-        return 1
-    else:
-        return n + sum_recursive(n-1)`;
-
-        codeForm.value = `def sum_formula(n):
-    return n * (n + 1) // 2`;
-    };
+    // Handle Tab key in textarea to insert spaces instead of switching focus
+    codeInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Tab') {
+            e.preventDefault();
+            const start = codeInput.selectionStart;
+            const end = codeInput.selectionEnd;
+            codeInput.value = codeInput.value.substring(0, start) + '    ' + codeInput.value.substring(end);
+            codeInput.selectionStart = codeInput.selectionEnd = start + 4;
+        }
+    });
 
     runBtn.onclick = () => {
-        const n = parseInt(nInput.value) || 100;
-        const recValid = validateRecursive(codeRec.value);
-        const formValid = validateFormula(codeForm.value);
+        const code = codeInput.value;
+        outputDisplay.innerHTML = "🎲 正在抽取...";
 
-        if (!recValid || !formValid) {
-            result.innerHTML = `
-                <div style="background: #fee2e2; color: #991b1b; padding: 15px; border-radius: 12px; border: 2px solid #ef4444; text-align: center;">
-                    😕 代码好像有点问题，检查一下？
-                    ${!recValid ? '<br>- 递归函数写對了吗？(记得 Base Case)' : ''}
-                    ${!formValid ? '<br>- 公式函数写對了吗？(格式: n*(n+1)/2 或 n*(n+1)//2)' : ''}
-                </div>
-            `;
-            return;
-        }
+        // Simple client-side simulation logic
+        setTimeout(() => {
+            // Extract the list from code roughly (simulation)
+            let foods = [];
+            const listMatch = code.match(/\[(.*?)\]/s);
+            if (listMatch) {
+                const inner = listMatch[1];
+                const items = inner.split(/,(?=(?:[^'"]*['"][^'"]*['"])*[^'"]*$)/);
+                foods = items.map(item => item.trim().replace(/^['"]|['"]$/g, '')).filter(i => i);
+            }
 
-        const ansRec = solveRecursive(n);
-        const ansForm = solveFormula(n);
+            if (foods.length === 0) {
+                foods = ['汉堡', '披萨', '面条', '米饭', '寿司'];
+            }
 
-        result.innerHTML = `
-            <div style="background: #f0fdf4; padding: 20px; border-radius: 15px; border: 3px solid #22c55e; display: flex; justify-content: space-around; align-items: center;">
-                <div style="text-align: center;">
-                    <div style="font-size: 0.9rem; color: var(--secondary);">递归结果</div>
-                    <div style="font-size: 2rem; font-weight: bold; color: var(--secondary);">${ansRec}</div>
-                    <div style="font-size: 0.8rem; color: #666;">调用 ${n} 次函数</div>
-                </div>
-                <div style="font-size: 2rem;">=</div>
-                <div style="text-align: center;">
-                    <div style="font-size: 0.9rem; color: var(--accent);">公式结果</div>
-                    <div style="font-size: 2rem; font-weight: bold; color: var(--accent);">${ansForm}</div>
-                    <div style="font-size: 0.8rem; color: #666;">只需 1 次计算</div>
-                </div>
-            </div>
-            <div style="margin-top: 12px; padding: 12px 15px; background: #e0f2fe; border-radius: 10px; border: 2px solid #0ea5e9;">
-                <p style="margin: 0; font-size: 1rem; color: #0369a1; text-align: center;">
-                    🎉 两者结果完全一样！<br>
-                    <strong>📊 性能对比：</strong>公式法只需 <strong>1 次计算</strong>，递归法需要 <strong>${n} 次函数调用</strong><br>
-                    <span style="color: #166534;">✅ 结论：公式法更快、更高效！这就是数学的魔力！</span>
-                </p>
-            </div>
-        `;
+            // "Run" random choice
+            const choice = foods[Math.floor(Math.random() * foods.length)];
+
+            outputDisplay.innerHTML = `今天午餐吃：<span style="color: #65a30d; font-size: 2rem;">${choice}</span>`;
+
+            if (!code.includes('import random')) {
+                outputDisplay.innerHTML += `<div style="font-size: 0.8rem; color: red; margin-top: 10px;">(记得写 import random 哦)</div>`;
+            }
+        }, 500);
     };
 };

@@ -1,47 +1,74 @@
 import { html } from '../app.js';
 
 export default html`
-    <h2>增加与删除 ➕➖</h2>
+    <h2>练习：停止循环 🛑</h2>
     
-    <p style="font-size: 1.1rem;">获得新装备？或者丢失了物品？</p>
+    <p style="font-size: 1.1rem;">这个小人一直在跑！请帮他停下来！</p>
     
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 800px; margin: 15px 0;">
-        <div style="background: #fff; padding: 15px; border-radius: 15px; border: 2px solid #16a34a;">
-            <p style="margin: 0 0 10px 0; color: #16a34a; font-weight: bold;">增加新 Key</p>
-            <div style="font-family: 'Consolas', monospace; font-size: 0.9rem; background: #f0fdf4; padding: 10px; border-radius: 8px;">
-                hero["weapon"] = "Sword"<br>
-                <span style="color: #666;"># 直接赋值一个新的 Key</span>
-            </div>
-            <div id="weapon-slot" style="margin-top: 10px; height: 30px; color: #16a34a; font-weight: bold; opacity: 0;">⚔️ Sword Added!</div>
-            <button id="add-btn" style="background: #16a34a; padding: 8px 15px; font-size: 0.9rem;">获得武器</button>
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 20px; margin: 20px 0;">
+        
+        <div id="track" style="width: 80%; height: 60px; border-bottom: 3px solid #666; position: relative;">
+            <div id="runner-sprite" style="font-size: 3rem; position: absolute; left: 0; bottom: 0; transition: left 0.1s linear;">🏃</div>
         </div>
         
-        <div style="background: #fff; padding: 15px; border-radius: 15px; border: 2px solid #dc2626;">
-            <p style="margin: 0 0 10px 0; color: #dc2626; font-weight: bold;">删除 Key</p>
-            <div style="font-family: 'Consolas', monospace; font-size: 0.9rem; background: #fef2f2; padding: 10px; border-radius: 8px;">
-                del hero["level"]<br>
-                <span style="color: #666;"># 用 del 关键字</span>
-            </div>
-            <div id="level-slot" style="margin-top: 10px; height: 30px; color: #dc2626; font-weight: bold;">⭐ Level: 5</div>
-            <button id="del-btn" style="background: #dc2626; padding: 8px 15px; font-size: 0.9rem;">删除等级</button>
+        <div style="background: #1e1b4b; padding: 15px; border-radius: 10px; width: 100%; text-align: left; font-family: 'Consolas', monospace; color: #fbcfe8; white-space: nowrap;">
+            while True:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;run()<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;if <button id="break-btn" style="padding: 2px 10px; font-size: 0.9rem; margin: 0 5px; background: #ef4444; vertical-align: middle;">按下按钮</button>:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #f472b6; font-weight: bold;">break</span>
         </div>
+        
+        <div id="message" style="font-size: 1.2rem; min-height: 30px; color: var(--secondary); font-weight: bold;">
+            奔跑中...
+        </div>
+        
+        <button id="reset-btn" style="background: #8b5cf6; display: none;">再来一次 🔄</button>
     </div>
 `;
 
 export const onMount = (container) => {
-    const addBtn = container.querySelector('#add-btn');
-    const delBtn = container.querySelector('#del-btn');
-    const weaponSlot = container.querySelector('#weapon-slot');
-    const levelSlot = container.querySelector('#level-slot');
+    const runner = container.querySelector('#runner-sprite');
+    const breakBtn = container.querySelector('#break-btn');
+    const resetBtn = container.querySelector('#reset-btn');
+    const message = container.querySelector('#message');
 
-    addBtn.onclick = () => {
-        weaponSlot.style.opacity = '1';
-        addBtn.disabled = true;
+    let position = 0;
+    let running = true;
+    let direction = 1;
+    let interval;
+
+    function startRun() {
+        running = true;
+        breakBtn.disabled = false;
+        breakBtn.style.opacity = '1';
+        resetBtn.style.display = 'none';
+        message.innerText = "奔跑中...";
+        message.style.color = "var(--secondary)";
+
+        interval = setInterval(() => {
+            if (!running) return;
+
+            position += 2 * direction;
+            if (position > 90 || position < 0) direction *= -1; // bounce
+
+            runner.style.left = position + '%';
+            runner.style.transform = direction === 1 ? 'scaleX(1)' : 'scaleX(-1)';
+        }, 20);
+    }
+
+    breakBtn.onclick = () => {
+        running = false;
+        clearInterval(interval);
+        message.innerHTML = "🛑 <strong>BREAK!</strong> 循环停止了！";
+        message.style.color = "#ef4444";
+        breakBtn.disabled = true;
+        breakBtn.style.opacity = '0.5';
+        resetBtn.style.display = 'block';
     };
 
-    delBtn.onclick = () => {
-        levelSlot.style.textDecoration = 'line-through';
-        levelSlot.style.opacity = '0.5';
-        delBtn.disabled = true;
+    resetBtn.onclick = () => {
+        startRun();
     };
+
+    startRun(); // Auto start
 };
