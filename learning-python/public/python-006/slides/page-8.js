@@ -57,6 +57,21 @@ export const onMount = (container) => {
         return Math.floor(n * (n + 1) / 2);
     };
 
+    // Handle Tab key in textareas to insert spaces instead of switching focus
+    const handleTab = (textarea) => {
+        textarea.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const start = textarea.selectionStart;
+                const end = textarea.selectionEnd;
+                textarea.value = textarea.value.substring(0, start) + '    ' + textarea.value.substring(end);
+                textarea.selectionStart = textarea.selectionEnd = start + 4;
+            }
+        });
+    };
+    handleTab(codeRec);
+    handleTab(codeForm);
+
     const validateRecursive = (code) => {
         const hasDef = /def\s+sum_recursive\s*\(\s*n\s*\)/.test(code);
         const hasBase = /if\s+n\s*==\s*1/.test(code) && /return\s+1/.test(code);

@@ -51,6 +51,17 @@ export const onMount = (container) => {
         return reverse(s.substring(1)) + s[0];
     };
 
+    // Handle Tab key in textarea to insert spaces instead of switching focus
+    codeInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Tab') {
+            e.preventDefault();
+            const start = codeInput.selectionStart;
+            const end = codeInput.selectionEnd;
+            codeInput.value = codeInput.value.substring(0, start) + '    ' + codeInput.value.substring(end);
+            codeInput.selectionStart = codeInput.selectionEnd = start + 4;
+        }
+    });
+
     // Validate code
     const validateCode = (code) => {
         const hasDefReverse = /def\s+reverse\s*\(\s*s\s*\)/.test(code);
