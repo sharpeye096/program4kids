@@ -12,9 +12,9 @@ def say_hello(name):
     <p>定义一次，就能到处使用！</p>
     
     <div style="margin-top: 30px;">
-        <code style="background: #fff; padding: 15px; border-radius: 10px; border: 2px solid #333; font-size: 1.2rem;">say_hello("奚行简")</code> 
+        <code style="background: #fff; padding: 15px; border-radius: 10px; border: 2px solid #333; font-size: 1.2rem;">say_hello("小朋友")</code> 
         ➡️ 
-        <span style="color: #8b5cf6; font-weight: bold; font-size: 1.2rem;">"你好, 奚行简!"</span>
+        <span style="color: #8b5cf6; font-weight: bold; font-size: 1.2rem;">"你好, 小朋友!"</span>
     </div>
     
     <!-- Increased spacing here -->

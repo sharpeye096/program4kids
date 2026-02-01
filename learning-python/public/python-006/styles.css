@@ -268,3 +268,24 @@ button:active {
 .domino.fallen {
     transform: rotate(70deg) translateY(10px);
 }
+
+
+
+/* DEFINITIVE Navigation Button Icon Fix */
+.nav-btn {
+    color: var(--primary) !important;
+}
+.nav-btn:hover {
+    color: #fff !important;
+}
+.nav-btn svg {
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+    min-height: 32px !important;
+    fill: currentColor !important;
+    display: block !important;
+}
+.nav-btn path {
+    fill: currentColor !important;
+}

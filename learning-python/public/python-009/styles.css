@@ -254,3 +254,24 @@ button:active {
     margin-bottom: 5px;
     font-family: 'Consolas', monospace;
 }
+
+
+
+/* DEFINITIVE Navigation Button Icon Fix */
+.nav-btn {
+    color: var(--primary) !important;
+}
+.nav-btn:hover {
+    color: #fff !important;
+}
+.nav-btn svg {
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+    min-height: 32px !important;
+    fill: currentColor !important;
+    display: block !important;
+}
+.nav-btn path {
+    fill: currentColor !important;
+}
