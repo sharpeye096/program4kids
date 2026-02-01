@@ -1,60 +1,45 @@
-# program4kids - Python编程入门教程
+# Program for Kids - Learning Python
 
-这是我给小朋友准备的Python编程入门教程，使用Markdown文档格式编写，将会尽可能使用AI生成，以及来记录AIGC的使用体验。
+This project is a web-based educational tool for learning Python, which can be run as a simple web server or packaged as a desktop application using Tauri.
 
-## 教程大纲
+## 1. Simple Mode (Python Server)
 
-### 第一章：编程初体验
-- 什么是编程？为什么学习编程？
-- Python环境安装和配置
-- 第一个Python程序：Hello World
-- 使用IDLE编辑器
+If you just want to run the application locally without compiling anything.
 
-### 第二章：编程基础概念
-- 变量：数据的容器
-- 数据类型：数字、文字、真假值
-- 基本运算：加减乘除
-- 输入和输出：与程序对话
+**Prerequisites:**
+- Python installed
 
-### 第三章：控制程序流程
-- 条件判断：如果...那么...
-- 循环：重复做事情
-- 布尔逻辑：是与非的判断
+**How to Run:**
+1. Open a terminal in this directory.
+2. Run the server command:
+   ```bash
+   python learning-python/server.py
+   ```
+3. Open your browser and visit: [http://localhost:8000](http://localhost:8000)
 
-### 第四章：数据结构
-- 列表：装很多东西的盒子
-- 字典：键值对的小仓库
-- 元组：不可变的列表
+## 2. Tauri Mode (Release Desktop App)
 
-### 第五章：函数和模块
-- 自定义函数：创造自己的工具
-- 内置函数：Python自带的好帮手
-- 模块：借用别人的代码
+To build the application as a standalone `.exe` installer.
 
-### 第六章：趣味项目实战
-- 猜数字游戏
-- 简易计算器
-- 文字冒险游戏
-- 绘图小乌龟
+**Prerequisites:**
+- Node.js installed
+- Rust installed (including Cargo)
 
-### 第七章：进阶概念
-- 错误处理：程序出错了怎么办
-- 文件操作：读写文件
-- 面向对象编程初探
+**How to Build:**
+1. Navigate to the project directory:
+   ```bash
+   cd learning-python
+   ```
+2. Install dependencies (first time only):
+   ```bash
+   npm install
+   ```
+3. Build the application:
+   ```bash
+   npx tauri build
+   ```
 
-### 第八章：下一步学习
-- 其他编程语言介绍
-- 编程学习资源推荐
-- 小程序员成长路径
-
-## 学习目标
-- 培养计算思维和逻辑能力
-- 掌握Python基础编程技能
-- 能够独立完成简单项目
-- 激发对编程的兴趣和创造力
-
-## 适用对象
-- 小学3-6年级学生
-- 编程零基础的初学者
-- 对计算机科学感兴趣的小朋友
-
+**Output:**
+After the build completes, you will find the executable and installer in:
+- **Installer:** `learning-python/src-tauri/target/release/bundle/nsis/learning-python_0.1.0_x64-setup.exe`
+- **Executable:** `learning-python/src-tauri/target/release/learning-python.exe`
