@@ -2,7 +2,7 @@ import { html } from '../app.js';
 
 export default html`
     <h2>函数 (Functions)</h2>
-    <p>函数就是你的<strong>魔法咒语 🪄</strong>！</p>
+    <p>函数就是你的<strong>魔法咒语 ✨</strong>！</p>
     
     <pre>
 def say_hello(name):

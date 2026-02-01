@@ -1,14 +1,14 @@
 import { html } from '../app.js';
 
 export default html`
-    <h2>幸运抛硬币 🪙</h2>
+    <h2>幸运抛硬币 🎲</h2>
     
     <p style="font-size: 1.1rem;">程序也可以靠<strong>运气</strong>！来试试 <code style="background: #fdf2f8; color: #db2777; padding: 2px 6px; border-radius: 4px;">random</code> 模块！</p>
     
     <div style="display: flex; gap: 20px; justify-content: center; align-items: flex-start; margin: 15px 0;">
         
         <!-- Code Display -->
-        <div style="background: #1e293b; padding: 20px; border-radius: 15px; text-align: left; font-family: 'Consolas', monospace; font-size: 0.95rem; color: #e2e8f0; width: 45%;">
+        <div style="background: #1e293b; padding: 20px; border-radius: 15px; text-align: left; font-family: 'Consolas', monospace; font-size: 0.95rem; color: #e2e8f0; width: 90%;">
             <pre style="margin: 0; background: transparent; border: none; box-shadow: none; padding: 0; color: inherit;">
 <span style="color: #c678dd;">import</span> <span style="color: #e06c75;">random</span>
 

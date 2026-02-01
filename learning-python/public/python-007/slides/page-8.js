@@ -11,7 +11,7 @@ export default html`
         <div style="flex: 1; display: flex; flex-direction: column;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
                 <p style="margin: 0; font-size: 0.9rem; color: #666;">✏️ 这里写 Python 代码：</p>
-                <button id="fill-btn" style="padding: 2px 8px; font-size: 0.8rem; background: #94a3b8; box-shadow: none;">填入示例 🪄</button>
+                <button id="fill-btn" style="padding: 2px 8px; font-size: 0.8rem; background: #94a3b8; box-shadow: none;">填入示例 ✨</button>
             </div>
             <textarea id="code-input" style="flex: 1; background: #0f172a; color: #e2e8f0; border-radius: 10px; padding: 15px; font-family: 'Consolas', monospace; font-size: 1rem; border: none; resize: none;" 
 placeholder="import random

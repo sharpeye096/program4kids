@@ -37,7 +37,7 @@ export default html`
                 <div id="target-reveal" style="font-size: 3rem; font-weight: bold; color: #059669; filter: blur(10px); transition: filter 0.5s;">
                     ??
                 </div>
-                <p style="font-size: 0.8rem; color: #065f46; margin-top: 5px;">(作弊看这里)</p>
+                <p style="font-size: 0.8rem; color: #065f46; margin-top: 5px;">(猜对后揭晓)</p>
             </div>
             
             <button id="restart-btn" style="background: var(--secondary);">🔄 重玩</button>

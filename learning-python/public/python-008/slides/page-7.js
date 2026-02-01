@@ -5,18 +5,18 @@ export default html`
     
     <p style="font-size: 1.1rem;">如果把 Input 放在循环里，就可以<strong>一直问问题</strong>！</p>
     
-    <div style="background: #fff; padding: 20px; border-radius: 20px; border: 3px solid var(--primary); box-shadow: var(--shadow-float); margin: 20px 0;">
-        <h3 style="color: var(--primary); margin-top: 0;">猜数字核心逻辑</h3>
-        <div style="text-align: left; font-family: 'Consolas', monospace; color: #333; font-size: 0.95rem; line-height: 1.8;">
-            <span style="color: #c084fc;">while</span> <span style="color: #059669;">True</span>:<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #60a5fa;">guess</span> = <span style="color: #db2777;">int</span>(<span style="color: #db2777;">input</span>(<span style="color: #059669;">"猜个数: "</span>))<br>
-            <br>
-            &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #c084fc;">if</span> <span style="color: #60a5fa;">guess</span> == <span style="color: #db2777;">88</span>:<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #db2777;">print</span>(<span style="color: #059669;">"猜对了！"</span>)<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #c084fc;">break</span> <span style="color: #9ca3af;"># 退出游戏</span><br>
-            &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #c084fc;">else</span>:<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #db2777;">print</span>(<span style="color: #059669;">"猜错了，再试一次！"</span>)
-        </div>
+    <div style="background: #1e293b; padding: 20px 25px; border-radius: 15px; text-align: left; font-family: 'Consolas', monospace; font-size: 1rem; color: #e2e8f0; margin: 20px auto; max-width: 500px;">
+        <p style="margin: 0 0 10px 0; color: #94a3b8; font-size: 0.9rem;">🎮 猜数字核心逻辑</p>
+        <pre style="margin: 0; background: transparent; border: none; box-shadow: none; padding: 0; color: inherit;">
+<span style="color: #c678dd;">while</span> <span style="color: #d19a66;">True</span>:
+    <span style="color: #7dd3fc;">guess</span> = <span style="color: #e5c07b;">int</span>(<span style="color: #e5c07b;">input</span>(<span style="color: #98c379;">"猜个数: "</span>))
+
+    <span style="color: #c678dd;">if</span> <span style="color: #7dd3fc;">guess</span> == <span style="color: #d19a66;">88</span>:
+        <span style="color: #e5c07b;">print</span>(<span style="color: #98c379;">"猜对了！"</span>)
+        <span style="color: #c678dd;">break</span>  <span style="color: #5c6370;"># 退出游戏</span>
+    <span style="color: #c678dd;">else</span>:
+        <span style="color: #e5c07b;">print</span>(<span style="color: #98c379;">"猜错了，再试一次！"</span>)
+        </pre>
     </div>
     
     <p style="font-size: 1rem; color: #666;">

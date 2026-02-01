@@ -3,12 +3,18 @@ import { html } from '../app.js';
 export default html`
     <h2>递归：函数调用自己 🔄</h2>
     
+    <div style="background: #e0f2fe; padding: 10px 15px; border-radius: 10px; border: 2px solid #0ea5e9; margin-bottom: 15px;">
+        <p style="margin: 0; font-size: 0.95rem; color: #0369a1;">
+            💡 <strong>高阶内容</strong>：这是一个进阶概念，低年级的小朋友学不会不要有压力哦！
+        </p>
+    </div>
+    
     <p style="font-size: 1.2rem;">递归就是<strong>函数在自己内部调用自己</strong>！</p>
     
     <div style="display: flex; justify-content: center; margin: 20px 0;">
         <div style="background: linear-gradient(135deg, #fef3c7, #fde68a); padding: 18px 25px; border-radius: 15px; border: 3px solid #f59e0b;">
             <p style="font-size: 1.1rem; margin: 0; color: #92400e;">
-                🪞 想象两面镜子面对面...<br>
+                🪄 想象两面镜子面对面...<br>
                 镜子里的镜子里还有镜子...
             </p>
         </div>

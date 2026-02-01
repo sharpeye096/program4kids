@@ -30,10 +30,29 @@ export default html`
         </div>
     </div>
     
-    <div style="background: #fef3c7; padding: 10px 15px; border-radius: 12px; border: 2px solid #f59e0b; margin: 8px 0;">
-        <p style="margin: 0; font-size: 0.95rem; color: #92400e;">
+    <div style="background: #fef3c7; padding: 12px 15px; border-radius: 12px; border: 2px solid #f59e0b; margin: 8px 0;">
+        <p style="margin: 0 0 10px 0; font-size: 0.95rem; color: #92400e;">
             ⚠️ 编程中数数从 <strong>0</strong> 开始！
-            <span style="font-family: 'Consolas', monospace;">P(0) y(1) t(2) h(3) o(4) n(5)</span>
         </p>
+        <div style="display: flex; justify-content: center; gap: 0;">
+            <div style="display: flex; flex-direction: column; font-family: 'Consolas', monospace; text-align: center;">
+                <div style="display: flex;">
+                    <span style="width: 40px; height: 40px; background: #fff; border: 2px solid #f59e0b; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; font-weight: bold; color: #1e40af;">P</span>
+                    <span style="width: 40px; height: 40px; background: #fff; border: 2px solid #f59e0b; border-left: none; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; font-weight: bold; color: #1e40af;">y</span>
+                    <span style="width: 40px; height: 40px; background: #fff; border: 2px solid #f59e0b; border-left: none; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; font-weight: bold; color: #1e40af;">t</span>
+                    <span style="width: 40px; height: 40px; background: #fff; border: 2px solid #f59e0b; border-left: none; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; font-weight: bold; color: #1e40af;">h</span>
+                    <span style="width: 40px; height: 40px; background: #fff; border: 2px solid #f59e0b; border-left: none; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; font-weight: bold; color: #1e40af;">o</span>
+                    <span style="width: 40px; height: 40px; background: #fff; border: 2px solid #f59e0b; border-left: none; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; font-weight: bold; color: #1e40af;">n</span>
+                </div>
+                <div style="display: flex;">
+                    <span style="width: 40px; height: 30px; background: #fde68a; display: flex; align-items: center; justify-content: center; font-size: 1rem; color: #92400e; font-weight: bold;">0</span>
+                    <span style="width: 40px; height: 30px; background: #fde68a; display: flex; align-items: center; justify-content: center; font-size: 1rem; color: #92400e; font-weight: bold;">1</span>
+                    <span style="width: 40px; height: 30px; background: #fde68a; display: flex; align-items: center; justify-content: center; font-size: 1rem; color: #92400e; font-weight: bold;">2</span>
+                    <span style="width: 40px; height: 30px; background: #fde68a; display: flex; align-items: center; justify-content: center; font-size: 1rem; color: #92400e; font-weight: bold;">3</span>
+                    <span style="width: 40px; height: 30px; background: #fde68a; display: flex; align-items: center; justify-content: center; font-size: 1rem; color: #92400e; font-weight: bold;">4</span>
+                    <span style="width: 40px; height: 30px; background: #fde68a; display: flex; align-items: center; justify-content: center; font-size: 1rem; color: #92400e; font-weight: bold;">5</span>
+                </div>
+            </div>
+        </div>
     </div>
 `;

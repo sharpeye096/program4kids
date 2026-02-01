@@ -23,8 +23,7 @@ class SlideDeck {
 
     async init() {
         // Keyboard navigation
-        window.addEventListener('keydown', (e) => this.handleKeydown(e));
-
+        // Keyboard navigation disabled
         // Check URL hash for initial slide
         const hash = window.location.hash.slice(1);
         const initialIndex = parseInt(hash, 10) - 1;
