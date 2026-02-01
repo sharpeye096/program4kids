@@ -5,7 +5,7 @@ export default html`
     
     <p style="margin-bottom: 20px;"><strong>如果...否则如果...否则...</strong>（多个选择！）</p>
     
-    <div style="display: flex; gap: 30px; justify-content: center; align-items: flex-start; flex-wrap: nowrap; width: 100%;">
+    <div style="display: flex; gap: 30px; justify-content: center; align-items: center; flex-wrap: nowrap; width: 100%;">
         <!-- Code Section -->
         <div style="background: #1e293b; padding: 20px; border-radius: 12px; text-align: left; font-family: 'Consolas', monospace; font-size: 1rem; color: #e2e8f0; flex-shrink: 0;">
             <pre style="margin: 0; background: transparent; border: none; box-shadow: none; padding: 0; color: inherit;">

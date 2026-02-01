@@ -19,15 +19,10 @@ export default html`
             </pre>
         </div>
         
-        <div style="background: #fef3c7; padding: 20px; border-radius: 15px; border: 2px solid #f59e0b; max-width: 280px;">
-            <p style="margin: 0 0 10px 0; font-size: 1rem; color: #92400e; font-weight: bold;">🔍 执行过程：</p>
-            <p style="margin: 0; font-family: 'Consolas', monospace; font-size: 0.9rem; color: #92400e; line-height: 1.8;">
-                i=1: sum = 0 + 1 = 1<br>
-                i=2: sum = 1 + 2 = 3<br>
-                i=3: sum = 3 + 3 = 6<br>
-                i=4: sum = 6 + 4 = 10<br>
-                i=5: sum = 10 + 5 = <strong>15</strong>
-            </p>
+        <div id="exec-box" style="background: #fef3c7; padding: 20px; border-radius: 15px; border: 2px solid #f59e0b; max-width: 280px; text-align: left; cursor: pointer; user-select: none;">
+            <p style="margin: 0 0 10px 0; font-size: 1rem; color: #92400e; font-weight: bold;">🔍 执行过程：<span style="font-size: 0.8rem; font-weight: normal;">（点击逐步显示）</span></p>
+            <div id="exec-steps" style="font-family: 'Consolas', monospace; font-size: 0.9rem; color: #92400e; line-height: 1.8;">
+            </div>
         </div>
     </div>
     
@@ -37,3 +32,32 @@ export default html`
         </p>
     </div>
 `;
+
+export const onMount = (container) => {
+    const execBox = container.querySelector('#exec-box');
+    const execSteps = container.querySelector('#exec-steps');
+
+    const steps = [
+        'i=1: sum = 0 + 1 = 1',
+        'i=2: sum = 1 + 2 = 3',
+        'i=3: sum = 3 + 3 = 6',
+        'i=4: sum = 6 + 4 = 10',
+        'i=5: sum = 10 + 5 = <strong>15</strong> ✅'
+    ];
+
+    let currentStep = 0;
+
+    execBox.onclick = () => {
+        if (currentStep < steps.length) {
+            const stepEl = document.createElement('div');
+            stepEl.innerHTML = steps[currentStep];
+            stepEl.style.animation = 'fadeIn 0.3s ease';
+            execSteps.appendChild(stepEl);
+            currentStep++;
+        } else {
+            // Reset
+            execSteps.innerHTML = '';
+            currentStep = 0;
+        }
+    };
+};

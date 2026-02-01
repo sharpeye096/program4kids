@@ -66,7 +66,8 @@ export const onMount = (container) => {
 
     const validateFormula = (code) => {
         const hasDef = /def\s+sum_formula\s*\(\s*n\s*\)/.test(code);
-        const hasMath = /n\s*\*\s*\(\s*n\s*\+\s*1\s*\)\s*(\/\/|\/)\s*2/.test(code);
+        // Accept both n*(n+1)/2 and n*(n+1)//2, with or without spaces
+        const hasMath = /return\s+n\s*\*\s*\(\s*n\s*\+\s*1\s*\)\s*(\/\/|\/)\s*2/.test(code);
         return hasDef && hasMath;
     };
 
@@ -91,7 +92,7 @@ export const onMount = (container) => {
                 <div style="background: #fee2e2; color: #991b1b; padding: 15px; border-radius: 12px; border: 2px solid #ef4444; text-align: center;">
                     😕 代码好像有点问题，检查一下？
                     ${!recValid ? '<br>- 递归函数写對了吗？(记得 Base Case)' : ''}
-                    ${!formValid ? '<br>- 公式函数写對了吗？' : ''}
+                    ${!formValid ? '<br>- 公式函数写對了吗？(格式: n*(n+1)/2 或 n*(n+1)//2)' : ''}
                 </div>
             `;
             return;
@@ -105,14 +106,22 @@ export const onMount = (container) => {
                 <div style="text-align: center;">
                     <div style="font-size: 0.9rem; color: var(--secondary);">递归结果</div>
                     <div style="font-size: 2rem; font-weight: bold; color: var(--secondary);">${ansRec}</div>
+                    <div style="font-size: 0.8rem; color: #666;">调用 ${n} 次函数</div>
                 </div>
                 <div style="font-size: 2rem;">=</div>
                 <div style="text-align: center;">
                     <div style="font-size: 0.9rem; color: var(--accent);">公式结果</div>
                     <div style="font-size: 2rem; font-weight: bold; color: var(--accent);">${ansForm}</div>
+                    <div style="font-size: 0.8rem; color: #666;">只需 1 次计算</div>
                 </div>
             </div>
-            <p style="text-align: center; color: #166534; font-weight: bold; margin-top: 10px;">🎉 两者结果完全一样！这就是数学归纳法的魔力！</p>
+            <div style="margin-top: 12px; padding: 12px 15px; background: #e0f2fe; border-radius: 10px; border: 2px solid #0ea5e9;">
+                <p style="margin: 0; font-size: 1rem; color: #0369a1; text-align: center;">
+                    🎉 两者结果完全一样！<br>
+                    <strong>📊 性能对比：</strong>公式法只需 <strong>1 次计算</strong>，递归法需要 <strong>${n} 次函数调用</strong><br>
+                    <span style="color: #166534;">✅ 结论：公式法更快、更高效！这就是数学的魔力！</span>
+                </p>
+            </div>
         `;
     };
 };

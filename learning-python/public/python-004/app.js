@@ -21,7 +21,7 @@ class SlideDeck {
     }
 
     async init() {
-        window.addEventListener('keydown', (e) => this.handleKeydown(e));
+        // Keyboard navigation disabled
         const hash = window.location.hash.slice(1);
         const initialIndex = parseInt(hash, 10) - 1;
         if (!isNaN(initialIndex) && initialIndex >= 0 && initialIndex < this.slides.length) {

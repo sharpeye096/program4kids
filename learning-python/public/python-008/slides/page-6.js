@@ -11,7 +11,7 @@ export default html`
             <div id="runner-sprite" style="font-size: 3rem; position: absolute; left: 0; bottom: 0; transition: left 0.1s linear;">🏃</div>
         </div>
         
-        <div style="background: #1e1b4b; padding: 15px; border-radius: 10px; width: 80%; text-align: left; font-family: 'Consolas', monospace; color: #fbcfe8;">
+        <div style="background: #1e1b4b; padding: 15px; border-radius: 10px; width: 100%; text-align: left; font-family: 'Consolas', monospace; color: #fbcfe8; white-space: nowrap;">
             while True:<br>
             &nbsp;&nbsp;&nbsp;&nbsp;run()<br>
             &nbsp;&nbsp;&nbsp;&nbsp;if <button id="break-btn" style="padding: 2px 10px; font-size: 0.9rem; margin: 0 5px; background: #ef4444; vertical-align: middle;">按下按钮</button>:<br>

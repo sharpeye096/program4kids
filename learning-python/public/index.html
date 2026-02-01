@@ -76,7 +76,6 @@
             flex-direction: column;
             align-items: center;
             position: relative;
-            overflow: hidden;
         }
 
         .card:hover {
@@ -113,6 +112,39 @@
             position: absolute;
             top: 15px;
             right: 15px;
+        }
+
+        .badge-tooltip {
+            cursor: help;
+        }
+
+        .badge-tooltip::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: calc(100% - 10px);
+            right: 10px;
+            margin-bottom: 5px;
+            background: #1e1b4b;
+            color: #fff;
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: normal;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(5px);
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+            width: 280px;
+            text-align: left;
+            line-height: 1.5;
+        }
+
+        .badge-tooltip:hover::after {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
         }
 
         .section-title {
@@ -212,7 +244,6 @@
 
             <!-- L2 -->
             <a href="python-002/" class="card">
-                <span class="badge">UPDATED</span>
                 <div class="card-icon">⚖️</div>
                 <h3>第二课：如果那么</h3>
                 <p>学会用 if/else 做决定，还有幸运抛硬币！</p>
@@ -234,14 +265,15 @@
 
             <!-- L5 -->
             <a href="python-005/" class="card">
-                <span class="badge">UPDATED</span>
                 <div class="card-icon">💬</div>
                 <h3>第五课：聊天机器人</h3>
                 <p>学习字符串及如何与电脑对话 (Input)。</p>
             </a>
 
-            <!-- L6 -->
+            <!-- L6 - Advanced -->
             <a href="python-006/" class="card">
+                <span class="badge badge-tooltip" style="background: #7c3aed;"
+                    data-tooltip="💡 进阶内容，低龄小朋友可跳过，但强烈建议学有余力的同学尝试！">进阶</span>
                 <div class="card-icon">🪜</div>
                 <h3>第六课：数学归纳</h3>
                 <p>从多米诺骨牌理解递归的奥秘。</p>
@@ -249,7 +281,6 @@
 
             <!-- L7 -->
             <a href="python-007/" class="card">
-                <span class="badge">NEW</span>
                 <div class="card-icon">🎒</div>
                 <h3>第七课：神奇列表</h3>
                 <p>用背包管理宝物，还能自选午餐！</p>
@@ -257,7 +288,6 @@
 
             <!-- L8 -->
             <a href="python-008/" class="card">
-                <span class="badge">NEW</span>
                 <div class="card-icon">🎮</div>
                 <h3>第八课：游戏引擎</h3>
                 <p>While 循环制作猜数字游戏。</p>
@@ -265,7 +295,6 @@
 
             <!-- L9 -->
             <a href="python-009/" class="card">
-                <span class="badge">NEW</span>
                 <div class="card-icon">📜</div>
                 <h3>第九课：角色属性</h3>
                 <p>用字典管理 RPG 游戏数据。</p>
@@ -275,7 +304,20 @@
         <h2 class="section-title">👨‍👩‍👧‍👦 家长指南：环境准备</h2>
 
         <div class="guide-box">
-            <p style="margin-bottom: 25px;">亲爱的家长，为了让孩子顺利开始编程之旅，我们需要您帮忙在电脑上准备一个小工具 —— <strong>Python</strong>。</p>
+            <p style="margin-bottom: 15px;">亲爱的家长，为了让孩子顺利开始编程之旅，我们需要您帮忙在电脑上准备一个小工具 —— <strong>Python</strong>。</p>
+
+            <p
+                style="background: #fef3c7; padding: 12px 15px; border-radius: 10px; border-left: 4px solid #f59e0b; margin-bottom: 25px; font-size: 0.95rem; color: #92400e;">
+                💡 <strong>温馨提示</strong>：如果您希望帮助孩子自学 Python，建议您自己也具备一些基础知识，至少了解如何运行 Python
+                以及一些基本语法。这样在孩子遇到问题时，您可以更好地引导他们。
+            </p>
+
+            <p
+                style="background: #ecfdf5; padding: 12px 15px; border-radius: 10px; border-left: 4px solid #10b981; margin-bottom: 25px; font-size: 0.95rem; color: #065f46;">
+                🖥️ <strong>简易模式</strong>：如果您是通过 <code
+                    style="background: #d1fae5; color: #065f46;">learning-python.exe</code> 直接运行本课程，则无需安装 Python
+                或启动本地服务器，可直接使用！<strong>但仍强烈建议安装 Python，方便孩子自行练习和编写代码。</strong>
+            </p>
 
             <div class="step">
                 <div class="step-num">1</div>
@@ -292,9 +334,6 @@
                 <div class="step-content">
                     <h4>安装 (关键步骤！)</h4>
                     <p>运行安装包时，<strong>务必勾选底部的 "Add Python to PATH"</strong> (将 Python 添加到系统变量)，然后点击 "Install Now"。</p>
-                    <img src="https://miro.medium.com/v2/resize:fit:1100/format:webp/1*23JpPq_e5W7Xq_P0v8k5vw.png"
-                        style="max-width: 100%; border-radius: 10px; margin-top: 10px; border: 2px solid #ddd;"
-                        alt="Add to PATH checkbox">
                 </div>
             </div>
 
@@ -312,8 +351,7 @@
                 <div class="step-num">4</div>
                 <div class="step-content">
                     <h4>启动课程服务器</h4>
-                    <p>我们的课程需要在更加即时互动的网页环境中运行。您现在看到的这个页面，能通过下面的命令启动：</p>
-                    <p>在当前课程目录打开命令行，输入：</p>
+                    <p>我们的课程需要在更加即时互动的网页环境中运行。在当前课程目录打开命令行，输入：</p>
                     <div class="code-block">python server.py</div>
                     <p style="margin-top: 8px; font-size: 0.9rem; color: #64748b;">
                         💡 提示：如果该命令无效，请尝试输入 <code>python3 server.py</code> 或 <code>py server.py</code>
