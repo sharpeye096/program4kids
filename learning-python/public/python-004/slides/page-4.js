@@ -1,4 +1,5 @@
 import { html } from '../app.js';
+// Force reload for encoding fix
 import { Turtle } from '../turtle.js';
 
 export default html`
