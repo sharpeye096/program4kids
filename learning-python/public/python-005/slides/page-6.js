@@ -3,20 +3,14 @@ import { html } from '../app.js';
 export default html`
     <h2>练习：计算面积 📐</h2>
     
-    <p style="font-size: 1.1rem;">编写一个函数 `calculate_area`，接收长和宽，返回面积！</p>
+    <p style="font-size: 1.1rem;">编写一个函数 \`calculate_area\`，接收长和宽，返回面积！</p>
     
     <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
         
         <!-- Code Editor -->
         <div style="background: #1e293b; padding: 15px; border-radius: 12px; width: 90%; max-width: 500px;">
             <p style="color: #94a3b8; font-size: 0.9rem; margin: 0 0 10px 0; text-align: left;">✏️ 定义你的函数：</p>
-            <textarea id="code-input" style="width: 100%; min-height: 150px; background: #0f172a; color: #e2e8f0; border: 2px solid #334155; font-size: 1rem;" placeholder="def calculate_area(length, width):
-    # 在这里写代码
-    return ...
-
-# 测试你的函数
-area = calculate_area(5, 10)
-print(area)"></textarea>
+            <textarea id="code-input" style="width: 100%; min-height: 150px; background: #0f172a; color: #e2e8f0; border: 2px solid #334155; font-size: 1rem;" placeholder="def calculate_area(length, width):\n    # 在这里写代码\n    return ...\n\n# 测试你的函数\narea = calculate_area(5, 10)\nprint(area)"></textarea>
         </div>
         
         <!-- Buttons -->

@@ -57,7 +57,7 @@ export const onMount = (container) => {
 
     const highlightLine = (lineNum) => {
         lines[lineNum].style.background = '#22c55e';
-        lines[lineNum].style.display = 'block';
+        // lines[lineNum].style.display = 'block'; // Removed to prevent layout overflow
     };
 
     runBtn.onclick = () => {

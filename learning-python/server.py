@@ -16,6 +16,13 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=DIR, **kwargs)
 
+    def end_headers(self):
+        # Force charset for text files
+        path = self.translate_path(self.path)
+        if path.endswith('.js') or path.endswith('.css') or path.endswith('.html'):
+            self.send_header('Content-Type', self.guess_type(path) + '; charset=utf-8')
+        super().end_headers()
+
 with socketserver.TCPServer(("", PORT), MyHandler) as httpd:
     print("Server running. Press Ctrl+C to stop.")
     httpd.serve_forever()

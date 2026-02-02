@@ -1,4 +1,5 @@
 import { html } from '../app.js';
+// Force reload for encoding fix
 
 export default html`
     <h1>第十课：盗梦空间 (递归) 🪜</h1>
