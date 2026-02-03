@@ -1,71 +1,93 @@
 import { html } from '../app.js';
 
 export default html`
-    <h2>幸运抛硬币 🎲</h2>
+    <h2>试一试！🎮</h2>
+    <p>输入分数，看看会输出什么！</p>
     
-    <p style="font-size: 1.1rem;">程序也可以靠<strong>运气</strong>！来试试 <code style="background: #fdf2f8; color: #db2777; padding: 2px 6px; border-radius: 4px;">random</code> 模块！</p>
-    
-    <div style="display: flex; gap: 20px; justify-content: center; align-items: flex-start; margin: 15px 0;">
+    <div style="display: flex; flex-direction: column; gap: 15px; align-items: center; width: 100%;">
+        <!-- Input Section - All in one row -->
+        <div style="background: #fff; padding: 15px 25px; border-radius: 15px; border: 3px solid #8b5cf6; display: flex; align-items: center; gap: 15px; flex-wrap: wrap; justify-content: center;">
+            <label style="font-size: 1.2rem; font-weight: bold;">分数:</label>
+            <input type="number" id="score-input" placeholder="0-100" style="width: 120px; font-size: 1.2rem;" min="0" max="100" />
+            <button id="run-btn">运行 ▶️</button>
+        </div>
         
-        <!-- Code Display -->
-        <div style="background: #1e293b; padding: 20px; border-radius: 15px; text-align: left; font-family: 'Consolas', monospace; font-size: 0.95rem; color: #e2e8f0; width: 90%;">
+        <!-- Code Section -->
+        <div style="background: #1e293b; padding: 20px; border-radius: 15px; text-align: left; font-family: 'Consolas', monospace; font-size: 0.95rem; color: #e2e8f0; width: 95%; max-width: 550px;">
             <pre style="margin: 0; background: transparent; border: none; box-shadow: none; padding: 0; color: inherit;">
-<span style="color: #c678dd;">import</span> <span style="color: #e06c75;">random</span>
-
-<span style="color: #5c6370;"># 随机生成 0 或 1</span>
-<span style="color: #7dd3fc;">coin</span> = <span style="color: #e06c75;">random</span>.<span style="color: #61afef;">randint</span>(<span style="color: #d19a66;">0</span>, <span style="color: #d19a66;">1</span>)
-
-<span style="color: #e5c07b;">print</span>(<span style="color: #98c379;">"硬币是："</span>, <span style="color: #7dd3fc;">coin</span>)
-
-<span style="color: #c678dd;">if</span> <span style="color: #7dd3fc;">coin</span> == <span style="color: #d19a66;">0</span>:
-    <span style="color: #e5c07b;">print</span>(<span style="color: #98c379;">"正面！👑"</span>)
-<span style="color: #c678dd;">else</span>:
-    <span style="color: #e5c07b;">print</span>(<span style="color: #98c379;">"反面！🌸"</span>)
+<span id="line1" class="code-line" style="padding: 2px 4px; border-radius: 4px; transition: all 0.3s;"><span style="color: #c678dd;">if</span> score >= <span style="color: #d19a66;">90</span>:</span>
+<span id="line2" class="code-line" style="padding: 2px 4px; border-radius: 4px; transition: all 0.3s;">    <span style="color: #e5c07b;">print</span>(<span style="color: #98c379;">"太棒了！A+ 🌟"</span>)</span>
+<span id="line3" class="code-line" style="padding: 2px 4px; border-radius: 4px; transition: all 0.3s;"><span style="color: #c678dd;">elif</span> score >= <span style="color: #d19a66;">80</span>:</span>
+<span id="line4" class="code-line" style="padding: 2px 4px; border-radius: 4px; transition: all 0.3s;">    <span style="color: #e5c07b;">print</span>(<span style="color: #98c379;">"很好！A 👍"</span>)</span>
+<span id="line5" class="code-line" style="padding: 2px 4px; border-radius: 4px; transition: all 0.3s;"><span style="color: #c678dd;">elif</span> score >= <span style="color: #d19a66;">60</span>:</span>
+<span id="line6" class="code-line" style="padding: 2px 4px; border-radius: 4px; transition: all 0.3s;">    <span style="color: #e5c07b;">print</span>(<span style="color: #98c379;">"及格了！B 😊"</span>)</span>
+<span id="line7" class="code-line" style="padding: 2px 4px; border-radius: 4px; transition: all 0.3s;"><span style="color: #c678dd;">else</span>:</span>
+<span id="line8" class="code-line" style="padding: 2px 4px; border-radius: 4px; transition: all 0.3s;">    <span style="color: #e5c07b;">print</span>(<span style="color: #98c379;">"继续努力！💪"</span>)</span>
             </pre>
         </div>
         
-        <!-- Interactive Area -->
-        <div style="width: 45%; display: flex; flex-direction: column; align-items: center; gap: 15px;">
-            <div id="coin-display" style="width: 120px; height: 120px; background: #fbbf24; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 3.5rem; border: 8px solid #f59e0b; box-shadow: 0 8px 0 rgba(0,0,0,0.1); transition: transform 0.5s;">
-                ❓
-            </div>
-            
-            <button id="flip-btn" style="padding: 15px 30px; font-size: 1.3rem; border-radius: 50px; background: #8b5cf6; margin-top: 10px;">
-                🎲 抛硬币！
-            </button>
-            
-            <div id="result-text" style="font-size: 1.5rem; font-weight: bold; min-height: 40px; color: #4b5563;">
-                准备...
-            </div>
+        <!-- Output -->
+        <div id="output" style="background: #fff; padding: 15px; border-radius: 15px; border: 3px solid #22c55e; width: 80%; max-width: 350px; font-size: 1.3rem; font-weight: bold;">
+            ...等待运行...
         </div>
     </div>
 `;
 
 export const onMount = (container) => {
-    const flipBtn = container.querySelector('#flip-btn');
-    const coinDisplay = container.querySelector('#coin-display');
-    const resultText = container.querySelector('#result-text');
+    const scoreInput = container.querySelector('#score-input');
+    const runBtn = container.querySelector('#run-btn');
+    const output = container.querySelector('#output');
 
-    flipBtn.onclick = () => {
-        // Animation
-        coinDisplay.style.transform = "rotateY(720deg) scale(1.1)";
-        resultText.innerHTML = "抛掷中...";
-        flipBtn.disabled = true;
+    const lines = {
+        1: container.querySelector('#line1'),
+        2: container.querySelector('#line2'),
+        3: container.querySelector('#line3'),
+        4: container.querySelector('#line4'),
+        5: container.querySelector('#line5'),
+        6: container.querySelector('#line6'),
+        7: container.querySelector('#line7'),
+        8: container.querySelector('#line8')
+    };
 
-        setTimeout(() => {
-            const isHeads = Math.random() < 0.5; // Simulate random.randint(0, 1)
-            const coinValue = isHeads ? 0 : 1;
+    const resetLines = () => {
+        Object.values(lines).forEach(line => {
+            line.style.background = 'transparent';
+        });
+    };
 
-            coinDisplay.style.transform = "rotateY(0) scale(1)";
-            coinDisplay.innerHTML = isHeads ? "👑" : "🌸"; // Crown for Heads, Flower for Tails
-            coinDisplay.style.background = isHeads ? "#fbbf24" : "#e2e8f0";
-            coinDisplay.style.borderColor = isHeads ? "#f59e0b" : "#cbd5e1";
+    const highlightLine = (lineNum) => {
+        lines[lineNum].style.background = '#22c55e';
+        // lines[lineNum].style.display = 'block'; // Removed to prevent layout overflow
+    };
 
-            resultText.innerHTML = isHeads
-                ? `<span style="color: #d97706">0: 正面！</span>`
-                : `<span style="color: #475569">1: 反面！</span>`;
+    runBtn.onclick = () => {
+        const score = parseInt(scoreInput.value);
 
-            flipBtn.disabled = false;
-        }, 600);
+        if (isNaN(score)) {
+            output.textContent = "⚠️ 请输入分数！";
+            output.style.color = "#f59e0b";
+            return;
+        }
+
+        resetLines();
+        output.style.color = "#8b5cf6";
+
+        if (score >= 90) {
+            highlightLine(1);
+            highlightLine(2);
+            output.textContent = "太棒了！A+ 🌟";
+        } else if (score >= 80) {
+            highlightLine(3);
+            highlightLine(4);
+            output.textContent = "很好！A 👍";
+        } else if (score >= 60) {
+            highlightLine(5);
+            highlightLine(6);
+            output.textContent = "及格了！B 😊";
+        } else {
+            highlightLine(7);
+            highlightLine(8);
+            output.textContent = "继续努力！💪";
+        }
     };
 };

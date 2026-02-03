@@ -1,29 +1,36 @@
 import { html } from '../app.js';
 
 export default html`
-    <h2>If 语法 🔤</h2>
-    
-    <p>最简单的条件判断：<strong>如果...就...</strong></p>
-    
-    <div style="background: #1e293b; padding: 25px; border-radius: 15px; text-align: left; font-family: 'Consolas', monospace; font-size: 1.2rem; color: #e2e8f0; margin: 20px auto; max-width: 500px;">
-        <pre style="margin: 0; background: transparent; border: none; box-shadow: none; padding: 0; color: inherit;">
-<span style="color: #c678dd;">if</span> <span style="color: #61afef;">条件</span>:
-    <span style="color: #98c379;">做某件事</span>
-        </pre>
-    </div>
-    
-    <p style="font-size: 1.1rem; color: #666;">例子：</p>
-    
-    <div style="background: #1e293b; padding: 25px; border-radius: 15px; text-align: left; font-family: 'Consolas', monospace; font-size: 1.1rem; color: #e2e8f0; margin: 20px auto; max-width: 500px;">
-        <pre style="margin: 0; background: transparent; border: none; box-shadow: none; padding: 0; color: inherit;">
-age = <span style="color: #d19a66;">8</span>
+    <h2>🕵️ 侦探的放大镜</h2>
+    <p>电脑分得清 <strong style="color: #ef4444">=</strong> 和 <strong style="color: #22c55e">==</strong> 的区别吗？</p>
 
-<span style="color: #c678dd;">if</span> age < <span style="color: #d19a66;">10</span>:
-    <span style="color: #e5c07b;">print</span>(<span style="color: #98c379;">"你还是小朋友！"</span>)
-        </pre>
+    <div style="display: flex; gap: 40px; justify-content: center; margin-top: 30px; flex-wrap: wrap;">
+        
+        <!-- Assignment -->
+        <div style="background: #fff; padding: 20px; border-radius: 20px; border: 4px solid #ef4444; width: 300px; position: relative;">
+            <div style="position: absolute; top: -20px; left: 50%; transform: translateX(-50%); background: #ef4444; color: white; padding: 5px 15px; border-radius: 10px; font-weight: bold;">命令 (Command)</div>
+            <h3 style="font-size: 4rem; margin: 20px 0;">=</h3>
+            <p style="font-size: 1.5rem;">"放入"</p>
+            <div style="background: #fecaca; padding: 10px; border-radius: 10px; margin-top: 10px;">
+                <code>x = 5</code>
+                <p style="font-size: 1rem; color: #7f1d1d; margin-top: 5px;">把 5 放进 x 盒子里！📦</p>
+            </div>
+        </div>
+
+        <!-- Comparison -->
+        <div style="background: #fff; padding: 20px; border-radius: 20px; border: 4px solid #22c55e; width: 300px; position: relative;">
+            <div style="position: absolute; top: -20px; left: 50%; transform: translateX(-50%); background: #22c55e; color: white; padding: 5px 15px; border-radius: 10px; font-weight: bold;">提问 (Question)</div>
+            <h3 style="font-size: 4rem; margin: 20px 0;">==</h3>
+            <p style="font-size: 1.5rem;">"相等吗？"</p>
+            <div style="background: #bbf7d0; padding: 10px; border-radius: 10px; margin-top: 10px;">
+                <code>x == 5</code>
+                <p style="font-size: 1rem; color: #14532d; margin-top: 5px;">x 里面是不是 5？🤔</p>
+            </div>
+        </div>
+
     </div>
-    
-    <div style="background: #dcfce7; padding: 15px; border-radius: 10px; border: 2px solid #22c55e; margin-top: 20px;">
-        <p style="margin: 0; color: #166534;">💡 <strong>注意：</strong>条件后面要有<strong>冒号 :</strong></p>
+
+    <div style="margin-top: 40px; font-size: 1.2rem; background: #f3f4f6; padding: 15px; border-radius: 15px; display: inline-block;">
+        <p>记住：<strong>一个</strong>是做事，<strong>两个</strong>是问问题！</p>
     </div>
 `;
