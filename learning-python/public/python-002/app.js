@@ -14,7 +14,8 @@ class SlideDeck {
             'page-5.js',
             'page-6.js',
             'page-7.js',
-            'page-8.js'
+            'page-8.js',
+            'page-9.js'
         ];
         this.appElement = document.getElementById('app');
         this.init();
@@ -98,7 +99,7 @@ class SlideDeck {
         homeBtn.innerHTML = `<svg viewBox="0 0 24 24" ><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>`;
         homeBtn.className = 'nav-btn';
         homeBtn.onclick = () => window.location.href = '../index.html';
-        controls.appendChild(homeBtn);
+
 
         const prevBtn = document.createElement('button');
         prevBtn.innerHTML = `
@@ -118,6 +119,8 @@ class SlideDeck {
         nextBtn.className = 'nav-btn';
         nextBtn.onclick = () => this.next();
 
+        controls.appendChild(homeBtn);
+        // controls.insertBefore(scriptBtn, homeBtn); // REMOVED
         controls.appendChild(prevBtn);
         controls.appendChild(nextBtn);
         document.body.appendChild(controls);
