@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>福州 研学手册</title>
+    <style>
+        :root {
+            /* Fuzhou Theme Colors (Banyan Green & Warm Clay) */
+            --primary: #388E3C;
+            --secondary: #FFB300;
+            --accent: #E64A19;
+            --background: #F1F8E9;
+            --text-main: #1B5E20;
+            --text-light: #2E7D32;
+            --box-bg: rgba(255, 255, 255, 0.9);
+        }
+                * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', 'Nunito', sans-serif; background-color: #CFD8DC; color: var(--text-main); display: flex; flex-direction: column; align-items: center; gap: 20px; padding: 20px 0; }
+        .page { width: 210mm; height: 296mm; background-color: var(--background); border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.15); position: relative; overflow: hidden; padding: 15mm; display: flex; flex-direction: column; background-image: radial-gradient(var(--box-bg) 10%, transparent 10%), radial-gradient(var(--box-bg) 10%, transparent 10%); background-size: 30px 30px; background-position: 0 0, 15px 15px; }
+        @page { size: A4 portrait; margin: 0; }
+        @media print { body { background-color: transparent; padding: 0; gap: 0; } .page { margin: 0; border-radius: 0; box-shadow: none; page-break-after: always; page-break-inside: avoid; -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+        h1 { font-size: 3rem; color: var(--primary); text-align: center; letter-spacing: 4px; font-weight: bold; text-shadow: 2px 2px 0px var(--secondary); margin-bottom: 10px; }
+        h2 { font-size: 1.8rem; color: var(--primary); margin-top: 5px; margin-bottom: 15px; border-bottom: 4px dashed var(--accent); display: inline-block; padding-bottom: 5px; }
+        h3 { font-size: 1.3rem; color: var(--accent); margin-bottom: 5px; font-weight: bold; }
+        p { font-size: 1.15rem; line-height: 1.5; margin-bottom: 10px; }
+        .card { background: var(--box-bg); border: 3px solid var(--primary); border-radius: 12px; padding: 15px; margin-bottom: 15px; box-shadow: 4px 4px 0px var(--accent); }
+        .checklist-item { display: flex; align-items: center; font-size: 1.2rem; margin-bottom: 8px; }
+        .checklist-box { width: 25px; height: 25px; border: 3px solid var(--text-main); border-radius: 6px; margin-right: 15px; background: #fff; flex-shrink: 0; }
+        .drawing-area { flex-grow: 1; border: 4px dashed var(--accent); border-radius: 20px; background-color: #ffffff; display: flex; justify-content: center; align-items: flex-end; padding-bottom: 15px; color: var(--text-light); font-size: 1.3rem; min-height: 200px; margin-top: 10px; text-align: center; }
+        .page-number { position: absolute; bottom: 8mm; right: 15mm; font-weight: bold; font-size: 1.1rem; color: var(--text-main); }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .cover { justify-content: center; align-items: center; text-align: center; background: linear-gradient(135deg, var(--background) 0%, #FFF 100%); border: 15px solid var(--primary); }
+        .cover img { max-width: 65%; border-radius: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); margin: 20px 0; border: 6px solid white; object-fit: contain; max-height: 45%; }
+        .name-tag { background: #fff; padding: 10px 30px; border-radius: 50px; border: 4px dashed var(--accent); font-size: 1.3rem; margin-top: 15px; color: var(--text-main); font-weight: bold;}
+    </style>
+</head>
+<body>
+    <div class="page cover">
+        <h1>福州</h1>
+        <h2>小探险家研学手册</h2>
+        <img src="cover.png" alt="福州 插图">
+        <div class="name-tag">探险家姓名：_________________</div>
+    </div>
+    <div class="page">
+        <h2>研学寄语</h2>
+        <div class="card">
+            <p>亲爱的小探险家，欢迎来到有“榕城”之称的<strong>福州</strong>！</p>
+            <p>这里有着2200多年的悠久历史，到处都是巨大的古榕树和飘香的茉莉花。带上这本手册，让我们一起去漫步古巷、品尝美食吧！</p>
+        </div>
+        <h3>本册目录</h3>
+        <p>🗺️ 1. 核心知识点</p>
+        <p>🎒 2. 出发准备</p>
+        <p>📖 3. 趣味小故事</p>
+        <p>🔍 4. 观察记录表</p>
+        <div class="page-number">2</div>
+    </div>
+    <div class="page">
+        <h2>核心知识点</h2>
+        <div class="grid-2">
+            <div class="card">
+                <h3>🌳 榕树</h3>
+                <p>福州的“市树”。榕树可以长得非常巨大，它的枝干上还会长出“胡须”（气生根），非常神奇！</p>
+            </div>
+            <div class="card">
+                <h3>🏘️ 三坊七巷</h3>
+                <p>福州最著名的历史文化街区，保存着大批明清时期的古建筑，被称为“里坊制度活化石”。</p>
+            </div>
+            <div class="card">
+                <h3>🍵 茉莉花茶</h3>
+                <p>福州的特产花茶。神奇的制茶工艺让茶叶吸收茉莉花的香气，闻起来超级香！</p>
+            </div>
+            <div class="card">
+                <h3>🍡 福州鱼丸</h3>
+                <p>福州传统小吃。用鱼肉做皮，里面包着肉馅，又Q弹又美味，你一定要尝尝！</p>
+            </div>
+        </div>
+        <div class="page-number">3</div>
+    </div>
+    <div class="page">
+        <h2>出发准备</h2>
+        <div class="card">
+            <div class="checklist-item"><div class="checklist-box"></div> <span>舒适的运动鞋（走路用）</span></div>
+            <div class="checklist-item"><div class="checklist-box"></div> <span>小相机或手机（记录美景）</span></div>
+            <div class="checklist-item"><div class="checklist-box"></div> <span>水壶（随时补充水分）</span></div>
+            <div class="checklist-item"><div class="checklist-box"></div> <span>好胃口（吃遍福州美食！）</span></div>
+        </div>
+        <div class="page-number">4</div>
+    </div>
+    <div class="page">
+        <h2>趣味小故事</h2>
+        <div class="card" style="border-color: var(--secondary); box-shadow: 6px 6px 0px var(--secondary);">
+            <h3>你知道吗？</h3>
+            <p>在中国近现代历史上，三坊七巷走出了非常多有名的大人物，比如林则徐、严复、冰心等，所以有个说法叫“一片三坊七巷，半部中国近现代史”！</p>
+        </div>
+        <img src="story.png" alt="福州故事插图" style="width: 100%; border-radius: 12px; margin-bottom: 20px;">
+        <h3>林则徐的故事</h3>
+        <p>林则徐是中国历史上著名的民族英雄，他是福州人哦！他小的时候非常爱读书，后来他为了保护国家，在广东虎门销毁了大量毒品（鸦片）。福州现在还有“林则徐纪念馆”呢！</p>
+        <div class="page-number">5</div>
+    </div>
+    <div class="page">
+        <h2>观察记录表</h2>
+        <p>你在福州的大街小巷里，有没有看到什么特别的东西？比如一棵奇特的大树，或者一碗美味的鱼丸？</p>
+        <div class="drawing-area">
+            <div>
+                把它画下来吧！<br><br>
+                （你画的是什么？它有什么特别的地方？）
+            </div>
+        </div>
+        <div class="page-number">6</div>
+    </div>
+</body>
+</html>

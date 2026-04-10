@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>杭州 研学手册</title>
+    <style>
+        :root {
+            /* Hangzhou Theme Colors (West Lake Green & Sunset Gold) */
+            --primary: #00897B;
+            --secondary: #FBC02D;
+            --accent: #E53935;
+            --background: #E0F2F1;
+            --text-main: #004D40;
+            --text-light: #00695C;
+            --box-bg: rgba(255, 255, 255, 0.9);
+        }
+                * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', 'Nunito', sans-serif; background-color: #CFD8DC; color: var(--text-main); display: flex; flex-direction: column; align-items: center; gap: 20px; padding: 20px 0; }
+        .page { width: 210mm; height: 296mm; background-color: var(--background); border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.15); position: relative; overflow: hidden; padding: 15mm; display: flex; flex-direction: column; background-image: radial-gradient(var(--box-bg) 10%, transparent 10%), radial-gradient(var(--box-bg) 10%, transparent 10%); background-size: 30px 30px; background-position: 0 0, 15px 15px; }
+        @page { size: A4 portrait; margin: 0; }
+        @media print { body { background-color: transparent; padding: 0; gap: 0; } .page { margin: 0; border-radius: 0; box-shadow: none; page-break-after: always; page-break-inside: avoid; -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+        h1 { font-size: 3rem; color: var(--primary); text-align: center; letter-spacing: 4px; font-weight: bold; text-shadow: 2px 2px 0px var(--secondary); margin-bottom: 10px; }
+        h2 { font-size: 1.8rem; color: var(--primary); margin-top: 5px; margin-bottom: 15px; border-bottom: 4px dashed var(--accent); display: inline-block; padding-bottom: 5px; }
+        h3 { font-size: 1.3rem; color: var(--accent); margin-bottom: 5px; font-weight: bold; }
+        p { font-size: 1.15rem; line-height: 1.5; margin-bottom: 10px; }
+        .card { background: var(--box-bg); border: 3px solid var(--primary); border-radius: 12px; padding: 15px; margin-bottom: 15px; box-shadow: 4px 4px 0px var(--accent); }
+        .checklist-item { display: flex; align-items: center; font-size: 1.2rem; margin-bottom: 8px; }
+        .checklist-box { width: 25px; height: 25px; border: 3px solid var(--text-main); border-radius: 6px; margin-right: 15px; background: #fff; flex-shrink: 0; }
+        .drawing-area { flex-grow: 1; border: 4px dashed var(--accent); border-radius: 20px; background-color: #ffffff; display: flex; justify-content: center; align-items: flex-end; padding-bottom: 15px; color: var(--text-light); font-size: 1.3rem; min-height: 200px; margin-top: 10px; text-align: center; }
+        .page-number { position: absolute; bottom: 8mm; right: 15mm; font-weight: bold; font-size: 1.1rem; color: var(--text-main); }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .cover { justify-content: center; align-items: center; text-align: center; background: linear-gradient(135deg, var(--background) 0%, #FFF 100%); border: 15px solid var(--primary); }
+        .cover img { max-width: 65%; border-radius: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); margin: 20px 0; border: 6px solid white; object-fit: contain; max-height: 45%; }
+        .name-tag { background: #fff; padding: 10px 30px; border-radius: 50px; border: 4px dashed var(--accent); font-size: 1.3rem; margin-top: 15px; color: var(--text-main); font-weight: bold;}
+    </style>
+</head>
+<body>
+    <div class="page cover">
+        <h1>杭州</h1>
+        <h2>小探险家研学手册</h2>
+        <img src="cover.png" alt="杭州 插图">
+        <div class="name-tag">探险家姓名：_________________</div>
+    </div>
+    <div class="page">
+        <h2>研学寄语</h2>
+        <div class="card">
+            <p>亲爱的小探险家，欢迎来到美丽的<strong>杭州</strong>！</p>
+            <p>这里有波光粼粼的西湖、飘香的龙井茶和古老的雷峰塔。无论晴天还是下雨，杭州都有着不同的美丽画卷等待你去发现！</p>
+        </div>
+        <h3>本册目录</h3>
+        <p>🗺️ 1. 核心知识点</p>
+        <p>🎒 2. 出发准备</p>
+        <p>📖 3. 趣味小故事</p>
+        <p>🔍 4. 观察记录表</p>
+        <div class="page-number">2</div>
+    </div>
+    <div class="page">
+        <h2>核心知识点</h2>
+        <div class="grid-2">
+            <div class="card">
+                <h3>🌊 西湖</h3>
+                <p>杭州最著名大湖！西湖十景个个都像一幅画，比如“断桥残雪”、“苏堤春晓”，非常浪漫。</p>
+            </div>
+            <div class="card">
+                <h3>🗼 雷峰塔</h3>
+                <p>西湖边上的一座塔，里面流传着非常感人的神话故事。站在塔顶，可以俯瞰整个西湖哦！</p>
+            </div>
+            <div class="card">
+                <h3>🍵 西湖龙井茶</h3>
+                <p>中国最有名的绿茶之一。茶树长在满觉陇的梯田上，泡出来的茶水有着春天植物的清香！</p>
+            </div>
+            <div class="card">
+                <h3>☂️ 绸伞扇子</h3>
+                <p>杭州不仅丝绸好，人们还把丝绸做成了非常精美的绸伞和扇子，上面还画着美丽的国画。</p>
+            </div>
+        </div>
+        <div class="page-number">3</div>
+    </div>
+    <div class="page">
+        <h2>出发准备</h2>
+        <div class="card">
+            <div class="checklist-item"><div class="checklist-box"></div> <span>舒适的步行鞋（绕西湖走需要体力哦！）</span></div>
+            <div class="checklist-item"><div class="checklist-box"></div> <span>望远镜（看湖上的鸟类和远处的塔）</span></div>
+            <div class="checklist-item"><div class="checklist-box"></div> <span>水壶（喝水很重要）</span></div>
+            <div class="checklist-item"><div class="checklist-box"></div> <span>一把漂亮的扇子（拍照很好看！）</span></div>
+        </div>
+        <div class="page-number">4</div>
+    </div>
+    <div class="page">
+        <h2>趣味小故事</h2>
+        <div class="card" style="border-color: var(--secondary); box-shadow: 6px 6px 0px var(--secondary);">
+            <h3>你知道吗？</h3>
+            <p>大诗人苏东坡非常喜欢杭州，他不仅写下了“欲把西湖比西子，淡妆浓抹总相宜”，还带领老百姓修建了西湖上著名的“苏堤”！</p>
+        </div>
+        <img src="story.png" alt="杭州故事插图" style="width: 100%; border-radius: 12px; margin-bottom: 20px;">
+        <h3>白蛇传的故事</h3>
+        <p>很多很多年前，一条修炼千年的白蛇变成了美丽的民间女子白素贞，在西湖的断桥上借伞，认识了一个叫许仙的人。他们之间发生了一段非常感人的故事，而雷峰塔正是这个故事里最重要的地方哦！</p>
+        <div class="page-number">5</div>
+    </div>
+    <div class="page">
+        <h2>观察记录表</h2>
+        <p>在西湖边散步时，你有没有看到水面上开着荷花，或者柳树下漂着小船？</p>
+        <div class="drawing-area">
+            <div>
+                把你看到的西湖美景画下来吧！<br><br>
+                （你画的是哪一个景点呢？）
+            </div>
+        </div>
+        <div class="page-number">6</div>
+    </div>
+</body>
+</html>

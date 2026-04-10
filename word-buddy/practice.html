@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WordBuddy - 练习</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header class="header">
+        <a href="index.html" class="logo">
+            <span class="logo-icon">📚</span>
+            <span>WordBuddy</span>
+        </a>
+        <div class="nav-buttons">
+            <a href="index.html" class="btn btn-secondary">🏠 返回首页</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- 练习选择视图 -->
+        <div id="modeSelectView">
+            <div class="page-title">
+                <h1 id="themeTitle">🌈 颜色世界</h1>
+                <p>选择练习方式</p>
+            </div>
+
+            <!-- 单词学习 -->
+            <div class="practice-section">
+                <div class="practice-section-title">
+                    <span class="practice-section-icon">📖</span>
+                    <span>单词学习</span>
+                </div>
+                <div class="practice-modes">
+                    <button class="practice-mode-btn" onclick="startPractice('flashcard')">🃏 单词卡片</button>
+                    <button class="practice-mode-btn" onclick="startPractice('reading')">🎤 跟读练习</button>
+                    <button class="practice-mode-btn" onclick="startPractice('writing')">✍️ 手写练习</button>
+                    <button class="practice-mode-btn" onclick="startPractice('spelling')">🔤 拼写游戏</button>
+                </div>
+            </div>
+
+            <!-- 记忆游戏 -->
+            <div class="practice-section">
+                <div class="practice-section-title">
+                    <span class="practice-section-icon">🎮</span>
+                    <span>记忆游戏</span>
+                </div>
+                <div class="practice-modes">
+                    <button class="practice-mode-btn" onclick="startPractice('matching')">🎴 配对翻牌</button>
+                    <button class="practice-mode-btn" onclick="startPractice('listening')">👂 听音选词</button>
+                    <button class="practice-mode-btn" onclick="startPractice('hunter')">🎯 单词猎人</button>
+                    <button class="practice-mode-btn" onclick="startPractice('challenge')">⚡ 拼写闯关</button>
+                </div>
+            </div>
+
+            <!-- 对话练习 -->
+            <div class="practice-section">
+                <div class="practice-section-title">
+                    <span class="practice-section-icon">💬</span>
+                    <span>对话练习</span>
+                </div>
+                <div class="practice-modes">
+                    <button class="practice-mode-btn" onclick="startPractice('scene')">🎬 情景对话</button>
+                    <button class="practice-mode-btn" onclick="startPractice('roleplay')">🎭 角色扮演</button>
+                    <button class="practice-mode-btn" onclick="startPractice('voice')">🗣️ 语音识别</button>
+                    <button class="practice-mode-btn" onclick="startPractice('mission')">🏆 对话挑战</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 练习区域 -->
+        <div id="practiceView" style="display: none;">
+            <div id="practiceContent">
+                <!-- 由各模块动态填充 -->
+            </div>
+
+            <div class="nav-controls" id="navControls">
+                <button class="btn btn-secondary" onclick="prevWord()">◀ 上一个</button>
+                <button class="btn btn-secondary" onclick="randomWord()">🔀 随机</button>
+                <button class="btn btn-secondary" onclick="nextWord()">下一个 ▶</button>
+                <button class="btn btn-primary" onclick="backToModeSelect()">📋 返回菜单</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/wordLoader.js"></script>
+    <script src="js/speech.js"></script>
+    <script src="js/games/flashcard.js"></script>
+    <script src="js/games/spelling.js"></script>
+    <script src="js/games/memory.js"></script>
+    <script src="js/games/conversation.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
