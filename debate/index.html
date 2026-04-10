@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Debate Arena</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>AI Debate Arena</h1>
+            <p>Configure your models, suggest a topic, and watch the AI battle it out.</p>
+        </header>
+
+        <section class="configuration-panel">
+            <div class="config-card affirmative">
+                <h2>Affirmative (正方)</h2>
+                <div class="input-group">
+                    <label>Endpoint URL</label>
+                    <input type="text" id="aff-endpoint" value="http://localhost:4141/v1/chat/completions">
+                </div>
+                <div class="input-group">
+                    <label>Model ID</label>
+                    <input type="text" id="aff-model" value="local-model" placeholder="e.g. gpt-3.5-turbo">
+                </div>
+            </div>
+
+            <div class="config-card negative">
+                <h2>Negative (反方)</h2>
+                <div class="input-group">
+                    <label>Endpoint URL</label>
+                    <input type="text" id="neg-endpoint" value="http://localhost:4141/v1/chat/completions">
+                </div>
+                <div class="input-group">
+                    <label>Model ID</label>
+                    <input type="text" id="neg-model" value="local-model" placeholder="e.g. gpt-3.5-turbo">
+                </div>
+            </div>
+
+            <div class="config-card judge">
+                <h2>Judge (裁判)</h2>
+                <div class="input-group">
+                    <label>Endpoint URL</label>
+                    <input type="text" id="judge-endpoint" value="http://localhost:4141/v1/chat/completions">
+                </div>
+                <div class="input-group">
+                    <label>Model ID</label>
+                    <input type="text" id="judge-model" value="local-model" placeholder="e.g. gpt-4">
+                </div>
+            </div>
+        </section>
+
+        <section class="debate-setup">
+            <div class="topic-input-container">
+                <input type="text" id="topic-input" placeholder="Enter debate topic (e.g. 应该用Python还是JavaScript？)" />
+                <div class="rounds-container">
+                    <label for="rounds-slider">Debate Rounds: <span id="rounds-display">5</span></label>
+                    <input type="range" id="rounds-slider" min="1" max="10" value="5">
+                </div>
+                <button id="start-btn" class="primary-btn">Start Debate</button>
+            </div>
+        </section>
+
+        <main id="arena" class="arena hidden">
+            <!-- Messages will be injected here -->
+        </main>
+
+        <section id="judge-panel" class="judge-panel hidden">
+            <h2>Judge's Evaluation (裁判总结)</h2>
+            <div id="judge-content" class="judge-content">
+                <!-- Evaluation will be injected here -->
+            </div>
+            <div class="judge-loader hidden">
+                <div class="spinner"></div>
+                <span>Judge is analyzing the debate...</span>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

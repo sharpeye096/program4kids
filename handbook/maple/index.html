@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>枫叶 研学手册</title>
+    <style>
+        :root {
+            /* Maple Theme Colors (Autumn Red & Maple Orange) */
+            --primary: #D32F2F;
+            --secondary: #FF8F00;
+            --accent: #FF5722;
+            --background: #FFF3E0;
+            --text-main: #3E2723;
+            --text-light: #BF360C;
+            --box-bg: rgba(255, 255, 255, 0.95);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', 'Nunito', sans-serif; background-color: #CFD8DC; color: var(--text-main); display: flex; flex-direction: column; align-items: center; gap: 20px; padding: 20px 0; }
+        .page { width: 210mm; height: 296mm; background-color: var(--background); border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.15); position: relative; overflow: hidden; padding: 15mm; display: flex; flex-direction: column; background-image: radial-gradient(var(--box-bg) 10%, transparent 10%), radial-gradient(var(--box-bg) 10%, transparent 10%); background-size: 30px 30px; background-position: 0 0, 15px 15px; }
+        @page { size: A4 portrait; margin: 0; }
+        @media print { body { background-color: transparent; padding: 0; gap: 0; } .page { margin: 0; border-radius: 0; box-shadow: none; page-break-after: always; page-break-inside: avoid; -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+        h1 { font-size: 3rem; color: var(--primary); text-align: center; letter-spacing: 4px; font-weight: bold; text-shadow: 2px 2px 0px var(--secondary); margin-bottom: 10px; }
+        h2 { font-size: 1.8rem; color: var(--primary); margin-top: 5px; margin-bottom: 15px; border-bottom: 4px dashed var(--accent); display: inline-block; padding-bottom: 5px; }
+        h3 { font-size: 1.3rem; color: var(--accent); margin-bottom: 5px; font-weight: bold; }
+        p { font-size: 1.15rem; line-height: 1.5; margin-bottom: 10px; }
+        .card { background: var(--box-bg); border: 3px solid var(--primary); border-radius: 12px; padding: 15px; margin-bottom: 15px; box-shadow: 4px 4px 0px var(--accent); }
+        .checklist-item { display: flex; align-items: center; font-size: 1.2rem; margin-bottom: 8px; }
+        .checklist-box { width: 25px; height: 25px; border: 3px solid var(--text-main); border-radius: 6px; margin-right: 15px; background: #fff; flex-shrink: 0; }
+        .drawing-area { flex-grow: 1; border: 4px dashed var(--accent); border-radius: 20px; background-color: #ffffff; display: flex; justify-content: center; align-items: flex-end; padding-bottom: 15px; color: var(--text-light); font-size: 1.3rem; min-height: 200px; margin-top: 10px; text-align: center; }
+        .page-number { position: absolute; bottom: 8mm; right: 15mm; font-weight: bold; font-size: 1.1rem; color: var(--text-main); }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .cover { justify-content: center; align-items: center; text-align: center; background: linear-gradient(135deg, var(--background) 0%, #FFF 100%); border: 15px solid var(--primary); }
+        .cover img { max-width: 65%; border-radius: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); margin: 20px 0; border: 6px solid white; object-fit: contain; max-height: 45%; }
+        .name-tag { background: #fff; padding: 10px 30px; border-radius: 50px; border: 4px dashed var(--accent); font-size: 1.3rem; margin-top: 15px; color: var(--text-main); font-weight: bold;}
+    </style>
+</head>
+<body>
+    <div class="page cover">
+        <h1>红枫叶</h1>
+        <h2>秋日探林手册</h2>
+        <img src="cover.png" alt="枫叶 插图">
+        <div class="name-tag">寻找枫叶的人：_________________</div>
+    </div>
+    <div class="page">
+        <h2>研学寄语</h2>
+        <div class="card">
+            <p>亲爱的小探险家，秋天踩着落叶来了！最显眼的就是那一树燃烧般鲜艳的<strong>枫叶</strong>。</p>
+            <p>“停车坐爱枫林晚，霜叶红于二月花”。带上这个小手册，去收集那些像手掌一样的美丽红叶吧！</p>
+        </div>
+        <h3>本册目录</h3>
+        <p>🗺️ 1. 落叶小秘密</p>
+        <p>🎒 2. 拾叶小清单</p>
+        <p>📖 3. 为什么叶子会变红</p>
+        <p>🔍 4. 树叶拓印站</p>
+        <div class="page-number">2</div>
+    </div>
+    <div class="page">
+        <h2>落叶小秘密</h2>
+        <div class="grid-2">
+            <div class="card"><h3>🖐️ 形状</h3><p>枫叶的形状非常特别，通常像张开的小手掌，边缘有小小的锯齿。数数看它有几个手指？</p></div>
+            <div class="card"><h3>🍂 颜色</h3><p>它们原本也是绿色的！但是到了秋天，叶子会变成黄色、橙色，最后变成鲜艳的红色。</p></div>
+            <div class="card"><h3>🍁 糖浆</h3><p>有一种叫“糖枫”的树，树干里流出的汁液非常甜，可以熬制好吃的枫糖浆哦！</p></div>
+            <div class="card"><h3>✈️ 种子</h3><p>枫树的种子长着两片像翅膀一样的外壳，掉落的时候就像小直升机一样旋转！</p></div>
+        </div>
+        <div class="page-number">3</div>
+    </div>
+    <div class="page">
+        <h2>拾叶小清单</h2>
+        <div class="card">
+            <div class="checklist-item"><div class="checklist-box"></div> <span>一本厚厚的旧书（用来夹树叶）</span></div>
+            <div class="checklist-item"><div class="checklist-box"></div> <span>一个密封袋（防止落叶变干脆）</span></div>
+            <div class="checklist-item"><div class="checklist-box"></div> <span>一件保暖的外套（秋风凉爽哦）</span></div>
+            <div class="checklist-item"><div class="checklist-box"></div> <span>一双善于发现的眼睛</span></div>
+        </div>
+        <div class="page-number">4</div>
+    </div>
+    <div class="page">
+        <h2>为什么会变红？</h2>
+        <div class="card" style="border-color: var(--secondary); box-shadow: 6px 6px 0px var(--secondary);">
+            <h3>你知道吗？</h3>
+            <p>秋天温度变低，叶子里的“绿颜料”（叶绿素）就会分解消失。随着“绿颜料”的退去，隐藏在里面的其它颜色就显现出来了！</p>
+        </div>
+        <img src="story.png" alt="树叶书签" style="width: 100%; border-radius: 12px; margin-bottom: 20px;">
+        <h3>锁住秋天</h3>
+        <p>我们捡到的美丽红叶如果不处理，几天就会变得干枯易碎。回家后，把最完美的那片枫叶夹在一本很厚很厚的大书中，压上几天。这样它里面的水分会被纸吸干，就能变成一枚精美的红叶书签，帮你把秋天永远锁在书本里啦！</p>
+        <div class="page-number">5</div>
+    </div>
+    <div class="page">
+        <h2>树叶拓印站</h2>
+        <p>你捡到了怎么样的枫叶？把最美的一片放在这张纸下面，用彩铅在上面轻轻涂抹，把它的纹理拓印出来吧！</p>
+        <div class="drawing-area">
+            <div>
+                在这里拓印或者画下你的红叶！<br><br>
+                （你能清楚地看到它像小溪一样的叶脉吗？）
+            </div>
+        </div>
+        <div class="page-number">6</div>
+    </div>
+</body>
+</html>

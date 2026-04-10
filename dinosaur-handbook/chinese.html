@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>恐龙 研学手册</title>
+    <!-- Use standard neat Chinese font fallback -->
+    <style>
+        :root {
+            /* Dinosaur Theme Colors */
+            --primary: #2E7D32;      /* Jungle Green */
+            --secondary: #FBC02D;    /* Sunny Yellow */
+            --accent: #5D4037;       /* Earth Brown */
+            --background: #E8F5E9;   /* Light Green background */
+            --text-main: #1B5E20;    /* Dark Forest Green */
+            --text-light: #388E3C;
+            --box-bg: rgba(255, 255, 255, 0.9);
+        }
+                * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', 'Nunito', sans-serif; background-color: #CFD8DC; color: var(--text-main); display: flex; flex-direction: column; align-items: center; gap: 20px; padding: 20px 0; }
+        .page { width: 210mm; height: 296mm; background-color: var(--background); border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.15); position: relative; overflow: hidden; padding: 15mm; display: flex; flex-direction: column; background-image: radial-gradient(var(--box-bg) 10%, transparent 10%), radial-gradient(var(--box-bg) 10%, transparent 10%); background-size: 30px 30px; background-position: 0 0, 15px 15px; }
+        @page { size: A4 portrait; margin: 0; }
+        @media print { body { background-color: transparent; padding: 0; gap: 0; } .page { margin: 0; border-radius: 0; box-shadow: none; page-break-after: always; page-break-inside: avoid; -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+        h1 { font-size: 3rem; color: var(--primary); text-align: center; letter-spacing: 4px; font-weight: bold; text-shadow: 2px 2px 0px var(--secondary); margin-bottom: 10px; }
+        h2 { font-size: 1.8rem; color: var(--primary); margin-top: 5px; margin-bottom: 15px; border-bottom: 4px dashed var(--accent); display: inline-block; padding-bottom: 5px; }
+        h3 { font-size: 1.3rem; color: var(--accent); margin-bottom: 5px; font-weight: bold; }
+        p { font-size: 1.15rem; line-height: 1.5; margin-bottom: 10px; }
+        .card { background: var(--box-bg); border: 3px solid var(--primary); border-radius: 12px; padding: 15px; margin-bottom: 15px; box-shadow: 4px 4px 0px var(--accent); }
+        .checklist-item { display: flex; align-items: center; font-size: 1.2rem; margin-bottom: 8px; }
+        .checklist-box { width: 25px; height: 25px; border: 3px solid var(--text-main); border-radius: 6px; margin-right: 15px; background: #fff; flex-shrink: 0; }
+        .drawing-area { flex-grow: 1; border: 4px dashed var(--accent); border-radius: 20px; background-color: #ffffff; display: flex; justify-content: center; align-items: flex-end; padding-bottom: 15px; color: var(--text-light); font-size: 1.3rem; min-height: 200px; margin-top: 10px; text-align: center; }
+        .page-number { position: absolute; bottom: 8mm; right: 15mm; font-weight: bold; font-size: 1.1rem; color: var(--text-main); }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .cover { justify-content: center; align-items: center; text-align: center; background: linear-gradient(135deg, var(--background) 0%, #FFF 100%); border: 15px solid var(--primary); }
+        .cover img { max-width: 65%; border-radius: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); margin: 20px 0; border: 6px solid white; object-fit: contain; max-height: 45%; }
+        .name-tag { background: #fff; padding: 10px 30px; border-radius: 50px; border: 4px dashed var(--accent); font-size: 1.3rem; margin-top: 15px; color: var(--text-main); font-weight: bold;}
+    </style>
+</head>
+<body>
+    <!-- PAGE 1: COVER -->
+    <div class="page cover">
+        <h1>恐龙</h1>
+        <h2>小探险家研学手册</h2>
+        <!-- Reusing the beautiful generated image! -->
+        <img src="dinosaur_cover.png" alt="恐龙 插图">
+        <div class="name-tag">探险家姓名：_________________</div>
+    </div>
+
+    <!-- PAGE 2: WELCOME LETTER -->
+    <div class="page">
+        <h2>研学寄语</h2>
+        <div class="card">
+            <p>亲爱的小探险家，准备好开始一场史前冒险了吗？数千万年前，巨大的爬行动物统治着地球。在这本手册中，我们将一起探索奇妙的<strong>恐龙世界</strong>！</p>
+            <p>让我们像真正的古生物学家一样，发掘化石、了解惊人的知识，并发挥想象力！像霸王龙一样发出吼声，开始我们的探险吧！</p>
+        </div>
+        <h3>本册目录</h3>
+        <p>🗺️ 1. 核心知识点</p>
+        <p>🎒 2. 出发准备</p>
+        <p>📖 3. 趣味小故事</p>
+        <p>🔍 4. 观察记录表</p>
+        <div class="page-number">2</div>
+    </div>
+
+    <!-- PAGE 3: CONCEPTS -->
+    <div class="page">
+        <h2>核心知识点</h2>
+        <p>要想成为恐龙专家，你需要了解以下这些重要的词汇：</p>
+
+        <div class="grid-2">
+            <div class="card">
+                <h3>🌿 食草恐龙</h3>
+                <p>只吃植物的恐龙。它们通常有平平的牙齿来咀嚼树叶！（比如：三角龙、腕龙）</p>
+            </div>
+            <div class="card">
+                <h3>🥩 食肉恐龙</h3>
+                <p>专门吃肉的恐龙。它们有尖锐的牙齿和强壮的后肢来追捕猎物！（比如：霸王龙）</p>
+            </div>
+            <div class="card">
+                <h3>🦴 化石</h3>
+                <p>远古时代的植物或动物遗体被埋藏在地下，经过漫长时间变得像石头一样坚硬的痕迹或遗骸。</p>
+            </div>
+            <div class="card">
+                <h3>☄️ 灭绝</h3>
+                <p>当一种动物完全在地球上消失时，就叫灭绝。恐龙在6500万年前就灭绝啦！</p>
+            </div>
+        </div>
+        <div class="page-number">3</div>
+    </div>
+
+    <!-- PAGE 4: CHECKLIST -->
+    <div class="page">
+        <h2>出发准备</h2>
+        <p>在我们开始化石挖掘之前，请确保你的背包里装好了这些重要工具！</p>
+        <div class="card">
+            <div class="checklist-item"><div class="checklist-box"></div> <span>⛏️ 挖掘小刷子</span></div>
+            <div class="checklist-item"><div class="checklist-box"></div> <span>📝 笔记本与彩笔</span></div>
+            <div class="checklist-item"><div class="checklist-box"></div> <span>🕶️ 放大镜</span></div>
+            <div class="checklist-item"><div class="checklist-box"></div> <span>💧 饮用水</span></div>
+            <div class="checklist-item"><div class="checklist-box"></div> <span>________________</span></div>
+            <div class="checklist-item"><div class="checklist-box"></div> <span>________________</span></div>
+        </div>
+        <div class="page-number">4</div>
+    </div>
+
+    <!-- PAGE 5: FACT & STORY -->
+    <div class="page">
+        <h2>趣味小故事</h2>
+        <div class="card" style="border-color: var(--secondary); box-shadow: 6px 6px 0px var(--secondary);">
+            <h3>你知道吗？</h3>
+            <p>剑龙的大脑只有核桃那么大！但它有着厚重的骨板和长满尖刺的尾巴来保护自己，非常厉害哦！</p>
+        </div>
+        
+        <img src="dinosaur_fossil.png" alt="化石插图" style="width: 100%; border-radius: 12px; margin-bottom: 20px;">
+        
+        <h3>巨大的陨石</h3>
+        <p>大约6500万年前，一颗像城市那么大的巨大陨石撞击了地球！这次撞击彻底改变了地球的气候，导致巨大的恐龙无法生存。但这并不是结束……一些带羽毛的小型恐龙幸存了下来，随时间进化成了我们今天能在窗外看到的小鸟哦！</p>
+        <div class="page-number">5</div>
+    </div>
+
+    <!-- PAGE 6: OBSERVATION -->
+    <div class="page">
+        <h2>观察记录表</h2>
+        <p>现在轮到你大显身手了！请在下面的方框里，画出一种你自己设计、从未被发现过的恐龙：</p>
+        <div class="drawing-area">
+            <div>
+                在这里画下你设计的新恐龙！<br><br>
+                （它叫什么名字？它最喜欢吃什么？）
+            </div>
+        </div>
+        <div class="page-number">6</div>
+    </div>
+</body>
+</html>

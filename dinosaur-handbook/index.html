@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dinosaurs Handbook</title>
+    <!-- Kid-friendly and playful fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Dinosaur Theme Colors */
+            --primary: #2E7D32;      /* Jungle Green */
+            --secondary: #FBC02D;    /* Sunny Yellow */
+            --accent: #5D4037;       /* Earth Brown */
+            --background: #E8F5E9;   /* Light Green background */
+            --text-main: #1B5E20;    /* Dark Forest Green */
+            --text-light: #388E3C;
+            --box-bg: rgba(255, 255, 255, 0.9);
+        }
+
+                * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', 'Nunito', sans-serif; background-color: #CFD8DC; color: var(--text-main); display: flex; flex-direction: column; align-items: center; gap: 20px; padding: 20px 0; }
+        .page { width: 210mm; height: 296mm; background-color: var(--background); border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.15); position: relative; overflow: hidden; padding: 15mm; display: flex; flex-direction: column; background-image: radial-gradient(var(--box-bg) 10%, transparent 10%), radial-gradient(var(--box-bg) 10%, transparent 10%); background-size: 30px 30px; background-position: 0 0, 15px 15px; }
+        @page { size: A4 portrait; margin: 0; }
+        @media print { body { background-color: transparent; padding: 0; gap: 0; } .page { margin: 0; border-radius: 0; box-shadow: none; page-break-after: always; page-break-inside: avoid; -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+        h1 { font-size: 3rem; color: var(--primary); text-align: center; letter-spacing: 4px; font-weight: bold; text-shadow: 2px 2px 0px var(--secondary); margin-bottom: 10px; }
+        h2 { font-size: 1.8rem; color: var(--primary); margin-top: 5px; margin-bottom: 15px; border-bottom: 4px dashed var(--accent); display: inline-block; padding-bottom: 5px; }
+        h3 { font-size: 1.3rem; color: var(--accent); margin-bottom: 5px; font-weight: bold; }
+        p { font-size: 1.15rem; line-height: 1.5; margin-bottom: 10px; }
+        .card { background: var(--box-bg); border: 3px solid var(--primary); border-radius: 12px; padding: 15px; margin-bottom: 15px; box-shadow: 4px 4px 0px var(--accent); }
+        .checklist-item { display: flex; align-items: center; font-size: 1.2rem; margin-bottom: 8px; }
+        .checklist-box { width: 25px; height: 25px; border: 3px solid var(--text-main); border-radius: 6px; margin-right: 15px; background: #fff; flex-shrink: 0; }
+        .drawing-area { flex-grow: 1; border: 4px dashed var(--accent); border-radius: 20px; background-color: #ffffff; display: flex; justify-content: center; align-items: flex-end; padding-bottom: 15px; color: var(--text-light); font-size: 1.3rem; min-height: 200px; margin-top: 10px; text-align: center; }
+        .page-number { position: absolute; bottom: 8mm; right: 15mm; font-weight: bold; font-size: 1.1rem; color: var(--text-main); }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .cover { justify-content: center; align-items: center; text-align: center; background: linear-gradient(135deg, var(--background) 0%, #FFF 100%); border: 15px solid var(--primary); }
+        .cover img { max-width: 65%; border-radius: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); margin: 20px 0; border: 6px solid white; object-fit: contain; max-height: 45%; }
+        .name-tag { background: #fff; padding: 10px 30px; border-radius: 50px; border: 4px dashed var(--accent); font-size: 1.3rem; margin-top: 15px; color: var(--text-main); font-weight: bold;}
+    </style>
+</head>
+<body>
+
+    <!-- PAGE 1: COVER -->
+    <div class="page cover">
+        <h1>Dinosaurs</h1>
+        <h2>Explorer's Handbook</h2>
+        <!-- Using a generated illustration -->
+        <img src="dinosaur_cover.png" alt="Dinos Illustration">
+        
+        <div class="name-tag">
+            My Name: _________________
+        </div>
+    </div>
+
+    <!-- PAGE 2: WELCOME LETTER -->
+    <div class="page">
+        <h2>Dear Paleontologist,</h2>
+        <div class="card">
+            <p>Welcome to the ultimate journey back in time! Millions of years ago, giant reptiles ruled the Earth. In this handbook, we will discover the fascinating world of <strong>Dinosaurs</strong>.</p>
+            <p>Get ready to uncover fossils, learn amazing facts, and imagine the world exactly as it was! Let's roar like a T-Rex and start exploring!</p>
+        </div>
+        
+        <h3>What's Inside?</h3>
+        <p>🗺️ 1. Dino Concepts</p>
+        <p>🎒 2. Preparation Checklist</p>
+        <p>📖 3. Amazing Fossils</p>
+        <p>🔍 4. Dino Observation Log</p>
+        
+        <div class="page-number">2</div>
+    </div>
+
+    <!-- PAGE 3: CONCEPTS -->
+    <div class="page">
+        <h2>Key Concepts</h2>
+        <p>Here are some important words you should know to become a dinosaur expert:</p>
+
+        <div class="grid-2">
+            <div class="card">
+                <h3>🌿 Herbivore</h3>
+                <p>Dinosaurs that only ate plants. They usually had flat teeth to chew leaves! (Like the Triceratops)</p>
+            </div>
+            <div class="card">
+                <h3>🥩 Carnivore</h3>
+                <p>Dinosaurs that only ate meat. They had sharp teeth and strong legs to hunt. (Like the T-Rex!)</p>
+            </div>
+            <div class="card">
+                <h3>🦴 Fossil</h3>
+                <p>The remains or impression of a prehistoric plant or animal embedded in rock and preserved in petrified form.</p>
+            </div>
+            <div class="card">
+                <h3>☄️ Extinction</h3>
+                <p>When an entire species of animal dies out forever. Dinosaurs went extinct 65 million years ago!</p>
+            </div>
+        </div>
+        <div class="page-number">3</div>
+    </div>
+
+    <!-- PAGE 4: CHECKLIST -->
+    <div class="page">
+        <h2>Preparation Checklist</h2>
+        <p>Before we go on our fossil dig, make sure you pack your bag with these important tools!</p>
+        
+        <div class="card">
+            <div class="checklist-item">
+                <div class="checklist-box"></div> <span>⛏️ Small digging brush</span>
+            </div>
+            <div class="checklist-item">
+                <div class="checklist-box"></div> <span>📝 Pencils & Notebooks</span>
+            </div>
+            <div class="checklist-item">
+                <div class="checklist-box"></div> <span>🕶️ Magnifying Glass</span>
+            </div>
+            <div class="checklist-item">
+                <div class="checklist-box"></div> <span>💧 Water Bottle</span>
+            </div>
+            <div class="checklist-item">
+                <div class="checklist-box"></div> <span>________________</span>
+            </div>
+            <div class="checklist-item">
+                <div class="checklist-box"></div> <span>________________</span>
+            </div>
+        </div>
+        
+        <div class="page-number">4</div>
+    </div>
+
+    <!-- PAGE 5: FACT & STORY -->
+    <div class="page">
+        <h2>Story Time & Facts</h2>
+        <div class="card" style="border-color: var(--secondary); box-shadow: 6px 6px 0px var(--secondary);">
+            <h3>Did You Know?</h3>
+            <p>The Stegosaurus had a brain the size of a walnut! But it had heavy armor and spikes on its tail to defend itself.</p>
+        </div>
+        
+        <img src="dinosaur_fossil.png" alt="Fossils" style="width: 100%; border-radius: 12px; margin-bottom: 20px;">
+        
+        <h3>The Great Meteor</h3>
+        <p>Around 65 million years ago, a massive asteroid the size of a city crashed into Earth! This event changed the climate so much that the dinosaurs could not survive. But wait... some smaller feathered dinosaurs survived and evolved into the birds we see outside our windows today!</p>
+        <div class="page-number">5</div>
+    </div>
+
+    <!-- PAGE 6: OBSERVATION -->
+    <div class="page">
+        <h2>Observation Log</h2>
+        <p>It's your turn! Can you draw your very own, never-before-seen dinosaur species in the box below?</p>
+        
+        <div class="drawing-area">
+            Draw your new dinosaur here!
+            <br/><br/>
+            (What is its name? What does it eat?)
+        </div>
+        <div class="page-number">6</div>
+    </div>
+
+</body>
+</html>

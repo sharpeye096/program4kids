@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>苏州 研学手册</title>
+    <style>
+        :root {
+            /* Suzhou Theme Colors (Garden Green & Water Blue) */
+            --primary: #00796B;
+            --secondary: #0288D1;
+            --accent: #D32F2F;
+            --background: #E0F7FA;
+            --text-main: #004D40;
+            --text-light: #00796B;
+            --box-bg: rgba(255, 255, 255, 0.9);
+        }
+                * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', 'Nunito', sans-serif; background-color: #CFD8DC; color: var(--text-main); display: flex; flex-direction: column; align-items: center; gap: 20px; padding: 20px 0; }
+        .page { width: 210mm; height: 296mm; background-color: var(--background); border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.15); position: relative; overflow: hidden; padding: 15mm; display: flex; flex-direction: column; background-image: radial-gradient(var(--box-bg) 10%, transparent 10%), radial-gradient(var(--box-bg) 10%, transparent 10%); background-size: 30px 30px; background-position: 0 0, 15px 15px; }
+        @page { size: A4 portrait; margin: 0; }
+        @media print { body { background-color: transparent; padding: 0; gap: 0; } .page { margin: 0; border-radius: 0; box-shadow: none; page-break-after: always; page-break-inside: avoid; -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+        h1 { font-size: 3rem; color: var(--primary); text-align: center; letter-spacing: 4px; font-weight: bold; text-shadow: 2px 2px 0px var(--secondary); margin-bottom: 10px; }
+        h2 { font-size: 1.8rem; color: var(--primary); margin-top: 5px; margin-bottom: 15px; border-bottom: 4px dashed var(--accent); display: inline-block; padding-bottom: 5px; }
+        h3 { font-size: 1.3rem; color: var(--accent); margin-bottom: 5px; font-weight: bold; }
+        p { font-size: 1.15rem; line-height: 1.5; margin-bottom: 10px; }
+        .card { background: var(--box-bg); border: 3px solid var(--primary); border-radius: 12px; padding: 15px; margin-bottom: 15px; box-shadow: 4px 4px 0px var(--accent); }
+        .checklist-item { display: flex; align-items: center; font-size: 1.2rem; margin-bottom: 8px; }
+        .checklist-box { width: 25px; height: 25px; border: 3px solid var(--text-main); border-radius: 6px; margin-right: 15px; background: #fff; flex-shrink: 0; }
+        .drawing-area { flex-grow: 1; border: 4px dashed var(--accent); border-radius: 20px; background-color: #ffffff; display: flex; justify-content: center; align-items: flex-end; padding-bottom: 15px; color: var(--text-light); font-size: 1.3rem; min-height: 200px; margin-top: 10px; text-align: center; }
+        .page-number { position: absolute; bottom: 8mm; right: 15mm; font-weight: bold; font-size: 1.1rem; color: var(--text-main); }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .cover { justify-content: center; align-items: center; text-align: center; background: linear-gradient(135deg, var(--background) 0%, #FFF 100%); border: 15px solid var(--primary); }
+        .cover img { max-width: 65%; border-radius: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); margin: 20px 0; border: 6px solid white; object-fit: contain; max-height: 45%; }
+        .name-tag { background: #fff; padding: 10px 30px; border-radius: 50px; border: 4px dashed var(--accent); font-size: 1.3rem; margin-top: 15px; color: var(--text-main); font-weight: bold;}
+    </style>
+</head>
+<body>
+    <div class="page cover">
+        <h1>苏州</h1>
+        <h2>小探险家研学手册</h2>
+        <img src="cover.png" alt="苏州 插图">
+        <div class="name-tag">探险家姓名：_________________</div>
+    </div>
+    <div class="page">
+        <h2>研学寄语</h2>
+        <div class="card">
+            <p>亲爱的小探险家，有一句中国古话叫“上有天堂，下有苏杭”，欢迎来到美丽如画的<strong>苏州</strong>！</p>
+            <p>这里有精巧的古典园林、流淌的小河和轻声细语的评弹。让我们一起走进这幅江南水乡的画卷吧！</p>
+        </div>
+        <h3>本册目录</h3>
+        <p>🗺️ 1. 核心知识点</p>
+        <p>🎒 2. 出发准备</p>
+        <p>📖 3. 趣味小故事</p>
+        <p>🔍 4. 观察记录表</p>
+        <div class="page-number">2</div>
+    </div>
+    <div class="page">
+        <h2>核心知识点</h2>
+        <div class="grid-2">
+            <div class="card">
+                <h3>🏡 古典园林</h3>
+                <p>苏州的私家花园非常有名！里面有假山、池水、亭台楼阁，就像迷宫一样有趣。（如：拙政园）</p>
+            </div>
+            <div class="card">
+                <h3>🛶 江南水乡</h3>
+                <p>苏州很多房子是建在河边的，人们出行常常需要坐一条叫“乌篷船”的小船在水上飘荡。</p>
+            </div>
+            <div class="card">
+                <h3>🐛 丝绸</h3>
+                <p>苏州是著名的“丝绸之府”。可爱的蚕宝宝吐出细细的丝，工匠们再把它织成漂亮柔软的布料。</p>
+            </div>
+            <div class="card">
+                <h3>🎶 评弹</h3>
+                <p>一种好听的传统说唱艺术，演员穿着漂亮的衣服，弹着琵琶或者三弦，用苏州话给你讲故事。</p>
+            </div>
+        </div>
+        <div class="page-number">3</div>
+    </div>
+    <div class="page">
+        <h2>出发准备</h2>
+        <div class="card">
+            <div class="checklist-item"><div class="checklist-box"></div> <span>一把小雨伞（江南常常下着诗意的小雨）</span></div>
+            <div class="checklist-item"><div class="checklist-box"></div> <span>一本带空白页的画本</span></div>
+            <div class="checklist-item"><div class="checklist-box"></div> <span>一颗安静欣赏美的心</span></div>
+            <div class="checklist-item"><div class="checklist-box"></div> <span>________________</span></div>
+        </div>
+        <div class="page-number">4</div>
+    </div>
+    <div class="page">
+        <h2>趣味小故事</h2>
+        <div class="card" style="border-color: var(--secondary); box-shadow: 6px 6px 0px var(--secondary);">
+            <h3>你知道吗？</h3>
+            <p>在苏州园林里，经常能看到一种奇特的石头叫“太湖石”，它有“瘦、皱、漏、透”的特点，形状千奇百怪！</p>
+        </div>
+        <img src="story.png" alt="苏州故事插图" style="width: 100%; border-radius: 12px; margin-bottom: 20px;">
+        <h3>小桥流水人家</h3>
+        <p>几百年前，有一个叫马可·波罗的外国大旅行家来到了苏州。他被这里纵横交错的河流和多得数不清的桥梁惊呆了，直呼苏州是“东方的威尼斯”！今天，你依然可以在平江路上感受到那种古老的宁静与美丽。</p>
+        <div class="page-number">5</div>
+    </div>
+    <div class="page">
+        <h2>观察记录表</h2>
+        <p>在游览苏州园林时，你最喜欢园林里的什么景色？是圆圆的月亮洞门，还是水里游来游去的锦鲤？</p>
+        <div class="drawing-area">
+            <div>
+                用彩笔画下你心中的苏州风光吧！<br><br>
+                （你画了什么颜色？）
+            </div>
+        </div>
+        <div class="page-number">6</div>
+    </div>
+</body>
+</html>

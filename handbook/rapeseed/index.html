@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>油菜花 研学手册</title>
+    <style>
+        :root {
+            /* Rapeseed Theme Colors (Sunny Yellow & Spring Green) */
+            --primary: #FBC02D;
+            --secondary: #8BC34A;
+            --accent: #F57F17;
+            --background: #FFFDE7;
+            --text-main: #3E2723;
+            --text-light: #F57F17;
+            --box-bg: rgba(255, 255, 255, 0.95);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', 'Nunito', sans-serif; background-color: #CFD8DC; color: var(--text-main); display: flex; flex-direction: column; align-items: center; gap: 20px; padding: 20px 0; }
+        .page { width: 210mm; height: 296mm; background-color: var(--background); border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.15); position: relative; overflow: hidden; padding: 15mm; display: flex; flex-direction: column; background-image: radial-gradient(var(--box-bg) 10%, transparent 10%), radial-gradient(var(--box-bg) 10%, transparent 10%); background-size: 30px 30px; background-position: 0 0, 15px 15px; }
+        @page { size: A4 portrait; margin: 0; }
+        @media print { body { background-color: transparent; padding: 0; gap: 0; } .page { margin: 0; border-radius: 0; box-shadow: none; page-break-after: always; page-break-inside: avoid; -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+        h1 { font-size: 3rem; color: var(--primary); text-align: center; letter-spacing: 4px; font-weight: bold; text-shadow: 2px 2px 0px var(--secondary); margin-bottom: 10px; }
+        h2 { font-size: 1.8rem; color: var(--primary); margin-top: 5px; margin-bottom: 15px; border-bottom: 4px dashed var(--accent); display: inline-block; padding-bottom: 5px; }
+        h3 { font-size: 1.3rem; color: var(--accent); margin-bottom: 5px; font-weight: bold; }
+        p { font-size: 1.15rem; line-height: 1.5; margin-bottom: 10px; }
+        .card { background: var(--box-bg); border: 3px solid var(--primary); border-radius: 12px; padding: 15px; margin-bottom: 15px; box-shadow: 4px 4px 0px var(--accent); }
+        .checklist-item { display: flex; align-items: center; font-size: 1.2rem; margin-bottom: 8px; }
+        .checklist-box { width: 25px; height: 25px; border: 3px solid var(--text-main); border-radius: 6px; margin-right: 15px; background: #fff; flex-shrink: 0; }
+        .drawing-area { flex-grow: 1; border: 4px dashed var(--accent); border-radius: 20px; background-color: #ffffff; display: flex; justify-content: center; align-items: flex-end; padding-bottom: 15px; color: var(--text-light); font-size: 1.3rem; min-height: 200px; margin-top: 10px; text-align: center; }
+        .page-number { position: absolute; bottom: 8mm; right: 15mm; font-weight: bold; font-size: 1.1rem; color: var(--text-main); }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .cover { justify-content: center; align-items: center; text-align: center; background: linear-gradient(135deg, var(--background) 0%, #FFF 100%); border: 15px solid var(--primary); }
+        .cover img { max-width: 65%; border-radius: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); margin: 20px 0; border: 6px solid white; object-fit: contain; max-height: 45%; }
+        .name-tag { background: #fff; padding: 10px 30px; border-radius: 50px; border: 4px dashed var(--accent); font-size: 1.3rem; margin-top: 15px; color: var(--text-main); font-weight: bold;}
+    </style>
+</head>
+<body>
+    <div class="page cover">
+        <h1>油菜花</h1>
+        <h2>自然日记本</h2>
+        <img src="cover.png" alt="油菜花 插图">
+        <div class="name-tag">小自然学家：_________________</div>
+    </div>
+    <div class="page">
+        <h2>研学寄语</h2>
+        <div class="card">
+            <p>亲爱的小自然学家，春天到了！漫山遍野的<strong>油菜花</strong>开成了一片金色的海洋，非常壮观！</p>
+            <p>带上这本手册，和爸爸妈妈一起走进花海，去闻闻花香，听听蜜蜂嗡嗡的歌唱吧！</p>
+        </div>
+        <h3>本册目录</h3>
+        <p>🗺️ 1. 花海知识点</p>
+        <p>🎒 2. 赏花小清单</p>
+        <p>📖 3. 蜜蜂的小秘密</p>
+        <p>🔍 4. 花田观察站</p>
+        <div class="page-number">2</div>
+    </div>
+    <div class="page">
+        <h2>花海知识点</h2>
+        <div class="grid-2">
+            <div class="card"><h3>🌼 春天信使</h3><p>油菜花是最早报告春天到来的花朵之一，只要它一开，大地就变得温暖了！</p></div>
+            <div class="card"><h3>🐝 蜜蜂蜜源</h3><p>油菜花有非常多的花蜜！小蜜蜂最喜欢来这里采蜜，酿成香甜的蜂蜜。</p></div>
+            <div class="card"><h3>🛢️ 菜籽油</h3><p>油菜花谢了以后，会结出黑色的种子（菜籽）。我们家里做菜用的金黄色的菜籽油就是它榨出来的哦！</p></div>
+            <div class="card"><h3>十字花科</h3><p>仔细看！油菜花有4片黄色的花瓣，排成一个十字的形状。所以它属于十字花科植物。</p></div>
+        </div>
+        <div class="page-number">3</div>
+    </div>
+    <div class="page">
+        <h2>赏花小清单</h2>
+        <div class="card">
+            <div class="checklist-item"><div class="checklist-box"></div> <span>防晒霜与遮阳帽</span></div>
+            <div class="checklist-item"><div class="checklist-box"></div> <span>不乱折花朵的约定</span></div>
+            <div class="checklist-item"><div class="checklist-box"></div> <span>一只小小的放大镜</span></div>
+            <div class="checklist-item"><div class="checklist-box"></div> <span>相机（拍下明亮的笑脸！）</span></div>
+        </div>
+        <div class="page-number">4</div>
+    </div>
+    <div class="page">
+        <h2>蜜蜂的小秘密</h2>
+        <div class="card" style="border-color: var(--secondary); box-shadow: 6px 6px 0px var(--secondary);">
+            <h3>你知道吗？</h3>
+            <p>蜜蜂在飞舞时跳出神奇的“8字舞”，其实是在告诉远处的同伴：“这里有一大片非常香甜的油菜花，快来呀！”</p>
+        </div>
+        <img src="story.png" alt="蜜蜂与油菜花" style="width: 100%; border-radius: 12px; margin-bottom: 20px;">
+        <h3>小帮手立大功</h3>
+        <p>蜜蜂不仅仅是来吃花蜜的。当它们在一朵花里钻来钻去时，毛茸茸的身体会沾满黄色的花粉。当它飞到第二朵花上时，就把花粉带了过去，这样油菜花才能结出种子。这就是“传粉”，小蜜蜂可是农作物的超级小帮手呢！</p>
+        <div class="page-number">5</div>
+    </div>
+    <div class="page">
+        <h2>花田观察站</h2>
+        <p>在花海里，你有没有发现除了蜜蜂，还有哪些小动物在访问花朵？</p>
+        <div class="drawing-area">
+            <div>
+                画下一朵油菜花和里面飞舞的昆虫吧！<br><br>
+                （你有看到蝴蝶吗？）
+            </div>
+        </div>
+        <div class="page-number">6</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>广州 研学手册</title>
+    <style>
+        :root {
+            /* Guangzhou Theme Colors (Canton Red & Dim Sum Yellow) */
+            --primary: #D32F2F;
+            --secondary: #FBC02D;
+            --accent: #1976D2;
+            --background: #FFF9C4;
+            --text-main: #4E342E;
+            --text-light: #C62828;
+            --box-bg: rgba(255, 255, 255, 0.95);
+        }
+                * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', 'Nunito', sans-serif; background-color: #CFD8DC; color: var(--text-main); display: flex; flex-direction: column; align-items: center; gap: 20px; padding: 20px 0; }
+        .page { width: 210mm; height: 296mm; background-color: var(--background); border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.15); position: relative; overflow: hidden; padding: 15mm; display: flex; flex-direction: column; background-image: radial-gradient(var(--box-bg) 10%, transparent 10%), radial-gradient(var(--box-bg) 10%, transparent 10%); background-size: 30px 30px; background-position: 0 0, 15px 15px; }
+        @page { size: A4 portrait; margin: 0; }
+        @media print { body { background-color: transparent; padding: 0; gap: 0; } .page { margin: 0; border-radius: 0; box-shadow: none; page-break-after: always; page-break-inside: avoid; -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+        h1 { font-size: 3rem; color: var(--primary); text-align: center; letter-spacing: 4px; font-weight: bold; text-shadow: 2px 2px 0px var(--secondary); margin-bottom: 10px; }
+        h2 { font-size: 1.8rem; color: var(--primary); margin-top: 5px; margin-bottom: 15px; border-bottom: 4px dashed var(--accent); display: inline-block; padding-bottom: 5px; }
+        h3 { font-size: 1.3rem; color: var(--accent); margin-bottom: 5px; font-weight: bold; }
+        p { font-size: 1.15rem; line-height: 1.5; margin-bottom: 10px; }
+        .card { background: var(--box-bg); border: 3px solid var(--primary); border-radius: 12px; padding: 15px; margin-bottom: 15px; box-shadow: 4px 4px 0px var(--accent); }
+        .checklist-item { display: flex; align-items: center; font-size: 1.2rem; margin-bottom: 8px; }
+        .checklist-box { width: 25px; height: 25px; border: 3px solid var(--text-main); border-radius: 6px; margin-right: 15px; background: #fff; flex-shrink: 0; }
+        .drawing-area { flex-grow: 1; border: 4px dashed var(--accent); border-radius: 20px; background-color: #ffffff; display: flex; justify-content: center; align-items: flex-end; padding-bottom: 15px; color: var(--text-light); font-size: 1.3rem; min-height: 200px; margin-top: 10px; text-align: center; }
+        .page-number { position: absolute; bottom: 8mm; right: 15mm; font-weight: bold; font-size: 1.1rem; color: var(--text-main); }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .cover { justify-content: center; align-items: center; text-align: center; background: linear-gradient(135deg, var(--background) 0%, #FFF 100%); border: 15px solid var(--primary); }
+        .cover img { max-width: 65%; border-radius: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); margin: 20px 0; border: 6px solid white; object-fit: contain; max-height: 45%; }
+        .name-tag { background: #fff; padding: 10px 30px; border-radius: 50px; border: 4px dashed var(--accent); font-size: 1.3rem; margin-top: 15px; color: var(--text-main); font-weight: bold;}
+    </style>
+</head>
+<body>
+    <div class="page cover">
+        <h1>广州</h1>
+        <h2>小探险家研学手册</h2>
+        <img src="cover.png" alt="广州 插图">
+        <div class="name-tag">探险家姓名：_________________</div>
+    </div>
+    <div class="page">
+        <h2>研学寄语</h2>
+        <div class="card">
+            <p>亲爱的小探险家，欢迎来到充满活力的“羊城”——<strong>广州</strong>！</p>
+            <p>这里有冲破云霄的广州塔，有历史悠久的骑楼老街，更有着数不尽的广东早茶点心！让我们去大吃一顿，大玩一场吧！</p>
+        </div>
+        <h3>本册目录</h3>
+        <p>🗺️ 1. 核心知识点</p>
+        <p>🎒 2. 出发准备</p>
+        <p>📖 3. 趣味小故事</p>
+        <p>🔍 4. 观察记录表</p>
+        <div class="page-number">2</div>
+    </div>
+    <div class="page">
+        <h2>核心知识点</h2>
+        <div class="grid-2">
+            <div class="card">
+                <h3>🗼 广州塔(小蛮腰)</h3>
+                <p>广州地标建筑，是中国第一高塔！因为它中间非常细，就像少女纤细的腰，所以大家都亲切地叫它“小蛮腰”。</p>
+            </div>
+            <div class="card">
+                <h3>🥟 广式早茶</h3>
+                <p>广州人最喜欢“喝早茶”。但他们不仅喝茶，重点是吃竹笼里装着的虾饺、烧卖、叉烧包等美味点心！</p>
+            </div>
+            <div class="card">
+                <h3>🏠 岭南骑楼</h3>
+                <p>广州老街特有的建筑。二楼伸出来盖在人行道上，可以给走在下面的人遮风挡雨躲太阳哦！</p>
+            </div>
+            <div class="card">
+                <h3>🌺 木棉花</h3>
+                <p>广州的市花。春天开放时，红彤彤的花朵像一团团火焰，被人们称为“英雄花”。</p>
+            </div>
+        </div>
+        <div class="page-number">3</div>
+    </div>
+    <div class="page">
+        <h2>出发准备</h2>
+        <div class="card">
+            <div class="checklist-item"><div class="checklist-box"></div> <span>超级大的胃口（准备吃点心！）</span></div>
+            <div class="checklist-item"><div class="checklist-box"></div> <span>防晒霜与帽子（广州阳光灿烂）</span></div>
+            <div class="checklist-item"><div class="checklist-box"></div> <span>相机（拍下小蛮腰的夜景）</span></div>
+            <div class="checklist-item"><div class="checklist-box"></div> <span>好心情（发现新事物的心）</span></div>
+        </div>
+        <div class="page-number">4</div>
+    </div>
+    <div class="page">
+        <h2>趣味小故事</h2>
+        <div class="card" style="border-color: var(--secondary); box-shadow: 6px 6px 0px var(--secondary);">
+            <h3>你知道吗？</h3>
+            <p>在广州吃早茶时，别人给你倒茶，你要用手指在桌子上敲两下，这叫做“叩指礼”，是谢谢的意思哦！</p>
+        </div>
+        <img src="story.png" alt="广州早茶插图" style="width: 100%; border-radius: 12px; margin-bottom: 20px;">
+        <h3>五羊的传说</h3>
+        <p>很久以前，广州发生了饥荒。天上有五位神仙骑着五只口里衔着稻穗的羊降临广州，把稻穗送给了这里的人们，祝福他们永远不挨饿，然后神仙飞走了，五只羊化成了石头。所以广州又被称为“羊城”和“穗城”！越秀公园里那座五羊雕像就是记念这个传说的呢。</p>
+        <div class="page-number">5</div>
+    </div>
+    <div class="page">
+        <h2>观察记录表</h2>
+        <p>你去吃广式早茶了吗？这么多好吃的点心，你最喜欢哪一种？</p>
+        <div class="drawing-area">
+            <div>
+                画下最让你流口水的那笼点心吧！<br><br>
+                （它里面包了什么？）
+            </div>
+        </div>
+        <div class="page-number">6</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,290 @@
+{
+  "theme": "颜色世界",
+  "themeId": "colors",
+  "themeIcon": "🌈",
+  "words": [
+    {
+      "word": "red",
+      "chinese": "红色",
+      "image": "color:#FF0000",
+      "sentences": [
+        { "en": "The apple is red.", "zh": "苹果是红色的。" },
+        { "en": "I like red.", "zh": "我喜欢红色。" }
+      ],
+      "conversations": [
+        {
+          "scene": "画画课",
+          "dialog": [
+            { "role": "老师", "en": "What color is this?", "zh": "这是什么颜色？" },
+            { "role": "你", "en": "It is red.", "zh": "这是红色。" },
+            { "role": "老师", "en": "Good job!", "zh": "做得好！" }
+          ]
+        }
+      ]
+    },
+    {
+      "word": "orange",
+      "chinese": "橙色",
+      "image": "color:#FF8C00",
+      "sentences": [
+        { "en": "The orange is orange.", "zh": "橙子是橙色的。" },
+        { "en": "I have an orange ball.", "zh": "我有一个橙色的球。" }
+      ],
+      "conversations": [
+        {
+          "scene": "水果店",
+          "dialog": [
+            { "role": "店员", "en": "What color do you like?", "zh": "你喜欢什么颜色？" },
+            { "role": "你", "en": "I like orange.", "zh": "我喜欢橙色。" },
+            { "role": "店员", "en": "Here is an orange fruit!", "zh": "这是一个橙子！" }
+          ]
+        }
+      ]
+    },
+    {
+      "word": "yellow",
+      "chinese": "黄色",
+      "image": "color:#FFD700",
+      "sentences": [
+        { "en": "The sun is yellow.", "zh": "太阳是黄色的。" },
+        { "en": "Bananas are yellow.", "zh": "香蕉是黄色的。" }
+      ],
+      "conversations": [
+        {
+          "scene": "在公园",
+          "dialog": [
+            { "role": "朋友", "en": "Look at the sun!", "zh": "看太阳！" },
+            { "role": "你", "en": "It is yellow and bright.", "zh": "它是黄色的，很明亮。" }
+          ]
+        }
+      ]
+    },
+    {
+      "word": "green",
+      "chinese": "绿色",
+      "image": "color:#32CD32",
+      "sentences": [
+        { "en": "The grass is green.", "zh": "草是绿色的。" },
+        { "en": "I see green trees.", "zh": "我看到绿色的树。" }
+      ],
+      "conversations": [
+        {
+          "scene": "在花园",
+          "dialog": [
+            { "role": "妈妈", "en": "What color are the leaves?", "zh": "树叶是什么颜色？" },
+            { "role": "你", "en": "They are green.", "zh": "它们是绿色的。" },
+            { "role": "妈妈", "en": "Yes, green like spring!", "zh": "是的，像春天一样绿！" }
+          ]
+        }
+      ]
+    },
+    {
+      "word": "blue",
+      "chinese": "蓝色",
+      "image": "color:#1E90FF",
+      "sentences": [
+        { "en": "The sky is blue.", "zh": "天空是蓝色的。" },
+        { "en": "I have a blue bag.", "zh": "我有一个蓝色的书包。" }
+      ],
+      "conversations": [
+        {
+          "scene": "看天空",
+          "dialog": [
+            { "role": "爸爸", "en": "What color is the sky?", "zh": "天空是什么颜色？" },
+            { "role": "你", "en": "The sky is blue.", "zh": "天空是蓝色的。" },
+            { "role": "爸爸", "en": "And the sea is blue too!", "zh": "大海也是蓝色的！" }
+          ]
+        }
+      ]
+    },
+    {
+      "word": "purple",
+      "chinese": "紫色",
+      "image": "color:#9400D3",
+      "sentences": [
+        { "en": "Grapes are purple.", "zh": "葡萄是紫色的。" },
+        { "en": "I love purple flowers.", "zh": "我喜欢紫色的花。" }
+      ],
+      "conversations": [
+        {
+          "scene": "在超市",
+          "dialog": [
+            { "role": "妈妈", "en": "What color are the grapes?", "zh": "葡萄是什么颜色？" },
+            { "role": "你", "en": "They are purple.", "zh": "它们是紫色的。" },
+            { "role": "妈妈", "en": "Let's buy some!", "zh": "我们买一些吧！" }
+          ]
+        }
+      ]
+    },
+    {
+      "word": "pink",
+      "chinese": "粉红色",
+      "image": "color:#FF69B4",
+      "sentences": [
+        { "en": "The flower is pink.", "zh": "花是粉红色的。" },
+        { "en": "I like pink dresses.", "zh": "我喜欢粉红色的裙子。" }
+      ],
+      "conversations": [
+        {
+          "scene": "生日派对",
+          "dialog": [
+            { "role": "朋友", "en": "What is your favorite color?", "zh": "你最喜欢什么颜色？" },
+            { "role": "你", "en": "I like pink!", "zh": "我喜欢粉红色！" },
+            { "role": "朋友", "en": "Pink is beautiful!", "zh": "粉红色很漂亮！" }
+          ]
+        }
+      ]
+    },
+    {
+      "word": "black",
+      "chinese": "黑色",
+      "image": "color:#000000",
+      "sentences": [
+        { "en": "The cat is black.", "zh": "猫是黑色的。" },
+        { "en": "I have black shoes.", "zh": "我有黑色的鞋子。" }
+      ],
+      "conversations": [
+        {
+          "scene": "看宠物",
+          "dialog": [
+            { "role": "朋友", "en": "What color is your cat?", "zh": "你的猫是什么颜色？" },
+            { "role": "你", "en": "My cat is black.", "zh": "我的猫是黑色的。" },
+            { "role": "朋友", "en": "Black cats are cool!", "zh": "黑猫很酷！" }
+          ]
+        }
+      ]
+    },
+    {
+      "word": "white",
+      "chinese": "白色",
+      "image": "color:#FFFFFF",
+      "sentences": [
+        { "en": "Snow is white.", "zh": "雪是白色的。" },
+        { "en": "I see white clouds.", "zh": "我看到白色的云。" }
+      ],
+      "conversations": [
+        {
+          "scene": "冬天",
+          "dialog": [
+            { "role": "妈妈", "en": "Look at the snow!", "zh": "看雪！" },
+            { "role": "你", "en": "The snow is white.", "zh": "雪是白色的。" },
+            { "role": "妈妈", "en": "Let's make a snowman!", "zh": "我们堆雪人吧！" }
+          ]
+        }
+      ]
+    },
+    {
+      "word": "brown",
+      "chinese": "棕色",
+      "image": "color:#8B4513",
+      "sentences": [
+        { "en": "The dog is brown.", "zh": "狗是棕色的。" },
+        { "en": "I like brown chocolate.", "zh": "我喜欢棕色的巧克力。" }
+      ],
+      "conversations": [
+        {
+          "scene": "在公园",
+          "dialog": [
+            { "role": "朋友", "en": "Look at that dog!", "zh": "看那只狗！" },
+            { "role": "你", "en": "It is brown and cute.", "zh": "它是棕色的，很可爱。" }
+          ]
+        }
+      ]
+    },
+    {
+      "word": "gray",
+      "chinese": "灰色",
+      "image": "color:#808080",
+      "sentences": [
+        { "en": "The elephant is gray.", "zh": "大象是灰色的。" },
+        { "en": "I see gray clouds.", "zh": "我看到灰色的云。" }
+      ],
+      "conversations": [
+        {
+          "scene": "在动物园",
+          "dialog": [
+            { "role": "爸爸", "en": "What color is the elephant?", "zh": "大象是什么颜色？" },
+            { "role": "你", "en": "It is gray.", "zh": "它是灰色的。" },
+            { "role": "爸爸", "en": "Yes, gray and big!", "zh": "是的，灰色又大！" }
+          ]
+        }
+      ]
+    },
+    {
+      "word": "gold",
+      "chinese": "金色",
+      "image": "color:#FFD700",
+      "sentences": [
+        { "en": "The star is gold.", "zh": "星星是金色的。" },
+        { "en": "I have a gold medal.", "zh": "我有一块金牌。" }
+      ],
+      "conversations": [
+        {
+          "scene": "运动会",
+          "dialog": [
+            { "role": "老师", "en": "You won! Here is your medal.", "zh": "你赢了！这是你的奖牌。" },
+            { "role": "你", "en": "Wow, it is gold!", "zh": "哇，是金色的！" },
+            { "role": "老师", "en": "You are a champion!", "zh": "你是冠军！" }
+          ]
+        }
+      ]
+    },
+    {
+      "word": "silver",
+      "chinese": "银色",
+      "image": "color:#C0C0C0",
+      "sentences": [
+        { "en": "The moon is silver.", "zh": "月亮是银色的。" },
+        { "en": "I have silver coins.", "zh": "我有银色的硬币。" }
+      ],
+      "conversations": [
+        {
+          "scene": "晚上",
+          "dialog": [
+            { "role": "妈妈", "en": "Look at the moon!", "zh": "看月亮！" },
+            { "role": "你", "en": "It is silver and bright.", "zh": "它是银色的，很亮。" }
+          ]
+        }
+      ]
+    },
+    {
+      "word": "rainbow",
+      "chinese": "彩虹",
+      "image": "emoji:🌈",
+      "sentences": [
+        { "en": "I see a rainbow!", "zh": "我看到彩虹了！" },
+        { "en": "Rainbow has many colors.", "zh": "彩虹有很多颜色。" }
+      ],
+      "conversations": [
+        {
+          "scene": "雨后",
+          "dialog": [
+            { "role": "你", "en": "Look! A rainbow!", "zh": "看！彩虹！" },
+            { "role": "朋友", "en": "How many colors?", "zh": "有多少种颜色？" },
+            { "role": "你", "en": "Seven colors!", "zh": "七种颜色！" },
+            { "role": "朋友", "en": "Red, orange, yellow, green, blue, purple, and pink!", "zh": "红、橙、黄、绿、蓝、紫、粉！" }
+          ]
+        }
+      ]
+    },
+    {
+      "word": "colorful",
+      "chinese": "五彩缤纷的",
+      "image": "emoji:🎨",
+      "sentences": [
+        { "en": "The butterfly is colorful.", "zh": "蝴蝶是五彩缤纷的。" },
+        { "en": "I like colorful balloons.", "zh": "我喜欢五彩缤纷的气球。" }
+      ],
+      "conversations": [
+        {
+          "scene": "画画课",
+          "dialog": [
+            { "role": "老师", "en": "Your drawing is colorful!", "zh": "你的画五彩缤纷！" },
+            { "role": "你", "en": "Thank you! I used many colors.", "zh": "谢谢！我用了很多颜色。" },
+            { "role": "老师", "en": "You are a great artist!", "zh": "你是一个很棒的艺术家！" }
+          ]
+        }
+      ]
+    }
+  ]
+}
