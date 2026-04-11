@@ -1,28 +1,32 @@
 import { html } from '../app.js';
 
 export default html`
-    <h2>8. 终极建议：建立基础的技术认知</h2>
-    <p>虽然我们强调“不要畏惧，让AI来干活”，但这并不意味着我们可以对技术一无所知。</p>
+    <h2>7. 心态建设：如何与AI相处？</h2>
+    <p>面对看似深奥的代码和技术，很多非技术人员的第一反应是“我不懂，我不敢碰”。这是最大的心理障碍。</p>
     
-    <div class="flex-col" style="gap: 1.5rem; margin-top: 2rem;">
-        <div class="card" style="background: #f0fdf4; border: 1px solid #bbf7d0;">
-            <h3 style="color: #166534; margin-top: 0;">适当学习基础的计算机知识</h3>
-            <p><strong>不需要深究实现细节，但需要拥有“品味”和“方向感”。</strong></p>
-            <p style="font-size: 1rem; margin-bottom:0;">例如：了解什么是前端/后端、什么是API接口、什么是JSON格式、什么是数据库结构、基本的终端(Terminal)和文件路径概念。</p>
-        </div>
+    <div class="card" style="margin-top: 2rem; background: #fff1f2; border-left: 4px solid #e11d48;">
+        <h3 style="color: #be123c;">把 AI 当作一个计算机专业的优秀应届毕业生</h3>
+        <p style="margin-bottom: 0;"><strong>不要畏惧！</strong> 你不需要自己去写每一行代码。你应该转换角色，将自己定位为“研发经理”或“产品负责人”。</p>
+    </div>
 
+    <div class="grid-2" style="margin-top: 2rem;">
         <div>
-            <h3>为什么基础知识很重要？</h3>
+            <h3>你的职责</h3>
             <ul>
-                <li><strong>更精准的指挥：</strong> 如果你不懂API，你就不知道怎么要求AI去获取第三方数据。你的Prompt（提示词）质量取决于你的架构认知。</li>
-                <li><strong>更好的验收与排错：</strong> 当“那位毕业生”走错方向或者遇到死胡同时，你需要知道该如何引导他切换思路或者寻找其他方案，而不是一味地让他“重新跑一次”。</li>
+                <li><strong>定义目标：</strong> 我们需要实现什么业务功能？</li>
+                <li><strong>提供上下文：</strong> 我们现有的条件、用户的痛点是什么？</li>
+                <li><strong>验收成果：</strong> AI 给出的东西是否满足业务需求？</li>
+            </ul>
+        </div>
+        
+        <div>
+            <h3>AI（那位毕业生）的职责</h3>
+            <ul>
+                <li><strong>技术选型与实现：</strong> 考虑用什么库、怎么写循环、怎么设计数据库表结构。</li>
+                <li><strong>排查常见技术报错：</strong> 修复语法错误，调整界面样式。</li>
             </ul>
         </div>
     </div>
-
-    <div style="margin-top: 2rem; text-align: center; border-top: 2px solid #e2e8f0; padding-top: 1.5rem;">
-        <h3 style="color: var(--primary);">打破边界，让技术真正为你的业务创意服务！</h3>
-    </div>
     
-    <div class="slide-number">10 / 10</div>
+    
 `;

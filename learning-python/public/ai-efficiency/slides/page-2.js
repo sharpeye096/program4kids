@@ -280,5 +280,5 @@ export default html`
         <div id="inline-content-area"></div>
     </div>
     
-    <div class="slide-number">2 / 10</div>
+    
 `;
