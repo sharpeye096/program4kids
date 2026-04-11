@@ -85,7 +85,7 @@ const content = html`
         }
     </style>
 
-    <h2 style="font-size: 2rem; margin-bottom: 1rem;">4. 开始前必知：五块计算机基础敲门砖</h2>
+    <h2 style="font-size: 2rem; margin-bottom: 1rem;">4. 开始前必知：六块计算机基础敲门砖</h2>
     <p style="margin-bottom: 1.5rem; font-size: 1.2rem;">作为不写代码的“长官”，为了能顺畅指使你的AI助手沟通或排错，具备这些基础非常关键：</p>
     
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem;">
