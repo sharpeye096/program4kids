@@ -103,7 +103,7 @@ class SlideDeck {
         const homeBtn = document.createElement('button');
         homeBtn.innerHTML = `<svg viewBox="0 0 24 24" ><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>`;
         homeBtn.className = 'nav-btn';
-        homeBtn.onclick = () => window.location.href = '../index.html';
+        homeBtn.onclick = () => this.loadSlide(0);
         controls.appendChild(homeBtn);
 
         const prevBtn = document.createElement('button');
