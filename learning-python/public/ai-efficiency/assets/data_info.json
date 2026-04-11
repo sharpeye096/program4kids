@@ -1,0 +1,44 @@
+{
+  "file": "Financial Sample.xlsx",
+  "shape": [
+    700,
+    16
+  ],
+  "columns": [
+    "Segment",
+    "Country",
+    "Product",
+    "Discount Band",
+    "Units Sold",
+    "Manufacturing Price",
+    "Sale Price",
+    "Gross Sales",
+    "Discounts",
+    " Sales",
+    "COGS",
+    "Profit",
+    "Date",
+    "Month Number",
+    "Month Name",
+    "Year"
+  ],
+  "numeric_columns": [
+    "Units Sold",
+    "Manufacturing Price",
+    "Sale Price",
+    "Gross Sales",
+    "Discounts",
+    " Sales",
+    "COGS",
+    "Profit",
+    "Month Number",
+    "Year"
+  ],
+  "categorical_columns": [
+    "Segment",
+    "Country",
+    "Product",
+    "Discount Band",
+    "Month Name"
+  ]
+}
