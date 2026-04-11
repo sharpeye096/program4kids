@@ -11,11 +11,12 @@ class SlideDeck {
             'page-2.js',
             'page-3.js',
             'page-4.js',
-            'page-basics.js',
             'page-5.js',
             'page-6.js',
             'page-7.js',
-            'page-8.js'
+            'page-8.js',
+            'page-9.js',
+            'page-10.js'
         ];
         this.appElement = document.getElementById('app');
         this.init();
@@ -47,7 +48,7 @@ class SlideDeck {
 
         try {
             // Dynamic import cache busting for development
-            const module = await import(`./slides/${filename}`);
+            const module = await import(`./slides/${filename}?t=${Date.now()}`);
             const content = module.default;
 
             // Render content
