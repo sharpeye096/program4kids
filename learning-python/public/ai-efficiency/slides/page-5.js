@@ -40,7 +40,7 @@ export default html`
         <div class="vs-col">
             <h4 style="margin-top: 0; color: #475569; font-size: 1.25rem;">🎭 表面看起来很魔幻</h4>
             <p style="color: #64748b; font-size: 1.2rem; margin-bottom: 0;">
-                一个全能的虚拟赛博助理出现在了你的微信里，你发一句话，它就像拥有肉身一样全自动帮你去互联网上查资料，做文档，整理文件，回复邮件，甚至点外面。
+                一个全能的虚拟赛博助理出现在了你的微信里，你发一句话，它就像拥有肉身一样全自动帮你去互联网上查资料，做文档，整理文件，回复邮件，甚至点外卖。
             </p>
         </div>
         <div class="vs-col">

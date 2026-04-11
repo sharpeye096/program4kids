@@ -5,8 +5,8 @@ export default html`
     <p>面对看似深奥的代码和技术，很多非技术人员的第一反应是“我不懂，我不敢碰”。这是最大的心理障碍。</p>
     
     <div class="card" style="margin-top: 2rem; background: #fff1f2; border-left: 4px solid #e11d48;">
-        <h3 style="color: #be123c;">把 AI 当作一个计算机专业的优秀应届毕业生</h3>
-        <p style="margin-bottom: 0;"><strong>不要畏惧！</strong> 你不需要自己去写每一行代码。你应该转换角色，将自己定位为“研发经理”或“产品负责人”。</p>
+        <h3 style="color: #be123c;">把 AI 当作一个聪明的，优秀的，各个专业都会的，但是缺乏经验和判断力的应届毕业生</h3>
+        <p style="margin-bottom: 0;"><strong>不要畏惧！</strong> AI尤其擅长编程。你应该转换角色，将自己定位为“项目经理”或“产品负责人”。</p>
     </div>
 
     <div class="grid-2" style="margin-top: 2rem;">
