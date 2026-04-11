@@ -1,155 +1,284 @@
 import { html } from '../app.js';
 
 export const onMount = (container) => {
-    // Expand Logic
-    const headers = container.querySelectorAll('.expand-header');
-    headers.forEach(header => {
-        header.addEventListener('click', () => {
-            const content = header.nextElementSibling;
-            const icon = header.querySelector('.toggle-icon');
-            if (content.style.maxHeight) {
-                // Collapse
-                content.style.maxHeight = null;
-                icon.textContent = '+';
-            } else {
-                // Expand
-                content.style.maxHeight = content.scrollHeight + "px";
-                icon.textContent = '−';
+    const toolBtns = container.querySelectorAll('.tool-btn');
+    const contentArea = container.querySelector('#inline-content-area');
+
+    const inlineData = {
+        chat: {
+            content: `
+                <p style="margin-bottom: 0.5rem; color:#475569; font-size: 1.15rem;">💬 <strong>对话是理解 AI 最直接的方式。</strong>不用学代码，只要输入自然语言（Prompt），它就能帮你分析问题、写文章、查资料。</p>
+                <table class="tool-table">
+                    <tbody>
+                        <tr>
+                            <td class="logo-col"><img src="https://www.google.com/s2/favicons?domain=gemini.google.com&sz=64" class="tool-logo"></td>
+                            <td class="name-col">Gemini</td>
+                            <td class="desc-col">谷歌自研的顶级模型大本营，多模态推理能力强悍，如果你是谷歌生态重度用户则体验极佳。</td>
+                        </tr>
+                        <tr>
+                            <td class="logo-col"><img src="https://www.google.com/s2/favicons?domain=chatgpt.com&sz=64" class="tool-logo"></td>
+                            <td class="name-col">ChatGPT</td>
+                            <td class="desc-col">老牌全能型六边形战士，语音对话体验极度拟真，并且能直接调用丰富的插件。</td>
+                        </tr>
+                        <tr>
+                            <td class="logo-col"><img src="https://www.google.com/s2/favicons?domain=deepseek.com&sz=64" class="tool-logo"></td>
+                            <td class="name-col">DeepSeek</td>
+                            <td class="desc-col">性价比极高并且深度开源的国产模型，深度思考（R1）相关的逻辑推理能力堪称一绝。</td>
+                        </tr>
+                        <tr>
+                            <td class="logo-col"><img src="https://www.google.com/s2/favicons?domain=kimi.moonshot.cn&sz=64" class="tool-logo"></td>
+                            <td class="name-col">Kimi</td>
+                            <td class="desc-col">国产长文本处理标杆，非常适合一次性喂给它十几篇财报或超长 PDF 让它提炼总结。</td>
+                        </tr>
+                        <tr>
+                            <td class="logo-col"><img src="https://www.google.com/s2/favicons?domain=doubao.com&sz=64" class="tool-logo"></td>
+                            <td class="name-col">豆包</td>
+                            <td class="desc-col">字节跳动旗下的全民 AI 大模型，速度极快，文本生成本土化体验好，日常轻办公的好帮手。</td>
+                        </tr>
+                    </tbody>
+                </table>
+            `
+        },
+        kb: {
+            content: `
+                <p style="margin-bottom: 0.5rem; color:#475569; font-size: 1.15rem;">📚 <strong>知识库是你的“第二大脑”。</strong>结合AI后，它能够帮你快速总结长文档、自动归类资料，甚至根据你的历史笔记精准回答问题。</p>
+                <table class="tool-table">
+                    <tbody>
+                        <tr>
+                            <td class="logo-col"><img src="https://www.google.com/s2/favicons?domain=notion.so&sz=64" class="tool-logo"></td>
+                            <td class="name-col">Notion AI</td>
+                            <td class="desc-col">全球最流行的多合一笔记应用，跨平台协作与 AI 排版体验极佳。</td>
+                        </tr>
+                        <tr>
+                            <td class="logo-col"><img src="https://www.google.com/s2/favicons?domain=feishu.cn&sz=64" class="tool-logo"></td>
+                            <td class="name-col">飞书文档</td>
+                            <td class="desc-col">企业协作神器，内嵌 AI 能飞速浓缩重点、辅助创作。</td>
+                        </tr>
+                        <tr>
+                            <td class="logo-col"><img src="./assets/yuque.png" class="tool-logo"></td>
+                            <td class="name-col">语雀</td>
+                            <td class="desc-col">国内老牌文档工具，深度集成了专属 AI，中文支持极好。</td>
+                        </tr>
+                        <tr>
+                            <td class="logo-col"><img src="https://www.google.com/s2/favicons?domain=obsidian.md&sz=64" class="tool-logo"></td>
+                            <td class="name-col">Obsidian (+AI)</td>
+                            <td class="desc-col">适合喜欢折腾的极客，构建完全本地与高隐私的私人大模型数据库。</td>
+                        </tr>
+                        <tr>
+                            <td class="logo-col"><img src="https://www.google.com/s2/favicons?domain=anythingllm.com&sz=64" class="tool-logo"></td>
+                            <td class="name-col">AnythingLLM</td>
+                            <td class="desc-col">能够将任何甚至海量私密文档极速转化为本地知识库的神器，构建私域 RAG 环境的首选。</td>
+                        </tr>
+                    </tbody>
+                </table>
+            `
+        },
+        table: {
+            content: `
+                <p style="margin-bottom: 0.5rem; color:#475569; font-size: 1.15rem;">📊 <strong>多维表让不懂代码的人也能搭建轻量级数据库。</strong>配合 AI，表格里的杂乱数据能自动处理、提取特征，甚至生成可视化分析报告。</p>
+                <table class="tool-table">
+                    <tbody>
+                        <tr>
+                            <td class="logo-col"><img src="https://www.google.com/s2/favicons?domain=feishu.cn&sz=64" class="tool-logo"></td>
+                            <td class="name-col">飞书多维表格</td>
+                            <td class="desc-col">极易上手，支持 AI 自动生成字段、处理高度复杂的统计逻辑。</td>
+                        </tr>
+                        <tr>
+                            <td class="logo-col"><img src="https://www.google.com/s2/favicons?domain=dingtalk.com&sz=64" class="tool-logo"></td>
+                            <td class="name-col">钉钉多维表</td>
+                            <td class="desc-col">深度融合企业组织架构的一站式多能表格，内置丰富的自动化模板流。</td>
+                        </tr>
+                        <tr>
+                            <td class="logo-col"><img src="https://www.google.com/s2/favicons?domain=airtable.com&sz=64" class="tool-logo"></td>
+                            <td class="name-col">Airtable</td>
+                            <td class="desc-col">多维表格的国际鼻祖，拥有极其强大的企业级自动化工作流和 AI 能力。</td>
+                        </tr>
+                        <tr>
+                            <td class="logo-col"><img src="https://www.google.com/s2/favicons?domain=notion.so&sz=64" class="tool-logo"></td>
+                            <td class="name-col">Notion Database</td>
+                            <td class="desc-col">数据库视图配合 Notion AI，能够无比灵活地推进轻量级敏捷项目管理。</td>
+                        </tr>
+                        <tr>
+                            <td class="logo-col"><img src="https://www.google.com/s2/favicons?domain=docs.qq.com&sz=64" class="tool-logo"></td>
+                            <td class="name-col">腾讯文档 / 维格表</td>
+                            <td class="desc-col">优秀的低代码多维表工具，易用性与本地化协作极佳。</td>
+                        </tr>
+                    </tbody>
+                </table>
+            `
+        },
+        voice: {
+            content: `
+                <p style="margin-bottom: 0.5rem; color:#475569; font-size: 1.15rem;">🎤 <strong>职场人最容易获得“肉眼可见提升”的法宝。</strong>AI 不仅能精确把语音转文字，更能区分发言人，甚至直接提取全篇行动清单（To-Do）。</p>
+                <table class="tool-table">
+                    <tbody>
+                        <tr>
+                            <td class="logo-col"><img src="https://www.google.com/s2/favicons?domain=feishu.cn&sz=64" class="tool-logo"></td>
+                            <td class="name-col">飞书妙记</td>
+                            <td class="desc-col">无论是本地开会录音还是线上讨论，都能极速转文字，自动生成结构化摘要与待办。</td>
+                        </tr>
+                        <tr>
+                            <td class="logo-col"><img src="https://www.google.com/s2/favicons?domain=dingtalk.com&sz=64" class="tool-logo"></td>
+                            <td class="name-col">钉钉闪记</td>
+                            <td class="desc-col">无缝集成钉钉会议室，录屏与录音精确同步，智能分离不同发言人角色并提取结论。</td>
+                        </tr>
+                        <tr>
+                            <td class="logo-col"><img src="https://www.google.com/s2/favicons?domain=meeting.tencent.com&sz=64" class="tool-logo"></td>
+                            <td class="name-col">腾讯会议 AI 助手</td>
+                            <td class="desc-col">在线开会时如果走神，你可以直接打字悄悄问 AI：“刚才老板讲的计划重点是什么？”</td>
+                        </tr>
+                        <tr>
+                            <td class="logo-col"><img src="https://www.google.com/s2/favicons?domain=tingjian.xfyun.cn&sz=64" class="tool-logo"></td>
+                            <td class="name-col">讯飞听见</td>
+                            <td class="desc-col">在多重噪音或方言较强的环境中能保持超高准确率的老牌劲旅，录音笔的最佳搭档。</td>
+                        </tr>
+                        <tr>
+                            <td class="logo-col"><img src="https://www.google.com/s2/favicons?domain=otter.ai&sz=64" class="tool-logo"></td>
+                            <td class="name-col">Otter.ai</td>
+                            <td class="desc-col">纯英文跨国研讨的神器，实时生成极其精准的英文会议纪要并总结重点。</td>
+                        </tr>
+                    </tbody>
+                </table>
+            `
+        }
+    };
+
+    toolBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            toolBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const type = btn.getAttribute('data-type');
+            if (inlineData[type]) {
+                contentArea.innerHTML = inlineData[type].content;
+                contentArea.classList.add('visible');
             }
         });
     });
 
-    // Hidden Chip Reveal Logic
-    const revealBtn = container.querySelector('#reveal-chip-btn');
-    const chipLayer = container.querySelector('#hidden-chip-layer');
-    if (revealBtn && chipLayer) {
-        revealBtn.addEventListener('click', () => {
-            chipLayer.style.display = 'block';
-            // trigger reflow
-            void chipLayer.offsetWidth;
-            chipLayer.style.opacity = '1';
-            chipLayer.style.transform = 'translateY(0)';
-            revealBtn.style.display = 'none';
-        });
-        revealBtn.addEventListener('mouseenter', () => revealBtn.style.opacity = '1');
-        revealBtn.addEventListener('mouseleave', () => revealBtn.style.opacity = '0.3');
+    // Auto-click the first tab on init
+    if (toolBtns.length > 0) {
+        toolBtns[0].click();
     }
 };
 
 export default html`
     <style>
-        .expand-card {
+        .tool-btn {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            color: #64748b;
+            padding: 0.8rem 1.2rem;
+            border-radius: 8px;
             cursor: pointer;
-            transition: background 0.3s ease;
-        }
-        .expand-card:hover {
-            background: #f1f5f9 !important;
-        }
-        .expand-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-        }
-        .expand-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-        }
-        .expand-content-inner {
-            padding-top: 1rem;
-            border-top: 1px dashed #cbd5e1;
-            margin-top: 0.5rem;
-            color: #334155;
-        }
-        .toggle-icon {
+            font-size: 1.1rem;
             font-weight: bold;
-            color: #94a3b8;
-            font-size: 2rem;
-            line-height: 1;
-            width: 30px;
+            transition: all 0.2s;
+        }
+        .tool-btn:hover {
+            background: #e0f2fe;
+            border-color: #bae6fd;
+            color: #0369a1;
+        }
+        .tool-btn.active {
+            background: #e0f2fe;
+            border-color: #0284c7;
+            color: #0369a1;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        
+        .tool-logo {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            border: 1px solid #e2e8f0;
+            background-color: #fff;
+            margin: 0;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Updated Inline Content Table Styles */
+        #inline-content-area {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        #inline-content-area.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .tool-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.2rem;
+            font-size: 1.05rem;
+            background: #fff;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .tool-table th, .tool-table td {
+            border: 1px solid #e2e8f0;
+            padding: 14px 18px;
+            text-align: left;
+            vertical-align: middle;
+        }
+        .tool-table th {
+            background-color: #f1f5f9;
+            font-weight: 600;
+            color: #334155;
+            font-size: 1.1rem;
+        }
+        .tool-table td {
+            color: #475569;
+        }
+        .tool-table tr:hover td {
+            background-color: #f8fafc;
+        }
+        .logo-col {
+            width: 60px;
             text-align: center;
+        }
+        .name-col {
+            width: 170px;
+            font-weight: bold;
+            color: #0f172a;
+            font-size: 1.15rem;
+        }
+        .desc-col {
+            line-height: 1.6;
+        }
+        
+        .huge-title {
+            font-size: 2.4rem; 
+            margin-bottom: 2rem; 
+            background: linear-gradient(90deg, #0f172a, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
     </style>
 
-    <h2>1. 认识AI领域的基本工具层级</h2>
-    <p>当下我们可以接触到的AI工具，可以形象地分为以下三个层级：</p>
+    <h2 class="huge-title">1. 开启AI提效的科学路径 (上)</h2>
     
-    <div class="flex-col" style="gap: 1.2rem; margin-top: 1.5rem;">
+    <div style="background: #f0f9ff; border: 1px solid #bae6fd; padding: 2rem; border-radius: 12px; margin-bottom: 2rem; text-align: left; height: 100%;">
+        <h3 style="margin-top:0; color: #0284c7; display: flex; align-items: center; font-size: 1.8rem; margin-bottom: 1.5rem;">
+            <span style="margin-right:0.5rem;">🎯</span> 第一步：建立习惯 —— 普通人的效率基本盘
+        </h3>
         
-        <!-- 大脑 -->
-        <div class="card expand-card">
-            <div class="expand-header">
-                <div style="flex: 1;">
-                    <h3 style="margin-top:0; color: #0369a1;">🧠 基础大模型 (Web端) —— “全能博学但手残的顾问” (大脑)</h3>
-                    <p style="font-size: 1rem; margin-bottom: 0;">
-                        <strong>特点：</strong>什么都知道，能出主意、写文档，但它<strong>不直接触碰</strong>你的本地文件。
-                    </p>
-                </div>
-                <div class="toggle-icon">+</div>
-            </div>
-            <div class="expand-content">
-                <div class="expand-content-inner">
-                    <p style="font-size: 1rem; margin-bottom: 0.5rem;">🌍 <strong>国际顶尖水平：</strong>ChatGPT (OpenAI), Claude (Anthropic), Gemini (Google)</p>
-                    <p style="font-size: 1rem; margin-bottom: 0;">🇨🇳 <strong>国内优质平替：</strong>DeepSeek (深度求索), GLM (智谱清言), 豆包 (字节跳动), Kimi (月之暗面)</p>
-                </div>
-            </div>
+        <!-- Tab Navigation Buttons -->
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 1rem;">
+            <button class="tool-btn" data-type="chat" style="font-size: 1.25rem; padding: 0.8rem 1.5rem;">💬 对话与搜索</button>
+            <button class="tool-btn" data-type="kb" style="font-size: 1.25rem; padding: 0.8rem 1.5rem;">📚 知识库</button>
+            <button class="tool-btn" data-type="table" style="font-size: 1.25rem; padding: 0.8rem 1.5rem;">📊 多维表</button>
+            <button class="tool-btn" data-type="voice" style="font-size: 1.25rem; padding: 0.8rem 1.5rem;">🎤 语音与会议</button>
         </div>
 
-        <!-- 双手 -->
-        <div class="card expand-card" style="border-left: 4px solid var(--accent);">
-            <div class="expand-header">
-                <div style="flex: 1;">
-                    <h3 style="margin-top:0; color: #b45309;">🛠️ Coding Agent —— “带工具进场的熟练技工” (双手)</h3>
-                    <p style="font-size: 1rem; margin-bottom: 0;">
-                        <strong>特点：</strong>不仅有脑子还有手。能读文件、运行代码、改错，是效率提升的<strong>核心飞跃</strong>（带同事落地的关键）。
-                    </p>
-                </div>
-                <div class="toggle-icon">+</div>
-            </div>
-            <div class="expand-content">
-                <div class="expand-content-inner">
-                    <p style="font-size: 1rem; margin-bottom: 0.5rem;">🌍 <strong>国际顶尖水平：</strong>Cursor, Claude Code, GitHub Copilot, Antigravity, Open Code</p>
-                    <p style="font-size: 1rem; margin-bottom: 0;">🇨🇳 <strong>国内优质平替：</strong>Trae (字节跳动), 通义灵码 (阿里云)</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- 能量 -->
-        <div class="card expand-card" style="background: #f8fafc; border: 1px dashed #cbd5e1;">
-            <div class="expand-header">
-                <div style="flex: 1;">
-                    <h3 style="margin-top:0; color: #475569;">🏭 底层基础设施 —— 算力云厂商 (能量/电力和工厂)</h3>
-                    <p style="font-size: 1rem; margin-bottom: 0;">
-                        <strong>特点：</strong>为上述“大脑”和“双手”提供底层的算力电力与云端部署能力支撑。
-                    </p>
-                </div>
-                <div class="toggle-icon">+</div>
-            </div>
-            <div class="expand-content">
-                <div class="expand-content-inner">
-                    <p style="font-size: 1rem; margin-bottom: 0.5rem;">🌍 <strong>国际顶尖水平：</strong>AWS (亚马逊), Microsoft Azure, Google Cloud</p>
-                    <p style="font-size: 1rem; margin-bottom: 0;">🇨🇳 <strong>国内优质平替：</strong>阿里云, 腾讯云, 华为云</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- 隐藏的基石：芯片 -->
-        <div id="hidden-chip-layer" class="card" style="background: #111827; color: #fff; border: 1px solid #76b900; opacity: 0; display: none; transform: translateY(10px); transition: opacity 0.5s, transform 0.5s;">
-            <div style="flex: 1;">
-                <h3 style="margin-top:0; color: #76b900;">🏎️ 算力基石 —— 硬件芯片 (Nvidia等)</h3>
-                <p style="font-size: 1rem; margin-bottom: 0; color: #cbd5e1;">
-                    <strong>特点：</strong>所有AI能力真正的物理载体。因为我们非技术人员极大概率不会直接接触到它，所以它一直在幕后默默燃烧。
-                </p>
-            </div>
-        </div>
-
-        <!-- 触发隐藏层按钮 -->
-        <div style="text-align: right; margin-top: -0.5rem;">
-            <span id="reveal-chip-btn" style="cursor: pointer; opacity: 0.3; font-size: 0.8rem; transition: opacity 0.3s; color: #64748b;">[ 探寻更底层的秘密... ]</span>
-        </div>
-
+        <!-- Inline Content Area -->
+        <div id="inline-content-area"></div>
     </div>
     
-    <div class="slide-number">2 / 9</div>
+    <div class="slide-number">2 / 10</div>
 `;

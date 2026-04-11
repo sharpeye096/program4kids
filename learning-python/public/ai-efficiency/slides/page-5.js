@@ -1,28 +1,31 @@
 import { html } from '../app.js';
 
 export default html`
-    <h2>4. 进阶概念与生态：SKILLs 与 MCP</h2>
-    <p>当我们不再满足于仅仅“生成代码”，而是需要AI帮我们完成“整套工作流”时，就需要以下技术来拓展边界：</p>
+    <h2>3. 普通人如何起步：写代码配置指南</h2>
+    <p>工欲善其事，必先利其器。根据不同的网络环境，我推荐以下两大配置方案：</p>
     
-    <div class="grid-2" style="margin-top: 2rem;">
+    <div class="flex-col" style="gap: 1.5rem;">
         <div class="card">
-            <h3 style="color: #047857;">SKILLs (技能模块)</h3>
-            <p>赋予AI特定能力的指令合集或脚本包。就像是给AI安装了各种“插件”。</p>
+            <h3>方案 A：国内网络环境（推荐）</h3>
+            <p>无需特殊网络设置，体验流畅，响应极快：</p>
             <ul>
-                <li><strong>自动化：</strong> 让AI学会抓取数据、处理文件等。</li>
-                <li><strong>复用性：</strong> 一次编写，以后AI遇到同类任务就能直接调用特定的Skill完成。</li>
+                <li>
+                    <span class="highlight">Claude Code (客户端) + GLM (智谱大模型API)</span>
+                    <a href="https://docs.bigmodel.cn/cn/guide/develop/claude" target="_blank" style="margin-left: 0.5rem; color: var(--secondary); text-decoration: none; font-size: 1rem;">[ 📖 查看官方配置教程 ]</a>
+                </li>
+                <li><strong>体感评测：</strong> 这是我目前体感最好、最省心的国内直连方案，能够快速理解需求并给出高质量代码。</li>
             </ul>
         </div>
 
         <div class="card">
-            <h3 style="color: #b91c1c;">MCP (Model Context Protocol)</h3>
-            <p>大型模型与本地环境交互的“桥梁标准”。</p>
+            <h3>方案 B：具备外网访问条件</h3>
+            <p>直接接驳国际最强模型的原生体验：</p>
             <ul>
-                <li><strong>打破数据孤岛：</strong> 允许AI安全地读取你的本地文件、数据库或者内部工具系统。</li>
-                <li><strong>意义：</strong> AI不再只是一个网页窗口，它能真正在你的工作台上“帮手操作”。</li>
+                <li><span class="highlight">Antigravity (谷歌系架构)</span> - 极具潜力的智能体平台。</li>
+                <li><span class="highlight">Claude Code + Claude Opus 模型</span> - Anthropic目前推理能力最强、复杂重构和逻辑分析最为稳妥的组合。</li>
             </ul>
         </div>
     </div>
     
-    <div class="slide-number">6 / 9</div>
+    <div class="slide-number">5 / 10</div>
 `;
