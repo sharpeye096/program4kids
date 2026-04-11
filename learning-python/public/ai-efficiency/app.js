@@ -16,7 +16,8 @@ class SlideDeck {
             'page-7.js',
             'page-8.js',
             'page-9.js',
-            'page-10.js'
+            'page-10.js',
+            'page-11.js'
         ];
         this.appElement = document.getElementById('app');
         this.init();
@@ -52,7 +53,10 @@ class SlideDeck {
             const content = module.default;
 
             // Render content
-            this.appElement.innerHTML = `<div class="slide-container">${content}</div>`;
+            this.appElement.innerHTML = `<div class="slide-container">
+                ${content}
+                <div class="slide-number">${index + 1} / ${this.slides.length}</div>
+            </div>`;
 
             // Execute onMount lifecycle if defined
             if (module.onMount) {

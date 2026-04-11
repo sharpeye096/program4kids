@@ -114,5 +114,5 @@ export default html`
         </div>
     </div>
     
-    <div class="slide-number">4 / 10</div>
+    
 `;
