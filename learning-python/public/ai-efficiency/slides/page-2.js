@@ -7,36 +7,68 @@ export const onMount = (container) => {
     const inlineData = {
         chat: {
             content: `
-                <p style="margin-bottom: 0.5rem; color:#475569; font-size: 1.15rem;">💬 <strong>对话是理解 AI 最直接的方式。</strong>不用学代码，只要输入自然语言（Prompt），它就能帮你分析问题、写文章、查资料。</p>
-                <table class="tool-table">
-                    <tbody>
-                        <tr>
-                            <td class="logo-col"><img src="https://www.google.com/s2/favicons?domain=gemini.google.com&sz=64" class="tool-logo"></td>
-                            <td class="name-col">Gemini</td>
-                            <td class="desc-col">谷歌自研的顶级模型大本营，多模态推理能力强悍，如果你是谷歌生态重度用户则体验极佳。</td>
-                        </tr>
-                        <tr>
-                            <td class="logo-col"><img src="https://www.google.com/s2/favicons?domain=chatgpt.com&sz=64" class="tool-logo"></td>
-                            <td class="name-col">ChatGPT</td>
-                            <td class="desc-col">老牌全能型六边形战士，语音对话体验极度拟真，并且能直接调用丰富的插件。</td>
-                        </tr>
-                        <tr>
-                            <td class="logo-col"><img src="https://www.google.com/s2/favicons?domain=deepseek.com&sz=64" class="tool-logo"></td>
-                            <td class="name-col">DeepSeek</td>
-                            <td class="desc-col">性价比极高并且深度开源的国产模型，深度思考（R1）相关的逻辑推理能力堪称一绝。</td>
-                        </tr>
-                        <tr>
-                            <td class="logo-col"><img src="https://www.google.com/s2/favicons?domain=kimi.moonshot.cn&sz=64" class="tool-logo"></td>
-                            <td class="name-col">Kimi</td>
-                            <td class="desc-col">国产长文本处理标杆，非常适合一次性喂给它十几篇财报或超长 PDF 让它提炼总结。</td>
-                        </tr>
-                        <tr>
-                            <td class="logo-col"><img src="https://www.google.com/s2/favicons?domain=doubao.com&sz=64" class="tool-logo"></td>
-                            <td class="name-col">豆包</td>
-                            <td class="desc-col">字节跳动旗下的全民 AI 大模型，速度极快，文本生成本土化体验好，日常轻办公的好帮手。</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <p style="margin-bottom: 0.5rem; color:#475569; font-size: 1.15rem;">💬 <strong>对话是理解 AI 最直接的方式。</strong>不用学代码，只要输入自然语言（Prompt），它就能帮你分析问题、写文章、查资料。
+                    <button id="prompt-tip-btn" style="margin-left: 0.5rem; background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; padding: 3px 10px; border-radius: 20px; font-size: 0.9rem; cursor: pointer; font-weight: 500; transition: all 0.2s; font-family: inherit;">💡 Prompt 技巧</button>
+                </p>
+                <div style="position: relative;">
+                    <table class="tool-table">
+                        <tbody>
+                            <tr>
+                                <td class="logo-col"><img src="https://www.google.com/s2/favicons?domain=gemini.google.com&sz=64" class="tool-logo"></td>
+                                <td class="name-col">Gemini</td>
+                                <td class="desc-col">谷歌自研的顶级模型大本营，多模态推理能力强悍，如果你是谷歌生态重度用户则体验极佳。</td>
+                            </tr>
+                            <tr>
+                                <td class="logo-col"><img src="https://www.google.com/s2/favicons?domain=chatgpt.com&sz=64" class="tool-logo"></td>
+                                <td class="name-col">ChatGPT</td>
+                                <td class="desc-col">老牌全能型六边形战士，语音对话体验极度拟真，并且能直接调用丰富的插件。</td>
+                            </tr>
+                            <tr>
+                                <td class="logo-col"><img src="https://www.google.com/s2/favicons?domain=deepseek.com&sz=64" class="tool-logo"></td>
+                                <td class="name-col">DeepSeek</td>
+                                <td class="desc-col">性价比极高并且深度开源的国产模型，深度思考（R1）相关的逻辑推理能力堪称一绝。</td>
+                            </tr>
+                            <tr>
+                                <td class="logo-col"><img src="https://www.google.com/s2/favicons?domain=kimi.moonshot.cn&sz=64" class="tool-logo"></td>
+                                <td class="name-col">Kimi</td>
+                                <td class="desc-col">国产长文本处理标杆，非常适合一次性喂给它十几篇财报或超长 PDF 让它提炼总结。</td>
+                            </tr>
+                            <tr>
+                                <td class="logo-col"><img src="https://www.google.com/s2/favicons?domain=doubao.com&sz=64" class="tool-logo"></td>
+                                <td class="name-col">豆包</td>
+                                <td class="desc-col">字节跳动旗下的全民 AI 大模型，速度极快，文本生成本土化体验好，日常轻办公的好帮手。</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div id="prompt-overlay" style="display: none; position: absolute; inset: 0; background: #fffbeb; border: 2px solid #fcd34d; border-radius: 8px; padding: 1.2rem; z-index: 10; flex-direction: column; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem;">
+                            <h4 style="margin: 0; color: #92400e; font-size: 1.15rem;">💡 Prompt Engineering（提示词工程）—— 跟 AI 说话也有技巧</h4>
+                            <button id="prompt-overlay-close" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #92400e; line-height: 1;">&times;</button>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.8rem; margin-bottom: 0.8rem;">
+                            <div style="background: #fff; border-radius: 6px; padding: 0.6rem; border: 1px solid #e5e7eb;">
+                                <strong style="color: #1e40af; font-size: 0.95rem;">🎭 设定角色</strong>
+                                <p style="font-size: 0.85rem; margin: 4px 0 0 0; color: #475569; line-height: 1.4;">"你是一位资深财务分析师，请帮我..."</p>
+                            </div>
+                            <div style="background: #fff; border-radius: 6px; padding: 0.6rem; border: 1px solid #e5e7eb;">
+                                <strong style="color: #1e40af; font-size: 0.95rem;">📋 分步骤拆解</strong>
+                                <p style="font-size: 0.85rem; margin: 4px 0 0 0; color: #475569; line-height: 1.4;">"请分三步完成：第一步…第二步…第三步…"</p>
+                            </div>
+                            <div style="background: #fff; border-radius: 6px; padding: 0.6rem; border: 1px solid #e5e7eb;">
+                                <strong style="color: #1e40af; font-size: 0.95rem;">📎 给出示例</strong>
+                                <p style="font-size: 0.85rem; margin: 4px 0 0 0; color: #475569; line-height: 1.4;">"参考这个格式：[示例]，帮我生成类似的..."</p>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 0.8rem; font-size: 0.9rem;">
+                            <div style="flex:1; background: #fef2f2; border-radius: 6px; padding: 0.5rem 0.7rem; border-left: 3px solid #ef4444;">
+                                <span style="color: #dc2626;">❌</span> <span style="color: #7f1d1d;">"帮我写个报告"</span>
+                            </div>
+                            <div style="flex:1; background: #f0fdf4; border-radius: 6px; padding: 0.5rem 0.7rem; border-left: 3px solid #22c55e;">
+                                <span style="color: #16a34a;">✅</span> <span style="color: #14532d;">"你是一位市场分析师。请根据以下数据，用「总结→趋势→建议」的结构写一份500字的季度简报。"</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             `
         },
         kb: {
@@ -143,6 +175,16 @@ export const onMount = (container) => {
         }
     };
 
+    const bindPromptOverlay = () => {
+        const btn = contentArea.querySelector('#prompt-tip-btn');
+        const overlay = contentArea.querySelector('#prompt-overlay');
+        const closeBtn = contentArea.querySelector('#prompt-overlay-close');
+        if (btn && overlay) {
+            btn.addEventListener('click', () => { overlay.style.display = 'flex'; });
+            closeBtn.addEventListener('click', () => { overlay.style.display = 'none'; });
+        }
+    };
+
     toolBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             toolBtns.forEach(b => b.classList.remove('active'));
@@ -152,6 +194,7 @@ export const onMount = (container) => {
             if (inlineData[type]) {
                 contentArea.innerHTML = inlineData[type].content;
                 contentArea.classList.add('visible');
+                if (type === 'chat') bindPromptOverlay();
             }
         });
     });
