@@ -239,7 +239,7 @@
 
         async function loadData() {
             try {
-                const response = await fetch('/learning-python/public/ai-efficiency/assets/chart_data.json');
+                const response = await fetch('./assets/chart_data.json');
                 if (!response.ok) {
                     throw new Error('无法加载数据文件');
                 }
