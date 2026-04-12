@@ -20,9 +20,10 @@ export default html`
             line-height: 1.6;
         }
         .agent-card ul {
-            padding-left: 1.2rem;
+            padding-left: 0.2rem;
             margin: 0.3rem 0;
             flex: 1;
+            list-style-position: inside;
         }
         .sec-grid {
             display: grid;
@@ -86,6 +87,7 @@ export default html`
                 <li>独立干活，看不到中间过程</li>
                 <li>错了只能口述纠正，再等一轮</li>
                 <li><strong>标准化、低风险的批量任务</strong></li>
+                <li>你回来说不定发现他已经把办公室砸了</li>
             </ul>
         </div>
 
