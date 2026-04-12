@@ -40,32 +40,34 @@ export const onMount = (container) => {
                             </tr>
                         </tbody>
                     </table>
-                    <div id="prompt-overlay" style="display: none; position: absolute; inset: 0; background: #fffbeb; border: 2px solid #fcd34d; border-radius: 8px; padding: 1.2rem; z-index: 10; flex-direction: column; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                    <div id="prompt-overlay" style="display: none; position: absolute; inset: 0; background: #fffbeb; border: 2px solid #fcd34d; border-radius: 8px; padding: 1.2rem; z-index: 10; flex-direction: column; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow-y: auto;">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem;">
-                            <h4 style="margin: 0; color: #92400e; font-size: 1.15rem;">💡 Prompt Engineering（提示词工程）—— 跟 AI 说话也有技巧</h4>
+                            <h4 style="margin: 0; color: #92400e; font-size: 1.1rem;">💡 真实案例：同一篇英文文章 × 同一个模型(DeepSeek) × 不同 Prompt</h4>
                             <button id="prompt-overlay-close" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #92400e; line-height: 1;">&times;</button>
                         </div>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.8rem; margin-bottom: 0.8rem;">
-                            <div style="background: #fff; border-radius: 6px; padding: 0.6rem; border: 1px solid #e5e7eb;">
-                                <strong style="color: #1e40af; font-size: 0.95rem;">🎭 设定角色</strong>
-                                <p style="font-size: 0.85rem; margin: 4px 0 0 0; color: #475569; line-height: 1.4;">"你是一位资深财务分析师，请帮我..."</p>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-bottom: 0.8rem; flex: 1;">
+                            <div style="background: #fef2f2; border-radius: 8px; padding: 0.8rem; border-left: 4px solid #ef4444;">
+                                <div style="font-weight: 700; color: #991b1b; font-size: 0.95rem; margin-bottom: 0.4rem;">❌ Prompt A — 一句话指令</div>
+                                <div style="font-family: Consolas, monospace; font-size: 0.85rem; color: #7f1d1d; background: #fff5f5; padding: 0.5rem; border-radius: 4px; line-height: 1.5;">基于这篇文章，写一篇中文的新闻报道，用于中英双语教学</div>
+                                <div style="margin-top: 0.5rem; font-size: 0.8rem; color: #991b1b;">
+                                    <strong>结果</strong>：43行，纯新闻改写，无教学增值
+                                </div>
                             </div>
-                            <div style="background: #fff; border-radius: 6px; padding: 0.6rem; border: 1px solid #e5e7eb;">
-                                <strong style="color: #1e40af; font-size: 0.95rem;">📋 分步骤拆解</strong>
-                                <p style="font-size: 0.85rem; margin: 4px 0 0 0; color: #475569; line-height: 1.4;">"请分三步完成：第一步…第二步…第三步…"</p>
-                            </div>
-                            <div style="background: #fff; border-radius: 6px; padding: 0.6rem; border: 1px solid #e5e7eb;">
-                                <strong style="color: #1e40af; font-size: 0.95rem;">📎 给出示例</strong>
-                                <p style="font-size: 0.85rem; margin: 4px 0 0 0; color: #475569; line-height: 1.4;">"参考这个格式：[示例]，帮我生成类似的..."</p>
+                            <div style="background: #f0fdf4; border-radius: 8px; padding: 0.8rem; border-left: 4px solid #22c55e;">
+                                <div style="font-weight: 700; color: #166534; font-size: 0.95rem; margin-bottom: 0.4rem;">✅ Prompt B — 结构化指令 (500+ 字)</div>
+                                <div style="font-family: Consolas, monospace; font-size: 0.8rem; color: #14532d; background: #f0fdf4; padding: 0.5rem; border-radius: 4px; line-height: 1.4; max-height: 80px; overflow-y: auto;">Role: 资深英语名师…<br>Task: 按结构撰写精读笔记<br>1. 核心精粹 → 内容梗概 + 深度解读<br>2. 语言点拆解 → 词法/语法/句法<br>3. 互动思考题<br>Output Style: 语气/排版/双语比例</div>
+                                <div style="margin-top: 0.5rem; font-size: 0.8rem; color: #166534;">
+                                    <strong>结果</strong>：94行，完整教案，含词源分析 + 长难句图解 + 互动题
+                                </div>
                             </div>
                         </div>
-                        <div style="display: flex; gap: 0.8rem; font-size: 0.9rem;">
-                            <div style="flex:1; background: #fef2f2; border-radius: 6px; padding: 0.5rem 0.7rem; border-left: 3px solid #ef4444;">
-                                <span style="color: #dc2626;">❌</span> <span style="color: #7f1d1d;">"帮我写个报告"</span>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div style="display: flex; gap: 1rem; font-size: 0.85rem;">
+                                <span style="background: #fff; padding: 3px 10px; border-radius: 20px; color: #92400e; border: 1px solid #fcd34d;">🎭 设定角色</span>
+                                <span style="background: #fff; padding: 3px 10px; border-radius: 20px; color: #92400e; border: 1px solid #fcd34d;">📋 拆解任务</span>
+                                <span style="background: #fff; padding: 3px 10px; border-radius: 20px; color: #92400e; border: 1px solid #fcd34d;">📎 规范输出</span>
                             </div>
-                            <div style="flex:1; background: #f0fdf4; border-radius: 6px; padding: 0.5rem 0.7rem; border-left: 3px solid #22c55e;">
-                                <span style="color: #16a34a;">✅</span> <span style="color: #14532d;">"你是一位市场分析师。请根据以下数据，用「总结→趋势→建议」的结构写一份500字的季度简报。"</span>
-                            </div>
+                            <a href="./compare.html" target="_blank" style="background: linear-gradient(135deg, #f97316, #ea580c); color: white; padding: 8px 20px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 0.9rem; transition: all 0.3s; box-shadow: 0 2px 8px rgba(249,115,22,0.3);">📊 查看完整对比结果 →</a>
                         </div>
                     </div>
                 </div>
