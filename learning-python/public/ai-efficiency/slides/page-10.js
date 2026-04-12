@@ -68,7 +68,7 @@ export default html`
             <div style="background: #dbeafe; border-radius: 6px; padding: 0.5rem 0.7rem; margin-bottom: 0.5rem; border-left: 3px solid #3b82f6;">
                 <div style="font-size: 0.95rem; color: #1e3a5f; font-style: italic;">👔 请了一位<strong>外部顾问</strong>——非常能干，但<strong>不了解你公司内部</strong>的运行方式。</div>
             </div>
-            <ul style="color: #1e3a5f; font-size: 0.95rem; margin: 0; padding-left: 1.1rem;">
+            <ul style="color: #1e3a5f; font-size: 0.95rem; margin: 0;">
                 <li>你描述问题，他给出建议</li>
                 <li>【几乎】不碰你的文件和系统</li>
                 <li>适合<strong>问答、创作、临时咨询</strong></li>
@@ -83,7 +83,7 @@ export default html`
             <div style="background: #fffbeb; border-radius: 6px; padding: 0.5rem 0.7rem; margin-bottom: 0.5rem; border-left: 3px solid #f59e0b;">
                 <div style="font-size: 0.95rem; color: #92400e; font-style: italic;">📱 把毕业生<strong>一个人扔在公司</strong>，你跑了，通过<strong>电话/微信遥控</strong>。</div>
             </div>
-            <ul style="color: #713f12; font-size: 0.95rem; margin: 0; padding-left: 1.1rem;">
+            <ul style="color: #713f12; font-size: 0.95rem; margin: 0;">
                 <li>独立干活，看不到中间过程</li>
                 <li>错了只能口述纠正，再等一轮</li>
                 <li><strong>标准化、低风险的批量任务</strong></li>
@@ -98,7 +98,7 @@ export default html`
             <div style="background: #dcfce7; border-radius: 6px; padding: 0.5rem 0.7rem; margin-bottom: 0.5rem; border-left: 3px solid #22c55e;">
                 <div style="font-size: 0.95rem; color: #14532d; font-style: italic;">🪑 你<strong>坐在他旁边</strong>，看着他操作，发现错了<strong>立刻纠正</strong>。</div>
             </div>
-            <ul style="color: #14532d; font-size: 0.95rem; margin: 0; padding-left: 1.1rem;">
+            <ul style="color: #14532d; font-size: 0.95rem; margin: 0;">
                 <li>AI 直接在你电脑上<strong>读写运行</strong></li>
                 <li>每步可<strong>审批、暂停、回滚</strong></li>
                 <li>适合<strong>复杂工程、持续迭代</strong></li>
