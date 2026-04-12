@@ -49,37 +49,53 @@ export default html`
 
     <!-- Core Metaphor -->
     <div class="card" style="background: #fff1f2; border-left: 4px solid #e11d48; margin-bottom: 1.2rem; padding: 1rem 1.2rem;">
-        <h3 style="color: #be123c; margin-top: 0; margin-bottom: 0.3rem; font-size: 1.15rem;">🎓 核心心态：AI = 聪明优秀、全能但缺乏经验的应届毕业生</h3>
+        <h3 style="color: #be123c; margin-top: 0; margin-bottom: 0.3rem; font-size: 1.15rem;">🎓 核心心态：AI = 聪明、优秀、全能而且听话，但缺乏经验的应届毕业生</h3>
         <p style="margin-bottom: 0; font-size: 1rem; color: #4c0519;"><strong>不要畏惧！</strong> AI尤其擅长编程。你应该把自己定位为<strong>"项目经理"</strong>，负责<strong>提需求、做判断、把关质量</strong>。</p>
     </div>
 
-    <!-- Chat vs Agent Comparison -->
-    <h3 style="margin-top: 0; margin-bottom: 0.8rem; font-size: 1.2rem;">🤖 两种"管理风格"：聊天工具 vs Coding Agent</h3>
+    <!-- Three-tier AI Tool Comparison -->
+    <h3 style="margin-top: 0; margin-bottom: 0.8rem; font-size: 1.2rem;">🤖 三种 AI 协作模式：你和"毕业生"的关系</h3>
 
-    <div style="display: flex; gap: 1.2rem; margin-bottom: 1.2rem;">
-        <div class="agent-card" style="background: #fefce8; border: 2px solid #fde68a;">
-            <h4 style="color: #a16207;">💬 聊天工具 (ChatGPT / DeepSeek / Kimi...)</h4>
-            <div style="background: #fffbeb; border-radius: 8px; padding: 0.6rem 0.8rem; margin-bottom: 0.5rem; border-left: 3px solid #f59e0b;">
-                <div style="font-size: 0.9rem; color: #92400e; font-style: italic;">👤 比喻：把毕业生<strong>一个人扔在公司里</strong>，你跑了，通过<strong>电话、微信</strong>远程遥控他。</div>
+    <div style="display: flex; gap: 1rem; margin-bottom: 1.2rem;">
+        <!-- Chat Tools -->
+        <div class="agent-card" style="background: #eff6ff; border: 2px solid #bfdbfe;">
+            <h4 style="color: #1e40af;">💬 对话工具</h4>
+            <div style="font-size: 0.78rem; color: #64748b; margin-bottom: 0.4rem;">ChatGPT / DeepSeek / Gemini / Kimi</div>
+            <div style="background: #dbeafe; border-radius: 6px; padding: 0.5rem 0.7rem; margin-bottom: 0.4rem; border-left: 3px solid #3b82f6;">
+                <div style="font-size: 0.88rem; color: #1e3a5f; font-style: italic;">👔 比喻：请了一位<strong>外部顾问</strong>——非常能干，但<strong>不了解你公司内部</strong>的运行方式。</div>
             </div>
-            <ul style="color: #713f12;">
-                <li>你发一段指令，他回你一段结果</li>
-                <li>看不到他中间做了什么，只看到"交付物"</li>
-                <li>搞错了？你只能口述纠正，再等一轮</li>
-                <li>适合<strong>简单任务、问答、文本创作</strong></li>
+            <ul style="color: #1e3a5f; font-size: 0.88rem; margin: 0; padding-left: 1rem;">
+                <li>你描述问题，他给出建议</li>
+                <li>不碰你的文件和系统</li>
+                <li>适合<strong>问答、创作、临时咨询</strong></li>
             </ul>
         </div>
 
-        <div class="agent-card" style="background: #f0fdf4; border: 2px solid #86efac;">
-            <h4 style="color: #166534;">⚡ Coding Agent (Claude Code / Cursor...)</h4>
-            <div style="background: #f0fdf4; border-radius: 8px; padding: 0.6rem 0.8rem; margin-bottom: 0.5rem; border-left: 3px solid #22c55e;">
-                <div style="font-size: 0.9rem; color: #14532d; font-style: italic;">👤 比喻：你<strong>坐在他旁边</strong>，看着他操作，随时指令，发现错了<strong>立刻纠正</strong>。</div>
+        <!-- OpenClaw -->
+        <div class="agent-card" style="background: #fefce8; border: 2px solid #fde68a;">
+            <h4 style="color: #a16207;">🦞 龙虾 (OpenClaw)</h4>
+            <div style="font-size: 0.78rem; color: #64748b; margin-bottom: 0.4rem;">自动化 Agent · 远程执行</div>
+            <div style="background: #fffbeb; border-radius: 6px; padding: 0.5rem 0.7rem; margin-bottom: 0.4rem; border-left: 3px solid #f59e0b;">
+                <div style="font-size: 0.88rem; color: #92400e; font-style: italic;">📱 比喻：把毕业生<strong>一个人扔在公司</strong>，你跑了，通过<strong>电话/微信遥控</strong>。</div>
             </div>
-            <ul style="color: #14532d;">
-                <li>AI 直接在你的电脑上<strong>读文件、写代码、运行程序</strong></li>
-                <li>每一步你都可以<strong>实时看到、审批、回滚</strong></li>
-                <li>出问题？当场截断，不用从头再来</li>
-                <li>适合<strong>复杂工程、多步骤协作、持续迭代</strong></li>
+            <ul style="color: #713f12; font-size: 0.88rem; margin: 0; padding-left: 1rem;">
+                <li>他独立干活，你看不到中间过程</li>
+                <li>搞错了只能口述纠正，再等一轮</li>
+                <li>适合<strong>标准化、低风险的批量任务</strong></li>
+            </ul>
+        </div>
+
+        <!-- Coding Agent -->
+        <div class="agent-card" style="background: #f0fdf4; border: 2px solid #86efac;">
+            <h4 style="color: #166534;">⚡ Coding Agent</h4>
+            <div style="font-size: 0.78rem; color: #64748b; margin-bottom: 0.4rem;">Claude Code / Cursor / Windsurf</div>
+            <div style="background: #dcfce7; border-radius: 6px; padding: 0.5rem 0.7rem; margin-bottom: 0.4rem; border-left: 3px solid #22c55e;">
+                <div style="font-size: 0.88rem; color: #14532d; font-style: italic;">🪑 比喻：你<strong>坐在他旁边</strong>，看着他操作，发现错了<strong>立刻纠正</strong>。</div>
+            </div>
+            <ul style="color: #14532d; font-size: 0.88rem; margin: 0; padding-left: 1rem;">
+                <li>AI 直接在你电脑上<strong>读写运行</strong></li>
+                <li>每步可<strong>审批、暂停、回滚</strong></li>
+                <li>适合<strong>复杂工程、持续迭代</strong></li>
             </ul>
         </div>
     </div>
