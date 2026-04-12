@@ -61,13 +61,18 @@ export const onMount = (container) => {
                                 </div>
                             </div>
                         </div>
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem;">
                             <div style="display: flex; gap: 1rem; font-size: 0.85rem;">
                                 <span style="background: #fff; padding: 3px 10px; border-radius: 20px; color: #92400e; border: 1px solid #fcd34d;">🎭 设定角色</span>
                                 <span style="background: #fff; padding: 3px 10px; border-radius: 20px; color: #92400e; border: 1px solid #fcd34d;">📋 拆解任务</span>
                                 <span style="background: #fff; padding: 3px 10px; border-radius: 20px; color: #92400e; border: 1px solid #fcd34d;">📎 规范输出</span>
                             </div>
                             <a href="./compare.html" target="_blank" style="background: linear-gradient(135deg, #f97316, #ea580c); color: white; padding: 8px 20px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 0.9rem; transition: all 0.3s; box-shadow: 0 2px 8px rgba(249,115,22,0.3);">📊 查看完整对比结果 →</a>
+                        </div>
+                        <div style="background: #fef9c3; border: 1px dashed #ca8a04; border-radius: 6px; padding: 0.6rem 0.8rem; font-size: 0.82rem; color: #713f12; line-height: 1.6;">
+                            <strong>🤔 不知道 Prompt 怎么写？两个"偷懒"妙招：</strong><br>
+                            ① <strong>让 AI 帮你写 Prompt</strong> → 先告诉它"我想做 XX，请帮我生成一个高质量的 Prompt"，用它生成的 Prompt 再去提问<br>
+                            ② <strong>让 AI 反过来提问你</strong> → 告诉它"先不要开始，请你先问我 5 个问题，直到足够清楚了再动手"
                         </div>
                     </div>
                 </div>
