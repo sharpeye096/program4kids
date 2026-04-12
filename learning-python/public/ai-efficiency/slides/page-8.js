@@ -257,9 +257,16 @@ export default html`
     <h2 class="huge-title" style="font-size: 2.2rem; margin-bottom: 0.5rem; background: linear-gradient(90deg, #0f172a, #10b981); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
         5. 进阶概念与生态：什么是 SKILLs？
     </h2>
-    <p style="font-size: 1.15rem; color: #475569; margin-bottom: 0;">
-        <strong>SKILLs ：</strong> SKILL 是可被 AI 一键调用的 Prompt 模块。它避免了重复输入长段指令的麻烦，让 AI 能以一致、高效的方式完成固定任务。<br>
+    <p style="font-size: 1.15rem; color: #475569; margin-bottom: 0.5rem;">
+        <strong>SKILLs ：</strong> SKILL 是可被 AI 一键调用的 Prompt 模块。它避免了重复输入长段指令的麻烦，让 AI 能以一致、高效的方式完成固定任务。
     </p>
+    <div style="background: linear-gradient(135deg, #ecfdf5, #f0fdf4); border: 2px solid #86efac; border-radius: 8px; padding: 0.6rem 1rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.8rem;">
+        <span style="font-size: 1.8rem;">📋</span>
+        <div>
+            <div style="font-weight: 800; color: #166534; font-size: 1.05rem;">核心比喻：SKILL = AI 操作的 SOP 手册</div>
+            <div style="font-size: 0.92rem; color: #15803d; line-height: 1.4;">就像新员工入职时拿到的标准操作流程一样——你写一次，AI 每次遇到同类任务就自动按手册执行，<strong>质量稳定、不用反复交代</strong>。</div>
+        </div>
+    </div>
 
     <!-- Top Layout: Tree View + Code View -->
     <div class="split-layout">
