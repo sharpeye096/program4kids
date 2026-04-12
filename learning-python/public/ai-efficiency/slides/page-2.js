@@ -40,7 +40,8 @@ export const onMount = (container) => {
                             </tr>
                         </tbody>
                     </table>
-                    <div id="prompt-overlay" style="display: none; position: absolute; inset: 0; background: #fffbeb; border: 2px solid #fcd34d; border-radius: 8px; padding: 1.2rem; z-index: 10; flex-direction: column; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow-y: auto;">
+                    <div id="prompt-overlay" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 9999; align-items: center; justify-content: center; backdrop-filter: blur(4px);">
+                        <div style="background: #fffbeb; border: 2px solid #fcd34d; border-radius: 12px; padding: 1.8rem 2rem; max-width: 900px; width: 90vw; box-shadow: 0 25px 50px rgba(0,0,0,0.25); max-height: 90vh; overflow-y: auto;">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem;">
                             <h4 style="margin: 0; color: #92400e; font-size: 1.1rem;">💡 真实案例：同一篇英文文章 × 同一个模型(DeepSeek) × 不同 Prompt</h4>
                             <button id="prompt-overlay-close" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #92400e; line-height: 1;">&times;</button>
@@ -74,6 +75,8 @@ export const onMount = (container) => {
                             ① <strong>让 AI 帮你写 Prompt</strong> → 先告诉它"我想做 XX，请帮我生成一个高质量的 Prompt"，用它生成的 Prompt 再去提问<br>
                             ② <strong>让 AI 反过来提问你</strong> → 告诉它"先不要开始，请你先问我 5 个问题，直到足够清楚了再动手"
                         </div>
+                        </div>
+                    </div>
                     </div>
                 </div>
             `
@@ -189,6 +192,7 @@ export const onMount = (container) => {
         if (btn && overlay) {
             btn.addEventListener('click', () => { overlay.style.display = 'flex'; });
             closeBtn.addEventListener('click', () => { overlay.style.display = 'none'; });
+            overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.style.display = 'none'; });
         }
     };
 
