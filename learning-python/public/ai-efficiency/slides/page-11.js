@@ -100,15 +100,9 @@ export default html`
         </div>
     </div>
 
-    <div style="margin-top: 1.5rem; text-align: center; background: linear-gradient(135deg, #eff6ff, #f0fdf4); border: 1px solid #bae6fd; border-radius: 10px; padding: 1rem 1.5rem; display: flex; align-items: center; justify-content: center; gap: 2rem;">
-        <div style="text-align: left;">
-            <p style="margin: 0 0 0.3rem 0; font-size: 1.3rem; color: #0f172a; font-weight: 600;">
-                💡 打破边界，让技术真正为你的业务创意服务！
-            </p>
-            <p style="margin: 0; font-size: 1rem; color: #64748b;">
-                欢迎关注、留言、提问，我会尽可能回答 👉
-            </p>
-        </div>
-        <img src="./assets/wechat.jpg" alt="WeChat" style="width: 100px; height: 100px; border-radius: 8px; border: 2px solid #e2e8f0; flex-shrink: 0;">
+    <div style="margin-top: 1.5rem; text-align: center; background: linear-gradient(135deg, #eff6ff, #f0fdf4); border: 1px solid #bae6fd; border-radius: 10px; padding: 1rem 1.5rem;">
+        <p style="margin: 0; font-size: 1.3rem; color: #0f172a; font-weight: 600;">
+            💡 打破边界，让技术真正为你的业务创意服务！
+        </p>
     </div>
 `;
