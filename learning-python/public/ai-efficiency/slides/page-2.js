@@ -83,7 +83,7 @@ export const onMount = (container) => {
         },
         kb: {
             content: `
-                <p style="margin-bottom: 0.5rem; color:#475569; font-size: 1.15rem;">📚 <strong>知识库是你的“第二大脑”。</strong>结合AI后，它能够帮你快速总结长文档、自动归类资料，甚至根据你的历史笔记精准回答问题。</p>
+                <p style="margin-bottom: 0.5rem; color:#475569; font-size: 1.15rem;">📚 <strong>知识库是你的"第二大脑"。</strong>结合AI后，它能够帮你快速总结长文档、自动归类资料，甚至根据你的历史笔记精准回答问题。</p>
                 <table class="tool-table">
                     <tbody>
                         <tr>
@@ -151,7 +151,7 @@ export const onMount = (container) => {
         },
         voice: {
             content: `
-                <p style="margin-bottom: 0.5rem; color:#475569; font-size: 1.15rem;">🎤 <strong>职场人最容易获得“肉眼可见提升”的法宝。</strong>AI 不仅能精确把语音转文字，更能区分发言人，甚至直接提取全篇行动清单（To-Do）。</p>
+                <p style="margin-bottom: 0.5rem; color:#475569; font-size: 1.15rem;">🎤 <strong>职场人最容易获得"肉眼可见提升"的法宝。</strong>AI 不仅能精确把语音转文字，更能区分发言人，甚至直接提取全篇行动清单（To-Do）。</p>
                 <table class="tool-table">
                     <tbody>
                         <tr>
@@ -167,7 +167,7 @@ export const onMount = (container) => {
                         <tr>
                             <td class="logo-col"><img src="https://www.google.com/s2/favicons?domain=meeting.tencent.com&sz=64" class="tool-logo"></td>
                             <td class="name-col">腾讯会议 AI 助手</td>
-                            <td class="desc-col">在线开会时如果走神，你可以直接打字悄悄问 AI：“刚才老板讲的计划重点是什么？”</td>
+                            <td class="desc-col">在线开会时如果走神，你可以直接打字悄悄问 AI："刚才老板讲的计划重点是什么？"</td>
                         </tr>
                         <tr>
                             <td class="logo-col"><img src="https://www.google.com/s2/favicons?domain=tingjian.xfyun.cn&sz=64" class="tool-logo"></td>

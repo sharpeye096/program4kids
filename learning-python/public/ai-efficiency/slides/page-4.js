@@ -110,7 +110,7 @@ export default html`
                 <span class="icon">💻</span> 充分发挥本地计算机的能力
             </h3>
             <p class="typewriter-text" style="display: none; font-size: 1.2rem; line-height: 1.7; color: #475569; flex: 1;" 
-               data-text="不再满足于“将AI框在网页聊天窗”里。通过深层次的AI智能体应用，让AI真正接管终端控制台并读取磁盘数据，将你的本地电脑转化为一台全自动运转的思想“工厂”。"></p>
+               data-text="不再满足于"将AI框在网页聊天窗"里。通过深层次的AI智能体应用，让AI真正接管终端控制台并读取磁盘数据，将你的本地电脑转化为一台全自动运转的思想"工厂"。"></p>
         </div>
     </div>
     

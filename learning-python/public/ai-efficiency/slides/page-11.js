@@ -2,107 +2,135 @@ import { html } from '../app.js';
 
 export default html`
     <style>
-        .recap-list {
-            list-style: none !important;
-            padding: 0 !important;
-            margin: 0 !important;
+        .agent-card {
+            border-radius: 10px;
+            padding: 0.5rem 0.6rem;
+            flex: 1;
+            min-width: 0;
             display: flex;
             flex-direction: column;
-            gap: 0.5rem;
         }
-        .recap-list li {
-            padding: 0.7rem 1rem 0.7rem 2.8rem !important;
-            position: relative;
-            font-size: 1.2rem !important;
-            margin-bottom: 0 !important;
-            background: #f8fafc;
-            border-radius: 6px;
-            border: 1px solid #e2e8f0;
-            line-height: 1.5;
+        .agent-card h4 {
+            margin-top: 0;
+            margin-bottom: 0.15rem;
+            font-size: 0.95rem;
         }
-        .recap-list li::before {
-            content: "✓" !important;
-            position: absolute;
-            left: 0.9rem;
-            top: 0.7rem;
-            color: #22c55e !important;
+        .agent-card p, .agent-card li {
+            font-size: 0.82rem;
+            line-height: 1.4;
+        }
+        .agent-card ul {
+            padding-left: 0.2rem;
+            margin: 0.15rem 0;
+            flex: 1;
+            list-style-position: inside;
+        }
+        .sec-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.3rem;
+        }
+        .sec-item {
+            background: white;
+            border-radius: 8px;
+            padding: 0.25rem 0.5rem;
+            border: 1px solid #e5e7eb;
+        }
+        .sec-item-title {
             font-weight: 700;
-            font-size: 1.2rem !important;
+            color: #1e40af;
+            font-size: 0.75rem;
+            margin-bottom: 0;
         }
-        .action-card {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            padding: 1rem;
-            border-radius: 10px;
-            border: 1px solid #e2e8f0;
-            background: #fff;
+        .sec-item-desc {
+            font-size: 0.7rem;
+            color: #475569;
+            line-height: 1.25;
         }
-        .action-num {
-            flex-shrink: 0;
-            width: 36px;
-            height: 36px;
-            background: linear-gradient(135deg, #3b82f6, #1e40af);
-            color: #fff;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 1.1rem;
-        }
-        .action-text { flex: 1; }
-        .action-text strong { color: #1e293b; font-size: 1.05rem; }
-        .action-text p { margin: 4px 0 0 0; font-size: 0.95rem; color: #64748b; }
     </style>
 
-    <h2 style="background: linear-gradient(90deg, #1e40af, #7c3aed); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 2.2rem; margin-bottom: 1rem;">8. 总结与行动</h2>
-    
-    <div class="grid-2" style="gap: 2rem; align-items: start;">
-        <!-- 左列：今天学到了什么 -->
-        <div>
-            <h3 style="margin-top: 0; margin-bottom: 0.8rem; font-size: 1.6rem;">📖 今天你学到了什么</h3>
-            <ul class="recap-list">
-                <li>AI 体系分三层：大脑（大模型）→ 双手（Agent）→ 能量（云算力）【隐藏了芯片】</li>
-                <li>自然语言就是新的编程语言，技术门槛正在消失</li>
-                <li>"龙虾"的本质 = 7×24 服务器 + Coding Agent + IM 通道</li>
-                <li>SKILL 让 AI 能力模块化、可复用，避免重复造轮子</li>
-                <li>你是项目经理，AI 是那个干活的优秀的应届毕业生</li>
+    <h2 style="font-size: 1.5rem; margin-bottom: 0.15rem;">8. 心态建设：如何与AI相处？</h2>
+
+    <!-- Core Metaphor -->
+    <div class="card" style="background: #fff1f2; border-left: 4px solid #e11d48; margin-bottom: 0.3rem; padding: 0.35rem 0.8rem;">
+        <h3 style="color: #be123c; margin-top: 0; margin-bottom: 0.15rem; font-size: 0.95rem;">🎓 核心心态：AI = 聪明、优秀、全能而且听话，但缺乏经验的应届毕业生</h3>
+        <p style="margin-bottom: 0; font-size: 0.85rem; color: #4c0519;"><strong>不要畏惧！</strong> AI尤其擅长编程。你应该把自己定位为<strong>"项目经理"</strong>，负责<strong>提需求、做判断、把关质量</strong>。</p>
+    </div>
+
+    <!-- Three-tier AI Tool Comparison -->
+    <h3 style="margin-top: 0; margin-bottom: 0.2rem; font-size: 1rem;">🤖 三种 AI 协作模式：你和"毕业生"的关系</h3>
+
+    <div style="display: flex; gap: 0.6rem; margin-bottom: 0.35rem; align-items: stretch;">
+        <!-- Chat Tools -->
+        <div class="agent-card" style="background: #eff6ff; border: 2px solid #bfdbfe;">
+            <h4 style="color: #1e40af;">💬 网页聊天框</h4>
+            <div style="font-size: 0.72rem; color: #64748b; margin-bottom: 0.2rem;">ChatGPT / DeepSeek / Gemini / Kimi</div>
+            <div style="background: #dbeafe; border-radius: 6px; padding: 0.3rem 0.5rem; margin-bottom: 0.3rem; border-left: 3px solid #3b82f6;">
+                <div style="font-size: 0.8rem; color: #1e3a5f; font-style: italic;">👔 请了一位<strong>外部顾问</strong>——非常能干，但<strong>不了解你公司内部</strong>的运行方式。</div>
+            </div>
+            <ul style="color: #1e3a5f; font-size: 0.82rem; margin: 0;">
+                <li>你描述问题，他给出建议</li>
+                <li>【几乎】不碰你的文件和系统</li>
+                <li>适合<strong>问答、创作、临时咨询</strong></li>
+                <li>成本较低</li>
             </ul>
         </div>
 
-        <!-- 右列：今天回去就能做的 3 件事 -->
-        <div>
-            <h3 style="margin-top: 0; margin-bottom: 0.8rem; font-size: 1.6rem;">🚀 今天回去就能做的 3 件事</h3>
-            <div style="display: flex; flex-direction: column; gap: 0.8rem;">
-                <div class="action-card" style="border-left: 3px solid #3b82f6;">
-                    <div class="action-num">1</div>
-                    <div class="action-text">
-                        <strong>与 Gemini 深度对话</strong>
-                        <p>试试它的 Canvas 协作写作、NotebookLM 文档问答功能，体验"AI 第二大脑"</p>
-                    </div>
-                </div>
-                <div class="action-card" style="border-left: 3px solid #8b5cf6;">
-                    <div class="action-num">2</div>
-                    <div class="action-text">
-                        <strong>用飞书妙记录一次会议</strong>
-                        <p>记录一段会议或讨论，让 AI 自动总结要点和待办清单，感受即时提效</p>
-                    </div>
-                </div>
-                <div class="action-card" style="border-left: 3px solid #059669;">
-                    <div class="action-num">3</div>
-                    <div class="action-text">
-                        <strong>安装 Claude Code 体验编程</strong>
-                        <p>如果你有兴趣，按照配置指南搭建环境，用自然语言让 AI 帮你写第一个脚本</p>
-                    </div>
-                </div>
+        <!-- OpenClaw -->
+        <div class="agent-card" style="background: #fefce8; border: 2px solid #fde68a;">
+            <h4 style="color: #a16207;">🦞 龙虾 (OpenClaw)</h4>
+            <div style="font-size: 0.72rem; color: #64748b; margin-bottom: 0.2rem;">自动化 Agent · 远程执行</div>
+            <div style="background: #fffbeb; border-radius: 6px; padding: 0.3rem 0.5rem; margin-bottom: 0.3rem; border-left: 3px solid #f59e0b;">
+                <div style="font-size: 0.8rem; color: #92400e; font-style: italic;">📱 把毕业生<strong>一个人扔在公司</strong>，你跑了，通过<strong>电话/微信遥控</strong>。</div>
             </div>
+            <ul style="color: #713f12; font-size: 0.82rem; margin: 0;">
+                <li>独立干活，看不到中间过程</li>
+                <li>错了只能口述纠正，再等一轮</li>
+                <li><strong>标准化、低风险的批量任务</strong></li>
+                <li>你回来说不定发现他已经把办公室砸了</li>
+            </ul>
+        </div>
+
+        <!-- Coding Agent -->
+        <div class="agent-card" style="background: #f0fdf4; border: 2px solid #86efac;">
+            <h4 style="color: #166534;">⚡ Coding Agent</h4>
+            <div style="font-size: 0.72rem; color: #64748b; margin-bottom: 0.2rem;">Claude Code / Cursor / Codex</div>
+            <div style="background: #dcfce7; border-radius: 6px; padding: 0.3rem 0.5rem; margin-bottom: 0.3rem; border-left: 3px solid #22c55e;">
+                <div style="font-size: 0.8rem; color: #14532d; font-style: italic;">🪑 你<strong>坐在他旁边</strong>，看着他操作，发现错了<strong>立刻纠正</strong>。</div>
+            </div>
+            <ul style="color: #14532d; font-size: 0.82rem; margin: 0;">
+                <li>AI 直接在你电脑上<strong>读写运行</strong></li>
+                <li>每步可<strong>审批、暂停、回滚</strong></li>
+                <li>适合<strong>复杂工程、持续迭代</strong></li>
+            </ul>
         </div>
     </div>
-
-    <div style="margin-top: 1.5rem; text-align: center; background: linear-gradient(135deg, #eff6ff, #f0fdf4); border: 1px solid #bae6fd; border-radius: 10px; padding: 1rem 1.5rem;">
-        <p style="margin: 0; font-size: 1.3rem; color: #0f172a; font-weight: 600;">
-            💡 打破边界，让技术真正为你的业务创意服务！
+    <!-- Security Section -->
+    <div style="background: linear-gradient(135deg, #fef2f2, #fff7ed); border: 1px solid #fecaca; border-radius: 12px; padding: 0.4rem 0.7rem; position: relative; overflow: hidden;">
+        <div style="position: absolute; top: -10px; right: -5px; font-size: 3.5rem; opacity: 0.08; transform: rotate(15deg);">🛡️</div>
+        <h3 style="margin-top: 0; margin-bottom: 0.15rem; color: #991b1b; font-size: 0.9rem; display: flex; align-items: center; gap: 8px;">
+            ⚠️ 安全意识 —— 信任但要设边界
+        </h3>
+        <p style="font-size: 0.75rem; color: #7f1d1d; line-height: 1.35; margin-bottom: 0.3rem;">
+            AI 时代的<strong>供应链攻击</strong>风险显著增加（恶意依赖包、工具链后门）。这就像 <strong>90年代的个人电脑</strong> ——早期发展，病毒疯狂肆虐。未来会逐步解决，但<strong>现在必须绷紧这根弦</strong>。
         </p>
+        <div class="sec-grid">
+            <div class="sec-item">
+                <div class="sec-item-title">🏖️ 沙盒隔离 (Sandbox)</div>
+                <div class="sec-item-desc">把 AI 放到<strong>"安全沙盒"</strong>中运行，数据即使泄露，风险也可接受。</div>
+            </div>
+            <div class="sec-item">
+                <div class="sec-item-title">🖥️ 物理 / 逻辑隔离</div>
+                <div class="sec-item-desc">用<strong>独立电脑或 VM</strong> 运行 AI 工具，不直接接触核心业务系统。</div>
+            </div>
+            <div class="sec-item">
+                <div class="sec-item-title">🔍 审查与顾问</div>
+                <div class="sec-item-desc">AI 生成的代码和依赖包需要<strong>专业审查</strong>，重要决策引入安全顾问。</div>
+            </div>
+            <div class="sec-item">
+                <div class="sec-item-title">🧠 核心原则</div>
+                <div class="sec-item-desc"><strong>永远不要把不可承受损失的东西</strong>暴露在未经验证的工具链中。</div>
+            </div>
+        </div>
     </div>
 `;

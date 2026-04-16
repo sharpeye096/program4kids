@@ -18,7 +18,7 @@ export const onMount = (container) => {
 
 <span style="color: #c586c0;">## 触发条件</span>
 
-<span style="color: #d4d4d4;">当用户明确要求计算 24 点，或者以类似“请用 a, b, c, d 计算 24 点”的形式给出四个整数（每个在 1 到 10 之间）时，应使用本技能。</span>
+<span style="color: #d4d4d4;">当用户明确要求计算 24 点，或者以类似"请用 a, b, c, d 计算 24 点"的形式给出四个整数（每个在 1 到 10 之间）时，应使用本技能。</span>
 
 <span style="color: #c586c0;">## 使用方法</span>
 
@@ -38,7 +38,7 @@ export const onMount = (container) => {
 <span style="color: #c586c0;">if</span> __name__ == <span style="color: #ce9178;">"__main__"</span>:
     args = sys.<span style="color: #9cdcfe;">argv</span>[<span style="color: #b5cea8;">1</span>:]
     result = solve_24(args)
-    <span style="color: #4ec9b0;">print</span>(result) <span style="color: #6a9955;"># AI“听”到它从而回复你</span>`
+    <span style="color: #4ec9b0;">print</span>(result) <span style="color: #6a9955;"># AI"听"到它从而回复你</span>`
     };
 
     treeItems.forEach(item => {
@@ -304,7 +304,7 @@ export default html`
     </div>
     <div>
         <button id="show-deepseek-btn" style="background: #3b82f6; color: white; border: none; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 0.95rem; margin-top: 10px; display: inline-flex; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: background 0.2s;">
-            👀 对比：如果不用 Skill，直接跟大模型“硬聊”算法会怎样？
+            👀 对比：如果不用 Skill，直接跟大模型"硬聊"算法会怎样？
         </button>
     </div>
     <!-- Deepseek Modal -->

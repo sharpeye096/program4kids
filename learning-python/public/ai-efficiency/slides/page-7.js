@@ -7,7 +7,7 @@ const content = html`
             transition: transform 0.2s, box-shadow 0.2s;
         }
         .clickable-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-3px);
             box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
         }
         .modal-overlay {
@@ -85,39 +85,39 @@ const content = html`
         }
     </style>
 
-    <h2 style="font-size: 2rem; margin-bottom: 1rem;">4. 开始前必知：六块计算机基础敲门砖</h2>
-    <p style="margin-bottom: 1.5rem; font-size: 1.2rem;">作为不写代码的“长官”，为了能顺畅指使你的AI助手沟通或排错，具备这些基础非常关键：</p>
-    
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem;">
+    <h2 style="font-size: 2rem; margin-bottom: 0.8rem;">4. 开始前必知：六块计算机基础敲门砖</h2>
+    <p style="margin-bottom: 1rem; font-size: 1.1rem;">作为不写代码的"长官"，为了能顺畅指使你的AI助手沟通或排错，具备这些基础非常关键：</p>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem;">
         
-        <div class="card clickable-card" data-modal="markdown" style="padding: 1.2rem;">
+        <div class="card clickable-card" data-modal="markdown" style="padding: 1rem;">
             <h3 style="margin-top: 0; margin-bottom: 0.5rem; display: flex; align-items: center; color: #b91c1c;"><span style="margin-right: 0.5rem;">📝</span> 1. Markdown</h3>
-            <p style="font-size: 1.3rem; line-height: 1.5; margin-bottom: 0;"><strong>“AI的Word”</strong><br>比Word更轻量。你会发现不管是给大模型写复杂的Prompt，还是它回答你的结构化内容，默认都是采用这种带星号和井号的纯文本排版。</p>
+            <p style="font-size: 1rem; line-height: 1.5; margin-bottom: 0;"><strong>"AI的Word"</strong><br>比Word更轻量。你会发现不管是给大模型写复杂的Prompt，还是它回答你的结构化内容，默认都是采用这种带星号和井号的纯文本排版。</p>
         </div>
 
-        <div class="card clickable-card" data-modal="json" style="padding: 1.2rem;">
+        <div class="card clickable-card" data-modal="json" style="padding: 1rem;">
             <h3 style="margin-top: 0; margin-bottom: 0.5rem; display: flex; align-items: center; color: #0f766e;"><span style="margin-right: 0.5rem;">📄</span> 2. JSON</h3>
-            <p style="font-size: 1.3rem; line-height: 1.5; margin-bottom: 0;"><strong>“AI、程序之间对话的数据格式”</strong><br>一种结构极其清晰的文本格式（有很多键值对的大括号）。AI可以很容易地读懂和生成JSON，精确，高效。</p>
+            <p style="font-size: 1rem; line-height: 1.5; margin-bottom: 0;"><strong>"AI、程序之间对话的数据格式"</strong><br>一种结构极其清晰的文本格式（有很多键值对的大括号）。AI可以很容易地读懂和生成JSON，精确，高效。</p>
         </div>
 
-        <div class="card clickable-card" data-modal="api" style="padding: 1.2rem;">
+        <div class="card clickable-card" data-modal="api" style="padding: 1rem;">
             <h3 style="margin-top: 0; margin-bottom: 0.5rem; display: flex; align-items: center; color: #8b5cf6;"><span style="margin-right: 0.5rem;">🌐</span> 3. API (如 HTTP)</h3>
-            <p style="font-size: 1.3rem; line-height: 1.5; margin-bottom: 0;"><strong>“软件之间的沟通点单员”</strong><br>就像点外卖时的菜单服务。让代码去连接大模型或获取外界数据时，就是通过API发出标准请求然后等上菜。返回格式通常都是JSON。</p>
+            <p style="font-size: 1rem; line-height: 1.5; margin-bottom: 0;"><strong>"软件之间的沟通点单员"</strong><br>就像点外卖时的菜单服务。让代码去连接大模型或获取外界数据时，就是通过API发出标准请求然后等上菜。返回格式通常都是JSON。</p>
         </div>
 
-        <div class="card clickable-card" data-modal="cli" style="padding: 1.2rem;">
+        <div class="card clickable-card" data-modal="cli" style="padding: 1rem;">
             <h3 style="margin-top: 0; margin-bottom: 0.5rem; display: flex; align-items: center; color: #1e40af;"><span style="margin-right: 0.5rem;">⌨️</span> 4. CLI (终端命令行)</h3>
-            <p style="font-size: 1.3rem; line-height: 1.5; margin-bottom: 0;"><strong>“剥去图形外衣的直接操控台”</strong><br>就像黑客电脑上的黑框框。这里没有花哨按钮，你用纯文本命令直接向操作系统或各类Agent发号施令。</p>
+            <p style="font-size: 1rem; line-height: 1.5; margin-bottom: 0;"><strong>"剥去图形外衣的直接操控台"</strong><br>就像黑客电脑上的黑框框。这里没有花哨按钮，你用纯文本命令直接向操作系统或各类Agent发号施令。</p>
         </div>
 
-        <div class="card clickable-card" data-modal="python" style="padding: 1.2rem; background: #fdf4ff; border-color: #f5d0fe;">
+        <div class="card clickable-card" data-modal="python" style="padding: 1rem; background: #fdf4ff; border-color: #f5d0fe;">
             <h3 style="margin-top: 0; margin-bottom: 0.5rem; display: flex; align-items: center; color: #c026d3;"><span style="margin-right: 0.5rem;">🐍</span> 5. Python 与 JS/TS (Node)</h3>
-            <p style="font-size: 1.3rem; line-height: 1.5; margin-bottom: 0;"><strong>“AI时代的双核通用语言”</strong><br>Python 是当前底层AI算法调用、处理数据的主力；JS/TS 则是前端展示界面的霸主。两兄弟打配合，足已吃透80%的业务场景。</p>
+            <p style="font-size: 1rem; line-height: 1.5; margin-bottom: 0;"><strong>"AI时代的双核通用语言"</strong><br>Python 是当前底层AI算法调用、处理数据的主力；JS/TS 则是前端展示界面的霸主。两兄弟打配合，足已吃透80%的业务场景。</p>
         </div>
 
-        <div class="card clickable-card" data-modal="git" style="padding: 1.2rem;">
+        <div class="card clickable-card" data-modal="git" style="padding: 1rem;">
             <h3 style="margin-top: 0; margin-bottom: 0.5rem; display: flex; align-items: center; color: #166534;"><span style="margin-right: 0.5rem;">📦</span> 6. Git (版本控制)</h3>
-            <p style="font-size: 1.3rem; line-height: 1.5; margin-bottom: 0;"><strong>“代码的时光机与保险柜”</strong><br>记录文稿的每次修改。Claude Code强制要求它，以确保如果不满意AI的改动，随时能一键安全撤销。</p>
+            <p style="font-size: 1rem; line-height: 1.5; margin-bottom: 0;"><strong>"代码的时光机与保险柜"</strong><br>记录文稿的每次修改。Claude Code强制要求它，以确保如果不满意AI的改动，随时能一键安全撤销。</p>
         </div>
 
     </div>
