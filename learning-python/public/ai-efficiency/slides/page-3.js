@@ -115,7 +115,7 @@ export default html`
         <div class="card expand-card">
             <div class="expand-header">
                 <div style="flex: 1; text-align: left;">
-                    <h3 style="margin-top:0; color: #0369a1;">🧠 基础大模型 (Web端) —— “全能博学但手残的顾问” (大脑)</h3>
+                    <h3 style="margin-top:0; color: #0369a1;">🧠 基础大模型 (Web端) —— "全能博学但手残的顾问" (大脑)</h3>
                     <p style="font-size: 1.05rem; margin-bottom: 0; color: #334155;">
                         <strong>特点：</strong>什么都知道，能出主意、写文档，但它<strong>不直接触碰</strong>你的本地文件和工作流。
                     </p>
@@ -146,7 +146,7 @@ export default html`
         <div class="card expand-card" style="border-left: 4px solid var(--accent);">
             <div class="expand-header">
                 <div style="flex: 1; text-align: left;">
-                    <h3 style="margin-top:0; color: #b45309;">🛠️ AI Agent (智能体) —— “带工具进场的熟练技工” (双手)</h3>
+                    <h3 style="margin-top:0; color: #b45309;">🛠️ AI Agent (智能体) —— "带工具进场的熟练技工" (双手)</h3>
                     <p style="font-size: 1.05rem; margin-bottom: 0; color: #334155;">
                         <strong>特点：</strong>不仅有脑子还有手。能主动读文件、运行代码、调用其他软件改错，是效率提升的<strong>核心飞跃</strong>。<br/>
                         <span style="display:inline-block; margin-top: 0.5rem; color: #64748b; font-size: 0.95rem;">💡 <em>注：大家常听说的 <strong>Coding Agent</strong>（编程智能体，如Cursor）属于 Agent 体系中专门用来写代码的一个细分品类。</em></span>
@@ -181,7 +181,7 @@ export default html`
                 <div style="flex: 1; text-align: left;">
                     <h3 style="margin-top:0; color: #475569;">🏭 底层基础设施 —— 算力云厂商 (能量/电力和工厂)</h3>
                     <p style="font-size: 1.05rem; margin-bottom: 0; color: #334155;">
-                        <strong>特点：</strong>为上述“大脑”和“双手”提供底层的算力电力与云端部署能力支撑。
+                        <strong>特点：</strong>为上述"大脑"和"双手"提供底层的算力电力与云端部署能力支撑。
                     </p>
                 </div>
                 <div class="toggle-icon">+</div>
