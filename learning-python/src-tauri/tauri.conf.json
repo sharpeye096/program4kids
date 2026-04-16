@@ -1,22 +1,22 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
-  "productName": "learning-python",
+  "productName": "AI-Efficiency-Presentation",
   "version": "0.1.0",
-  "identifier": "com.learning-python.app",
+  "identifier": "com.ai-efficiency.presentation",
   "build": {
-    "frontendDist": "../public",
-    "devUrl": "http://localhost:8000",
+    "frontendDist": "../public/ai-efficiency",
+    "devUrl": "http://localhost:8000/ai-efficiency",
     "beforeDevCommand": "",
     "beforeBuildCommand": ""
   },
   "app": {
     "windows": [
       {
-        "title": "Learning Python",
-        "width": 800,
-        "height": 600,
+        "title": "AI提效：业务人员的进化",
+        "width": 1440,
+        "height": 900,
         "resizable": true,
-        "fullscreen": false
+        "fullscreen": true
       }
     ],
     "security": {

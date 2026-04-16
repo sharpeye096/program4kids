@@ -341,8 +341,8 @@ export default html`
         }
     </style>
 
-    <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem;">
-        <h2 style="font-size: 2.2rem; margin: 0; background: linear-gradient(90deg, #1e40af, #7c3aed); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.4rem;">
+        <h2 style="font-size: 2rem; margin: 0; background: linear-gradient(90deg, #1e40af, #7c3aed); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
             6. 实战案例：Excel → 可视化报告
         </h2>
         <div style="display: flex; gap: 0.5rem; align-items: center;">
@@ -352,7 +352,7 @@ export default html`
     </div>
 
     <!-- Data Source Header -->
-    <div class="data-source-banner">
+    <div class="data-source-banner" style="margin-bottom: 0.6rem;">
         <span style="font-size: 1.2rem;">📊</span>
         <div style="flex: 1;">
             <div style="font-weight: 700; font-size: 0.95rem; color: #334155;">输入文件：Financial Sample.xlsx</div>
@@ -363,7 +363,7 @@ export default html`
         <a href="https://www.kaggle.com/datasets/konstantinognev/financial-samplexlsx" target="_blank" style="font-size: 0.85rem; color: #3b82f6; text-decoration: none; font-weight: 600; background: white; padding: 4px 12px; border-radius: 6px; border: 1px solid #cbd5e1;">查看 Kaggle 原数据集 →</a>
     </div>
 
-    <div class="grid-2" style="gap: 2rem; align-items: start;">
+    <div class="grid-2" style="gap: 1.5rem; align-items: start;">
         <!-- Left Column: Terminal (2:1 width) -->
         <div style="min-width: 0; flex: 2;">
             <div style="position: relative; width: 100%;">
@@ -389,7 +389,7 @@ export default html`
         <div class="case-details" style="flex: 1; min-width: 0;">
             <div class="detail-item">
                 <div class="detail-label">📥 需求 Prompt</div>
-                <div class="detail-content" style="font-style: italic;">“分析这份 Excel，用 Chart.js 画图，提取 Insight 并生成报告”</div>
+                <div class="detail-content" style="font-style: italic;">"分析这份 Excel，用 Chart.js 画图，提取 Insight 并生成报告"</div>
             </div>
 
             <div class="detail-item">

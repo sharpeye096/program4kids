@@ -3,8 +3,8 @@ import { html } from '../app.js';
 export default html`
     <style>
         .agent-card {
-            border-radius: 12px;
-            padding: 1.2rem;
+            border-radius: 10px;
+            padding: 0.5rem 0.6rem;
             flex: 1;
             min-width: 0;
             display: flex;
@@ -12,63 +12,63 @@ export default html`
         }
         .agent-card h4 {
             margin-top: 0;
-            margin-bottom: 0.5rem;
-            font-size: 1.15rem;
+            margin-bottom: 0.15rem;
+            font-size: 0.95rem;
         }
         .agent-card p, .agent-card li {
-            font-size: 1rem;
-            line-height: 1.6;
+            font-size: 0.82rem;
+            line-height: 1.4;
         }
         .agent-card ul {
             padding-left: 0.2rem;
-            margin: 0.3rem 0;
+            margin: 0.15rem 0;
             flex: 1;
             list-style-position: inside;
         }
         .sec-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 0.6rem;
+            gap: 0.3rem;
         }
         .sec-item {
             background: white;
             border-radius: 8px;
-            padding: 0.5rem 0.8rem;
+            padding: 0.25rem 0.5rem;
             border: 1px solid #e5e7eb;
         }
         .sec-item-title {
             font-weight: 700;
             color: #1e40af;
-            font-size: 0.92rem;
-            margin-bottom: 0.1rem;
+            font-size: 0.75rem;
+            margin-bottom: 0;
         }
         .sec-item-desc {
-            font-size: 0.88rem;
+            font-size: 0.7rem;
             color: #475569;
-            line-height: 1.4;
+            line-height: 1.25;
         }
     </style>
 
-    <h2 style="font-size: 2rem; margin-bottom: 0.8rem;">8. 心态建设：如何与AI相处？</h2>
+    <h2 style="font-size: 1.5rem; margin-bottom: 0.15rem;">8. 心态建设：如何与AI相处？</h2>
 
     <!-- Core Metaphor -->
-    <div class="card" style="background: #fff1f2; border-left: 4px solid #e11d48; margin-bottom: 1.2rem; padding: 1rem 1.2rem;">
-        <h3 style="color: #be123c; margin-top: 0; margin-bottom: 0.3rem; font-size: 1.15rem;">🎓 核心心态：AI = 聪明、优秀、全能而且听话，但缺乏经验的应届毕业生</h3>
-        <p style="margin-bottom: 0; font-size: 1rem; color: #4c0519;"><strong>不要畏惧！</strong> AI尤其擅长编程。你应该把自己定位为<strong>"项目经理"</strong>，负责<strong>提需求、做判断、把关质量</strong>。</p>
+    <div class="card" style="background: #fff1f2; border-left: 4px solid #e11d48; margin-bottom: 0.3rem; padding: 0.35rem 0.8rem;">
+        <h3 style="color: #be123c; margin-top: 0; margin-bottom: 0.15rem; font-size: 0.95rem;">🎓 核心心态：AI = 聪明、优秀、全能而且听话，但缺乏经验的应届毕业生</h3>
+        <p style="margin-bottom: 0; font-size: 0.85rem; color: #4c0519;"><strong>不要畏惧！</strong> AI尤其擅长编程。你应该把自己定位为<strong>"项目经理"</strong>，负责<strong>提需求、做判断、把关质量</strong>。</p>
     </div>
 
     <!-- Three-tier AI Tool Comparison -->
-    <h3 style="margin-top: 0; margin-bottom: 0.8rem; font-size: 1.2rem;">🤖 三种 AI 协作模式：你和"毕业生"的关系</h3>
+    <h3 style="margin-top: 0; margin-bottom: 0.2rem; font-size: 1rem;">🤖 三种 AI 协作模式：你和"毕业生"的关系</h3>
 
-    <div style="display: flex; gap: 1rem; margin-bottom: 1.2rem; align-items: stretch;">
+    <div style="display: flex; gap: 0.6rem; margin-bottom: 0.35rem; align-items: stretch;">
         <!-- Chat Tools -->
         <div class="agent-card" style="background: #eff6ff; border: 2px solid #bfdbfe;">
             <h4 style="color: #1e40af;">💬 网页聊天框</h4>
-            <div style="font-size: 0.85rem; color: #64748b; margin-bottom: 0.4rem;">ChatGPT / DeepSeek / Gemini / Kimi</div>
-            <div style="background: #dbeafe; border-radius: 6px; padding: 0.5rem 0.7rem; margin-bottom: 0.5rem; border-left: 3px solid #3b82f6;">
-                <div style="font-size: 0.95rem; color: #1e3a5f; font-style: italic;">👔 请了一位<strong>外部顾问</strong>——非常能干，但<strong>不了解你公司内部</strong>的运行方式。</div>
+            <div style="font-size: 0.72rem; color: #64748b; margin-bottom: 0.2rem;">ChatGPT / DeepSeek / Gemini / Kimi</div>
+            <div style="background: #dbeafe; border-radius: 6px; padding: 0.3rem 0.5rem; margin-bottom: 0.3rem; border-left: 3px solid #3b82f6;">
+                <div style="font-size: 0.8rem; color: #1e3a5f; font-style: italic;">👔 请了一位<strong>外部顾问</strong>——非常能干，但<strong>不了解你公司内部</strong>的运行方式。</div>
             </div>
-            <ul style="color: #1e3a5f; font-size: 0.95rem; margin: 0;">
+            <ul style="color: #1e3a5f; font-size: 0.82rem; margin: 0;">
                 <li>你描述问题，他给出建议</li>
                 <li>【几乎】不碰你的文件和系统</li>
                 <li>适合<strong>问答、创作、临时咨询</strong></li>
@@ -79,11 +79,11 @@ export default html`
         <!-- OpenClaw -->
         <div class="agent-card" style="background: #fefce8; border: 2px solid #fde68a;">
             <h4 style="color: #a16207;">🦞 龙虾 (OpenClaw)</h4>
-            <div style="font-size: 0.85rem; color: #64748b; margin-bottom: 0.4rem;">自动化 Agent · 远程执行</div>
-            <div style="background: #fffbeb; border-radius: 6px; padding: 0.5rem 0.7rem; margin-bottom: 0.5rem; border-left: 3px solid #f59e0b;">
-                <div style="font-size: 0.95rem; color: #92400e; font-style: italic;">📱 把毕业生<strong>一个人扔在公司</strong>，你跑了，通过<strong>电话/微信遥控</strong>。</div>
+            <div style="font-size: 0.72rem; color: #64748b; margin-bottom: 0.2rem;">自动化 Agent · 远程执行</div>
+            <div style="background: #fffbeb; border-radius: 6px; padding: 0.3rem 0.5rem; margin-bottom: 0.3rem; border-left: 3px solid #f59e0b;">
+                <div style="font-size: 0.8rem; color: #92400e; font-style: italic;">📱 把毕业生<strong>一个人扔在公司</strong>，你跑了，通过<strong>电话/微信遥控</strong>。</div>
             </div>
-            <ul style="color: #713f12; font-size: 0.95rem; margin: 0;">
+            <ul style="color: #713f12; font-size: 0.82rem; margin: 0;">
                 <li>独立干活，看不到中间过程</li>
                 <li>错了只能口述纠正，再等一轮</li>
                 <li><strong>标准化、低风险的批量任务</strong></li>
@@ -94,11 +94,11 @@ export default html`
         <!-- Coding Agent -->
         <div class="agent-card" style="background: #f0fdf4; border: 2px solid #86efac;">
             <h4 style="color: #166534;">⚡ Coding Agent</h4>
-            <div style="font-size: 0.85rem; color: #64748b; margin-bottom: 0.4rem;">Claude Code / Cursor / Codex</div>
-            <div style="background: #dcfce7; border-radius: 6px; padding: 0.5rem 0.7rem; margin-bottom: 0.5rem; border-left: 3px solid #22c55e;">
-                <div style="font-size: 0.95rem; color: #14532d; font-style: italic;">🪑 你<strong>坐在他旁边</strong>，看着他操作，发现错了<strong>立刻纠正</strong>。</div>
+            <div style="font-size: 0.72rem; color: #64748b; margin-bottom: 0.2rem;">Claude Code / Cursor / Codex</div>
+            <div style="background: #dcfce7; border-radius: 6px; padding: 0.3rem 0.5rem; margin-bottom: 0.3rem; border-left: 3px solid #22c55e;">
+                <div style="font-size: 0.8rem; color: #14532d; font-style: italic;">🪑 你<strong>坐在他旁边</strong>，看着他操作，发现错了<strong>立刻纠正</strong>。</div>
             </div>
-            <ul style="color: #14532d; font-size: 0.95rem; margin: 0;">
+            <ul style="color: #14532d; font-size: 0.82rem; margin: 0;">
                 <li>AI 直接在你电脑上<strong>读写运行</strong></li>
                 <li>每步可<strong>审批、暂停、回滚</strong></li>
                 <li>适合<strong>复杂工程、持续迭代</strong></li>
@@ -107,12 +107,12 @@ export default html`
     </div>
 
     <!-- Security Section -->
-    <div style="background: linear-gradient(135deg, #fef2f2, #fff7ed); border: 1px solid #fecaca; border-radius: 12px; padding: 1rem 1.2rem; position: relative; overflow: hidden;">
+    <div style="background: linear-gradient(135deg, #fef2f2, #fff7ed); border: 1px solid #fecaca; border-radius: 12px; padding: 0.4rem 0.7rem; position: relative; overflow: hidden;">
         <div style="position: absolute; top: -10px; right: -5px; font-size: 3.5rem; opacity: 0.08; transform: rotate(15deg);">🛡️</div>
-        <h3 style="margin-top: 0; margin-bottom: 0.5rem; color: #991b1b; font-size: 1.1rem; display: flex; align-items: center; gap: 8px;">
+        <h3 style="margin-top: 0; margin-bottom: 0.15rem; color: #991b1b; font-size: 0.9rem; display: flex; align-items: center; gap: 8px;">
             ⚠️ 安全意识 —— 信任但要设边界
         </h3>
-        <p style="font-size: 0.9rem; color: #7f1d1d; line-height: 1.5; margin-bottom: 0.6rem;">
+        <p style="font-size: 0.75rem; color: #7f1d1d; line-height: 1.35; margin-bottom: 0.3rem;">
             AI 时代的<strong>供应链攻击</strong>风险显著增加（恶意依赖包、工具链后门）。这就像 <strong>90年代的个人电脑</strong> ——早期发展，病毒疯狂肆虐。未来会逐步解决，但<strong>现在必须绷紧这根弦</strong>。
         </p>
         <div class="sec-grid">
