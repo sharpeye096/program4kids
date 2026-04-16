@@ -105,7 +105,6 @@ export default html`
             </ul>
         </div>
     </div>
-
     <!-- Security Section -->
     <div style="background: linear-gradient(135deg, #fef2f2, #fff7ed); border: 1px solid #fecaca; border-radius: 12px; padding: 0.4rem 0.7rem; position: relative; overflow: hidden;">
         <div style="position: absolute; top: -10px; right: -5px; font-size: 3.5rem; opacity: 0.08; transform: rotate(15deg);">🛡️</div>
