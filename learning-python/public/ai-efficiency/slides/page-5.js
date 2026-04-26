@@ -45,9 +45,11 @@ export default html`
         </div>
         <div class="vs-col">
             <h4 style="margin-top: 0; color: #059669; font-size: 1.25rem;">⚙️ 扒开底层的真实逻辑</h4>
-            <p style="color: #64748b; font-size: 1.2rem; margin-bottom: 0;">
-                实际上，它就是在一个 <strong>7×24 小时不断电的物理服务器节点</strong>上运行一个<strong>Coding Agent</strong>。它连接了 IM（微信、飞书、钉钉、What'sApp、Slack等） 接收你的消息通道，一旦接受需求，就直接通过"生成系统交互代码、调用本地电脑或网络终端"来替你狂奔执行罢了。
-            </p>
+            <ul style="color: #64748b; font-size: 1.15rem; margin-bottom: 0; line-height: 1.6;">
+                <li style="margin-bottom: 0.8rem;">运行在一台 <strong>7×24 小时不断电的电脑（或服务器）</strong>之上。</li>
+                <li style="margin-bottom: 0.8rem;">与日常的 <strong>IM 工具（微信、飞书等）</strong>打通，实时连接。</li>
+                <li style="margin-bottom: 0px;">一旦接收消息，无需人工界面，<strong>直接通过生成代码</strong>来操控电脑完成任务。</li>
+            </ul>
         </div>
     </div>
     
