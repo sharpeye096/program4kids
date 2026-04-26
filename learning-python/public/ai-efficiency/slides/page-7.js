@@ -140,6 +140,8 @@ export const onMount = (container) => {
     const modalBody = container.querySelector('#modal-body');
     const closeBtn = container.querySelector('.modal-close');
 
+    modal.setAttribute('tabindex', '-1'); // enable focus for keyboard events
+
     const modalData = {
         markdown: {
             title: "Markdown 示例",
@@ -301,6 +303,7 @@ Type your command below.
             modalTitle.innerHTML = data.title;
             modalBody.innerHTML = data.content;
             modal.classList.add('active');
+            modal.focus({ preventScroll: true });
 
             if (type === 'cli') {
                 const cliInput = modalBody.querySelector('#cli-input');
@@ -403,12 +406,12 @@ Type your command below.
         }
     });
 
-    // Handle Escape key to close modal
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal.classList.contains('active')) {
+    // Handle Escape key to close modal — listener on the modal element, not document
+    modal.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
             closeModal();
         }
-    }, { once: false }); // Note: onMount runs multiple times if slides are visited, we should attach to modal directly, or just let it be. But normally modal prevents propagating or it unmounts
+    });
 };
 
 export default content;
