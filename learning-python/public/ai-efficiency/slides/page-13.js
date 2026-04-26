@@ -56,7 +56,7 @@ export default html`
         .action-text p { margin: 4px 0 0 0; font-size: 0.95rem; color: #64748b; }
     </style>
 
-    <h2 style="background: linear-gradient(90deg, #1e40af, #7c3aed); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 2.2rem; margin-bottom: 1rem;">10. 总结与行动</h2>
+    <h2 style="background: linear-gradient(90deg, #1e40af, #7c3aed); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 2.2rem; margin-bottom: 1rem;">9. 总结与行动</h2>
     
     <div class="grid-2" style="gap: 2rem; align-items: start;">
         <!-- 左列：今天学到了什么 -->
