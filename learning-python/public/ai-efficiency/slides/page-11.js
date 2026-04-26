@@ -48,7 +48,7 @@ export default html`
             line-height: 1.25;
         }
     </style>
-
+    <div style="display: flex; flex-direction: column; height: 100%; justify-content: space-evenly; padding-bottom: 1rem;">
     <h2 style="font-size: 1.5rem; margin-bottom: 0.15rem;">8. 心态建设：如何与AI相处？</h2>
 
     <!-- Core Metaphor -->
@@ -132,5 +132,6 @@ export default html`
                 <div class="sec-item-desc"><strong>永远不要把不可承受损失的东西</strong>暴露在未经验证的工具链中。</div>
             </div>
         </div>
+    </div>
     </div>
 `;

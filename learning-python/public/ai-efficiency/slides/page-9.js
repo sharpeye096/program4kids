@@ -340,7 +340,7 @@ export default html`
             border: 1px solid rgba(255,255,255,0.1);
         }
     </style>
-
+    <div style="display: flex; flex-direction: column; height: 100%; justify-content: space-evenly; padding-bottom: 1rem;">
     <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.4rem;">
         <h2 style="font-size: 2rem; margin: 0; background: linear-gradient(90deg, #1e40af, #7c3aed); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
             6. 实战案例：Excel → 可视化报告
@@ -416,5 +416,6 @@ export default html`
                 📊 预览生成的网页报告 →
             </a>
         </div>
+    </div>
     </div>
 `;

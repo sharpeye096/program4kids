@@ -109,7 +109,20 @@ export default html`
         
         <h1 class="cover-title">非技术人员如何使用<br>AI 提升工作效能</h1>
         
-        <p class="cover-sub">迎接 AI 时代，打破技术壁垒，让创意落地</p>
+        <div style="max-width: 850px; margin: 0 auto 3rem auto; position: relative; padding: 0 2rem;">
+            <!-- 装饰性大引号 -->
+            <div style="position: absolute; top: -2rem; left: -1.5rem; font-family: 'Times New Roman', serif; font-size: 7rem; color: #3b82f6; opacity: 0.12; line-height: 1; pointer-events: none;">&ldquo;</div>
+            
+            <!-- 名言内容：使用衬线字体提升高级感 -->
+            <p style="font-size: 1.6rem; color: #1e293b; font-family: 'Georgia', 'Times New Roman', serif; font-style: italic; font-weight: 500; line-height: 1.6; margin: 0 0 1.2rem 0; position: relative; z-index: 1; text-align: left;">
+                You're not going to lose your job to AI. You're going to lose your job to someone who uses AI, so get to it, that's the most important thing.
+            </p>
+            
+            <!-- 右对齐的作者署名 -->
+            <p style="font-size: 1.15rem; color: #64748b; margin: 0; text-align: right; font-weight: 600; letter-spacing: 0.5px;">
+                —— Jensen Huang (黄仁勋)
+            </p>
+        </div>
 
         <div class="cover-goals">
             <div class="goal-chip">
