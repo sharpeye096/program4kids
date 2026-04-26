@@ -70,7 +70,7 @@ export default html`
     
     <div class="flex-col" style="gap: 1.5rem;">
         <div class="card">
-            <h3>方案 A：国内网络环境（推荐）</h3>
+            <h3>方案 A：国内网络环境</h3>
             <p>无需特殊网络设置，体验流畅，响应极快：</p>
             <ul>
                 <li>
@@ -85,7 +85,9 @@ export default html`
             <h3>方案 B：具备外网访问条件</h3>
             <p>直接接驳国际最强模型的原生体验：</p>
             <ul>
-                <li><span class="highlight">Antigravity (谷歌系架构)</span> - 极具潜力的智能体平台。</li>
+                <li>
+                    <span class="highlight">Antigravity (谷歌系架构)</span> - 极具潜力的智能体平台。<strong>（注：您现在看到的这份PPT，正是全程直接由 Antigravity 编写和生成的！）</strong>
+                </li>
                 <li><span class="highlight">Claude Code + Claude Opus 模型</span> - Anthropic目前推理能力最强、复杂重构和逻辑分析最为稳妥的组合。</li>
             </ul>
         </div>

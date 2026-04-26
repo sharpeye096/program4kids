@@ -19,6 +19,8 @@ class SlideDeck {
             'page-10.js',
             'page-11.js',
             'page-12.js',
+            'page-14.js',
+            'page-15.js',
             'page-13.js'
         ];
         this.appElement = document.getElementById('app');
@@ -27,7 +29,7 @@ class SlideDeck {
 
     async init() {
         // Keyboard navigation
-        // Keyboard navigation disabled
+        document.addEventListener('keydown', (e) => this.handleKeydown(e));
         // Check URL hash for initial slide
         const hash = window.location.hash.slice(1);
         const initialIndex = parseInt(hash, 10) - 1;

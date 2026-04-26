@@ -121,7 +121,7 @@ export default html`
             line-height: 1.4;
         }
     </style>
-
+    <div style="display: flex; flex-direction: column; height: 100%; justify-content: space-evenly; padding-bottom: 1rem;">
     <h2 style="font-size: 2rem; margin: 0 0 0.4rem 0; background: linear-gradient(90deg, #0f766e, #2563eb); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
         7. 实战案例：Checklist 审核技能
     </h2>
@@ -202,6 +202,6 @@ export default html`
                     <span class="mini-tag">初筛提效</span>
                 </div>
             </div>
-        </div>
+    </div>
     </div>
 `;
