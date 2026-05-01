@@ -2,125 +2,147 @@ import { html } from '../app.js';
 
 export default html`
     <style>
-        .story-card {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 10px;
-            padding: 0.5rem 0.8rem;
-            border-left: 4px solid #f59e0b;
+        .hazard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.6rem;
+            margin-bottom: 0.6rem;
         }
-        .story-card h4 { margin: 0 0 0.15rem 0; font-size: 0.95rem; color: #92400e; }
-        .story-card p { margin: 0; font-size: 0.88rem; color: #475569; line-height: 1.4; }
-        .snowball-line {
+        .hazard-card {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            border-radius: 8px;
+            padding: 0.5rem 0.7rem;
+            border-left: 3px solid #ef4444;
+        }
+        .hazard-card h4 {
+            margin: 0 0 0.15rem 0;
+            font-size: 0.95rem;
+            color: #991b1b;
+        }
+        .hazard-card p {
+            margin: 0;
+            font-size: 0.8rem;
+            color: #7f1d1d;
+            line-height: 1.35;
+        }
+        .rule-card {
             display: flex;
-            gap: 0.3rem;
             align-items: flex-start;
-            margin-bottom: 0.25rem;
+            gap: 0.6rem;
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 8px;
+            padding: 0.55rem 0.7rem;
+            flex: 1;
+            min-width: 0;
         }
-        .snowball-line .line-num {
+        .rule-num {
             flex-shrink: 0;
-            width: 22px;
-            height: 22px;
-            background: #3b82f6;
+            width: 24px;
+            height: 24px;
+            background: #22c55e;
             color: #fff;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.75rem;
             font-weight: 700;
-            margin-top: 2px;
+            font-size: 0.8rem;
         }
-        .snowball-line .line-text { font-size: 0.88rem; color: #334155; line-height: 1.35; }
-        .cache-card {
-            background: linear-gradient(135deg, #f0fdf4, #ecfdf5);
-            border: 1px solid #bbf7d0;
+        .rule-card .text { flex: 1; }
+        .rule-card strong { color: #166534; font-size: 0.9rem; }
+        .rule-card p { margin: 0; font-size: 0.8rem; color: #14532d; line-height: 1.35; }
+        .example-box {
+            background: #fffbeb;
+            border: 1px solid #fde68a;
             border-radius: 8px;
-            padding: 0.4rem 0.7rem;
+            padding: 0.55rem 0.8rem;
             display: flex;
-            gap: 0.5rem;
+            gap: 0.8rem;
             align-items: flex-start;
         }
-        .cache-card .icon { font-size: 1.3rem; flex-shrink: 0; }
-        .cache-card .body { flex: 1; }
-        .cache-card .body strong { color: #166534; font-size: 0.92rem; }
-        .cache-card .body p { margin: 0; font-size: 0.88rem; color: #14532d; line-height: 1.35; }
-        .skill-tip {
-            background: #eff6ff;
-            border: 1px solid #bfdbfe;
-            border-radius: 8px;
-            padding: 0.45rem 0.8rem;
-            border-left: 3px solid #2563eb;
-        }
-        .skill-tip code {
-            background: #dbeafe;
-            padding: 2px 8px;
+        .example-box code {
+            background: #fff;
+            border: 1px solid #fcd34d;
             border-radius: 4px;
-            font-size: 0.85rem;
-            color: #1e40af;
-            font-family: 'Consolas', monospace;
+            padding: 2px 6px;
+            font-size: 0.8rem;
+            color: #92400e;
         }
     </style>
-    <div style="display: flex; flex-direction: column; height: 100%; justify-content: space-evenly; padding-bottom: 0.5rem;">
+    <div style="display: flex; flex-direction: column; height: 100%; justify-content: space-evenly; padding-bottom: 1rem;">
 
-    <h2 style="font-size: 1.7rem; margin-bottom: 0.15rem; background: linear-gradient(90deg, #d97706, #dc2626); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-        8.3 理解 Agent 的 Token 消耗
+    <h2 style="font-size: 1.7rem; margin-bottom: 0.3rem; background: linear-gradient(90deg, #dc2626, #f97316); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+        9.2 认知陷阱：AI 也会"胡说八道"
     </h2>
 
-    <!-- Token 基础 -->
-    <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 0.35rem 0.8rem; margin-bottom: 0.35rem; display: flex; align-items: center; gap: 0.5rem;">
-        <span style="font-size: 1.1rem; flex-shrink: 0;">🧮</span>
-        <div style="font-size: 1.1rem; color: #1e3a5f; line-height: 1.35;">
-            1 个英文字符 ≈ <strong>0.3 Token</strong>，1 个中文字符 ≈ <strong>0.6 Token</strong>。
-            输入（你发的）和输出（AI 回的）都要算钱。
+    <div style="background: linear-gradient(135deg, #fef2f2, #fff7ed); border: 1px solid #fecaca; border-radius: 12px; padding: 0.5rem 0.8rem; margin-bottom: 0.5rem;">
+        <div style="font-size: 1.1rem; font-weight: 800; color: #991b1b; margin-bottom: 0.1rem;">⚠️ "大语言模型"，不是"知识库"：它不是在查数据库，而是在做概率造句。</div>
+        <div style="font-size: 0.99rem; color: #7f1f1d; line-height: 1.35;">它"太能说了"，经常一本正经地胡说八道。</div>
+    </div>
+
+    <h3 style="margin: 0 0 0.3rem 0; font-size: 1rem; color: #0f172a;">最容易幻觉的场景</h3>
+    <div class="hazard-grid">
+        <div class="hazard-card">
+            <h4>🔢 数字与统计</h4>
+            <p>市场数据、财报数字、年份、百分比——模型会自信地编造</p>
+        </div>
+        <div class="hazard-card">
+            <h4>📚 引用与出处</h4>
+            <p>编造不存在的论文、作者名、书名，看起来有模有样</p>
+        </div>
+        <div class="hazard-card">
+            <h4>⚖️ 法条与政策</h4>
+            <p>不同国家的法律条文、合规要求，易混淆或直接虚构</p>
+        </div>
+        <div class="hazard-card">
+            <h4>🧮 精确逻辑计算</h4>
+            <p>多步推理、复杂算术、穷举类问题——靠推理硬扛容易出错</p>
         </div>
     </div>
 
-    <!-- 一句"谢谢"的雪球效应 -->
-    <div class="story-card" style="margin-bottom: 0.35rem;">
-        <h4>❄️ 一句"谢谢"的雪球效应</h4>
-        <p style="margin-bottom: 0.3rem;">
-            LLM <strong>天生无状态</strong>——每次对话都是独立的，它不认识你，也不记得之前说过什么。
-            所谓<strong>上下文</strong>，就是每次请求都要把全部聊天记录、System Prompt、文件内容一起发给模型。Agent 也不例外。
-        </p>
-        <div class="snowball-line">
-            <div class="line-num">1</div>
-            <div class="line-text">你输入"谢谢"（2 个字 ≈ 1.2 Token）</div>
+    <h3 style="margin: 0 0 0.3rem 0; font-size: 1rem; color: #0f172a;">三条保命原则</h3>
+    <div style="display: flex; gap: 0.5rem; margin-bottom: 0.5rem;">
+        <div class="rule-card">
+            <div class="rule-num">1</div>
+            <div class="text">
+                <strong>重要信息交叉验证</strong>
+                <p>让 AI 给出具体来源（链接/文档名/章节），自己去核实。不能核实的就当它编的。</p>
+            </div>
         </div>
-        <div class="snowball-line">
-            <div class="line-num">2</div>
-            <div class="line-text">客户端把<strong>整个对话历史</strong>一起打包：System Prompt + MCP 状态 + 所有文件上下文</div>
+        <div class="rule-card">
+            <div class="rule-num">2</div>
+            <div class="text">
+                <strong>关键计算交给工具</strong>
+                <p>算账、数据分析别让模型心算。让它写 Python 代码执行，代码跑出来才是准的。</p>
+            </div>
         </div>
-        <div class="snowball-line">
-            <div class="line-num">3</div>
-            <div class="line-text">实际发出去的可能高达 <strong>几十万 Token</strong>——其中新增的只有 1.2</div>
-        </div>
-        <p style="margin-top: 0.25rem; color: #92400e; font-size: 0.82rem;">
-            💡 Claude Code 源码证实：没有"简单打断语检测"。"谢谢"和下一个 Bug 的上下文处理成本完全一样。
-        </p>
-    </div>
-
-    <!-- 提示词缓存 -->
-    <div class="cache-card" style="margin-bottom: 0.35rem;">
-        <div class="icon">💾</div>
-        <div class="body">
-            <strong>Prompt Caching（提示词缓存）—— 真正的省钱英雄</strong>
-            <p>前几十万 Token 和上一轮几乎一样？服务器命中缓存，只算新增 Token 的推理成本。
-            Cache Hit 定价通常只有原价的 <strong>1/10</strong>。网络包虽大，账单不贵——<strong>只要缓存没过期</strong>。</p>
+        <div class="rule-card">
+            <div class="rule-num">3</div>
+            <div class="text">
+                <strong>先问"你有多大把握"</strong>
+                <p>要求 AI 标注置信度：高/中/低。不确定的部分它会自己承认，帮你判断哪些需要复核。</p>
+            </div>
         </div>
     </div>
 
-    <!-- Skill -->
-    <div style="display: flex; gap: 0.5rem;">
-        <div class="skill-tip" style="flex: 1; margin-bottom: 0;">
-            <div style="font-weight: 700; color: #1d4ed8; font-size: 0.92rem; margin-bottom: 0.15rem;">📦 提炼 Skill 的两个意义</div>
-            <div style="font-size: 0.88rem; color: #1e3a5f; line-height: 1.4;">
-                与其说"谢谢"让几十万 Token 的上下文白白浪费，不如趁模型还记得完整上下文时让它把经验固化为 Skill：
-                <div style="margin: 0.3rem 0;">
-                    <code>"复盘刚才解决这个 Bug 的核心思路，提炼为 debug-xxx skill"</code>
-                </div>
-                <strong>① 稳定</strong>——下次同类任务无需重新描述，执行路径完全一致<br>
-                <strong>② 省 Token</strong>——调用 Skill 只需极短的 Prompt，不再需要重复加载全部上下文
+    <div class="example-box">
+        <span style="font-size: 1.2rem;">💡</span>
+        <div>
+            <div style="font-weight: 700; color: #92400e; font-size: 0.85rem; margin-bottom: 0.15rem;">实战建议：写 Prompt 时加上这句话</div>
+            <div style="font-size: 0.85rem; color: #78350f; line-height: 1.4;">
+            <code>"请列出你的回答中哪些是确凿事实、哪些是你的推理推断。对于数据和引用，请给出你可以确认的来源。"</code>
+            </div>
+        </div>
+    </div>
+
+    <div class="example-box">
+        <span style="font-size: 1.2rem;">💡</span>
+        <div>
+            <div style="font-weight: 700; color: #92400e; font-size: 0.85rem; margin-bottom: 0.15rem;">实战建议：用AI写工具，用工具完成任务</div>
+            <div style="font-size: 0.85rem; color: #78350f; line-height: 1.4;">
+            <code>"请你给我写一段Python程序，检查输入的Excel文件中，是否每一行都有开始时间、结束时间，且结束时间不早于开始时间。"</code>
             </div>
         </div>
     </div>

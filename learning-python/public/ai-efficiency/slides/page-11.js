@@ -1,347 +1,1303 @@
 import { html } from '../app.js';
 
 const content = html`
-    <style>
-        .agent-card {
-            border-radius: 10px;
-            padding: 0.5rem 0.6rem;
-            flex: 1;
-            min-width: 0;
-            display: flex;
-            flex-direction: column;
-        }
-        .agent-card h4 {
-            margin-top: 0;
-            margin-bottom: 0.15rem;
-            font-size: 0.95rem;
-        }
-        .agent-card p, .agent-card li {
-            font-size: 0.82rem;
-            line-height: 1.4;
-        }
-        .agent-card ul {
-            padding-left: 0.2rem;
-            margin: 0.15rem 0;
-            flex: 1;
-            list-style-position: inside;
-        }
-        .sec-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.3rem;
-        }
-        .sec-item {
-            background: white;
-            border-radius: 8px;
-            padding: 0.25rem 0.5rem;
-            border: 1px solid #e5e7eb;
-        }
-        .sec-item-title {
-            font-weight: 700;
-            color: #1e40af;
-            font-size: 0.75rem;
-            margin-bottom: 0;
-        }
-        .sec-item-desc {
-            font-size: 0.7rem;
-            color: #475569;
-            line-height: 1.25;
-        }
-        /* Enterprise modal button */
-        .enterprise-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            color: #fff;
-            border: none;
-            border-radius: 20px;
-            padding: 0.2rem 0.7rem;
-            font-size: 0.75rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(99,102,241,0.3);
-            vertical-align: middle;
-            margin-left: 0.5rem;
-        }
-        .enterprise-btn:hover {
-            transform: translateY(-2px) scale(1.05);
-            box-shadow: 0 4px 16px rgba(99,102,241,0.45);
-            background: linear-gradient(135deg, #818cf8, #a78bfa);
-        }
-        /* Modal overlay */
-        .p11-modal-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.6);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            opacity: 0;
-            transition: opacity 0.3s;
-            backdrop-filter: blur(4px);
-        }
-        .p11-modal-overlay.active {
-            display: flex;
-            opacity: 1;
-        }
-        .p11-modal-content {
-            background: linear-gradient(145deg, #ffffff, #f8faff);
-            padding: 1.8rem 2rem;
-            border-radius: 16px;
-            max-width: 92%;
-            max-height: 88vh;
-            overflow-y: auto;
-            position: relative;
-            box-shadow: 0 25px 60px -12px rgba(0,0,0,0.3);
-            width: 780px;
-            border: 1px solid rgba(99,102,241,0.15);
-        }
-        .p11-modal-close {
-            position: absolute;
-            top: 0.8rem;
-            right: 1rem;
-            background: none;
-            border: none;
-            font-size: 1.8rem;
-            line-height: 1;
-            cursor: pointer;
-            color: #94a3b8;
-            transition: color 0.2s;
-        }
-        .p11-modal-close:hover {
-            color: #ef4444;
-        }
-        .ent-section {
-            background: #f8fafc;
-            border-radius: 10px;
-            padding: 0.7rem 1rem;
-            margin-bottom: 0.7rem;
-            border-left: 4px solid #6366f1;
-        }
-        .ent-section h4 {
-            margin: 0 0 0.3rem 0;
-            font-size: 0.95rem;
-            color: #312e81;
-        }
-        .ent-section p {
-            margin: 0;
-            font-size: 0.88rem;
-            color: #475569;
-            line-height: 1.55;
-        }
-        .ent-vs {
-            display: flex;
-            gap: 0.8rem;
-            margin-bottom: 0.7rem;
-        }
-        .ent-vs-card {
-            flex: 1;
-            border-radius: 10px;
-            padding: 0.7rem 0.9rem;
-        }
-        .ent-vs-card h5 {
-            margin: 0 0 0.3rem 0;
-            font-size: 0.9rem;
-        }
-        .ent-vs-card p, .ent-vs-card li {
-            font-size: 0.82rem;
-            line-height: 1.5;
-            color: #334155;
-        }
-        .ent-vs-card ul {
-            margin: 0.2rem 0 0 0;
-            padding-left: 1.2rem;
-        }
-        .ent-summary {
-            background: linear-gradient(135deg, #eef2ff, #faf5ff);
-            border: 1px solid #c7d2fe;
-            border-radius: 10px;
-            padding: 0.7rem 1rem;
-            text-align: center;
-        }
-        .ent-summary p {
-            margin: 0;
-            font-size: 0.9rem;
-            color: #3730a3;
-            line-height: 1.6;
-            font-weight: 500;
-        }
-    </style>
-    <div style="display: flex; flex-direction: column; height: 100%; justify-content: space-evenly; padding-bottom: 1rem;">
-    <h2 style="font-size: 1.5rem; margin-bottom: 0.15rem;">8. 心态建设：如何与AI相处？</h2>
+<style>
+    .rag2-root {
+        --c-agent: #16a34a;
+        --c-agent-bg: #f0fdf4;
+        --c-llm: #7c3aed;
+        --c-llm-bg: #f5f0ff;
+        --c-rag: #ea580c;
+        --c-rag-bg: #fff7ed;
+        --c-kb: #2563eb;
+        --c-kb-bg: #eff6ff;
+        --c-line: #cbd5e1;
+        --c-line-active: #f59e0b;
+        --c-text: #0f172a;
+        --c-muted: #64748b;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        gap: 0.6rem;
+        font-family: var(--font-main);
+        color: var(--c-text);
+        position: relative;
+    }
+    .rag2-root h2 {
+        font-size: 1.2rem;
+        margin: 0;
+        padding-bottom: 0.3rem;
+        border-bottom: 2px solid #e2e8f0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    .rag2-root h2 .sub {
+        font-size: 0.78rem;
+        color: var(--c-muted);
+        font-weight: 500;
+    }
 
-    <!-- Core Metaphor -->
-    <div class="card" style="background: #fff1f2; border-left: 4px solid #e11d48; margin-bottom: 0.3rem; padding: 0.35rem 0.8rem;">
-        <h3 style="color: #be123c; margin-top: 0; margin-bottom: 0.15rem; font-size: 0.95rem;">🎓 核心心态：品味与判断归人，算力与执行归 AI</h3>
-        <p style="margin-bottom: 0.25rem; font-size: 0.99rem; color: #4c0519;">人是<strong>“架构师”与“审核者”</strong>。<strong>程序性、重复性的数字体力劳动</strong>交给 AI，而<strong>核心判断力（Judgment）与品味（Taste）</strong>是人的价值所在。</p>
-        <p style="margin-bottom: 0; font-size: 0.99rem; color: #4c0519; line-height: 1.4;">同时也要<strong>正视这种协同模式的局限性</strong>——现阶段用 AI 开发<strong>自己的效率工具</strong>完全可以，但面对复杂客户交付时，AI 只能提供基础执行，最后 20% 的<strong>商业洞察与架构决断</strong>，依然需要由具备专业经验的人脑来完成。</p>
-    </div>
+    .rag2-body {
+        display: grid;
+        grid-template-columns: 1fr 1.35fr;
+        gap: 1rem;
+        flex: 1;
+        min-height: 0;
+    }
 
-    <!-- Three-tier AI Tool Comparison -->
-    <h3 style="margin-top: 0; margin-bottom: 0.2rem; font-size: 1rem;">🤖 三种 AI 协作模式：你和"毕业生"的关系
-        <button class="enterprise-btn" id="enterprise-btn">🏢 </button>
-    </h3>
+    .rag2-panel {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 14px;
+        padding: 0.8rem 0.9rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.55rem;
+        min-height: 0;
+        position: relative;
+        overflow: hidden;
+    }
+    .rag2-panel::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background:
+            radial-gradient(circle at 0% 0%, rgba(37,99,235,0.04), transparent 40%),
+            radial-gradient(circle at 100% 100%, rgba(124,58,237,0.04), transparent 40%);
+        pointer-events: none;
+    }
+    .rag2-panel-title {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 700;
+        font-size: 0.92rem;
+        color: var(--c-text);
+        z-index: 1;
+    }
+    .rag2-panel-title .dot {
+        width: 8px; height: 8px; border-radius: 50%;
+        background: #f59e0b;
+        box-shadow: 0 0 0 4px rgba(245,158,11,0.18);
+        animation: pulseDot 1.6s ease-in-out infinite;
+    }
+    @keyframes pulseDot {
+        0%,100% { opacity: 0.6; }
+        50% { opacity: 1; }
+    }
+    .rag2-panel-title .num {
+        font-size: 0.7rem;
+        color: var(--c-muted);
+        font-weight: 600;
+        letter-spacing: 0.05em;
+    }
 
-    <div style="display: flex; gap: 0.6rem; margin-bottom: 0.35rem; align-items: stretch;">
-        <!-- Chat Tools -->
-        <div class="agent-card" style="background: #eff6ff; border: 2px solid #bfdbfe;">
-            <h4 style="color: #1e40af;">💬 网页聊天框</h4>
-            <div style="font-size: 0.72rem; color: #64748b; margin-bottom: 0.2rem;">ChatGPT / DeepSeek / Gemini / Kimi</div>
-            <div style="background: #dbeafe; border-radius: 6px; padding: 0.3rem 0.5rem; margin-bottom: 0.3rem; border-left: 3px solid #3b82f6;">
-                <div style="font-size: 0.8rem; color: #1e3a5f; font-style: italic;">👔 请了一位<strong>外部顾问</strong>——非常能干，但<strong>不了解你公司内部</strong>的运行方式。</div>
-            </div>
-            <ul style="color: #1e3a5f; font-size: 0.82rem; margin: 0;">
-                <li>你描述问题，他给出建议</li>
-                <li>【几乎】不碰你的文件和系统</li>
-                <li>适合<strong>问答、创作、临时咨询</strong></li>
-                <li>成本较低</li>
-            </ul>
-        </div>
+    /* ====== LEFT: Ingestion Animation ====== */
+    .ingest-stage {
+        flex: 1 1 auto;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        gap: 0.5rem;
+        padding: 0.4rem 0.2rem;
+        z-index: 1;
+        min-height: 0;
+    }
+    .ingest-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        gap: 0.4rem;
+        position: relative;
+        min-height: 56px;
+    }
+    .stage-cap small {
+        display: block;
+        color: #94a3b8;
+        font-size: 0.58rem;
+        font-weight: 500;
+        margin-top: 1px;
+    }
 
-        <!-- OpenClaw -->
-        <div class="agent-card" style="background: #fefce8; border: 2px solid #fde68a;">
-            <h4 style="color: #a16207;">🦞 龙虾 (OpenClaw)</h4>
-            <div style="font-size: 0.72rem; color: #64748b; margin-bottom: 0.2rem;">自动化 Agent · 远程执行</div>
-            <div style="background: #fffbeb; border-radius: 6px; padding: 0.3rem 0.5rem; margin-bottom: 0.3rem; border-left: 3px solid #f59e0b;">
-                <div style="font-size: 0.8rem; color: #92400e; font-style: italic;">📱 把毕业生<strong>一个人扔在公司</strong>，你跑了，通过<strong>电话/微信遥控</strong>。</div>
-            </div>
-            <ul style="color: #713f12; font-size: 0.82rem; margin: 0;">
-                <li>独立干活，看不到中间过程</li>
-                <li>错了只能口述纠正，再等一轮</li>
-                <li><strong>标准化、低风险的批量任务</strong></li>
-                <li>你回来说不定发现他已经把办公室砸了</li>
-            </ul>
-        </div>
+    /* Stage 1: file */
+    .file-icon {
+        width: 56px;
+        height: 70px;
+        background: linear-gradient(180deg, #ffffff 0%, #fef3c7 100%);
+        border: 2px solid #f59e0b;
+        border-radius: 6px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        box-shadow: 0 4px 12px rgba(245,158,11,0.18);
+        flex-shrink: 0;
+        transition: all 0.5s cubic-bezier(0.4,0,0.2,1);
+    }
+    .file-icon::before {
+        content: '';
+        position: absolute;
+        top: 0; right: 0;
+        width: 14px; height: 14px;
+        background: #fbbf24;
+        clip-path: polygon(0 0, 100% 100%, 0 100%);
+    }
+    .file-icon .ftype {
+        font-size: 0.62rem;
+        font-weight: 800;
+        color: #b45309;
+        letter-spacing: 0.05em;
+    }
+    .file-icon .fline {
+        width: 60%;
+        height: 2px;
+        background: #fbbf24;
+        border-radius: 2px;
+        opacity: 0.6;
+    }
+    .file-label {
+        font-size: 0.7rem;
+        color: var(--c-muted);
+        text-align: center;
+        margin-top: 4px;
+    }
+    .stage-block {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        flex: 1;
+        min-width: 0;
+    }
+    .stage-cap {
+        font-size: 0.62rem;
+        color: var(--c-muted);
+        font-weight: 600;
+    }
 
-        <!-- Coding Agent -->
-        <div class="agent-card" style="background: #f0fdf4; border: 2px solid #86efac;">
-            <h4 style="color: #166534;">⚡ Coding Agent</h4>
-            <div style="font-size: 0.72rem; color: #64748b; margin-bottom: 0.2rem;">Claude Code / Cursor / Codex</div>
-            <div style="background: #dcfce7; border-radius: 6px; padding: 0.3rem 0.5rem; margin-bottom: 0.3rem; border-left: 3px solid #22c55e;">
-                <div style="font-size: 0.8rem; color: #14532d; font-style: italic;">🪑 你<strong>坐在他旁边</strong>，看着他操作，发现错了<strong>立刻纠正</strong>。</div>
-            </div>
-            <ul style="color: #14532d; font-size: 0.82rem; margin: 0;">
-                <li>AI 直接在你电脑上<strong>读写运行</strong></li>
-                <li>每步可<strong>审批、暂停、回滚</strong></li>
-                <li>适合<strong>复杂工程、持续迭代</strong></li>
-            </ul>
-        </div>
-    </div>
-    <!-- Security Section -->
-    <div style="background: linear-gradient(135deg, #fef2f2, #fff7ed); border: 1px solid #fecaca; border-radius: 12px; padding: 0.4rem 0.7rem; position: relative; overflow: hidden;">
-        <div style="position: absolute; top: -10px; right: -5px; font-size: 3.5rem; opacity: 0.08; transform: rotate(15deg);">🛡️</div>
-        <h3 style="margin-top: 0; margin-bottom: 0.15rem; color: #991b1b; font-size: 0.9rem; display: flex; align-items: center; gap: 8px;">
-            ⚠️ 安全意识 —— 信任但要设边界
-        </h3>
-        <p style="font-size: 0.99rem; color: #7f1d1d; line-height: 1.35; margin-bottom: 0.3rem;">
-            AI 时代的<strong>供应链攻击</strong>风险显著增加（恶意依赖包、工具链后门）。这就像 <strong>90年代的个人电脑</strong> ——早期发展，病毒疯狂肆虐。未来会逐步解决，但<strong>现在必须绷紧这根弦</strong>。
-        </p>
-        <div class="sec-grid" style="font-size: 0.88rem">
-            <div class="sec-item">
-                <div class="sec-item-title">🏖️ 沙盒隔离 (Sandbox)</div>
-                <div class="sec-item-desc">把 AI 放到<strong>"安全沙盒"</strong>中运行，数据即使泄露，风险也可接受。</div>
-            </div>
-            <div class="sec-item">
-                <div class="sec-item-title">🖥️ 物理 / 逻辑隔离</div>
-                <div class="sec-item-desc">用<strong>独立电脑或 VM</strong> 运行 AI 工具，不直接接触核心业务系统。</div>
-            </div>
-            <div class="sec-item">
-                <div class="sec-item-title">🔍 审查与顾问</div>
-                <div class="sec-item-desc">AI 生成的代码和依赖包需要<strong>专业审查</strong>，重要决策引入安全顾问。</div>
-            </div>
-            <div class="sec-item">
-                <div class="sec-item-title">🧠 核心原则</div>
-                <div class="sec-item-desc"><strong>永远不要把不可承受损失的东西</strong>暴露在未经验证的工具链中。</div>
-            </div>
-        </div>
-    </div>
-    </div>
+    /* Stage 2: chunks */
+    .chunks {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        align-items: stretch;
+        width: 100%;
+        max-width: 110px;
+    }
+    .chunk {
+        height: 9px;
+        background: #fff;
+        border: 1.5px solid #94a3b8;
+        border-radius: 4px;
+        position: relative;
+        opacity: 0;
+        transform: translateX(-20px);
+        transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+        overflow: hidden;
+    }
+    .chunk::before {
+        content: '';
+        position: absolute;
+        left: 4px; top: 50%;
+        transform: translateY(-50%);
+        width: 70%;
+        height: 2px;
+        background: #cbd5e1;
+        border-radius: 1px;
+    }
+    .chunk.show {
+        opacity: 1;
+        transform: translateX(0);
+    }
 
-    <!-- Enterprise AI Modal -->
-    <div id="enterprise-modal" class="p11-modal-overlay">
-        <div class="p11-modal-content">
-            <button class="p11-modal-close">&times;</button>
-            <h2 style="margin-top: 0; margin-bottom: 0.2rem; color: #312e81; font-size: 1.35rem;">🏢 第四种协作模式：企业级智能体</h2>
-            <p style="color: #6366f1; font-size: 0.85rem; margin-bottom: 0.8rem; font-style: italic;">Microsoft 365 Copilot · 钉钉悟空 —— 拿着企业钥匙的"大管家"</p>
+    /* Stage 3: tagged chunks */
+    .tagged {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        width: 100%;
+        max-width: 130px;
+    }
+    .tagged .chunk {
+        display: flex;
+        align-items: center;
+        gap: 3px;
+        padding: 0 3px;
+        height: 11px;
+        border-color: #16a34a;
+        background: #f0fdf4;
+    }
+    .tagged .chunk::before { display: none; }
+    .tag-pill {
+        font-size: 0.5rem;
+        font-weight: 700;
+        padding: 1px 4px;
+        border-radius: 3px;
+        line-height: 1;
+        background: #dcfce7;
+        color: #15803d;
+    }
+    .tag-pill.b { background: #dbeafe; color: #1e40af; }
+    .tag-pill.p { background: #fae8ff; color: #86198f; }
+    .tag-bar {
+        flex: 1;
+        height: 2px;
+        background: #86efac;
+        border-radius: 1px;
+        opacity: 0.6;
+    }
 
-            <div class="ent-section">
-                <h4>🧬 核心底座：企业图谱（Graph）</h4>
-                <p>普通 AI 像个<strong>失忆的聪明人</strong>，而它们的护城河在于<strong>上下文</strong>。微软靠 <strong>Microsoft Graph</strong> 串联邮件、Teams、OneDrive、日历；钉钉靠<strong>组织架构与业务数据底座</strong>打通部门、汇报线、会议纪要、审批流。</p>
+    /* Stage 4: vectors */
+    .vec-grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 2px;
+        width: 100%;
+        max-width: 110px;
+    }
+    .vec-cell {
+        aspect-ratio: 1;
+        border-radius: 2px;
+        background: #e0e7ff;
+        opacity: 0;
+        transform: scale(0.3);
+        transition: all 0.3s ease;
+    }
+    .vec-cell.show {
+        opacity: 1;
+        transform: scale(1);
+    }
+    .vec-num {
+        font-family: 'Consolas', monospace;
+        font-size: 0.55rem;
+        color: #4338ca;
+        text-align: center;
+    }
+
+    /* KB target */
+    .kb-target {
+        width: 80px;
+        height: 70px;
+        background: linear-gradient(180deg, #eff6ff 0%, #dbeafe 100%);
+        border: 2px solid var(--c-kb);
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+        position: relative;
+        box-shadow: 0 4px 14px rgba(37,99,235,0.18);
+        flex-shrink: 0;
+    }
+    .kb-target .stack {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        width: 60%;
+    }
+    .kb-target .stack span {
+        height: 4px;
+        border-radius: 1px;
+        background: var(--c-kb);
+        opacity: 0.4;
+    }
+    .kb-target .stack span:nth-child(2) { opacity: 0.6; }
+    .kb-target .stack span:nth-child(3) { opacity: 0.85; }
+    .kb-target .kbtxt {
+        font-size: 0.55rem;
+        font-weight: 700;
+        color: var(--c-kb);
+        letter-spacing: 0.04em;
+    }
+    .kb-target.pulse { animation: kbPulse 0.8s ease; }
+    @keyframes kbPulse {
+        0% { box-shadow: 0 4px 14px rgba(37,99,235,0.18); transform: scale(1); }
+        50% { box-shadow: 0 6px 24px rgba(37,99,235,0.5); transform: scale(1.06); }
+        100% { box-shadow: 0 4px 14px rgba(37,99,235,0.18); transform: scale(1); }
+    }
+
+    /* Connectors between stages */
+    .ingest-arrow {
+        flex: 0 0 auto;
+        font-size: 1rem;
+        color: #94a3b8;
+        transition: color 0.3s, transform 0.3s;
+    }
+    .ingest-arrow.live {
+        color: var(--c-line-active);
+        animation: arrowPush 1.2s ease-in-out infinite;
+    }
+    @keyframes arrowPush {
+        0%,100% { transform: translateX(0); }
+        50% { transform: translateX(4px); }
+    }
+
+    /* Status strip */
+    .ingest-status {
+        background: #0f172a;
+        border-radius: 8px;
+        padding: 0.6rem 0.85rem;
+        color: #e2e8f0;
+        font-size: 0.92rem;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        z-index: 1;
+        min-height: 48px;
+        line-height: 1.4;
+        margin-top: auto;
+    }
+    .ingest-status .badge {
+        background: #f59e0b;
+        color: #0f172a;
+        font-weight: 800;
+        font-size: 0.72rem;
+        padding: 3px 8px;
+        border-radius: 5px;
+        letter-spacing: 0.05em;
+    }
+    .ingest-status .msg {
+        flex: 1;
+        font-family: 'Consolas', 'Monaco', monospace;
+    }
+
+    /* ====== RIGHT: Q&A Flow ====== */
+    .qa-stage {
+        flex: 1;
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        min-height: 0;
+    }
+
+    .user-bar {
+        display: flex;
+        align-items: center;
+        gap: 0.55rem;
+        padding: 0.4rem 0.6rem;
+        background: #f1f5f9;
+        border-radius: 8px;
+        border: 1px solid #e2e8f0;
+    }
+    .user-bar .av {
+        width: 26px; height: 26px;
+        border-radius: 50%;
+        background: #475569;
+        color: white;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 0.85rem;
+        flex-shrink: 0;
+    }
+    .user-bar .qtxt {
+        font-size: 0.74rem;
+        color: var(--c-text);
+        line-height: 1.3;
+        flex: 1;
+    }
+    .user-bar .qtxt b { color: #1e40af; }
+
+    .cards-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 0.55rem;
+        flex: 1;
+        position: relative;
+        min-height: 0;
+    }
+
+    .qa-card {
+        border-radius: 10px;
+        border: 2px solid;
+        padding: 0.55rem 0.65rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+        position: relative;
+        background: white;
+        transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+        min-height: 0;
+        overflow: hidden;
+    }
+    .qa-card.dim { opacity: 0.45; filter: grayscale(0.3); }
+    .qa-card.active {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        z-index: 5;
+    }
+    .qa-card .head {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+    }
+    .qa-card .ico {
+        width: 28px; height: 28px;
+        border-radius: 7px;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1rem;
+        flex-shrink: 0;
+    }
+    .qa-card .name {
+        font-weight: 800;
+        font-size: 0.84rem;
+        line-height: 1;
+    }
+    .qa-card .role {
+        font-size: 0.62rem;
+        color: var(--c-muted);
+        margin-top: 2px;
+    }
+    .qa-card .status {
+        font-size: 0.68rem;
+        line-height: 1.35;
+        color: #334155;
+        background: #f8fafc;
+        border-radius: 5px;
+        padding: 4px 6px;
+        flex: 1;
+        font-family: 'Consolas','Monaco',monospace;
+        white-space: pre-wrap;
+        overflow: hidden;
+        border-left: 2px solid #cbd5e1;
+        transition: border-color 0.3s, background 0.3s;
+    }
+    .qa-card.active .status {
+        background: white;
+    }
+
+    .qa-card--agent { border-color: var(--c-agent); background: var(--c-agent-bg); }
+    .qa-card--agent .ico { background: var(--c-agent); color: white; }
+    .qa-card--agent.active .status { border-left-color: var(--c-agent); }
+
+    .qa-card--llm { border-color: var(--c-llm); background: var(--c-llm-bg); }
+    .qa-card--llm .ico { background: var(--c-llm); color: white; }
+    .qa-card--llm.active .status { border-left-color: var(--c-llm); }
+
+    .qa-card--rag { border-color: var(--c-rag); background: var(--c-rag-bg); }
+    .qa-card--rag .ico { background: var(--c-rag); color: white; }
+    .qa-card--rag.active .status { border-left-color: var(--c-rag); }
+
+    .qa-card--kb { border-color: var(--c-kb); background: var(--c-kb-bg); }
+    .qa-card--kb .ico { background: var(--c-kb); color: white; }
+    .qa-card--kb.active .status { border-left-color: var(--c-kb); }
+
+    /* Particle layer over cards */
+    .particle-layer {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 6;
+    }
+    .pt {
+        position: absolute;
+        width: 8px; height: 8px;
+        border-radius: 50%;
+        background: #f59e0b;
+        box-shadow: 0 0 10px rgba(245,158,11,0.85);
+        opacity: 0;
+        transform: translate(-50%, -50%);
+    }
+    .pt.go {
+        animation: ptMove 1.1s cubic-bezier(0.4,0,0.2,1) forwards;
+    }
+    @keyframes ptMove {
+        0% { opacity: 0; }
+        15% { opacity: 1; }
+        85% { opacity: 1; }
+        100% { opacity: 0; }
+    }
+
+    /* Final answer */
+    .answer-bar {
+        background: #0f172a;
+        border-radius: 8px;
+        padding: 0.6rem 0.85rem;
+        color: #e2e8f0;
+        font-size: 0.92rem;
+        display: flex;
+        gap: 0.6rem;
+        align-items: flex-start;
+        min-height: 52px;
+        line-height: 1.45;
+        transition: opacity 0.3s;
+        margin-top: auto;
+    }
+    .answer-bar .lab {
+        background: #22c55e;
+        color: #0f172a;
+        font-weight: 800;
+        font-size: 0.72rem;
+        padding: 3px 8px;
+        border-radius: 5px;
+        flex-shrink: 0;
+        letter-spacing: 0.05em;
+    }
+    .answer-bar .ans { flex: 1; font-family: 'Consolas','Monaco',monospace; }
+    .answer-bar .ans .cite {
+        color: #fbbf24;
+        font-size: 0.78rem;
+    }
+
+    /* Footer legend */
+    .rag2-foot {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1.1rem;
+        font-size: 0.7rem;
+        color: var(--c-muted);
+        padding-top: 0.2rem;
+    }
+    .rag2-foot .lg {
+        display: flex; align-items: center; gap: 0.3rem;
+    }
+    .rag2-foot .sw {
+        width: 10px; height: 10px; border-radius: 3px;
+    }
+
+    /* Step controls inside each panel */
+    .rag2-ctrls {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        z-index: 1;
+        flex-wrap: wrap;
+    }
+    .rag2-btn {
+        background: #2563eb;
+        color: white;
+        border: 1px solid #2563eb;
+        border-radius: 6px;
+        padding: 0.28rem 0.7rem;
+        font-size: 0.74rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-family: var(--font-main);
+    }
+    .rag2-btn:hover { background: #1d4ed8; border-color: #1d4ed8; }
+    .rag2-btn:disabled {
+        background: #cbd5e1; border-color: #cbd5e1;
+        cursor: not-allowed; opacity: 0.7;
+    }
+    .rag2-btn--ghost {
+        background: white; color: #475569; border-color: #cbd5e1;
+    }
+    .rag2-btn--ghost:hover { background: #f1f5f9; border-color: #94a3b8; }
+    .rag2-step-pill {
+        font-size: 0.7rem;
+        color: var(--c-muted);
+        font-weight: 600;
+        margin-left: auto;
+        white-space: nowrap;
+    }
+    .rag2-dots { display: flex; gap: 5px; }
+    .rag2-dot {
+        width: 7px; height: 7px; border-radius: 50%;
+        background: #cbd5e1; transition: all 0.25s;
+    }
+    .rag2-dot.done { background: #22c55e; }
+    .rag2-dot.cur  { background: #f59e0b; box-shadow: 0 0 5px rgba(245,158,11,0.6); transform: scale(1.4); }
+
+    /* "Why vectorize?" button + modal */
+    .why-btn {
+        background: #fef3c7;
+        border: 1px solid #f59e0b;
+        color: #b45309;
+        border-radius: 50%;
+        width: 16px; height: 16px;
+        font-size: 0.6rem;
+        cursor: pointer;
+        padding: 0;
+        line-height: 1;
+        margin-left: 3px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+        vertical-align: middle;
+    }
+    .why-btn:hover {
+        background: #f59e0b;
+        color: white;
+        transform: scale(1.15);
+    }
+
+    .why-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(15, 23, 42, 0.55);
+        backdrop-filter: blur(2px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 50;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+    .why-overlay.show {
+        opacity: 1;
+        pointer-events: auto;
+    }
+    .why-modal {
+        background: white;
+        border-radius: 14px;
+        max-width: 720px;
+        width: 90%;
+        max-height: 90%;
+        overflow-y: auto;
+        padding: 1.4rem 1.6rem;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+        transform: translateY(10px) scale(0.97);
+        transition: transform 0.3s ease;
+        position: relative;
+        font-size: 0.92rem;
+        line-height: 1.55;
+    }
+    .why-overlay.show .why-modal {
+        transform: translateY(0) scale(1);
+    }
+    .why-modal h3 {
+        margin: 0 0 0.6rem 0;
+        font-size: 1.15rem;
+        color: #0f172a;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+    }
+    .why-modal .lead {
+        background: #fffbeb;
+        border-left: 3px solid #f59e0b;
+        padding: 0.6rem 0.85rem;
+        font-size: 0.92rem;
+        color: #78350f;
+        border-radius: 0 6px 6px 0;
+        margin-bottom: 0.8rem;
+        line-height: 1.55;
+    }
+    .why-example {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.6rem;
+        margin: 0.6rem 0 0.5rem;
+    }
+    .why-example .box {
+        padding: 0.6rem 0.75rem;
+        border-radius: 8px;
+        font-size: 0.92rem;
+        line-height: 1.45;
+    }
+    .why-example .box.q { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e3a8a; }
+    .why-example .box.d { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+    .why-example .box .lab { font-size: 0.7rem; font-weight: 700; opacity: 0.7; display: block; margin-bottom: 3px; letter-spacing: 0.05em; }
+
+    .why-section {
+        font-size: 0.92rem;
+        line-height: 1.6;
+        color: #334155;
+        margin: 0.6rem 0;
+    }
+    .why-section.note {
+        font-size: 0.85rem;
+        color: #64748b;
+    }
+    .why-section h4 {
+        margin: 0.8rem 0 0.4rem;
+        font-size: 1rem;
+        color: #0f172a;
+    }
+    .why-section ul { margin: 0.3rem 0; padding-left: 1.3rem; }
+    .why-section li { margin-bottom: 0.3rem; }
+    .why-distance {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+        margin: 0.5rem 0;
+        font-family: 'Consolas', monospace;
+        font-size: 0.88rem;
+    }
+    .why-distance .row {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+    }
+    .why-distance .pair { flex: 1; color: #475569; }
+    .why-distance .dist { font-weight: 700; }
+    .why-distance .dist.near { color: #16a34a; }
+    .why-distance .dist.far  { color: #dc2626; }
+
+    .why-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.88rem;
+        margin-top: 0.4rem;
+    }
+    .why-table th, .why-table td {
+        padding: 0.5rem 0.7rem;
+        border: 1px solid #e2e8f0;
+        text-align: left;
+        vertical-align: top;
+    }
+    .why-table th {
+        background: #f8fafc;
+        font-weight: 700;
+        color: #0f172a;
+        font-size: 0.9rem;
+    }
+    .why-table .yes { color: #16a34a; font-weight: 700; }
+    .why-table .no  { color: #dc2626; font-weight: 700; }
+
+    .why-close {
+        position: absolute;
+        top: 0.7rem;
+        right: 0.8rem;
+        background: #f1f5f9;
+        border: none;
+        width: 30px; height: 30px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 1rem;
+        color: #475569;
+        font-family: var(--font-main);
+    }
+    .why-close:hover { background: #e2e8f0; }
+    .why-tagline {
+        margin-top: 0.9rem;
+        padding: 0.7rem 0.9rem;
+        background: linear-gradient(90deg, #eff6ff, #f0fdf4);
+        border-radius: 8px;
+        font-size: 0.95rem;
+        color: #0f172a;
+        font-weight: 600;
+        text-align: center;
+        line-height: 1.5;
+    }
+</style>
+
+<div class="rag2-root">
+    <h2>8. 实战案例：本地知识库 + RAG + Agent <span class="sub">— 企业级 AI 协作架构</span></h2>
+
+    <div class="rag2-body">
+
+        <!-- ============ LEFT: INGESTION ============ -->
+        <div class="rag2-panel">
+            <div class="rag2-panel-title">
+                <span class="dot"></span>
+                <span>知识入库 · Ingestion</span>
+                <span class="num" style="margin-left:auto;">PART 1</span>
             </div>
 
-            <div class="ent-section" style="border-left-color: #059669;">
-                <h4 style="color: #065f46;">🔐 严格按权限办事</h4>
-                <p>完美解决了"龙虾"的<strong>越权痛点</strong>。你没有权限的文件，它们<strong>绝对不碰</strong>——戴着镣铐跳舞，合规且安全。</p>
-            </div>
-
-            <div class="ent-section" style="border-left-color: #d97706;">
-                <h4 style="color: #92400e;">🦾 操作"手脚"都是自家全家桶</h4>
-                <p>它们不是通用 AI，而是<strong>深度嵌入</strong>各自办公生态的每一个角落。</p>
-            </div>
-
-            <div class="ent-vs">
-                <div class="ent-vs-card" style="background: #eff6ff; border: 2px solid #bfdbfe;">
-                    <h5 style="color: #1e40af;">🪟 Microsoft 365 Copilot</h5>
-                    <p>长在<strong>"文档与办公套件"</strong>的生态里</p>
-                    <ul>
-                        <li>Word 写文档、Excel 数据透视</li>
-                        <li>PowerPoint 生成幻灯片</li>
-                        <li>Teams 会议纪要</li>
-                        <li>擅长复杂 Office 资产 & 跨国协同</li>
-                    </ul>
+            <div class="ingest-stage">
+                <div class="ingest-row">
+                    <!-- 1. File -->
+                    <div class="stage-block">
+                        <div class="file-icon" id="ing-file">
+                            <span class="ftype">PDF</span>
+                            <span class="fline"></span>
+                            <span class="fline"></span>
+                            <span class="fline"></span>
+                        </div>
+                        <span class="stage-cap">原始文件</span>
+                    </div>
+                    <span class="ingest-arrow" id="arr-1">▶</span>
+                    <!-- 2. Chunks -->
+                    <div class="stage-block">
+                        <div class="chunks" id="ing-chunks">
+                            <div class="chunk"></div>
+                            <div class="chunk"></div>
+                            <div class="chunk"></div>
+                            <div class="chunk"></div>
+                            <div class="chunk"></div>
+                            <div class="chunk"></div>
+                            <div class="chunk"></div>
+                            <div class="chunk"></div>
+                        </div>
+                        <span class="stage-cap">语义切片<small>共 ~80 块</small></span>
+                    </div>
+                    <span class="ingest-arrow" id="arr-2">▶</span>
+                    <!-- 3. Tagged -->
+                    <div class="stage-block">
+                        <div class="tagged" id="ing-tagged">
+                            <div class="chunk"><span class="tag-pill">财务</span><span class="tag-bar"></span></div>
+                            <div class="chunk"><span class="tag-pill b">差旅</span><span class="tag-bar"></span></div>
+                            <div class="chunk"><span class="tag-pill p">合规</span><span class="tag-bar"></span></div>
+                            <div class="chunk"><span class="tag-pill">财务</span><span class="tag-bar"></span></div>
+                            <div class="chunk"><span class="tag-pill b">差旅</span><span class="tag-bar"></span></div>
+                            <div class="chunk"><span class="tag-pill p">合规</span><span class="tag-bar"></span></div>
+                            <div class="chunk"><span class="tag-pill">财务</span><span class="tag-bar"></span></div>
+                            <div class="chunk"><span class="tag-pill b">差旅</span><span class="tag-bar"></span></div>
+                        </div>
+                        <span class="stage-cap">逐块打标签<small>每块均带标签</small></span>
+                    </div>
                 </div>
-                <div class="ent-vs-card" style="background: #eef2ff; border: 2px solid #c7d2fe;">
-                    <h5 style="color: #4338ca;">💎 钉钉悟空</h5>
-                    <p>长在<strong>"即时通讯与组织管理"</strong>的生态里</p>
-                    <ul>
-                        <li>钉钉文档、宜搭低代码</li>
-                        <li>审批流、日程表</li>
-                        <li>企业内部知识库</li>
-                        <li>擅长中国企业特色的群协作 & 打卡</li>
-                    </ul>
+
+                <div class="ingest-row">
+                    <!-- 4. Vectorize -->
+                    <div class="stage-block">
+                        <div class="vec-grid" id="ing-vec">
+                            ${Array.from({length:18}).map(()=>'<div class="vec-cell"></div>').join('')}
+                        </div>
+                        <span class="vec-num">[0.12, -0.83, 0.45 …]</span>
+                        <span class="stage-cap">向量化 Embedding <button class="why-btn" id="why-btn" title="为什么要向量化？">❓</button></span>
+                    </div>
+                    <span class="ingest-arrow" id="arr-3">▶</span>
+                    <!-- 5. KB -->
+                    <div class="stage-block">
+                        <div class="kb-target" id="ing-kb">
+                            <div class="stack"><span></span><span></span><span></span></div>
+                            <span class="kbtxt">VECTOR DB</span>
+                        </div>
+                        <span class="stage-cap">本地知识库</span>
+                    </div>
                 </div>
             </div>
 
-            <div class="ent-summary">
-                <p>💡 它们都是拿着企业钥匙的"大管家"。<br>区别仅仅在于生态位不同——一个长在 <strong>Office</strong>，一个长在<strong>钉钉</strong>。</p>
+            <div class="ingest-status">
+                <span class="badge" id="ing-badge">就绪</span>
+                <span class="msg" id="ing-msg">点击"下一步"开始演示文件如何变成可检索的知识…</span>
+            </div>
+
+            <div class="rag2-ctrls">
+                <button class="rag2-btn" id="ing-next">下一步 ▶</button>
+                <button class="rag2-btn rag2-btn--ghost" id="ing-reset">↺ 重置</button>
+                <div class="rag2-dots" id="ing-dots"></div>
+                <span class="rag2-step-pill" id="ing-pill">0 / 5</span>
+            </div>
+        </div>
+
+        <!-- ============ RIGHT: Q&A FLOW ============ -->
+        <div class="rag2-panel">
+            <div class="rag2-panel-title">
+                <span class="dot"></span>
+                <span>智能问答 · Retrieval & Generation</span>
+                <span class="num" style="margin-left:auto;">PART 2</span>
+            </div>
+
+            <div class="qa-stage">
+                <div class="user-bar">
+                    <div class="av">👤</div>
+                    <div class="qtxt" id="user-q">
+                        <b>用户提问：</b>"公司最新的<b>出差住宿报销标准</b>是多少？2025 年有更新吗？"
+                    </div>
+                </div>
+
+                <div class="cards-grid" id="cards-grid">
+                    <div class="particle-layer">
+                        <div class="pt" id="pt-1"></div>
+                        <div class="pt" id="pt-2"></div>
+                        <div class="pt" id="pt-3"></div>
+                    </div>
+
+                    <!-- Agent (top-left) -->
+                    <div class="qa-card qa-card--agent" data-card="agent" data-pos="tl">
+                        <div class="head">
+                            <div class="ico">🤖</div>
+                            <div>
+                                <div class="name">Agent</div>
+                                <div class="role">任务编排 · 工具调用</div>
+                            </div>
+                        </div>
+                        <div class="status" id="st-agent">待命中…</div>
+                    </div>
+
+                    <!-- LLM (top-right) -->
+                    <div class="qa-card qa-card--llm" data-card="llm" data-pos="tr">
+                        <div class="head">
+                            <div class="ico">🧠</div>
+                            <div>
+                                <div class="name">LLM</div>
+                                <div class="role">大模型 · 理解与生成</div>
+                            </div>
+                        </div>
+                        <div class="status" id="st-llm">待命中…</div>
+                    </div>
+
+                    <!-- RAG (bottom-left) -->
+                    <div class="qa-card qa-card--rag" data-card="rag" data-pos="bl">
+                        <div class="head">
+                            <div class="ico">🔍</div>
+                            <div>
+                                <div class="name">RAG</div>
+                                <div class="role">混合检索 · 排序</div>
+                            </div>
+                        </div>
+                        <div class="status" id="st-rag">待命中…</div>
+                    </div>
+
+                    <!-- KB (bottom-right) -->
+                    <div class="qa-card qa-card--kb" data-card="kb" data-pos="br">
+                        <div class="head">
+                            <div class="ico">🗄️</div>
+                            <div>
+                                <div class="name">本地知识库</div>
+                                <div class="role">向量库 · 文档库</div>
+                            </div>
+                        </div>
+                        <div class="status" id="st-kb">待命中…</div>
+                    </div>
+                </div>
+
+                <div class="answer-bar" id="answer">
+                    <span class="lab">回答</span>
+                    <span class="ans" id="ans-text">点击"下一步"开始演示 Agent 如何检索并生成答案…</span>
+                </div>
+
+                <div class="rag2-ctrls">
+                    <button class="rag2-btn" id="qa-next">下一步 ▶</button>
+                    <button class="rag2-btn rag2-btn--ghost" id="qa-reset">↺ 重置</button>
+                    <div class="rag2-dots" id="qa-dots"></div>
+                    <span class="rag2-step-pill" id="qa-pill">0 / 8</span>
+                </div>
             </div>
         </div>
     </div>
+
+    <div class="rag2-foot">
+        <span class="lg"><span class="sw" style="background:#16a34a;"></span>Agent 编排</span>
+        <span class="lg"><span class="sw" style="background:#7c3aed;"></span>LLM 推理</span>
+        <span class="lg"><span class="sw" style="background:#ea580c;"></span>RAG 检索</span>
+        <span class="lg"><span class="sw" style="background:#2563eb;"></span>本地知识库</span>
+        <span class="lg" style="margin-left:auto;">👆 点击下方"下一步"驱动演示</span>
+    </div>
+
+    <!-- "Why vectorize?" modal -->
+    <div class="why-overlay" id="why-overlay">
+        <div class="why-modal">
+            <button class="why-close" id="why-close" aria-label="关闭">✕</button>
+            <h3>🔢 为什么要向量化（Embedding）？</h3>
+
+            <div class="lead">
+                <b>核心问题：</b>计算机不懂"语义"，只会比对字符。<br>
+                员工的口语化提问 和 文档里的正式措辞 往往<b>一个字都对不上</b>。
+            </div>
+
+            <div class="why-example">
+                <div class="box q">
+                    <span class="lab">用户提问</span>
+                    "出差住宿能<b>报多少钱</b>？"
+                </div>
+                <div class="box d">
+                    <span class="lab">文档原文</span>
+                    "<b>差旅费</b>住宿<b>标准</b>为一线城市 500 元/晚"
+                </div>
+            </div>
+            <div class="why-section note">
+                两句话<b>没有任何相同关键词</b>（"出差"≠"差旅"，"报"≠"报销"，"多少钱"≠"标准"）。<br>
+                传统的 Ctrl+F、SQL <code>LIKE</code>、ES 全文检索会<b style="color:#dc2626">直接漏掉</b>。
+            </div>
+
+            <div class="why-section">
+                <h4>✨ 向量化做了什么</h4>
+                <ul>
+                    <li>用 Embedding 模型把每段文字转成一串数字（如 1024 维向量）—— 这串数字代表它的"<b>语义坐标</b>"</li>
+                    <li><b>意思相近的句子，向量空间里的位置就相近</b></li>
+                    <li>检索时把用户问题也转成向量，去库里找<b>距离最近的 Top-K 个片段</b></li>
+                </ul>
+                <div class="why-distance">
+                    <div class="row"><span class="pair">"出差住宿报销" ↔ "差旅费住宿标准"</span><span class="dist near">距离 0.12 ✓ 很近</span></div>
+                    <div class="row"><span class="pair">"出差住宿报销" ↔ "员工食堂菜单"</span><span class="dist far">距离 0.87 ✗ 很远</span></div>
+                </div>
+            </div>
+
+            <div class="why-section">
+                <h4>📊 三个关键能力对比</h4>
+                <table class="why-table">
+                    <thead>
+                        <tr><th>能力</th><th>传统关键词检索</th><th>向量检索</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>同义词 / 改写</td><td><span class="no">✗</span> 必须字面匹配</td><td><span class="yes">✓</span> "出差" = "差旅"</td></tr>
+                        <tr><td>跨语言</td><td><span class="no">✗</span> 中英不通</td><td><span class="yes">✓</span> 中英文混搜</td></tr>
+                        <tr><td>模糊提问</td><td><span class="no">✗</span> "那个文件提过的标准"</td><td><span class="yes">✓</span> 按意图找</td></tr>
+                        <tr><td>速度</td><td>慢（全表扫描）</td><td><span class="yes">✓</span> 毫秒级（HNSW 索引）</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="why-tagline">
+                💡 一句话：向量化把"<b>文字</b>"变成"<b>可计算的语义指纹</b>" —— 让 AI 真正按<b>意思</b>搜，而不是按<b>字</b>搜。
+            </div>
+        </div>
+    </div>
+</div>
 `;
 
 export const onMount = (container) => {
-    const btn = container.querySelector('#enterprise-btn');
-    const modal = container.querySelector('#enterprise-modal');
-    const closeBtn = container.querySelector('.p11-modal-close');
+    /* ============================================================
+       INGESTION (left) — click-driven
+       ============================================================ */
+    const ingFile  = container.querySelector('#ing-file');
+    const ingChunks = container.querySelectorAll('#ing-chunks .chunk');
+    const ingTagged = container.querySelectorAll('#ing-tagged .chunk');
+    const ingVec    = container.querySelectorAll('#ing-vec .vec-cell');
+    const ingKB     = container.querySelector('#ing-kb');
+    const ingBadge  = container.querySelector('#ing-badge');
+    const ingMsg    = container.querySelector('#ing-msg');
+    const arr1 = container.querySelector('#arr-1');
+    const arr2 = container.querySelector('#arr-2');
+    const arr3 = container.querySelector('#arr-3');
+    const ingNextBtn = container.querySelector('#ing-next');
+    const ingResetBtn = container.querySelector('#ing-reset');
+    const ingDots = container.querySelector('#ing-dots');
+    const ingPill = container.querySelector('#ing-pill');
 
-    modal.setAttribute('tabindex', '-1');
+    function resetIngestVisuals() {
+        ingChunks.forEach(c=>c.classList.remove('show'));
+        ingTagged.forEach(c=>c.classList.remove('show'));
+        ingVec.forEach(c=>c.classList.remove('show'));
+        arr1.classList.remove('live');
+        arr2.classList.remove('live');
+        arr3.classList.remove('live');
+        ingFile.style.transform = '';
+        ingKB.classList.remove('pulse');
+    }
 
-    const openModal = () => {
-        modal.classList.add('active');
-        modal.focus({ preventScroll: true });
+    const INGEST_STEPS = [
+        { badge: '步骤 1', msg: '📄 接收文件 report-2025.pdf  (12.4 MB / 38 页)',
+          act: () => { resetIngestVisuals(); ingFile.style.transform = 'scale(1.06)'; } },
+        { badge: '步骤 2', msg: '✂️ 按语义边界切分 → 共生成 ~80 个 Chunk (≈ 500 字/块，此处仅示意 8 块)',
+          act: () => { ingFile.style.transform = 'scale(1)'; arr1.classList.add('live');
+                       ingChunks.forEach((c,i)=>setTimeout(()=>c.classList.add('show'), i*70)); } },
+        { badge: '步骤 3', msg: '🏷️ 为每个 Chunk 提取关键词与元数据 → 自动打上标签（财务/差旅/合规…），便于过滤检索',
+          act: () => { arr1.classList.remove('live'); arr2.classList.add('live');
+                       ingTagged.forEach((c,i)=>setTimeout(()=>c.classList.add('show'), i*70)); } },
+        { badge: '步骤 4', msg: '🔢 调用 Embedding 模型 → 每个 Chunk 转为 1024 维向量（让"语义"变成可计算的数字）',
+          act: () => { arr2.classList.remove('live');
+                       ingVec.forEach((c,i)=>setTimeout(()=>c.classList.add('show'), i*30)); } },
+        { badge: '步骤 5', msg: '💾 向量 + 原文 + 标签 写入向量库 (Qdrant)，HNSW 索引建立完成 ✓ 可被毫秒级检索',
+          act: () => { arr3.classList.add('live');
+                       setTimeout(()=>{ ingKB.classList.add('pulse'); setTimeout(()=>ingKB.classList.remove('pulse'),900); }, 150); } },
+    ];
+
+    // build ingest dots
+    INGEST_STEPS.forEach(()=>{
+        const d = document.createElement('span');
+        d.className = 'rag2-dot';
+        ingDots.appendChild(d);
+    });
+    const ingDotEls = ingDots.querySelectorAll('.rag2-dot');
+
+    let ingI = -1;
+    function ingRender() {
+        ingDotEls.forEach((d,j)=>{
+            d.classList.remove('done','cur');
+            if (j < ingI) d.classList.add('done');
+            if (j === ingI) d.classList.add('cur');
+        });
+        ingPill.textContent = `${Math.max(0,ingI+1)} / ${INGEST_STEPS.length}`;
+        if (ingI >= INGEST_STEPS.length - 1) {
+            ingNextBtn.textContent = '✓ 已完成';
+            ingNextBtn.disabled = true;
+        } else {
+            ingNextBtn.textContent = ingI < 0 ? '▶ 开始' : '下一步 ▶';
+            ingNextBtn.disabled = false;
+        }
+    }
+    function ingReset() {
+        ingI = -1;
+        resetIngestVisuals();
+        ingBadge.textContent = '就绪';
+        ingMsg.textContent = '点击"下一步"开始演示文件如何变成可检索的知识…';
+        ingRender();
+    }
+    ingNextBtn.addEventListener('click', () => {
+        if (ingI >= INGEST_STEPS.length - 1) return;
+        ingI++;
+        const s = INGEST_STEPS[ingI];
+        ingBadge.textContent = s.badge;
+        ingMsg.textContent = s.msg;
+        s.act();
+        ingRender();
+    });
+    ingResetBtn.addEventListener('click', ingReset);
+    ingReset();
+
+    /* ============================================================
+       Q&A FLOW (right) — click-driven
+       ============================================================ */
+    const cards = {
+        agent: container.querySelector('[data-card="agent"]'),
+        llm:   container.querySelector('[data-card="llm"]'),
+        rag:   container.querySelector('[data-card="rag"]'),
+        kb:    container.querySelector('[data-card="kb"]'),
     };
-
-    const closeModal = () => {
-        modal.classList.remove('active');
+    const status = {
+        agent: container.querySelector('#st-agent'),
+        llm:   container.querySelector('#st-llm'),
+        rag:   container.querySelector('#st-rag'),
+        kb:    container.querySelector('#st-kb'),
     };
+    const grid = container.querySelector('#cards-grid');
+    const ans  = container.querySelector('#ans-text');
+    const pts  = [
+        container.querySelector('#pt-1'),
+        container.querySelector('#pt-2'),
+        container.querySelector('#pt-3'),
+    ];
+    const qaNextBtn = container.querySelector('#qa-next');
+    const qaResetBtn = container.querySelector('#qa-reset');
+    const qaDots = container.querySelector('#qa-dots');
+    const qaPill = container.querySelector('#qa-pill');
 
-    btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        openModal();
+    function centerOf(pos) {
+        const card = container.querySelector(`[data-pos="${pos}"]`);
+        const gr = grid.getBoundingClientRect();
+        const cr = card.getBoundingClientRect();
+        return {
+            x: cr.left - gr.left + cr.width/2,
+            y: cr.top  - gr.top  + cr.height/2,
+        };
+    }
+
+    function fireParticle(idx, fromPos, toPos, color) {
+        const p = pts[idx];
+        if (!p) return;
+        const a = centerOf(fromPos);
+        const b = centerOf(toPos);
+        p.classList.remove('go');
+        p.style.transition = 'none';
+        p.style.left = a.x + 'px';
+        p.style.top  = a.y + 'px';
+        p.style.background = color || '#f59e0b';
+        p.style.boxShadow = `0 0 12px ${color || '#f59e0b'}`;
+        void p.offsetWidth;
+        p.style.transition = 'left 0.9s cubic-bezier(0.4,0,0.2,1), top 0.9s cubic-bezier(0.4,0,0.2,1), opacity 0.9s';
+        p.classList.add('go');
+        p.style.left = b.x + 'px';
+        p.style.top  = b.y + 'px';
+    }
+
+    function setActive(...names) {
+        Object.keys(cards).forEach(k => {
+            cards[k].classList.remove('active');
+            if (!names.includes(k)) cards[k].classList.add('dim');
+            else cards[k].classList.remove('dim');
+        });
+        names.forEach(n => cards[n] && cards[n].classList.add('active'));
+    }
+
+    function clearCards() {
+        Object.keys(cards).forEach(k => {
+            cards[k].classList.remove('active','dim');
+            status[k].textContent = '待命中…';
+        });
+    }
+
+    const QA_STEPS = [
+        { run: () => {
+            clearCards();
+            setActive('agent');
+            status.agent.textContent = '⟳ 接收用户问题…';
+            ans.innerHTML = '点击"下一步"开始演示 Agent 如何检索并生成答案…';
+        }},
+        { run: () => {
+            setActive('agent','llm');
+            status.agent.textContent = '→ 调用 LLM 理解意图';
+            status.llm.textContent   = '解析: 意图=查询报销标准\n实体: 出差/住宿/2025';
+            fireParticle(0, 'tl', 'tr', '#7c3aed');
+        }},
+        { run: () => {
+            setActive('agent','rag');
+            status.agent.textContent = '✎ 拆解为 3 条子查询\n下发 RAG 模块';
+            status.llm.textContent   = '✓ 已返回查询计划';
+            status.rag.textContent   = 'Q1: 出差住宿标准\nQ2: 2025 报销更新\nQ3: 住宿城市分级';
+            fireParticle(0, 'tl', 'bl', '#ea580c');
+        }},
+        { run: () => {
+            setActive('rag','kb');
+            status.rag.textContent = '⟳ 向量检索 + BM25\n并行执行 3 路查询';
+            status.kb.textContent  = '🔎 搜索向量库…\nTop-K 候选: 12 个 Chunk';
+            fireParticle(0, 'bl', 'br', '#2563eb');
+            fireParticle(1, 'bl', 'br', '#2563eb');
+        }},
+        { run: () => {
+            setActive('rag','kb');
+            status.kb.textContent  = '✓ 返回相关片段:\n[#12] 报销制度 v3.2\n[#07] 2025 差旅通知';
+            status.rag.textContent = '⚙ 重排序 / 去重\n保留 Top-3';
+            fireParticle(0, 'br', 'bl', '#ea580c');
+        }},
+        { run: () => {
+            setActive('rag','agent');
+            status.rag.textContent   = '✓ 输出上下文片段\n带来源 [#12][#07]';
+            status.agent.textContent = '⟳ 收到检索结果\n准备调用 LLM 推理';
+            fireParticle(0, 'bl', 'tl', '#16a34a');
+        }},
+        { run: () => {
+            setActive('agent','llm');
+            status.agent.textContent = '→ 注入上下文\n请求生成回答';
+            status.llm.textContent   = '🧠 基于片段推理…\n融合多源信息';
+            fireParticle(0, 'tl', 'tr', '#7c3aed');
+        }},
+        { run: () => {
+            setActive('agent','llm');
+            status.llm.textContent   = '✓ 生成带引用回答';
+            status.agent.textContent = '✓ 完成 · 返回用户';
+            ans.innerHTML = '一线城市 <b style="color:#fbbf24">500 元/晚</b>，其他城市 350 元/晚；2025 起新增高铁一等座可报销。 <span class="cite">来源: [#12 报销制度 v3.2] [#07 2025 差旅通知]</span>';
+        }},
+    ];
+
+    QA_STEPS.forEach(()=>{
+        const d = document.createElement('span');
+        d.className = 'rag2-dot';
+        qaDots.appendChild(d);
     });
+    const qaDotEls = qaDots.querySelectorAll('.rag2-dot');
 
-    closeBtn.addEventListener('click', closeModal);
-
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) closeModal();
+    let qaI = -1;
+    function qaRender() {
+        qaDotEls.forEach((d,j)=>{
+            d.classList.remove('done','cur');
+            if (j < qaI) d.classList.add('done');
+            if (j === qaI) d.classList.add('cur');
+        });
+        qaPill.textContent = `${Math.max(0,qaI+1)} / ${QA_STEPS.length}`;
+        if (qaI >= QA_STEPS.length - 1) {
+            qaNextBtn.textContent = '✓ 已完成';
+            qaNextBtn.disabled = true;
+        } else {
+            qaNextBtn.textContent = qaI < 0 ? '▶ 开始' : '下一步 ▶';
+            qaNextBtn.disabled = false;
+        }
+    }
+    function qaReset() {
+        qaI = -1;
+        clearCards();
+        ans.innerHTML = '点击"下一步"开始演示 Agent 如何检索并生成答案…';
+        qaRender();
+    }
+    qaNextBtn.addEventListener('click', () => {
+        if (qaI >= QA_STEPS.length - 1) return;
+        qaI++;
+        QA_STEPS[qaI].run();
+        qaRender();
     });
+    qaResetBtn.addEventListener('click', qaReset);
+    qaReset();
 
-    modal.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeModal();
-    });
+    /* ============================================================
+       "Why vectorize?" modal
+       ============================================================ */
+    const whyBtn     = container.querySelector('#why-btn');
+    const whyOverlay = container.querySelector('#why-overlay');
+    const whyClose   = container.querySelector('#why-close');
+    if (whyBtn && whyOverlay) {
+        whyBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            whyOverlay.classList.add('show');
+        });
+        whyClose.addEventListener('click', () => whyOverlay.classList.remove('show'));
+        whyOverlay.addEventListener('click', (e) => {
+            if (e.target === whyOverlay) whyOverlay.classList.remove('show');
+        });
+    }
 };
 
 export default content;
