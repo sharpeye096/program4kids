@@ -171,6 +171,3 @@ After generating the report:
 - **Multi-file artifacts**: treat all files as one artifact and cross-reference findings
 - **Re-checking**: re-read the artifact fresh; do not cache previous results
 
----
-
-完整的 HTML 报告模板也包含在文件中，带有专业的 CSS 样式（color-coded badges、collapsible sections、print-friendly 等）；如果需要，可以再单独补充这一部分。
