@@ -2,113 +2,150 @@ import { html } from '../app.js';
 
 export default html`
     <style>
-        .recap-list {
-            list-style: none !important;
-            padding: 0 !important;
-            margin: 0 !important;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
+        .hazard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.6rem;
+            margin-bottom: 0.6rem;
         }
-        .recap-list li {
-            padding: 0.7rem 1rem 0.7rem 2.8rem !important;
-            position: relative;
-            font-size: 1.2rem !important;
-            margin-bottom: 0 !important;
-            background: #f8fafc;
-            border-radius: 6px;
-            border: 1px solid #e2e8f0;
-            line-height: 1.5;
+        .hazard-card {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            border-radius: 8px;
+            padding: 0.5rem 0.7rem;
+            border-left: 3px solid #ef4444;
         }
-        .recap-list li::before {
-            content: "✓" !important;
-            position: absolute;
-            left: 0.9rem;
-            top: 0.7rem;
-            color: #22c55e !important;
-            font-weight: 700;
-            font-size: 1.2rem !important;
+        .hazard-card h4 {
+            margin: 0 0 0.15rem 0;
+            font-size: 0.95rem;
+            color: #991b1b;
         }
-        .action-card {
+        .hazard-card p {
+            margin: 0;
+            font-size: 0.8rem;
+            color: #7f1d1d;
+            line-height: 1.35;
+        }
+        .rule-card {
             display: flex;
             align-items: flex-start;
-            gap: 1rem;
-            padding: 1rem;
-            border-radius: 10px;
-            border: 1px solid #e2e8f0;
-            background: #fff;
+            gap: 0.6rem;
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 8px;
+            padding: 0.55rem 0.7rem;
+            flex: 1;
+            min-width: 0;
         }
-        .action-num {
+        .rule-num {
             flex-shrink: 0;
-            width: 36px;
-            height: 36px;
-            background: linear-gradient(135deg, #3b82f6, #1e40af);
+            width: 24px;
+            height: 24px;
+            background: #22c55e;
             color: #fff;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 0.8rem;
         }
-        .action-text { flex: 1; }
-        .action-text strong { color: #1e293b; font-size: 1.05rem; }
-        .action-text p { margin: 4px 0 0 0; font-size: 0.95rem; color: #64748b; }
+        .rule-card .text { flex: 1; }
+        .rule-card strong { color: #166534; font-size: 0.9rem; }
+        .rule-card p { margin: 0; font-size: 0.8rem; color: #14532d; line-height: 1.35; }
+        .example-box {
+            background: #fffbeb;
+            border: 1px solid #fde68a;
+            border-radius: 8px;
+            padding: 0.55rem 0.8rem;
+            display: flex;
+            gap: 0.8rem;
+            align-items: flex-start;
+        }
+        .example-box code {
+            background: #fff;
+            border: 1px solid #fcd34d;
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-size: 0.8rem;
+            color: #92400e;
+        }
     </style>
+    <div style="display: flex; flex-direction: column; height: 100%; justify-content: space-evenly; padding-bottom: 1rem;">
 
-    <h2 style="background: linear-gradient(90deg, #1e40af, #7c3aed); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 2.2rem; margin-bottom: 1rem;">9. 总结与行动</h2>
-    
-    <div class="grid-2" style="gap: 2rem; align-items: start;">
-        <!-- 左列：今天学到了什么 -->
-        <div>
-            <h3 style="margin-top: 0; margin-bottom: 0.8rem; font-size: 1.6rem;">📖 今天你学到了什么</h3>
-            <ul class="recap-list">
-                <li>AI 体系分三层：大脑（大模型）→ 双手（Agent）→ 能量（云算力）【隐藏了芯片】</li>
-                <li>自然语言就是新的编程语言，技术门槛正在消失</li>
-                <li>"龙虾"的本质 = 7×24 服务器 + Coding Agent + IM 通道</li>
-                <li>SKILL 让 AI 能力模块化、可复用，避免重复造轮子</li>
-                <li>你是项目经理，AI 是那个干活的优秀的应届毕业生</li>
-            </ul>
+    <h2 style="font-size: 1.7rem; margin-bottom: 0.3rem; background: linear-gradient(90deg, #dc2626, #f97316); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+        8.2 认知陷阱：AI 也会"胡说八道"
+    </h2>
+
+    <div style="background: linear-gradient(135deg, #fef2f2, #fff7ed); border: 1px solid #fecaca; border-radius: 12px; padding: 0.5rem 0.8rem; margin-bottom: 0.5rem;">
+        <div style="font-size: 1.1rem; font-weight: 800; color: #991b1b; margin-bottom: 0.1rem;">⚠️ "大语言模型"，不是"知识库"：它不是在查数据库，而是在做概率造句。</div>
+        <div style="font-size: 0.99rem; color: #7f1f1d; line-height: 1.35;">它"太能说了"，经常一本正经地胡说八道。</div>
+    </div>
+
+    <h3 style="margin: 0 0 0.3rem 0; font-size: 1rem; color: #0f172a;">最容易幻觉的场景</h3>
+    <div class="hazard-grid">
+        <div class="hazard-card">
+            <h4>🔢 数字与统计</h4>
+            <p>市场数据、财报数字、年份、百分比——模型会自信地编造</p>
         </div>
+        <div class="hazard-card">
+            <h4>📚 引用与出处</h4>
+            <p>编造不存在的论文、作者名、书名，看起来有模有样</p>
+        </div>
+        <div class="hazard-card">
+            <h4>⚖️ 法条与政策</h4>
+            <p>不同国家的法律条文、合规要求，易混淆或直接虚构</p>
+        </div>
+        <div class="hazard-card">
+            <h4>🧮 精确逻辑计算</h4>
+            <p>多步推理、复杂算术、穷举类问题——靠推理硬扛容易出错</p>
+        </div>
+    </div>
 
-        <!-- 右列：今天回去就能做的 3 件事 -->
-        <div>
-            <h3 style="margin-top: 0; margin-bottom: 0.8rem; font-size: 1.6rem;">🚀 今天回去就能做的 3 件事</h3>
-            <div style="display: flex; flex-direction: column; gap: 0.8rem;">
-                <div class="action-card" style="border-left: 3px solid #3b82f6;">
-                    <div class="action-num">1</div>
-                    <div class="action-text">
-                        <strong>与 Gemini 深度对话</strong>
-                        <p>试试它的 Canvas 协作写作、NotebookLM 文档问答功能，体验"AI 第二大脑"</p>
-                    </div>
-                </div>
-                <div class="action-card" style="border-left: 3px solid #8b5cf6;">
-                    <div class="action-num">2</div>
-                    <div class="action-text">
-                        <strong>用飞书妙记录一次会议</strong>
-                        <p>记录一段会议或讨论，让 AI 自动总结要点和待办清单，感受即时提效</p>
-                    </div>
-                </div>
-                <div class="action-card" style="border-left: 3px solid #059669;">
-                    <div class="action-num">3</div>
-                    <div class="action-text">
-                        <strong>安装 Claude Code 体验编程</strong>
-                        <p>如果你有兴趣，按照配置指南搭建环境，用自然语言让 AI 帮你写第一个脚本</p>
-                    </div>
-                </div>
+    <h3 style="margin: 0 0 0.3rem 0; font-size: 1rem; color: #0f172a;">三条保命原则</h3>
+    <div style="display: flex; gap: 0.5rem; margin-bottom: 0.5rem;">
+        <div class="rule-card">
+            <div class="rule-num">1</div>
+            <div class="text">
+                <strong>重要信息交叉验证</strong>
+                <p>让 AI 给出具体来源（链接/文档名/章节），自己去核实。不能核实的就当它编的。</p>
+            </div>
+        </div>
+        <div class="rule-card">
+            <div class="rule-num">2</div>
+            <div class="text">
+                <strong>关键计算交给工具</strong>
+                <p>算账、数据分析别让模型心算。让它写 Python 代码执行，代码跑出来才是准的。</p>
+            </div>
+        </div>
+        <div class="rule-card">
+            <div class="rule-num">3</div>
+            <div class="text">
+                <strong>先问"你有多大把握"</strong>
+                <p>要求 AI 标注置信度：高/中/低。不确定的部分它会自己承认，帮你判断哪些需要复核。</p>
             </div>
         </div>
     </div>
 
-    <div style="margin-top: 1.5rem; text-align: center; background: linear-gradient(135deg, #eff6ff, #f0fdf4); border: 1px solid #bae6fd; border-radius: 10px; padding: 1rem 1.5rem; display: flex; align-items: center; justify-content: center; gap: 2rem;">
-        <div style="text-align: left;">
-            <p style="margin: 0 0 0.3rem 0; font-size: 1.3rem; color: #0f172a; font-weight: 600;">
-                💡 打破边界，让技术真正为你的业务创意服务！
-            </p>
-            <p style="margin: 0; font-size: 1rem; color: #64748b;">
-                欢迎关注、留言、提问，我会尽可能回答 👉
-            </p>
+    <div class="example-box">
+        <span style="font-size: 1.2rem;">💡</span>
+        <div>
+            <div style="font-weight: 700; color: #92400e; font-size: 0.85rem; margin-bottom: 0.15rem;">实战建议：写 Prompt 时加上这句话</div>
+            <div style="font-size: 0.85rem; color: #78350f; line-height: 1.4;">
+            <code>"请列出你的回答中哪些是确凿事实、哪些是你的推理推断。对于数据和引用，请给出你可以确认的来源。"</code>
+            </div>
         </div>
-        <img src="./assets/wechat.jpg" alt="WeChat" style="width: 100px; height: 100px; border-radius: 8px; border: 2px solid #e2e8f0; flex-shrink: 0;">
+    </div>
+
+    <div class="example-box">
+        <span style="font-size: 1.2rem;">💡</span>
+        <div>
+            <div style="font-weight: 700; color: #92400e; font-size: 0.85rem; margin-bottom: 0.15rem;">实战建议：用AI写工具，用工具完成任务</div>
+            <div style="font-size: 0.85rem; color: #78350f; line-height: 1.4;">
+            <code>"请你给我写一段Python程序，检查输入的Excel文件中，是否每一行都有开始时间、结束时间，且结束时间不早于开始时间。"</code>
+            </div>
+        </div>
+    </div>
+
     </div>
 `;

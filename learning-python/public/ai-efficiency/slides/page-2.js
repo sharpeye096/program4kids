@@ -117,7 +117,7 @@ export const onMount = (container) => {
         },
         table: {
             content: `
-                <p style="margin-bottom: 0.5rem; color:#475569; font-size: 1.15rem;">📊 <strong>多维表让不懂代码的人也能搭建轻量级数据库。</strong>配合 AI，表格里的杂乱数据能自动处理、提取特征，甚至生成可视化分析报告。</p>
+                <p style="margin-bottom: 0.5rem; color:#475569; font-size: 1.15rem;">📊 <strong>多维表让不懂代码的人也能搭建轻量级数据库。</strong>与IM（飞书、钉钉）集成，可作为轻量ERP使用。</p>
                 <table class="tool-table">
                     <tbody>
                         <tr>

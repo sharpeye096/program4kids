@@ -107,7 +107,7 @@ export default html`
 
         <div class="cover-badge">AI EFFICIENCY · 2026</div>
         
-        <h1 class="cover-title">非技术人员如何使用<br>AI 提升工作效能</h1>
+        <h1 class="cover-title">不懂代码，也能驾驭 AI</h1>
         
         <div style="max-width: 850px; margin: 0 auto 3rem auto; position: relative; padding: 0 2rem;">
             <!-- 装饰性大引号 -->

@@ -125,12 +125,17 @@ export default html`
         .strategy-card ul {
             margin: 0;
             padding-left: 1rem;
+            list-style-type: disc;
         }
         .strategy-card li {
             margin: 0.1rem 0;
             color: #475569;
             font-size: 0.8rem;
             line-height: 1.25;
+            padding-left: 0;
+        }
+        .strategy-card li::before {
+            content: none;
         }
     </style>
     <div style="display: flex; flex-direction: column; height: 100%; justify-content: space-evenly; padding-bottom: 0.5rem;">
