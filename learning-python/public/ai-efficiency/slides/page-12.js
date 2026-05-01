@@ -1,253 +1,347 @@
 import { html } from '../app.js';
 
-export const onMount = (container) => {
-    container.querySelectorAll('.quote-card h4').forEach(h4 => {
-        h4.addEventListener('click', () => {
-            h4.parentElement.classList.toggle('expanded');
-        });
-    });
-};
-
-export default html`
+const content = html`
     <style>
-        .boundary-table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
-            font-size: 0.8rem;
-            overflow: hidden;
-            border-radius: 12px;
-            border: 1px solid #dbeafe;
-            background: white;
+        .agent-card {
+            border-radius: 10px;
+            padding: 0.5rem 0.6rem;
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
         }
-        .boundary-table th,
-        .boundary-table td {
-            padding: 0.35rem 0.5rem;
-            border-bottom: 1px solid #e5e7eb;
-            border-right: 1px solid #eef2f7;
-            vertical-align: top;
+        .agent-card h4 {
+            margin-top: 0;
+            margin-bottom: 0.15rem;
+            font-size: 0.95rem;
+        }
+        .agent-card p, .agent-card li {
+            font-size: 0.82rem;
+            line-height: 1.4;
+        }
+        .agent-card ul {
+            padding-left: 0.2rem;
+            margin: 0.15rem 0;
+            flex: 1;
+            list-style-position: inside;
+        }
+        .sec-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.3rem;
+        }
+        .sec-item {
+            background: white;
+            border-radius: 8px;
+            padding: 0.25rem 0.5rem;
+            border: 1px solid #e5e7eb;
+        }
+        .sec-item-title {
+            font-weight: 700;
+            color: #1e40af;
+            font-size: 0.75rem;
+            margin-bottom: 0;
+        }
+        .sec-item-desc {
+            font-size: 0.7rem;
+            color: #475569;
             line-height: 1.25;
         }
-        .boundary-table th:last-child,
-        .boundary-table td:last-child {
-            border-right: none;
-        }
-        .boundary-table tr:last-child td {
-            border-bottom: none;
-        }
-        .boundary-table thead th {
-            background: #eff6ff;
-            color: #1e3a8a;
-            font-weight: 800;
-        }
-        .row-head {
-            background: #f8fafc;
-            font-weight: 700;
-            color: #0f172a;
-            width: 80px;
-            font-size: 0.75rem;
-        }
-        .mode-badge {
+        /* Enterprise modal button */
+        .enterprise-btn {
             display: inline-flex;
             align-items: center;
-            gap: 4px;
-            padding: 2px 8px;
-            border-radius: 999px;
-            font-size: 0.78rem;
-            font-weight: 700;
-            border: 1px solid transparent;
-        }
-        .quote-card {
-            background: white;
-            border: 1px solid #e2e8f0;
-            border-radius: 10px;
-            padding: 0;
-            overflow: hidden;
-        }
-        .quote-card h4 {
-            margin: 0;
-            padding: 0.35rem 0.6rem;
-            font-size: 0.85rem;
-            color: #0f172a;
+            gap: 5px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            padding: 0.2rem 0.7rem;
+            font-size: 0.75rem;
+            font-weight: 600;
             cursor: pointer;
-            display: flex;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(99,102,241,0.3);
+            vertical-align: middle;
+            margin-left: 0.5rem;
+        }
+        .enterprise-btn:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 4px 16px rgba(99,102,241,0.45);
+            background: linear-gradient(135deg, #818cf8, #a78bfa);
+        }
+        /* Modal overlay */
+        .p11-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            display: none;
+            justify-content: center;
             align-items: center;
-            justify-content: space-between;
-            user-select: none;
-            transition: background 0.2s;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s;
+            backdrop-filter: blur(4px);
         }
-        .quote-card h4:hover {
-            background: #f1f5f9;
+        .p11-modal-overlay.active {
+            display: flex;
+            opacity: 1;
         }
-        .quote-card h4::after {
-            content: "▸";
-            font-size: 0.9rem;
+        .p11-modal-content {
+            background: linear-gradient(145deg, #ffffff, #f8faff);
+            padding: 1.8rem 2rem;
+            border-radius: 16px;
+            max-width: 92%;
+            max-height: 88vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 25px 60px -12px rgba(0,0,0,0.3);
+            width: 780px;
+            border: 1px solid rgba(99,102,241,0.15);
+        }
+        .p11-modal-close {
+            position: absolute;
+            top: 0.8rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            line-height: 1;
+            cursor: pointer;
             color: #94a3b8;
-            transition: transform 0.2s;
+            transition: color 0.2s;
         }
-        .quote-card.expanded h4::after {
-            transform: rotate(90deg);
+        .p11-modal-close:hover {
+            color: #ef4444;
         }
-        .quote-body {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-            padding: 0 0.6rem;
+        .ent-section {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 0.7rem 1rem;
+            margin-bottom: 0.7rem;
+            border-left: 4px solid #6366f1;
         }
-        .quote-body-inner {
-            padding-bottom: 0.4rem;
+        .ent-section h4 {
+            margin: 0 0 0.3rem 0;
+            font-size: 0.95rem;
+            color: #312e81;
         }
-        .quote-card.expanded .quote-body {
-            max-height: 300px;
+        .ent-section p {
+            margin: 0;
+            font-size: 0.88rem;
+            color: #475569;
+            line-height: 1.55;
         }
-        .quote-card blockquote {
-            margin: 0 0 0.2rem 0;
-            padding-left: 0.4rem;
-            border-left: 3px solid #93c5fd;
-            color: #334155;
-            font-size: 0.78rem;
-            line-height: 1.3;
+        .ent-vs {
+            display: flex;
+            gap: 0.8rem;
+            margin-bottom: 0.7rem;
         }
-        .quote-card .src {
-            font-size: 0.72rem;
-            color: #64748b;
+        .ent-vs-card {
+            flex: 1;
+            border-radius: 10px;
+            padding: 0.7rem 0.9rem;
         }
-        .strategy-card {
-            border-radius: 8px;
-            padding: 0.5rem 0.7rem;
-            border: 1px solid #e2e8f0;
-            background: linear-gradient(135deg, #f8fafc, #ffffff);
-        }
-        .strategy-card h4 {
-            margin: 0 0 0.1rem 0;
+        .ent-vs-card h5 {
+            margin: 0 0 0.3rem 0;
             font-size: 0.9rem;
         }
-        .strategy-card ul {
+        .ent-vs-card p, .ent-vs-card li {
+            font-size: 0.82rem;
+            line-height: 1.5;
+            color: #334155;
+        }
+        .ent-vs-card ul {
+            margin: 0.2rem 0 0 0;
+            padding-left: 1.2rem;
+        }
+        .ent-summary {
+            background: linear-gradient(135deg, #eef2ff, #faf5ff);
+            border: 1px solid #c7d2fe;
+            border-radius: 10px;
+            padding: 0.7rem 1rem;
+            text-align: center;
+        }
+        .ent-summary p {
             margin: 0;
-            padding-left: 1rem;
-            list-style-type: disc;
-        }
-        .strategy-card li {
-            margin: 0.1rem 0;
-            color: #475569;
-            font-size: 0.8rem;
-            line-height: 1.25;
-            padding-left: 0;
-        }
-        .strategy-card li::before {
-            content: none;
+            font-size: 0.9rem;
+            color: #3730a3;
+            line-height: 1.6;
+            font-weight: 500;
         }
     </style>
-    <div style="display: flex; flex-direction: column; height: 100%; justify-content: space-evenly; padding-bottom: 0.5rem;">
-    <h2 style="font-size: 1.5rem; margin-bottom: 0.15rem; background: linear-gradient(90deg, #0f172a, #1d4ed8); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-        8.1 安全认知：怎么理解 AI 的数据边界？
-    </h2>
+    <div style="display: flex; flex-direction: column; height: 100%; justify-content: space-evenly; padding-bottom: 1rem;">
+    <h2 style="font-size: 1.5rem; margin-bottom: 0.15rem;">9. 心态建设：如何与AI相处？</h2>
 
-    <div style="background: linear-gradient(135deg, #fff7ed, #eff6ff); border: 1px solid #fed7aa; border-radius: 12px; padding: 0.4rem 0.7rem; margin-bottom: 0.4rem;">
-        <div style="font-size: 0.9rem; font-weight: 800; color: #9a3412; margin-bottom: 0.1rem;">上面三条解决"态度"和"机制"问题，这一页解决"认知"问题：你到底把什么数据交给了谁？</div>
-        <div style="font-size: 0.8rem; color: #475569; line-height: 1.3;">判断 AI 是否安全，不能只看"模型强不强"，而要先看<strong>接入模式</strong>。同一个模型，走个人账号、企业 API、私有化部署，安全边界完全不同。</div>
+    <!-- Core Metaphor -->
+    <div class="card" style="background: #fff1f2; border-left: 4px solid #e11d48; margin-bottom: 0.3rem; padding: 0.35rem 0.8rem;">
+        <h3 style="color: #be123c; margin-top: 0; margin-bottom: 0.15rem; font-size: 0.95rem;">🎓 核心心态：品味与判断归人，算力与执行归 AI</h3>
+        <p style="margin-bottom: 0.25rem; font-size: 0.99rem; color: #4c0519;">人是<strong>“架构师”与“审核者”</strong>。<strong>程序性、重复性的数字体力劳动</strong>交给 AI，而<strong>核心判断力（Judgment）与品味（Taste）</strong>是人的价值所在。</p>
+        <p style="margin-bottom: 0; font-size: 0.99rem; color: #4c0519; line-height: 1.4;">同时也要<strong>正视这种协同模式的局限性</strong>——现阶段用 AI 开发<strong>自己的效率工具</strong>完全可以，但面对复杂客户交付时，AI 只能提供基础执行，最后 20% 的<strong>商业洞察与架构决断</strong>，依然需要由具备专业经验的人脑来完成。</p>
     </div>
 
-    <div class="grid-2" style="gap: 0.6rem; align-items: start;">
-        <div style="display:flex; flex-direction:column; gap: 0.3rem;">
-            <div>
-                <div style="font-size: 0.95rem; font-weight: 800; color:#0f172a; margin-bottom: 0.2rem;">AI 接入的三种模式 & 安全性对比</div>
-                <table class="boundary-table">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th><span class="mode-badge" style="background:#dbeafe; color:#1d4ed8; border-color:#bfdbfe;">A：个人账户</span></th>
-                            <th><span class="mode-badge" style="background:#ede9fe; color:#6d28d9; border-color:#ddd6fe;">B：企业级服务</span></th>
-                            <th><span class="mode-badge" style="background:#dcfce7; color:#047857; border-color:#bbf7d0;">C：私有化部署</span></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="row-head">说明</td>
-                            <td>员工自行注册，IT 几乎无感知</td>
-                            <td>企业采购 API / Enterprise，有管理后台与审计</td>
-                            <td>模型部署在企业内网或私有云</td>
-                        </tr>
-                        <tr>
-                            <td class="row-head">典型代表</td>
-                            <td>ChatGPT、DeepSeek、Gemini 网页版</td>
-                            <td>OpenAI API、Vertex AI、Copilot Business</td>
-                            <td>DeepSeek、千问、GLM 私有部署</td>
-                        </tr>
-                        <tr>
-                            <td class="row-head">数据离开公司</td>
-                            <td>是</td>
-                            <td>是（进入服务商云端）</td>
-                            <td>否</td>
-                        </tr>
-                        <tr>
-                            <td class="row-head">用于再训练</td>
-                            <td>常见默认可能会</td>
-                            <td>主流条款通常默认不会</td>
-                            <td>企业可完全自控</td>
-                        </tr>
-                        <tr>
-                            <td class="row-head">安全控制力度</td>
-                            <td>极低</td>
-                            <td>中高（审计、权限可管）</td>
-                            <td>极高</td>
-                        </tr>
-                    </tbody>
-                </table>
+    <!-- Three-tier AI Tool Comparison -->
+    <h3 style="margin-top: 0; margin-bottom: 0.2rem; font-size: 1rem;">🤖 三种 AI 协作模式：你和"毕业生"的关系
+        <button class="enterprise-btn" id="enterprise-btn">🏢 </button>
+    </h3>
+
+    <div style="display: flex; gap: 0.6rem; margin-bottom: 0.35rem; align-items: stretch;">
+        <!-- Chat Tools -->
+        <div class="agent-card" style="background: #eff6ff; border: 2px solid #bfdbfe;">
+            <h4 style="color: #1e40af;">💬 网页聊天框</h4>
+            <div style="font-size: 0.72rem; color: #64748b; margin-bottom: 0.2rem;">ChatGPT / DeepSeek / Gemini / Kimi</div>
+            <div style="background: #dbeafe; border-radius: 6px; padding: 0.3rem 0.5rem; margin-bottom: 0.3rem; border-left: 3px solid #3b82f6;">
+                <div style="font-size: 0.8rem; color: #1e3a5f; font-style: italic;">👔 请了一位<strong>外部顾问</strong>——非常能干，但<strong>不了解你公司内部</strong>的运行方式。</div>
             </div>
+            <ul style="color: #1e3a5f; font-size: 0.82rem; margin: 0;">
+                <li>你描述问题，他给出建议</li>
+                <li>【几乎】不碰你的文件和系统</li>
+                <li>适合<strong>问答、创作、临时咨询</strong></li>
+                <li>成本较低</li>
+            </ul>
         </div>
 
-        <div style="display:flex; flex-direction:column; gap: 0.25rem;">
-            <div style="font-size: 0.95rem; font-weight: 800; color:#0f172a;">主流厂商条款摘要（2026）</div>
-
-            <div class="quote-card">
-                <h4>OpenAI</h4>
-                <div class="quote-body"><div class="quote-body-inner">
-                <blockquote>"We do not train our models on your business data by default." / 消费者服务政策则允许"use content ... to improve our Services"。</blockquote>
-                <div class="src">来源：OpenAI Enterprise Privacy、Business Data、Consumer Services FAQ（官方政策页）</div>
-                </div></div>
+        <!-- OpenClaw -->
+        <div class="agent-card" style="background: #fefce8; border: 2px solid #fde68a;">
+            <h4 style="color: #a16207;">🦞 龙虾 (OpenClaw)</h4>
+            <div style="font-size: 0.72rem; color: #64748b; margin-bottom: 0.2rem;">自动化 Agent · 远程执行</div>
+            <div style="background: #fffbeb; border-radius: 6px; padding: 0.3rem 0.5rem; margin-bottom: 0.3rem; border-left: 3px solid #f59e0b;">
+                <div style="font-size: 0.8rem; color: #92400e; font-style: italic;">📱 把毕业生<strong>一个人扔在公司</strong>，你跑了，通过<strong>电话/微信遥控</strong>。</div>
             </div>
-
-            <div class="quote-card">
-                <h4>Google</h4>
-                <div class="quote-body"><div class="quote-body-inner">
-                <blockquote>"Google won't use your data to train or fine-tune any AI/ML models without your prior permission or instruction." 另，Vertex AI Search 明确写明"客户数据不会用于训练基础模型"。</blockquote>
-                <div class="src">来源：Google Cloud Vertex AI zero data retention / data governance 官方文档</div>
-                </div></div>
-            </div>
-
-            <div class="quote-card">
-                <h4>GitHub Copilot</h4>
-                <div class="quote-body"><div class="quote-body-inner">
-                <blockquote>"Interaction data ... from Copilot Free, Pro, and Pro+ users will be used ... unless they opt out." 同页同时写明：Business / Enterprise "are not affected by this update"。</blockquote>
-                <div class="src">来源：GitHub Blog《Updates to GitHub Copilot interaction data usage policy》</div>
-                </div></div>
-            </div>
-
-            <div class="quote-card">
-                <h4>智谱 / GLM</h4>
-                <div class="quote-body"><div class="quote-body-inner">
-                <blockquote>开放平台公开说明强调：API / 开放平台数据默认不用于模型训练；而智谱清言个人产品隐私政策强调"去标识化处理后的信息不属于个人信息"，并允许围绕服务优化进行处理。</blockquote>
-                <div class="src">来源：智谱开放平台公开说明、智谱清言隐私政策公开页</div>
-                </div></div>
-            </div>
-        </div>
-    </div>
-
-    <div style="display: flex; gap: 0.5rem; margin-top: 0.2rem;">
-        <div class="strategy-card" style="border-left: 4px solid #2563eb; flex: 1; padding: 0.4rem 0.7rem;">
-            <h4 style="color:#1d4ed8; font-size: 0.9rem;">一句话结论</h4>
-            <div style="font-size:0.78rem; color:#475569; line-height:1.3;">你愿意放进钉钉、飞书、微软 SharePoint 这类企业 SaaS 的内部资料，原则上就可以优先考虑<strong>模式 B</strong>；再往上更敏感，就升级到<strong>模式 C</strong>。</div>
+            <ul style="color: #713f12; font-size: 0.82rem; margin: 0;">
+                <li>独立干活，看不到中间过程</li>
+                <li>错了只能口述纠正，再等一轮</li>
+                <li><strong>标准化、低风险的批量任务</strong></li>
+                <li>你回来说不定发现他已经把办公室砸了</li>
+            </ul>
         </div>
 
-        <div class="strategy-card" style="border-left: 4px solid #16a34a; flex: 1; padding: 0.4rem 0.7rem;">
-            <h4 style="color:#166534; font-size: 0.9rem;">落地策略：按数据机密程度选模式</h4>
-            <ul style="padding-left: 1rem;">
-                <li style="font-size:0.78rem; padding:0.15rem 0 0.15rem 0.8rem;"><strong>极度机密</strong>（核心知识产权、未公开代码）→ 必须用 <strong>模式 C</strong></li>
-                <li style="font-size:0.78rem; padding:0.15rem 0 0.15rem 0.8rem;"><strong>内部业务数据</strong>（周报、常规代码、内部文档）→ 优先用 <strong>模式 B</strong></li>
-                <li style="font-size:0.78rem; padding:0.15rem 0 0.15rem 0.8rem;"><strong>通用辅助</strong>（邮件润色、公开技术查询）→ 可用 <strong>模式 A</strong>，但需安全培训</li>
+        <!-- Coding Agent -->
+        <div class="agent-card" style="background: #f0fdf4; border: 2px solid #86efac;">
+            <h4 style="color: #166534;">⚡ Coding Agent</h4>
+            <div style="font-size: 0.72rem; color: #64748b; margin-bottom: 0.2rem;">Claude Code / Cursor / Codex</div>
+            <div style="background: #dcfce7; border-radius: 6px; padding: 0.3rem 0.5rem; margin-bottom: 0.3rem; border-left: 3px solid #22c55e;">
+                <div style="font-size: 0.8rem; color: #14532d; font-style: italic;">🪑 你<strong>坐在他旁边</strong>，看着他操作，发现错了<strong>立刻纠正</strong>。</div>
+            </div>
+            <ul style="color: #14532d; font-size: 0.82rem; margin: 0;">
+                <li>AI 直接在你电脑上<strong>读写运行</strong></li>
+                <li>每步可<strong>审批、暂停、回滚</strong></li>
+                <li>适合<strong>复杂工程、持续迭代</strong></li>
             </ul>
         </div>
     </div>
+    <!-- Security Section -->
+    <div style="background: linear-gradient(135deg, #fef2f2, #fff7ed); border: 1px solid #fecaca; border-radius: 12px; padding: 0.4rem 0.7rem; position: relative; overflow: hidden;">
+        <div style="position: absolute; top: -10px; right: -5px; font-size: 3.5rem; opacity: 0.08; transform: rotate(15deg);">🛡️</div>
+        <h3 style="margin-top: 0; margin-bottom: 0.15rem; color: #991b1b; font-size: 0.9rem; display: flex; align-items: center; gap: 8px;">
+            ⚠️ 安全意识 —— 信任但要设边界
+        </h3>
+        <p style="font-size: 0.99rem; color: #7f1d1d; line-height: 1.35; margin-bottom: 0.3rem;">
+            AI 时代的<strong>供应链攻击</strong>风险显著增加（恶意依赖包、工具链后门）。这就像 <strong>90年代的个人电脑</strong> ——早期发展，病毒疯狂肆虐。未来会逐步解决，但<strong>现在必须绷紧这根弦</strong>。
+        </p>
+        <div class="sec-grid" style="font-size: 0.88rem">
+            <div class="sec-item">
+                <div class="sec-item-title">🏖️ 沙盒隔离 (Sandbox)</div>
+                <div class="sec-item-desc">把 AI 放到<strong>"安全沙盒"</strong>中运行，数据即使泄露，风险也可接受。</div>
+            </div>
+            <div class="sec-item">
+                <div class="sec-item-title">🖥️ 物理 / 逻辑隔离</div>
+                <div class="sec-item-desc">用<strong>独立电脑或 VM</strong> 运行 AI 工具，不直接接触核心业务系统。</div>
+            </div>
+            <div class="sec-item">
+                <div class="sec-item-title">🔍 审查与顾问</div>
+                <div class="sec-item-desc">AI 生成的代码和依赖包需要<strong>专业审查</strong>，重要决策引入安全顾问。</div>
+            </div>
+            <div class="sec-item">
+                <div class="sec-item-title">🧠 核心原则</div>
+                <div class="sec-item-desc"><strong>永远不要把不可承受损失的东西</strong>暴露在未经验证的工具链中。</div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- Enterprise AI Modal -->
+    <div id="enterprise-modal" class="p11-modal-overlay">
+        <div class="p11-modal-content">
+            <button class="p11-modal-close">&times;</button>
+            <h2 style="margin-top: 0; margin-bottom: 0.2rem; color: #312e81; font-size: 1.35rem;">🏢 第四种协作模式：企业级智能体</h2>
+            <p style="color: #6366f1; font-size: 0.85rem; margin-bottom: 0.8rem; font-style: italic;">Microsoft 365 Copilot · 钉钉悟空 —— 拿着企业钥匙的"大管家"</p>
+
+            <div class="ent-section">
+                <h4>🧬 核心底座：企业图谱（Graph）</h4>
+                <p>普通 AI 像个<strong>失忆的聪明人</strong>，而它们的护城河在于<strong>上下文</strong>。微软靠 <strong>Microsoft Graph</strong> 串联邮件、Teams、OneDrive、日历；钉钉靠<strong>组织架构与业务数据底座</strong>打通部门、汇报线、会议纪要、审批流。</p>
+            </div>
+
+            <div class="ent-section" style="border-left-color: #059669;">
+                <h4 style="color: #065f46;">🔐 严格按权限办事</h4>
+                <p>完美解决了"龙虾"的<strong>越权痛点</strong>。你没有权限的文件，它们<strong>绝对不碰</strong>——戴着镣铐跳舞，合规且安全。</p>
+            </div>
+
+            <div class="ent-section" style="border-left-color: #d97706;">
+                <h4 style="color: #92400e;">🦾 操作"手脚"都是自家全家桶</h4>
+                <p>它们不是通用 AI，而是<strong>深度嵌入</strong>各自办公生态的每一个角落。</p>
+            </div>
+
+            <div class="ent-vs">
+                <div class="ent-vs-card" style="background: #eff6ff; border: 2px solid #bfdbfe;">
+                    <h5 style="color: #1e40af;">🪟 Microsoft 365 Copilot</h5>
+                    <p>长在<strong>"文档与办公套件"</strong>的生态里</p>
+                    <ul>
+                        <li>Word 写文档、Excel 数据透视</li>
+                        <li>PowerPoint 生成幻灯片</li>
+                        <li>Teams 会议纪要</li>
+                        <li>擅长复杂 Office 资产 & 跨国协同</li>
+                    </ul>
+                </div>
+                <div class="ent-vs-card" style="background: #eef2ff; border: 2px solid #c7d2fe;">
+                    <h5 style="color: #4338ca;">💎 钉钉悟空</h5>
+                    <p>长在<strong>"即时通讯与组织管理"</strong>的生态里</p>
+                    <ul>
+                        <li>钉钉文档、宜搭低代码</li>
+                        <li>审批流、日程表</li>
+                        <li>企业内部知识库</li>
+                        <li>擅长中国企业特色的群协作 & 打卡</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="ent-summary">
+                <p>💡 它们都是拿着企业钥匙的"大管家"。<br>区别仅仅在于生态位不同——一个长在 <strong>Office</strong>，一个长在<strong>钉钉</strong>。</p>
+            </div>
+        </div>
     </div>
 `;
+
+export const onMount = (container) => {
+    const btn = container.querySelector('#enterprise-btn');
+    const modal = container.querySelector('#enterprise-modal');
+    const closeBtn = container.querySelector('.p11-modal-close');
+
+    modal.setAttribute('tabindex', '-1');
+
+    const openModal = () => {
+        modal.classList.add('active');
+        modal.focus({ preventScroll: true });
+    };
+
+    const closeModal = () => {
+        modal.classList.remove('active');
+    };
+
+    btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openModal();
+    });
+
+    closeBtn.addEventListener('click', closeModal);
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+
+    modal.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeModal();
+    });
+};
+
+export default content;
