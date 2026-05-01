@@ -74,12 +74,12 @@ export default html`
     <div style="display: flex; flex-direction: column; height: 100%; justify-content: space-evenly; padding-bottom: 1rem;">
 
     <h2 style="font-size: 1.7rem; margin-bottom: 0.3rem; background: linear-gradient(90deg, #dc2626, #f97316); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-        8.2 认知陷阱：AI 也会"胡说八道"
+        9.2 认知陷阱：AI 也会"胡说八道"
     </h2>
 
     <div style="background: linear-gradient(135deg, #fef2f2, #fff7ed); border: 1px solid #fecaca; border-radius: 12px; padding: 0.5rem 0.8rem; margin-bottom: 0.5rem;">
-        <div style="font-size: 0.95rem; font-weight: 800; color: #991b1b; margin-bottom: 0.1rem;">⚠️ 叫"大语言模型"而不是"知识库"：它不是在查数据库，而是在做概率造句。</div>
-        <div style="font-size: 0.82rem; color: #7f1f1d; line-height: 1.35;">因为它"太能说了"，所以看起来非常有道理——但事实性错误与看似合理的虚构对它来说没有任何区别。</div>
+        <div style="font-size: 1.1rem; font-weight: 800; color: #991b1b; margin-bottom: 0.1rem;">⚠️ "大语言模型"，不是"知识库"：它不是在查数据库，而是在做概率造句。</div>
+        <div style="font-size: 0.99rem; color: #7f1f1d; line-height: 1.35;">它"太能说了"，经常一本正经地胡说八道。</div>
     </div>
 
     <h3 style="margin: 0 0 0.3rem 0; font-size: 1rem; color: #0f172a;">最容易幻觉的场景</h3>
@@ -133,6 +133,16 @@ export default html`
             <div style="font-weight: 700; color: #92400e; font-size: 0.85rem; margin-bottom: 0.15rem;">实战建议：写 Prompt 时加上这句话</div>
             <div style="font-size: 0.85rem; color: #78350f; line-height: 1.4;">
             <code>"请列出你的回答中哪些是确凿事实、哪些是你的推理推断。对于数据和引用，请给出你可以确认的来源。"</code>
+            </div>
+        </div>
+    </div>
+
+    <div class="example-box">
+        <span style="font-size: 1.2rem;">💡</span>
+        <div>
+            <div style="font-weight: 700; color: #92400e; font-size: 0.85rem; margin-bottom: 0.15rem;">实战建议：用AI写工具，用工具完成任务</div>
+            <div style="font-size: 0.85rem; color: #78350f; line-height: 1.4;">
+            <code>"请你给我写一段Python程序，检查输入的Excel文件中，是否每一行都有开始时间、结束时间，且结束时间不早于开始时间。"</code>
             </div>
         </div>
     </div>

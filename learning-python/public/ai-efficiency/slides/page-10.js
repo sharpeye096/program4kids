@@ -122,8 +122,13 @@ export default html`
         }
     </style>
     <div style="display: flex; flex-direction: column; height: 100%; justify-content: space-evenly; padding-bottom: 1rem;">
-    <h2 style="font-size: 2rem; margin: 0 0 0.4rem 0; background: linear-gradient(90deg, #0f766e, #2563eb); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-        7. 实战案例：Checklist 审核技能
+    <h2 style="font-size: 2rem; margin: 0 0 0.4rem 0; background: linear-gradient(90deg, #0f766e, #2563eb); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: flex; align-items: baseline; gap: 0.6rem; flex-wrap: wrap;">
+        <span>7. 实战案例：Checklist 审核技能</span>
+        <a href="https://github.com/sharpeye096/program4kids/blob/main/learning-python/public/ai-efficiency/assets/checklist.md"
+           target="_blank" rel="noopener"
+           style="font-size: 0.85rem; font-weight: 600; color: #2563eb; -webkit-text-fill-color: #2563eb; text-decoration: none; padding: 2px 10px; border: 1px solid #93c5fd; border-radius: 999px; background: #eff6ff;">
+           📄 查看 checklist.md →
+        </a>
     </h2>
 
     <div style="background: linear-gradient(135deg, #ecfeff, #eff6ff); border: 1px solid #bae6fd; border-radius: 12px; padding: 0.45rem 0.85rem; margin-bottom: 0.5rem;">

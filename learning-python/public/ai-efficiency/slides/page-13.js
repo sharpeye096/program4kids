@@ -1,114 +1,253 @@
 import { html } from '../app.js';
 
+export const onMount = (container) => {
+    container.querySelectorAll('.quote-card h4').forEach(h4 => {
+        h4.addEventListener('click', () => {
+            h4.parentElement.classList.toggle('expanded');
+        });
+    });
+};
+
 export default html`
     <style>
-        .recap-list {
-            list-style: none !important;
-            padding: 0 !important;
-            margin: 0 !important;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
+        .boundary-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            font-size: 0.8rem;
+            overflow: hidden;
+            border-radius: 12px;
+            border: 1px solid #dbeafe;
+            background: white;
         }
-        .recap-list li {
-            padding: 0.7rem 1rem 0.7rem 2.8rem !important;
-            position: relative;
-            font-size: 1.2rem !important;
-            margin-bottom: 0 !important;
+        .boundary-table th,
+        .boundary-table td {
+            padding: 0.35rem 0.5rem;
+            border-bottom: 1px solid #e5e7eb;
+            border-right: 1px solid #eef2f7;
+            vertical-align: top;
+            line-height: 1.25;
+        }
+        .boundary-table th:last-child,
+        .boundary-table td:last-child {
+            border-right: none;
+        }
+        .boundary-table tr:last-child td {
+            border-bottom: none;
+        }
+        .boundary-table thead th {
+            background: #eff6ff;
+            color: #1e3a8a;
+            font-weight: 800;
+        }
+        .row-head {
             background: #f8fafc;
-            border-radius: 6px;
-            border: 1px solid #e2e8f0;
-            line-height: 1.5;
-        }
-        .recap-list li::before {
-            content: "✓" !important;
-            position: absolute;
-            left: 0.9rem;
-            top: 0.7rem;
-            color: #22c55e !important;
             font-weight: 700;
-            font-size: 1.2rem !important;
+            color: #0f172a;
+            width: 80px;
+            font-size: 0.75rem;
         }
-        .action-card {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            padding: 1rem;
-            border-radius: 10px;
+        .mode-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 2px 8px;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            border: 1px solid transparent;
+        }
+        .quote-card {
+            background: white;
             border: 1px solid #e2e8f0;
-            background: #fff;
+            border-radius: 10px;
+            padding: 0;
+            overflow: hidden;
         }
-        .action-num {
-            flex-shrink: 0;
-            width: 36px;
-            height: 36px;
-            background: linear-gradient(135deg, #3b82f6, #1e40af);
-            color: #fff;
-            border-radius: 50%;
+        .quote-card h4 {
+            margin: 0;
+            padding: 0.35rem 0.6rem;
+            font-size: 0.85rem;
+            color: #0f172a;
+            cursor: pointer;
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 1.1rem;
+            justify-content: space-between;
+            user-select: none;
+            transition: background 0.2s;
         }
-        .action-text { flex: 1; }
-        .action-text strong { color: #1e293b; font-size: 1.05rem; }
-        .action-text p { margin: 4px 0 0 0; font-size: 0.95rem; color: #64748b; }
+        .quote-card h4:hover {
+            background: #f1f5f9;
+        }
+        .quote-card h4::after {
+            content: "▸";
+            font-size: 0.9rem;
+            color: #94a3b8;
+            transition: transform 0.2s;
+        }
+        .quote-card.expanded h4::after {
+            transform: rotate(90deg);
+        }
+        .quote-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding: 0 0.6rem;
+        }
+        .quote-body-inner {
+            padding-bottom: 0.4rem;
+        }
+        .quote-card.expanded .quote-body {
+            max-height: 300px;
+        }
+        .quote-card blockquote {
+            margin: 0 0 0.2rem 0;
+            padding-left: 0.4rem;
+            border-left: 3px solid #93c5fd;
+            color: #334155;
+            font-size: 0.78rem;
+            line-height: 1.3;
+        }
+        .quote-card .src {
+            font-size: 0.72rem;
+            color: #64748b;
+        }
+        .strategy-card {
+            border-radius: 8px;
+            padding: 0.5rem 0.7rem;
+            border: 1px solid #e2e8f0;
+            background: linear-gradient(135deg, #f8fafc, #ffffff);
+        }
+        .strategy-card h4 {
+            margin: 0 0 0.1rem 0;
+            font-size: 0.9rem;
+        }
+        .strategy-card ul {
+            margin: 0;
+            padding-left: 1rem;
+            list-style-type: disc;
+        }
+        .strategy-card li {
+            margin: 0.1rem 0;
+            color: #475569;
+            font-size: 0.8rem;
+            line-height: 1.25;
+            padding-left: 0;
+        }
+        .strategy-card li::before {
+            content: none;
+        }
     </style>
+    <div style="display: flex; flex-direction: column; height: 100%; justify-content: space-evenly; padding-bottom: 0.5rem;">
+    <h2 style="font-size: 1.5rem; margin-bottom: 0.15rem; background: linear-gradient(90deg, #0f172a, #1d4ed8); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+        9.1 安全认知：怎么理解 AI 的数据边界？
+    </h2>
 
-    <h2 style="background: linear-gradient(90deg, #1e40af, #7c3aed); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 2.2rem; margin-bottom: 1rem;">9. 总结与行动</h2>
-    
-    <div class="grid-2" style="gap: 2rem; align-items: start;">
-        <!-- 左列：今天学到了什么 -->
-        <div>
-            <h3 style="margin-top: 0; margin-bottom: 0.8rem; font-size: 1.6rem;">📖 今天你学到了什么</h3>
-            <ul class="recap-list">
-                <li>AI 体系分三层：大脑（大模型）→ 双手（Agent）→ 能量（云算力）【隐藏了芯片】</li>
-                <li>自然语言就是新的编程语言，技术门槛正在消失</li>
-                <li>"龙虾"的本质 = 7×24 服务器 + Coding Agent + IM 通道</li>
-                <li>SKILL 让 AI 能力模块化、可复用，避免重复造轮子</li>
-                <li>你是项目经理，AI 是那个干活的优秀的应届毕业生</li>
-            </ul>
+    <div style="background: linear-gradient(135deg, #fff7ed, #eff6ff); border: 1px solid #fed7aa; border-radius: 12px; padding: 0.4rem 0.7rem; margin-bottom: 0.4rem;">
+        <div style="font-size: 0.9rem; font-weight: 800; color: #9a3412; margin-bottom: 0.1rem;">上面三条解决"态度"和"机制"问题，这一页解决"认知"问题：你到底把什么数据交给了谁？</div>
+        <div style="font-size: 0.8rem; color: #475569; line-height: 1.3;">判断 AI 是否安全，不能只看"模型强不强"，而要先看<strong>接入模式</strong>。同一个模型，走个人账号、企业 API、私有化部署，安全边界完全不同。</div>
+    </div>
+
+    <div class="grid-2" style="gap: 0.6rem; align-items: start;">
+        <div style="display:flex; flex-direction:column; gap: 0.3rem;">
+            <div>
+                <div style="font-size: 0.95rem; font-weight: 800; color:#0f172a; margin-bottom: 0.2rem;">AI 接入的三种模式 & 安全性对比</div>
+                <table class="boundary-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th><span class="mode-badge" style="background:#dbeafe; color:#1d4ed8; border-color:#bfdbfe;">A：个人账户</span></th>
+                            <th><span class="mode-badge" style="background:#ede9fe; color:#6d28d9; border-color:#ddd6fe;">B：企业级服务</span></th>
+                            <th><span class="mode-badge" style="background:#dcfce7; color:#047857; border-color:#bbf7d0;">C：私有化部署</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="row-head">说明</td>
+                            <td>员工自行注册，IT 几乎无感知</td>
+                            <td>企业采购 API / Enterprise，有管理后台与审计</td>
+                            <td>模型部署在企业内网或私有云</td>
+                        </tr>
+                        <tr>
+                            <td class="row-head">典型代表</td>
+                            <td>ChatGPT、DeepSeek、Gemini 网页版</td>
+                            <td>OpenAI API、Vertex AI、Copilot Business</td>
+                            <td>DeepSeek、千问、GLM 私有部署</td>
+                        </tr>
+                        <tr>
+                            <td class="row-head">数据离开公司</td>
+                            <td>是</td>
+                            <td>是（进入服务商云端）</td>
+                            <td>否</td>
+                        </tr>
+                        <tr>
+                            <td class="row-head">用于再训练</td>
+                            <td>常见默认可能会</td>
+                            <td>主流条款通常默认不会</td>
+                            <td>企业可完全自控</td>
+                        </tr>
+                        <tr>
+                            <td class="row-head">安全控制力度</td>
+                            <td>极低</td>
+                            <td>中高（审计、权限可管）</td>
+                            <td>极高</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
-        <!-- 右列：今天回去就能做的 3 件事 -->
-        <div>
-            <h3 style="margin-top: 0; margin-bottom: 0.8rem; font-size: 1.6rem;">🚀 今天回去就能做的 3 件事</h3>
-            <div style="display: flex; flex-direction: column; gap: 0.8rem;">
-                <div class="action-card" style="border-left: 3px solid #3b82f6;">
-                    <div class="action-num">1</div>
-                    <div class="action-text">
-                        <strong>与 Gemini 深度对话</strong>
-                        <p>试试它的 Canvas 协作写作、NotebookLM 文档问答功能，体验"AI 第二大脑"</p>
-                    </div>
-                </div>
-                <div class="action-card" style="border-left: 3px solid #8b5cf6;">
-                    <div class="action-num">2</div>
-                    <div class="action-text">
-                        <strong>用飞书妙记录一次会议</strong>
-                        <p>记录一段会议或讨论，让 AI 自动总结要点和待办清单，感受即时提效</p>
-                    </div>
-                </div>
-                <div class="action-card" style="border-left: 3px solid #059669;">
-                    <div class="action-num">3</div>
-                    <div class="action-text">
-                        <strong>安装 Claude Code 体验编程</strong>
-                        <p>如果你有兴趣，按照配置指南搭建环境，用自然语言让 AI 帮你写第一个脚本</p>
-                    </div>
-                </div>
+        <div style="display:flex; flex-direction:column; gap: 0.25rem;">
+            <div style="font-size: 0.95rem; font-weight: 800; color:#0f172a;">主流厂商条款摘要（2026）</div>
+
+            <div class="quote-card">
+                <h4>OpenAI</h4>
+                <div class="quote-body"><div class="quote-body-inner">
+                <blockquote>"We do not train our models on your business data by default." / 消费者服务政策则允许"use content ... to improve our Services"。</blockquote>
+                <div class="src">来源：OpenAI Enterprise Privacy、Business Data、Consumer Services FAQ（官方政策页）</div>
+                </div></div>
+            </div>
+
+            <div class="quote-card">
+                <h4>Google</h4>
+                <div class="quote-body"><div class="quote-body-inner">
+                <blockquote>"Google won't use your data to train or fine-tune any AI/ML models without your prior permission or instruction." 另，Vertex AI Search 明确写明"客户数据不会用于训练基础模型"。</blockquote>
+                <div class="src">来源：Google Cloud Vertex AI zero data retention / data governance 官方文档</div>
+                </div></div>
+            </div>
+
+            <div class="quote-card">
+                <h4>GitHub Copilot</h4>
+                <div class="quote-body"><div class="quote-body-inner">
+                <blockquote>"Interaction data ... from Copilot Free, Pro, and Pro+ users will be used ... unless they opt out." 同页同时写明：Business / Enterprise "are not affected by this update"。</blockquote>
+                <div class="src">来源：GitHub Blog《Updates to GitHub Copilot interaction data usage policy》</div>
+                </div></div>
+            </div>
+
+            <div class="quote-card">
+                <h4>智谱 / GLM</h4>
+                <div class="quote-body"><div class="quote-body-inner">
+                <blockquote>开放平台公开说明强调：API / 开放平台数据默认不用于模型训练；而智谱清言个人产品隐私政策强调"去标识化处理后的信息不属于个人信息"，并允许围绕服务优化进行处理。</blockquote>
+                <div class="src">来源：智谱开放平台公开说明、智谱清言隐私政策公开页</div>
+                </div></div>
             </div>
         </div>
     </div>
 
-    <div style="margin-top: 1.5rem; text-align: center; background: linear-gradient(135deg, #eff6ff, #f0fdf4); border: 1px solid #bae6fd; border-radius: 10px; padding: 1rem 1.5rem; display: flex; align-items: center; justify-content: center; gap: 2rem;">
-        <div style="text-align: left;">
-            <p style="margin: 0 0 0.3rem 0; font-size: 1.3rem; color: #0f172a; font-weight: 600;">
-                💡 打破边界，让技术真正为你的业务创意服务！
-            </p>
-            <p style="margin: 0; font-size: 1rem; color: #64748b;">
-                欢迎关注、留言、提问，我会尽可能回答 👉
-            </p>
+    <div style="display: flex; gap: 0.5rem; margin-top: 0.2rem;">
+        <div class="strategy-card" style="border-left: 4px solid #2563eb; flex: 1; padding: 0.4rem 0.7rem;">
+            <h4 style="color:#1d4ed8; font-size: 0.9rem;">一句话结论</h4>
+            <div style="font-size:0.78rem; color:#475569; line-height:1.3;">你愿意放进钉钉、飞书、微软 SharePoint 这类企业 SaaS 的内部资料，原则上就可以优先考虑<strong>模式 B</strong>；再往上更敏感，就升级到<strong>模式 C</strong>。</div>
         </div>
-        <img src="./assets/wechat.jpg" alt="WeChat" style="width: 100px; height: 100px; border-radius: 8px; border: 2px solid #e2e8f0; flex-shrink: 0;">
+
+        <div class="strategy-card" style="border-left: 4px solid #16a34a; flex: 1; padding: 0.4rem 0.7rem;">
+            <h4 style="color:#166534; font-size: 0.9rem;">落地策略：按数据机密程度选模式</h4>
+            <ul style="padding-left: 1rem;">
+                <li style="font-size:0.78rem; padding:0.15rem 0 0.15rem 0.8rem;"><strong>极度机密</strong>（核心知识产权、未公开代码）→ 必须用 <strong>模式 C</strong></li>
+                <li style="font-size:0.78rem; padding:0.15rem 0 0.15rem 0.8rem;"><strong>内部业务数据</strong>（周报、常规代码、内部文档）→ 优先用 <strong>模式 B</strong></li>
+                <li style="font-size:0.78rem; padding:0.15rem 0 0.15rem 0.8rem;"><strong>通用辅助</strong>（邮件润色、公开技术查询）→ 可用 <strong>模式 A</strong>，但需安全培训</li>
+            </ul>
+        </div>
+    </div>
     </div>
 `;

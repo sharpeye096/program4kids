@@ -64,13 +64,13 @@ export default html`
     <div style="display: flex; flex-direction: column; height: 100%; justify-content: space-evenly; padding-bottom: 0.5rem;">
 
     <h2 style="font-size: 1.7rem; margin-bottom: 0.15rem; background: linear-gradient(90deg, #d97706, #dc2626); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-        8.3 理解 Agent 的 Token 消耗
+        9.3 理解 Agent 的 Token 消耗
     </h2>
 
     <!-- Token 基础 -->
     <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 0.35rem 0.8rem; margin-bottom: 0.35rem; display: flex; align-items: center; gap: 0.5rem;">
         <span style="font-size: 1.1rem; flex-shrink: 0;">🧮</span>
-        <div style="font-size: 0.88rem; color: #1e3a5f; line-height: 1.35;">
+        <div style="font-size: 1.1rem; color: #1e3a5f; line-height: 1.35;">
             1 个英文字符 ≈ <strong>0.3 Token</strong>，1 个中文字符 ≈ <strong>0.6 Token</strong>。
             输入（你发的）和输出（AI 回的）都要算钱。
         </div>

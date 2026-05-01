@@ -124,7 +124,7 @@ export default html`
             </div>
             <div class="expand-content">
                 <div class="expand-content-inner" style="text-align: left;">
-                    <p style="font-size: 1.05rem; margin-bottom: 0;">🌍 <strong>国际顶尖水平：</strong></p>
+                    <p style="font-size: 1.05rem; margin-bottom: 0;">🌍 <strong>国际顶尖水平（御三家）：</strong></p>
                     <div class="badges-container" style="margin-bottom: 1rem;">
                         <span class="badge"><img src="https://www.google.com/s2/favicons?domain=openai.com&sz=64"> ChatGPT (OpenAI)</span>
                         <span class="badge"><img src="https://www.google.com/s2/favicons?domain=anthropic.com&sz=64"> Claude (Anthropic)</span>
