@@ -1,212 +1,421 @@
 import { html } from '../app.js';
 
+export const onMount = (container) => {
+    const terminal = container.querySelector('#xlsx-terminal');
+    const startBtn = container.querySelector('#xlsx-start-btn');
+    const resultLink = container.querySelector('#result-link');
+    let isRunning = false;
+
+    const lines = [
+        { type: 'prompt', text: '> /xlsx 分析 "Financial Sample.xlsx"的数据，将数据分析结果写到 demo.html', delay: 40 },
+        { type: 'prompt', text: '  用chart.js画图，并告诉我核心insight', delay: 40 },
+        { type: 'system', text: '', delay: 300 },
+        { type: 'thinking', text: '╭─ ✦ Embellishing… (21s · ↓ 213 tokens · thinking)', delay: 0 },
+        { type: 'task', text: '│  ■ 分析Excel文件数据结构', delay: 0 },
+        { type: 'task', text: '│  □ 生成数据分析结果', delay: 0 },
+        { type: 'task', text: '│  □ 总结核心insight', delay: 0 },
+        { type: 'task', text: '│  □ 创建HTML可视化页面', delay: 0 },
+        { type: 'system', text: '', delay: 400 },
+        { type: 'action', text: '⚡ Create file: assets/analyze.py', delay: 0 },
+        { type: 'code', text: '   import pandas as pd', delay: 0 },
+        { type: 'code', text: '   df = pd.read_excel("Financial Sample.xlsx")', delay: 0 },
+        { type: 'code', text: '   print(f"Data shape: {df.shape}")', delay: 0 },
+        { type: 'code', text: '   print(f"Columns: {list(df.columns)}")', delay: 0 },
+        { type: 'code', text: '   ...（共 42 行数据提取脚本）', delay: 0 },
+        { type: 'system', text: '', delay: 300 },
+        { type: 'action', text: '⚡ Run: python assets/analyze.py', delay: 0 },
+        { type: 'output', text: '   Data shape: (700, 16)', delay: 0 },
+        { type: 'output', text: '   Columns: [Segment, Country, Product, Sales, Profit, ...]', delay: 0 },
+        { type: 'output', text: '   ✓ 数据提取完成 → assets/data_info.json', delay: 0 },
+        { type: 'system', text: '', delay: 300 },
+        { type: 'thinking', text: '╭─ ✦ 分析数据维度... 发现 6 个产品、5 个国家、5 个细分市场', delay: 0 },
+        { type: 'task-done', text: '│  ✓ 分析Excel文件数据结构', delay: 0 },
+        { type: 'task', text: '│  ■ 生成数据分析结果', delay: 0 },
+        { type: 'system', text: '', delay: 300 },
+        { type: 'action', text: '⚡ Create file: assets/data_analysis.py', delay: 0 },
+        { type: 'code', text: '   # 产品维度分析', delay: 0 },
+        { type: 'code', text: '   product_sales = df.groupby("Product").agg({...})', delay: 0 },
+        { type: 'code', text: '   # 地区维度分析', delay: 0 },
+        { type: 'code', text: '   country_sales = df.groupby("Country").agg({...})', delay: 0 },
+        { type: 'code', text: '   # 月度趋势 + 折扣效果 + 价格分析', delay: 0 },
+        { type: 'code', text: '   ...（共 85 行多维度分析脚本）', delay: 0 },
+        { type: 'system', text: '', delay: 300 },
+        { type: 'action', text: '⚡ Run: python assets/data_analysis.py', delay: 0 },
+        { type: 'output', text: '   ✓ 产品销售分析完成', delay: 0 },
+        { type: 'output', text: '   ✓ 地区利润率计算完成', delay: 0 },
+        { type: 'output', text: '   ✓ 月度趋势生成完成', delay: 0 },
+        { type: 'output', text: '   ✓ 导出 → assets/chart_data.json (6 个图表数据)', delay: 0 },
+        { type: 'system', text: '', delay: 300 },
+        { type: 'task-done', text: '│  ✓ 生成数据分析结果', delay: 0 },
+        { type: 'task', text: '│  ■ 总结核心insight', delay: 0 },
+        { type: 'system', text: '', delay: 400 },
+        { type: 'thinking', text: '╭─ ✦ 核心发现:', delay: 0 },
+        { type: 'insight', text: '│  💡 Paseo 是最畅销产品，占总销售额的 27.8%', delay: 0 },
+        { type: 'insight', text: '│  💡 美国是最大市场，但利润率仅12%，低于均值', delay: 0 },
+        { type: 'insight', text: '│  💡 Enterprise 细分市场出现亏损（-$61万），需关注', delay: 0 },
+        { type: 'insight', text: '│  💡 高折扣利润率仅9.1% vs 低折扣17.9%，建议优化', delay: 0 },
+        { type: 'insight', text: '│  💡 10月和12月出现销售高峰，建议增加备货', delay: 0 },
+        { type: 'system', text: '', delay: 300 },
+        { type: 'task-done', text: '│  ✓ 总结核心insight', delay: 0 },
+        { type: 'task', text: '│  ■ 创建HTML可视化页面', delay: 0 },
+        { type: 'system', text: '', delay: 300 },
+        { type: 'action', text: '⚡ Create file: demo.html (674 行)', delay: 0 },
+        { type: 'code', text: '   引入 Chart.js CDN', delay: 0 },
+        { type: 'code', text: '   6个图表: 柱状图/折线图/雷达图/散点图', delay: 0 },
+        { type: 'code', text: '   KPI 汇总卡片 + 核心洞察列表', delay: 0 },
+        { type: 'code', text: '   响应式布局 + 渐变配色', delay: 0 },
+        { type: 'system', text: '', delay: 500 },
+        { type: 'success', text: '╰─ ✅ 全部完成！共生成 4 个文件，耗时 21 秒', delay: 0 },
+        { type: 'success', text: '   📊 demo.html — 可视化报告（点击右下角查看 →）', delay: 0 },
+        { type: 'cost', text: '   💰 本次 AI 成本: ¥0.43', delay: 0 },
+    ];
+
+    const typeStyles = {
+        'prompt': 'color: #7dd3fc; font-weight: 600;',
+        'system': '',
+        'thinking': 'color: #c084fc;',
+        'task': 'color: #94a3b8;',
+        'task-done': 'color: #4ade80;',
+        'action': 'color: #fbbf24; font-weight: 600;',
+        'code': 'color: #6ee7b7; opacity: 0.85;',
+        'output': 'color: #e2e8f0;',
+        'insight': 'color: #fde68a;',
+        'success': 'color: #4ade80; font-weight: 600;',
+        'cost': 'color: #fbbf24; font-weight: 600;',
+    };
+
+    async function typeText(span, text, speed) {
+        for (let i = 0; i < text.length; i++) {
+            span.textContent += text[i];
+            terminal.scrollTop = terminal.scrollHeight;
+            await new Promise(r => setTimeout(r, speed));
+        }
+    }
+
+    async function runDemo() {
+        if (isRunning) return;
+        isRunning = true;
+        startBtn.style.display = 'none';
+        terminal.innerHTML = '';
+        resultLink.style.display = 'none';
+
+        for (const line of lines) {
+            const div = document.createElement('div');
+            div.style.cssText = typeStyles[line.type] || '';
+            div.style.minHeight = '1.3em';
+            div.style.lineHeight = '1.5';
+            terminal.appendChild(div);
+
+            if (line.type === 'system') {
+                await new Promise(r => setTimeout(r, line.delay));
+            } else if (line.type === 'prompt') {
+                await typeText(div, line.text, line.delay);
+            } else {
+                await new Promise(r => setTimeout(r, 60));
+                div.textContent = line.text;
+                terminal.scrollTop = terminal.scrollHeight;
+            }
+
+            if (line.delay > 0 && line.type !== 'prompt') {
+                await new Promise(r => setTimeout(r, line.delay));
+            }
+        }
+
+        resultLink.style.display = 'inline-flex';
+        isRunning = false;
+    }
+
+    if (startBtn) {
+        startBtn.addEventListener('click', runDemo);
+    }
+
+    // Modal logic
+    const modal = container.querySelector('#xlsx-modal');
+    const modalImg = container.querySelector('#xlsx-modal-img');
+    const evidenceBtns = container.querySelectorAll('.evidence-btn');
+
+    evidenceBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const src = btn.getAttribute('data-src');
+            modalImg.src = src;
+            modal.style.display = 'flex';
+        });
+    });
+
+    modal.addEventListener('click', () => {
+        modal.style.display = 'none';
+        modalImg.src = '';
+    });
+};
+
 export default html`
     <style>
-        .audit-panel {
-            background: white;
-            border: 1px solid #e2e8f0;
-            border-radius: 12px;
-            padding: 0.6rem 0.9rem;
-            box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+        .xlsx-terminal {
+            background: #0f172a;
+            border-radius: 0 0 10px 10px;
+            padding: 1.2rem;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 0.85rem;
+            color: #e2e8f0;
+            height: 380px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            border: 1px solid #1e293b;
+            border-top: none;
+            scrollbar-width: thin;
+            scrollbar-color: #334155 transparent;
+            line-height: 1.5;
+            position: relative;
+            width: 100%;
+            box-sizing: border-box;
         }
-        .audit-title {
-            font-size: 0.92rem;
-            font-weight: 800;
-            color: #0f172a;
-            margin-bottom: 0.5rem;
+        .xlsx-terminal::-webkit-scrollbar { width: 6px; }
+        .xlsx-terminal::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+        .xlsx-terminal div {
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+        .xlsx-header {
             display: flex;
             align-items: center;
             gap: 8px;
+            background: #1e293b;
+            padding: 10px 16px;
+            border-radius: 10px 10px 0 0;
+            border: 1px solid #1e293b;
         }
-        .sample-command {
-            margin: 0;
-            background: #0f172a;
-            color: #e2e8f0;
+        .xlsx-dot { width: 10px; height: 10px; border-radius: 50%; }
+        .xlsx-start-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: inherit;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 5;
+            box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.4);
+            white-space: nowrap;
+        }
+        .xlsx-start-btn:hover {
+            transform: translate(-50%, -52%) scale(1.05);
+            box-shadow: 0 15px 30px -5px rgba(37, 99, 235, 0.5);
+        }
+        .case-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .detail-item {
+            background: white;
+            border: 1px solid #e2e8f0;
+            padding: 0.8rem 1rem;
             border-radius: 10px;
-            padding: 0.6rem 0.8rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .detail-label {
+            font-weight: 700;
+            color: #1e293b;
+            font-size: 0.9rem;
+            margin-bottom: 0.2rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .detail-content {
             font-size: 0.85rem;
-            line-height: 1.5;
-            white-space: pre-wrap;
-            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            color: #64748b;
+            line-height: 1.4;
         }
-        .summary-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 0.45rem;
-            margin-bottom: 0.4rem;
-        }
-        .summary-box {
+        .cost-highlight {
+            background: linear-gradient(135deg, #fffbeb, #fef3c7);
+            border: 1px solid #fde68a;
+            padding: 1rem;
             border-radius: 10px;
-            padding: 0.5rem 0.4rem;
             text-align: center;
         }
-        .summary-box .num {
-            display: block;
-            font-size: 1.3rem;
-            font-weight: 800;
-            margin-bottom: 0;
-        }
-        .summary-box .label {
-            font-size: 0.82rem;
+        .premium-btn {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 14px 20px;
+            border-radius: 12px;
+            text-decoration: none;
             font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.3);
+            border: none;
+            cursor: pointer;
+            margin-top: 0.5rem;
         }
-        .result-note {
-            background: #f8fafc;
-            border-left: 4px solid #3b82f6;
+        .premium-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.4);
+            filter: brightness(1.05);
+        }
+        .data-source-banner {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #f1f5f9;
+            padding: 10px 16px;
             border-radius: 8px;
-            padding: 0.45rem 0.65rem;
-            color: #475569;
+            border-left: 4px solid #94a3b8;
+            margin-bottom: 1.5rem;
+        }
+        .skill-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            color: #1e40af;
+            padding: 3px 10px;
+            border-radius: 20px;
             font-size: 0.85rem;
-            line-height: 1.4;
+            font-weight: 600;
         }
-        .step-card {
-            border-radius: 12px;
-            padding: 0.5rem 0.85rem;
-            border: 1px solid #e2e8f0;
-            background: white;
-        }
-        .step-card h4 {
-            margin: 0;
-            font-size: 1.05rem;
+        .evidence-btns {
             display: flex;
-            align-items: center;
             gap: 8px;
+            margin-top: 0.5rem;
         }
-        .step-card .step-detail {
-            color: #64748b;
-            font-size: 0.88rem;
-            line-height: 1.4;
-            margin-top: 0.3rem;
-        }
-        .use-card {
-            border-radius: 12px;
-            padding: 0.6rem 0.9rem;
-            border: 1px solid #e2e8f0;
-            background: white;
-        }
-        .use-card h3 {
-            margin: 0;
-            font-size: 1.1rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .use-card p {
-            margin: 0.15rem 0 0.25rem 0;
-            color: #475569;
-            font-size: 0.82rem;
-            line-height: 1.4;
-        }
-        .tag-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.3rem;
-        }
-        .mini-tag {
+        .evidence-btn {
+            flex: 1;
             background: #f8fafc;
             border: 1px solid #cbd5e1;
-            color: #334155;
-            border-radius: 999px;
-            padding: 0.15rem 0.5rem;
-            font-size: 0.72rem;
-            font-weight: 700;
+            color: #475569;
+            padding: 8px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
         }
-        .risk-banner {
-            padding: 0.5rem 0.8rem;
-            border-radius: 12px;
-            background: linear-gradient(135deg, #fff7ed, #fef2f2);
-            border: 1px solid #fed7aa;
-            color: #9a3412;
-            font-size: 0.82rem;
-            line-height: 1.4;
+        .evidence-btn:hover {
+            background: #e2e8f0;
+            border-color: #94a3b8;
+            color: #1e293b;
+        }
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            cursor: zoom-out;
+            backdrop-filter: blur(8px);
+            animation: modalFadeIn 0.3s ease;
+        }
+        @keyframes modalFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .modal-img {
+            max-width: 95vw;
+            max-height: 95vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(255,255,255,0.1);
         }
     </style>
     <div style="display: flex; flex-direction: column; height: 100%; justify-content: space-evenly; padding-bottom: 1rem;">
-    <h2 style="font-size: 2rem; margin: 0 0 0.4rem 0; background: linear-gradient(90deg, #0f766e, #2563eb); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: flex; align-items: baseline; gap: 0.6rem; flex-wrap: wrap;">
-        <span>7. 实战案例：Checklist 审核技能</span>
-        <a href="https://github.com/sharpeye096/program4kids/blob/main/learning-python/public/ai-efficiency/assets/checklist.md"
-           target="_blank" rel="noopener"
-           style="font-size: 0.85rem; font-weight: 600; color: #2563eb; -webkit-text-fill-color: #2563eb; text-decoration: none; padding: 2px 10px; border: 1px solid #93c5fd; border-radius: 999px; background: #eff6ff;">
-           📄 查看 checklist.md →
-        </a>
-    </h2>
-
-    <div style="background: linear-gradient(135deg, #ecfeff, #eff6ff); border: 1px solid #bae6fd; border-radius: 12px; padding: 0.45rem 0.85rem; margin-bottom: 0.5rem;">
-        <div style="font-size: 0.88rem; font-weight: 800; color: #0f172a; margin-bottom: 0.08rem;">当任务从"分析数据"变成"对照标准审材料"时，Checklist Skill 就能接棒。</div>
-        <div style="font-size: 0.8rem; color: #475569; line-height: 1.4;">核心能力不是瞎点评，而是把材料逐条对照检查清单，输出 <strong>PASS / FAIL / PARTIAL</strong>，并附上<strong>证据引用、解释、位置</strong>，非常适合做批量初审。</div>
+    <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.4rem;">
+        <h2 style="font-size: 2rem; margin: 0; background: linear-gradient(90deg, #1e40af, #7c3aed); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+            6. 实战案例：Excel → 可视化报告
+        </h2>
+        <div style="display: flex; gap: 0.5rem; align-items: center;">
+            <span class="skill-badge">📦 xlsx Skill</span>
+            <span class="skill-badge">🤖 Claude Code</span>
+        </div>
     </div>
 
-    <div class="grid-2" style="gap: 1rem; align-items: start;">
-        <!-- Left Column: Workflow steps + Command + Output -->
-        <div style="display: flex; flex-direction: column; gap: 0.45rem;">
-            <div style="font-size: 0.92rem; font-weight: 800; color:#0f172a; display: flex; align-items: center; gap: 8px;">🔁 技能工作流</div>
-            <div class="step-card" style="border-left: 4px solid #3b82f6;">
-                <h4 style="color:#1e40af;">1. 读取材料</h4>
-                <div class="step-detail">合同、报告、简历、PDF、Word、Markdown 都可以。</div>
+    <!-- Data Source Header -->
+    <div class="data-source-banner" style="margin-bottom: 0.6rem;">
+        <span style="font-size: 1.2rem;">📊</span>
+        <div style="flex: 1;">
+            <div style="font-weight: 700; font-size: 0.95rem; color: #334155;">输入文件：Financial Sample.xlsx</div>
+            <div style="font-size: 0.85rem; color: #64748b;">
+                微软官方提供的 Power BI 练习数据集，包含 2013-2014 年全球零售订单明细（700行数据）。
             </div>
-            <div class="step-card" style="border-left: 4px solid #8b5cf6;">
-                <h4 style="color:#6d28d9;">2. 解析清单</h4>
-                <div class="step-detail">支持 Markdown、JSON、YAML、纯文本要求列表。</div>
-            </div>
-            <div class="step-card" style="border-left: 4px solid #f59e0b;">
-                <h4 style="color:#b45309;">3. 逐项审核</h4>
-                <div class="step-detail">按条检查，判断是否满足，避免只给模糊建议。</div>
-            </div>
-            <div class="step-card" style="border-left: 4px solid #10b981;">
-                <h4 style="color:#047857;">4. 输出报告</h4>
-                <div class="step-detail">汇总红旗问题、证据摘录、整改建议与通过率。</div>
-            </div>
+        </div>
+        <a href="https://www.kaggle.com/datasets/konstantinognev/financial-samplexlsx" target="_blank" style="font-size: 0.85rem; color: #3b82f6; text-decoration: none; font-weight: 600; background: white; padding: 4px 12px; border-radius: 6px; border: 1px solid #cbd5e1;">查看 Kaggle 原数据集 →</a>
+    </div>
 
-            <div class="audit-panel" style="margin-top: 0.15rem;">
-                <div class="audit-title">💬 一句话指令示例</div>
-                <pre class="sample-command">> /checklist 审核 "合作协议.docx"
-  --checklist assets/checklist.md
-  输出 markdown 报告，优先标出高风险条款，
-  每条结论都引用原文证据。</pre>
+    <div class="grid-2" style="gap: 1.5rem; align-items: start;">
+        <!-- Left Column: Terminal (2:1 width) -->
+        <div style="min-width: 0; flex: 2;">
+            <div style="position: relative; width: 100%;">
+                <div class="xlsx-header">
+                    <span class="xlsx-dot" style="background: #ef4444;"></span>
+                    <span class="xlsx-dot" style="background: #fbbf24;"></span>
+                    <span class="xlsx-dot" style="background: #22c55e;"></span>
+                    <span style="color: #94a3b8; font-size: 0.8rem; margin-left: 8px; font-family: monospace;">Claude Code — Financial Sample.xlsx 分析全过程</span>
+                </div>
+                <div class="xlsx-terminal" id="xlsx-terminal">
+                   <div style="color: #94a3b8; text-align: center; margin-top: 155px; font-style: italic;">等待开始演示...</div>
+                </div>
+                <button class="xlsx-start-btn" id="xlsx-start-btn">▶ 播放 AI 协作全过程</button>
+                
+                <!-- Modal Overlay -->
+                <div class="modal-overlay" id="xlsx-modal">
+                    <img class="modal-img" id="xlsx-modal-img" src="">
+                </div>
             </div>
-
         </div>
 
-        <!-- Right Column: Risk banner (top) + Use cases -->
-        <div style="display: flex; flex-direction: column; gap: 0.6rem;">
-            <div class="risk-banner">
-                <strong>⚠️ 定位要准确：</strong> 这个技能最适合做<strong>初审、预筛、批量排雷</strong>，不应该替代法务终审、业务负责人拍板或最终面试判断。AI 负责先把问题找出来，人负责最后决策。
+        <!-- Right Column: Case Explanations (1/3 width) -->
+        <div class="case-details" style="flex: 1; min-width: 0;">
+            <div class="detail-item">
+                <div class="detail-label">📥 需求 Prompt</div>
+                <div class="detail-content" style="font-style: italic;">"分析这份 Excel，用 Chart.js 画图，提取 Insight 并生成报告"</div>
             </div>
 
-            <div style="font-size: 0.92rem; font-weight: 800; color:#0f172a; display: flex; align-items: center; gap: 8px;">🎯 适用场景</div>
+            <div class="detail-item">
+                <div class="detail-label">⚡ 自动化执行</div>
+                <div class="detail-content">AI 自动调用 <b>xlsx skill</b> 解析数据，编写 Python 脚本进行聚合计算，构建可视化网页。</div>
+            </div>
 
-            <div class="use-card" style="border-left: 4px solid #ef4444;">
-                <h3 style="color:#b91c1c;">📄 合同审核</h3>
-                <p>快速扫出自动续约、付款节点、违约责任、免责条款、是否缺少盖章页等问题，先把法务最该看的地方圈出来。</p>
-                <div class="tag-row">
-                    <span class="mini-tag">自动续约</span>
-                    <span class="mini-tag">付款条款</span>
-                    <span class="mini-tag">违约责任</span>
-                    <span class="mini-tag">风险红旗</span>
+            <div class="detail-item">
+                <div class="detail-label">🖼️ 过程回溯 (原图)</div>
+                <div class="evidence-btns">
+                    <button class="evidence-btn" data-src="./assets/prompt.png">💬 初始Prompt</button>
+                    <button class="evidence-btn" data-src="./assets/steps.png">📋 步骤拆解</button>
+                    <button class="evidence-btn" data-src="./assets/extract-excel.png">⚙️ Python解析</button>
                 </div>
             </div>
 
-            <div class="use-card" style="border-left: 4px solid #8b5cf6;">
-                <h3 style="color:#6d28d9;">📊 报告审核</h3>
-                <p>检查是否有数据来源、图表和结论是否一致、有没有遗漏关键章节、措辞是否夸张、行动建议是否落地。</p>
-                <div class="tag-row">
-                    <span class="mini-tag">数据来源</span>
-                    <span class="mini-tag">图文一致</span>
-                    <span class="mini-tag">逻辑完整</span>
-                    <span class="mini-tag">结论可证</span>
-                </div>
+            <div class="cost-highlight">
+                <div style="font-size: 0.9rem; color: #854d0e; font-weight: 700; margin-bottom: 0.2rem;">💰 全自动分析成本</div>
+                <div style="font-size: 1.6rem; color: #a16207; font-weight: 800;">¥ 0.43</div>
+                <div style="font-size: 0.8rem; color: #ca8a04;">(DeepSeek-R1 满血版 + Claude 辅助)</div>
             </div>
 
-            <div class="use-card" style="border-left: 4px solid #10b981;">
-                <h3 style="color:#047857;">🧑‍💼 简历筛选</h3>
-                <p>先按硬条件做首轮筛选：学历、年限、项目经验、关键词命中、是否有相关行业背景，并把证据句摘出来给 HR 复核。</p>
-                <div class="tag-row">
-                    <span class="mini-tag">硬性条件</span>
-                    <span class="mini-tag">关键词匹配</span>
-                    <span class="mini-tag">项目证据</span>
-                    <span class="mini-tag">初筛提效</span>
-                </div>
-            </div>
+            <a class="premium-btn" id="result-link" href="./demo.html" target="_blank">
+                📊 预览生成的网页报告 →
+            </a>
+        </div>
     </div>
     </div>
 `;

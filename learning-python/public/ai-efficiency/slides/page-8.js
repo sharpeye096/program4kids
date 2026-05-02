@@ -1,323 +1,357 @@
 import { html } from '../app.js';
 
 export const onMount = (container) => {
-    // Tree view toggle logic
-    const treeItems = container.querySelectorAll('.tree-file');
-    const contentPanel = container.querySelector('#file-content');
-    const fileTitle = container.querySelector('#file-title');
+    const runBtn = container.querySelector('#run-claude-demo');
+    const terminal = container.querySelector('#claude-demo-terminal');
+    const preview = container.querySelector('#calc24-preview');
+    const solveBtn = container.querySelector('#calc24-solve');
+    const inputs = Array.from(container.querySelectorAll('.calc24-input'));
+    const result = container.querySelector('#calc24-result');
 
-    const filesData = {
-        'skill': `<span style="color: #569cd6;">---</span>
-<span style="color: #9cdcfe;">name</span>: <span style="color: #ce9178;">calc24_solver</span>
-<span style="color: #9cdcfe;">description</span>: <span style="color: #ce9178;">使用 calc24.py 脚本计算 24 点问题。当用户给出四个 1-10 的数字时，调用此技能输出一个等于 24 的表达式。</span>
-<span style="color: #569cd6;">---</span>
+    function solve24(numbers) {
+        const epsilon = 1e-9;
+        const initial = numbers.map(num => ({ value: num, expr: String(num) }));
 
-<span style="color: #569cd6;"># 24点计算技能</span>
-
-<span style="color: #d4d4d4;">本技能利用外部脚本</span> <span style="color: #dcdcaa;">\`calc24.py\`</span> <span style="color: #d4d4d4;">来求解经典的 24 点游戏。</span>
-
-<span style="color: #c586c0;">## 触发条件</span>
-
-<span style="color: #d4d4d4;">当用户明确要求计算 24 点，或者以类似"请用 a, b, c, d 计算 24 点"的形式给出四个整数（每个在 1 到 10 之间）时，应使用本技能。</span>
-
-<span style="color: #c586c0;">## 使用方法</span>
-
-<span style="color: #b5cea8;">1.</span> <span style="color: #d4d4d4;">从用户消息中提取四个数字。</span>
-<span style="color: #b5cea8;">2.</span> <span style="color: #d4d4d4;">在系统 shell 中执行以下命令：</span>
-   <span style="color: #569cd6;">\`\`\`bash</span>
-   <span style="color: #4ec9b0;">python</span> <span style="color: #d4d4d4;">calc24.py &lt;num1&gt; &lt;num2&gt; &lt;num3&gt; &lt;num4&gt;</span>
-   <span style="color: #569cd6;">\`\`\`</span>`,
-
-        'py': `<span style="color: #c586c0;">import</span> sys
-
-<span style="color: #c586c0;">def</span> <span style="color: #dcdcaa;">solve_24</span>(<span style="color: #9cdcfe;">nums</span>):
-    <span style="color: #6a9955;"># 此处是底层复杂算法（刚刚终端演示过）</span>
-    <span style="color: #6a9955;"># 只要封装一次，AI长官以后随意差遣</span>
-    <span style="color: #c586c0;">return</span> <span style="color: #ce9178;">"(8 / (3 - (8 / 3))) = 24"</span> 
-
-<span style="color: #c586c0;">if</span> __name__ == <span style="color: #ce9178;">"__main__"</span>:
-    args = sys.<span style="color: #9cdcfe;">argv</span>[<span style="color: #b5cea8;">1</span>:]
-    result = solve_24(args)
-    <span style="color: #4ec9b0;">print</span>(result) <span style="color: #6a9955;"># AI"听"到它从而回复你</span>`
-    };
-
-    treeItems.forEach(item => {
-        item.addEventListener('click', () => {
-            treeItems.forEach(i => i.classList.remove('active'));
-            item.classList.add('active');
-            const fileKey = item.getAttribute('data-file');
-            fileTitle.innerHTML = item.innerHTML;
-            contentPanel.innerHTML = filesData[fileKey];
-        });
-    });
-
-    // Default select
-    if (treeItems[0]) treeItems[0].click();
-
-    // Deepseek Modal Logic
-    const dsBtn = container.querySelector('#show-deepseek-btn');
-    const dsModal = container.querySelector('#deepseek-modal');
-    const dsClose = container.querySelector('#deepseek-close');
-
-    dsBtn.addEventListener('click', () => {
-        dsModal.style.display = 'flex';
-    });
-    dsClose.addEventListener('click', () => {
-        dsModal.style.display = 'none';
-    });
-    dsModal.addEventListener('click', (e) => {
-        if (e.target === dsModal) dsModal.style.display = 'none';
-    });
-
-    // CLI Demo Logic
-    const runBtn = container.querySelector('#run-demo-btn');
-    const cliOutput = container.querySelector('#cli-demo-output');
-
-    let isRunning = false;
-    runBtn.addEventListener('click', async () => {
-        if (isRunning) return;
-        isRunning = true;
-        cliOutput.innerHTML = '';
-        runBtn.textContent = '运行中...';
-        runBtn.style.opacity = '0.5';
-
-        const lines = [
-            { text: '> /calc24 3 3 8 8', delay: 400, color: '#f8fafc', bold: true },
-            { text: '\n🤔 [思考中] 检测到数学计算请求，正在调用专属技能 calc24_solver...', delay: 800, color: '#94a3b8' },
-            { text: '\n⚙️  Running tool calc24_solver (python calc24.py 3 3 8 8)...', delay: 600, color: '#38bdf8' },
-            { text: '\n✅ 工具执行完毕。返回结果: 8 / (3 - (8 / 3)) = 24', delay: 1000, color: '#10b981' },
-            { text: '\n🤖 报告长官！为您计算成功，解法步骤为：8 ÷ (3 - (8 ÷ 3)) = 24！', delay: 600, color: '#f8fafc', bold: true }
-        ];
-
-        for (const line of lines) {
-            await new Promise(r => setTimeout(r, line.delay || 300));
-
-            const el = document.createElement('span');
-            el.style.color = line.color;
-            if (line.bold) el.style.fontWeight = 'bold';
-            cliOutput.appendChild(el);
-
-            for (let i = 0; i < line.text.length; i++) {
-                el.textContent += line.text[i];
-                await new Promise(r => setTimeout(r, 20)); // typing speed
-                if (i % 5 === 0) cliOutput.scrollTop = cliOutput.scrollHeight;
-            }
-            cliOutput.scrollTop = cliOutput.scrollHeight;
+        function tidy(expr) {
+            return expr.startsWith('(') && expr.endsWith(')') ? expr.slice(1, -1) : expr;
         }
 
+        function search(items) {
+            if (items.length === 1) {
+                return Math.abs(items[0].value - 24) < epsilon ? tidy(items[0].expr) : null;
+            }
+
+            for (let i = 0; i < items.length; i++) {
+                for (let j = 0; j < items.length; j++) {
+                    if (i === j) continue;
+
+                    const rest = items.filter((_, index) => index !== i && index !== j);
+                    const a = items[i];
+                    const b = items[j];
+                    const candidates = [
+                        { value: a.value + b.value, expr: `(${a.expr} + ${b.expr})` },
+                        { value: a.value - b.value, expr: `(${a.expr} - ${b.expr})` },
+                        { value: a.value * b.value, expr: `(${a.expr} × ${b.expr})` }
+                    ];
+
+                    if (Math.abs(b.value) > epsilon) {
+                        candidates.push({ value: a.value / b.value, expr: `(${a.expr} ÷ ${b.expr})` });
+                    }
+
+                    for (const candidate of candidates) {
+                        const found = search([...rest, candidate]);
+                        if (found) return found;
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        return search(initial);
+    }
+
+    function updateResult() {
+        const numbers = inputs.map(input => Number(input.value));
+        if (numbers.some(num => !Number.isFinite(num))) {
+            result.className = 'answer fail';
+            result.textContent = '请输入 4 个有效数字';
+            return;
+        }
+
+        const expression = solve24(numbers);
+        if (expression) {
+            result.className = 'answer ok';
+            result.textContent = `${expression} = 24`;
+        } else {
+            result.className = 'answer fail';
+            result.textContent = '这组数字无解';
+        }
+    }
+
+    const lines = [
+        { text: '> claude', cls: 'cmd' },
+        { text: 'Claude Code Ready. Tell me what to build.', cls: 'muted' },
+        { text: '> 请帮我写一个完整的 24 点网页小游戏。用户输入任意 4 个数字，程序要穷举 + - × ÷ 和括号组合，找到一个等于 24 的表达式；如果无解就提示无解。', cls: 'cmd' },
+        { text: '● 我会创建一个单文件网页：index.html', cls: 'think' },
+        { text: '  - 4 个数字输入框', cls: 'task' },
+        { text: '  - 递归穷举所有数字顺序和四则运算', cls: 'task' },
+        { text: '  - 处理除以 0、无解、结果误差', cls: 'task' },
+        { text: '  - 在浏览器里直接显示表达式', cls: 'task' },
+        { text: '✦ Write index.html', cls: 'action' },
+        { text: '✦ Test: 3, 3, 8, 8 → found', cls: 'action' },
+        { text: '✦ Test: 1, 1, 1, 1 → no solution', cls: 'action' },
+        { text: '✓ 完成：右侧就是一个可交互的完整求解器', cls: 'success' }
+    ];
+
+    async function play() {
+        runBtn.disabled = true;
+        runBtn.textContent = '演示中...';
+        terminal.innerHTML = '';
+        preview.classList.remove('show');
+
+        for (const line of lines) {
+            const row = document.createElement('div');
+            row.className = `term-line ${line.cls}`;
+            terminal.appendChild(row);
+            for (let i = 0; i < line.text.length; i++) {
+                row.textContent += line.text[i];
+                terminal.scrollTop = terminal.scrollHeight;
+                await new Promise(r => setTimeout(r, line.cls === 'cmd' ? 18 : 8));
+            }
+            await new Promise(r => setTimeout(r, 160));
+        }
+
+        preview.classList.add('show');
+        updateResult();
+        runBtn.disabled = false;
         runBtn.textContent = '重新演示';
-        runBtn.style.opacity = '1';
-        isRunning = false;
-    });
+    }
+
+    runBtn.addEventListener('click', play);
+    solveBtn.addEventListener('click', updateResult);
+    inputs.forEach(input => input.addEventListener('keydown', event => {
+        if (event.key === 'Enter') updateResult();
+    }));
+    updateResult();
 };
 
 export default html`
     <style>
-        .split-layout {
-            display: flex;
-            gap: 1.5rem;
-            margin-top: 1rem;
-            height: 300px;
-            width: 100%;
-            max-width: 900px;
-        }
-        
-        .tree-panel {
-            flex: 0 0 280px;
-            background: #f1f5f9;
-            border-radius: 8px;
-            border: 1px solid #cbd5e1;
-            padding: 1rem;
+        .demo-root {
             display: flex;
             flex-direction: column;
-            overflow-y: auto;
+            height: 100%;
+            gap: 0.8rem;
         }
-
-        .tree-header {
-            font-weight: bold;
+        .demo-intro {
+            background: linear-gradient(135deg, #eff6ff, #f0fdf4);
+            border: 1px solid #bfdbfe;
+            border-radius: 12px;
+            padding: 0.75rem 1rem;
             color: #334155;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid #cbd5e1;
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-        }
-
-        .tree-dir {
-            color: #475569;
-            padding: 0.3rem 0;
-            display: flex;
-            align-items: center;
-            font-weight: 500;
-        }
-
-        .tree-file {
-            color: #64748b;
-            padding: 0.4rem 0.5rem;
-            margin: 0.2rem 0;
-            cursor: pointer;
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            transition: all 0.2s;
-        }
-
-        .tree-file:hover {
-            background: #e2e8f0;
-            color: #0f172a;
-        }
-
-        .tree-file.active {
-            background: #3b82f6;
-            color: #fff;
-        }
-
-        .code-panel {
-            flex: 1;
-            background: #1e1e1e;
-            border-radius: 8px;
-            display: flex;
-            flex-direction: column;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
-            overflow: hidden;
-            min-width: 0;
-        }
-
-        .code-header {
-            background: #2d2d2d;
-            padding: 0.6rem 1rem;
-            color: #e2e8f0;
-            border-bottom: 1px solid #404040;
-            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-            display: flex;
-            align-items: center;
-        }
-
-        .code-content {
-            padding: 1rem;
-            color: #d4d4d4;
-            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-            margin: 0;
-            white-space: pre-wrap;
-            overflow: auto;
-            flex: 1;
             font-size: 1rem;
+            line-height: 1.45;
         }
-
-        .terminal-panel {
-            margin-top: 1rem;
+        .demo-grid {
+            display: grid;
+            grid-template-columns: 1.12fr 0.88fr;
+            gap: 1rem;
+            min-height: 0;
+            flex: 1;
+        }
+        .terminal-wrap {
             background: #0f172a;
-            border-radius: 8px;
-            padding: 1.2rem;
-            height: 180px;
+            border-radius: 12px;
+            border: 1px solid #1e293b;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
-            position: relative;
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
-            border-top: 4px solid #10b981;
-            width: 100%;
-            max-width: 900px;
+            min-height: 0;
         }
-
-        .terminal-output {
+        .terminal-head {
+            background: #1e293b;
+            color: #cbd5e1;
+            padding: 0.55rem 0.8rem;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .dots { display: flex; gap: 6px; }
+        .dot { width: 10px; height: 10px; border-radius: 50%; }
+        .terminal {
             flex: 1;
+            padding: 0.9rem 1rem;
+            overflow: auto;
             font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-            font-size: 1rem;
-            white-space: pre-wrap;
-            overflow-y: auto;
-            line-height: 1.6;
+            font-size: 0.84rem;
+            line-height: 1.55;
         }
-
+        .term-line { white-space: pre-wrap; min-height: 1.4em; }
+        .cmd { color: #7dd3fc; font-weight: 700; }
+        .muted { color: #94a3b8; }
+        .think { color: #c084fc; }
+        .task { color: #e2e8f0; }
+        .action { color: #fbbf24; font-weight: 700; }
+        .success { color: #4ade80; font-weight: 700; }
         .run-btn {
-            position: absolute;
-            bottom: 1rem;
-            right: 1.5rem;
-            background: #10b981;
+            background: #2563eb;
             color: white;
             border: none;
-            padding: 0.6rem 1.2rem;
-            border-radius: 6px;
+            padding: 0.45rem 0.9rem;
+            border-radius: 999px;
+            font-weight: 700;
             cursor: pointer;
-            font-weight: bold;
-            transition: background 0.2s;
+            font-family: inherit;
+        }
+        .run-btn:disabled { opacity: 0.65; cursor: default; }
+        .right-col {
             display: flex;
-            align-items: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            flex-direction: column;
+            gap: 0.75rem;
+            min-height: 0;
         }
-
-        .run-btn:hover {
-            background: #059669;
+        .prompt-card, .preview-card, .lesson-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 0.75rem 0.9rem;
         }
-
-        .indent-1 { margin-left: 1rem; border-left: 1px solid #cbd5e1; padding-left: 0.5rem;}
-        .indent-2 { margin-left: 2rem; border-left: 1px solid #cbd5e1; padding-left: 0.5rem;}
-        .indent-3 { margin-left: 3rem; border-left: 1px solid #cbd5e1; padding-left: 0.5rem;}
+        .prompt-card h3, .preview-card h3, .lesson-card h3 {
+            margin: 0 0 0.35rem 0;
+            color: #0f172a;
+            font-size: 1rem;
+        }
+        .prompt-card pre {
+            margin: 0;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 0.6rem;
+            white-space: pre-wrap;
+            color: #334155;
+            font-size: 0.82rem;
+            line-height: 1.45;
+        }
+        .mini-browser {
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #f8fafc;
+            opacity: 0.45;
+            transform: translateY(8px);
+            transition: all 0.35s ease;
+        }
+        .mini-browser.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .browser-bar {
+            background: #e2e8f0;
+            padding: 0.35rem 0.55rem;
+            font-size: 0.7rem;
+            color: #64748b;
+        }
+        .game-ui {
+            padding: 0.8rem;
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff, #eff6ff);
+        }
+        .num-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.35rem;
+            margin: 0.55rem 0;
+        }
+        .calc24-input {
+            width: 100%;
+            box-sizing: border-box;
+            background: white;
+            border: 1px solid #bfdbfe;
+            border-radius: 8px;
+            padding: 0.42rem 0.2rem;
+            font-weight: 800;
+            color: #1d4ed8;
+            text-align: center;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+        .solve-button {
+            display: inline-block;
+            background: #16a34a;
+            color: white;
+            border: none;
+            border-radius: 999px;
+            padding: 0.45rem 1rem;
+            font-weight: 800;
+            font-size: 0.85rem;
+            margin-bottom: 0.55rem;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .answer {
+            border-radius: 8px;
+            padding: 0.5rem;
+            font-weight: 800;
+            font-size: 0.86rem;
+            line-height: 1.35;
+            min-height: 1.2em;
+            word-break: break-word;
+        }
+        .answer.ok {
+            background: #ecfdf5;
+            border: 1px solid #86efac;
+            color: #166534;
+        }
+        .answer.fail {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #991b1b;
+        }
+        .lesson-card ul {
+            margin: 0;
+            padding-left: 1.1rem;
+            color: #475569;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
     </style>
 
-    <h2 class="huge-title" style="font-size: 2.2rem; margin-bottom: 0.5rem; background: linear-gradient(90deg, #0f172a, #10b981); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-        5. 进阶概念与生态：什么是 SKILLs？
-    </h2>
-    <p style="font-size: 1.15rem; color: #475569; margin-bottom: 0.5rem;">
-        <strong>SKILLs ：</strong> SKILL 是可被 AI 一键调用的 Prompt 模块。它避免了重复输入长段指令的麻烦，让 AI 能以一致、高效的方式完成固定任务。
-    </p>
-    <div style="background: linear-gradient(135deg, #ecfdf5, #f0fdf4); border: 2px solid #86efac; border-radius: 8px; padding: 0.6rem 1rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.8rem;">
-        <span style="font-size: 1.8rem;">📋</span>
-        <div>
-            <div style="font-weight: 800; color: #166534; font-size: 1.05rem;">核心比喻：SKILL = AI 操作的 SOP 手册</div>
-            <div style="font-size: 0.92rem; color: #15803d; line-height: 1.4;">就像新员工入职时拿到的标准操作流程一样——你写一次，AI 每次遇到同类任务就自动按手册执行，<strong>质量稳定、不用反复交代</strong>。</div>
-        </div>
-    </div>
+    <div class="demo-root">
+        <h2 style="font-size: 2rem; margin: 0; background: linear-gradient(90deg, #2563eb, #16a34a); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+            5B. 上手第二步：用 Claude Code 写一个完整的 24 点求解器
+        </h2>
 
-    <!-- Top Layout: Tree View + Code View -->
-    <div class="split-layout">
-        <!-- Tree Panel -->
-        <div class="tree-panel">
-            <div class="tree-header">📁 项目目录 (Workspace)</div>
-            
-            <div class="tree-dir">📂 .claude</div>
-            <div class="tree-dir indent-1">📂 skills</div>
-            <div class="tree-dir indent-2">📂 calc24</div>
-            <div class="tree-file indent-3" data-file="skill">
-                <span style="color:#f59e0b; margin-right:6px;">📝</span> SKILL.md
+        <div class="demo-grid">
+            <div class="terminal-wrap">
+                <div class="terminal-head">
+                    <div class="dots">
+                        <span class="dot" style="background:#ef4444"></span>
+                        <span class="dot" style="background:#f59e0b"></span>
+                        <span class="dot" style="background:#22c55e"></span>
+                    </div>
+                    <span>Claude Code CLI</span>
+                    <button class="run-btn" id="run-claude-demo">点击演示</button>
+                </div>
+                <div class="terminal" id="claude-demo-terminal">
+                    <div class="term-line muted">点击右上角按钮，演示从一句需求到一个完整 HTML 求解器。</div>
+                </div>
             </div>
-            <div class="tree-file indent-3" data-file="py">
-                <span style="color:#3b82f6; margin-right:6px;">🐍</span> calc24.py
-            </div>
-        </div>
 
-        <!-- Code Content Panel -->
-        <div class="code-panel">
-            <div class="code-header" id="file-title">
-                <span style="color:#f59e0b; margin-right:6px;">📝</span> SKILL.md
-            </div>
-            <pre class="code-content" id="file-content"></pre>
-        </div>
-    </div>
+            <div class="right-col">
+                <div class="prompt-card">
+                    <h3>给 AI 的一句话需求</h3>
+                    <pre>请帮我写一个完整的 24 点网页小游戏。用户输入任意 4 个数字，程序要穷举 + - × ÷ 和括号组合，找到一个等于 24 的表达式；如果无解就提示无解。</pre>
+                </div>
 
-    <!-- Bottom Layout: Claude Code Terminal Simulation -->
-    <div class="terminal-panel">
-        <div class="terminal-output" id="cli-demo-output">
-<span style="color: #64748b;">Claude Code Ready. Type '/' to use tools.</span>
-<span style="color: #64748b;">────────────────────────────────────────</span>
-</div>
-        <button class="run-btn" id="run-demo-btn">▶ 点击演示 AI 执行流程</button>
-    </div>
-    <div>
-        <button id="show-deepseek-btn" style="background: #3b82f6; color: white; border: none; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 0.95rem; margin-top: 10px; display: inline-flex; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: background 0.2s;">
-            👀 对比：如果不用 Skill，直接跟大模型"硬聊"算法会怎样？
-        </button>
-    </div>
-    <!-- Deepseek Modal -->
-    <div id="deepseek-modal" style="display: none; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.85); z-index: 1000; align-items: center; justify-content: center; flex-direction: column; border-radius: 12px;">
-        <div style="background: #fff; padding: 1.5rem; border-radius: 8px; position: relative; max-width: 90%; max-height: 90%; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);">
-            <button id="deepseek-close" style="position: absolute; top: -12px; right: -12px; background: #ef4444; color: white; border: none; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-weight: bold; font-size: 1.2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.2); display: flex; align-items: center; justify-content: center; z-index: 10;">×</button>
-            <h3 style="margin-top: 0; margin-bottom: 1rem; color: #0f172a; font-size: 1.3rem;">🚨 生聊对比现场：让缺乏底层执行能力的大模型直接算 8、8、3、3 的 24 点</h3>
-            <div style="overflow-y: auto; text-align: center; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 10px;">
-                <img src="./assets/calc24-deepseek.png" style="max-width: 100%; height: auto; object-fit: contain; max-height: calc(85vh - 100px);" alt="Deepseek calculation" />
+                <div class="preview-card">
+                    <h3>最后得到的网页效果</h3>
+                    <div class="mini-browser show" id="calc24-preview">
+                        <div class="browser-bar">index.html</div>
+                        <div class="game-ui">
+                            <div style="font-weight: 900; color:#0f172a;">24 点求解器</div>
+                            <div class="num-row">
+                                <input class="calc24-input" type="number" value="3">
+                                <input class="calc24-input" type="number" value="3">
+                                <input class="calc24-input" type="number" value="8">
+                                <input class="calc24-input" type="number" value="8">
+                            </div>
+                            <button class="solve-button" id="calc24-solve">求解 24 点</button>
+                            <div class="answer ok" id="calc24-result"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-card">
+                    <h3>这个例子想说明什么</h3>
+                    <ul>
+                        <li>自然语言即可编程。</li>
+                        <li>人提供需求，让AI去实现。</li>
+                        <li>人负责验收：多试几组数字，看答案对不对。</li>
+                    </ul>
+                </div>
             </div>
-            <p style="text-align: center; margin-top: 10px; margin-bottom: 0; font-size: 0.95rem; color: #64748b;">(注：虽然语言大模型推理极强，但在涉及严密穷举的数学/逻辑时极易产生幻觉瞎凑。必须搭配外部系统或脚本工具！)</p>
         </div>
     </div>
-    
-    
 `;
