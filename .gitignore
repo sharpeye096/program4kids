@@ -36,3 +36,6 @@ src-tauri/target/
 ffmpeg.zip
 ffmpeg/
 temp/
+
+# Large binary handbooks (do not commit)
+*.pdf
