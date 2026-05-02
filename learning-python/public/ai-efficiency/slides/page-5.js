@@ -65,8 +65,8 @@ export default html`
         .prereq-item .desc { font-size: 0.8rem; color: #64748b; margin: 0; line-height: 1.3; }
     </style>
 
-    <h2>3. 普通人如何起步：写代码配置指南</h2>
-    <p>工欲善其事，必先利其器。根据不同的网络环境，选择合适的配置方案：</p>
+    <h2>5A. 上手第一步：配置 AI Coding 环境</h2>
+    <p>有了前置知识后，下一步是把工具装好。根据不同的网络环境，选择合适的配置方案：</p>
     
     <div class="flex-col" style="gap: 1.5rem;">
         <div class="card">

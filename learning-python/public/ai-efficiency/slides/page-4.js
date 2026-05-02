@@ -1,118 +1,77 @@
 import { html } from '../app.js';
 
-export const onMount = (container) => {
-    const boxes = container.querySelectorAll('.typewriter-box');
-    boxes.forEach(box => {
-        box.addEventListener('click', () => {
-            // 防止重复触发
-            if (box.dataset.typing === "true" || box.dataset.typed === "true") return;
-            
-            box.dataset.typing = "true";
-            box.style.background = "#f1f5f9"; // 点击后稍微改变背景色
-            box.style.borderColor = "var(--primary)";
-
-            const textElement = box.querySelector('.typewriter-text');
-            const fullText = textElement.getAttribute('data-text');
-            textElement.style.display = 'block';
-            textElement.textContent = ''; // 清空准备打字
-
-            const cursor = document.createElement('span');
-            cursor.textContent = ' ▌';
-            cursor.className = 'blinking-cursor';
-            cursor.style.color = 'var(--primary)';
-            cursor.style.animation = 'blink 1s step-end infinite';
-            textElement.appendChild(cursor);
-
-            let i = 0;
-            const speed = 25; // 打字速度，毫秒
-
-            function type() {
-                if (i < fullText.length) {
-                    textElement.insertBefore(document.createTextNode(fullText.charAt(i)), cursor);
-                    i++;
-                    setTimeout(type, speed);
-                } else {
-                    box.dataset.typing = "false";
-                    box.dataset.typed = "true";
-                    cursor.style.display = 'none'; // 输入完成后隐藏光标
-                }
-            }
-            type();
-        });
-    });
-};
-
 export default html`
     <style>
-        .typewriter-box {
-            cursor: pointer;
-            transition: all 0.3s ease;
-            min-height: 200px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
+        .paradigm-hero {
+            background: linear-gradient(135deg, #eff6ff, #f5f3ff);
+            border: 1px solid #bfdbfe;
+            border-left: 5px solid #2563eb;
+            border-radius: 14px;
+            padding: 1.4rem 1.6rem;
+            margin-bottom: 1.2rem;
         }
-        .typewriter-box:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-float);
+        .shift-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
         }
-        .blinking-cursor {
-            font-weight: bold;
+        .shift-card {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1.1rem 1.2rem;
         }
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
+        .shift-card h3 {
+            margin: 0 0 0.6rem 0;
+            font-size: 1.25rem;
         }
-        .icon {
-            font-size: 1.5rem;
-            margin-right: 0.5rem;
+        .shift-card p {
+            margin: 0;
+            color: #475569;
+            font-size: 1.08rem;
+            line-height: 1.55;
         }
+        .takeaway-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.8rem;
+        }
+        .takeaway {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 0.9rem 1rem;
+            color: #334155;
+            font-size: 1rem;
+            line-height: 1.45;
+        }
+        .takeaway strong { color: #0f172a; }
     </style>
 
-    <h2>2. 新的范式：技术门槛正在消失</h2>
-    
-    <div class="card" style="margin-bottom: 2rem; background: #eff6ff; border-left: 4px solid var(--accent); border-radius: 4px;">
-        <h3 style="margin-top: 0; margin-bottom: 0.8rem; color: #1e40af; font-size: 1.6rem;">核心观点：AI时代，一切皆代码</h3>
-        <p style="margin-bottom: 0; font-size: 1.25rem; color: #334155;">当自然语言真正成为编程语言，你描述的每一个业务意图都能被瞬间转换为可执行的代码逻辑。不论是构建系统、处理数据还是自动化办公，构想与落地之间的距离正无限趋近于零。</p>
+    <h2>2. 新的范式：从“学写代码”到“指挥 AI 做工具”</h2>
+
+    <div class="paradigm-hero">
+        <h3 style="margin: 0 0 0.6rem 0; color: #1e40af; font-size: 1.55rem;">核心观点：AI时代的编程语言就是自然语言</h3>
+        <p style="margin: 0; font-size: 1.2rem; color: #334155; line-height: 1.55;">
+            你不再需要先掌握一门编程语言，才能开始做小工具。你只要把业务目标、输入材料、期望结果讲清楚，然后让 AI 把它翻译成可运行的代码。
+        </p>
     </div>
 
-    <div class="grid-2">
-        <!-- 卡片 1 -->
-        <div class="card typewriter-box">
-            <h3 style="margin-top: 0; font-size: 1.6rem; display: flex; align-items: center;">
-                <span class="icon">🚀</span> 突破未知领域的壁垒
-            </h3>
-            <p class="typewriter-text" style="display: none; font-size: 1.2rem; line-height: 1.7; color: #475569; flex: 1;" 
-               data-text="对于原本不熟悉的技术环境（如前端开发、数据库等），在AI辅写系统的加成下，我们可以极为快速地跨界构建出可用原型并投入验证。"></p>
+    <div class="shift-grid">
+        <div class="shift-card" style="border-left: 4px solid #94a3b8;">
+            <h3 style="color: #475569;">过去：人迁就机器</h3>
+            <p>先学语法、框架、调试方法，再慢慢把想法写成程序。门槛高，反馈慢。</p>
         </div>
-        
-        <!-- 卡片 2 -->
-        <div class="card typewriter-box">
-            <h3 style="margin-top: 0; font-size: 1.6rem; display: flex; align-items: center;">
-                <span class="icon">🎭</span> 角色界限正在模糊
-            </h3>
-            <p class="typewriter-text" style="display: none; font-size: 1.2rem; line-height: 1.7; color: #475569; flex: 1;" 
-               data-text="一个明显的趋势：大量的PM（产品经理）和运营人员已经开始自给自足地编写代码。当我们可以直接通过描述业务痛点获得产出时，编码就不再是最大的瓶颈。"></p>
-        </div>
-
-        <!-- 卡片 3 -->
-        <div class="card typewriter-box">
-            <h3 style="margin-top: 0; font-size: 1.6rem; display: flex; align-items: center;">
-                <span class="icon">⚙️</span> 固化重复的任务
-            </h3>
-            <p class="typewriter-text" style="display: none; font-size: 1.2rem; line-height: 1.7; color: #475569; flex: 1;" 
-               data-text="将日常工作流中极度耗时的模板填充、文本提取、表格汇总等任务，借由AI固化为自动化脚本指令。一旦跑通，未来即可实现近乎零边际成本的一键批处理。"></p>
-        </div>
-
-        <!-- 卡片 4 -->
-        <div class="card typewriter-box">
-            <h3 style="margin-top: 0; font-size: 1.6rem; display: flex; align-items: center;">
-                <span class="icon">💻</span> 充分发挥本地计算机的能力
-            </h3>
-            <p class="typewriter-text" style="display: none; font-size: 1.2rem; line-height: 1.7; color: #475569; flex: 1;" 
-               data-text="不再满足于'将AI框在网页聊天窗'里。通过深层次的AI智能体应用，让AI真正接管终端控制台并读取磁盘数据，将你的本地电脑转化为一台全自动运转的思想'工厂'。"></p>
+        <div class="shift-card" style="border-left: 4px solid #2563eb;">
+            <h3 style="color: #1d4ed8;">现在：AI 翻译意图</h3>
+            <p>你描述问题和验收标准，AI 负责写代码、运行、报错修复，人负责判断结果是否符合业务。</p>
         </div>
     </div>
-    
-    
+
+    <div class="takeaway-row">
+        <div class="takeaway"><strong>能做原型：</strong>把一个想法快速做成网页、小工具或自动化脚本。</div>
+        <div class="takeaway"><strong>能处理资料：</strong>批量整理表格、文档、图片、网页内容。</div>
+        <div class="takeaway"><strong>能沉淀流程：</strong>把重复工作变成可复用的按钮、命令或模板。</div>
+    </div>
 `;

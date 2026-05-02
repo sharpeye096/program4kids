@@ -86,7 +86,7 @@ const content = html`
     </style>
 
     <h2 style="font-size: 2rem; margin-bottom: 0.8rem;">4. 开始前必知：六块计算机基础敲门砖</h2>
-    <p style="margin-bottom: 1rem; font-size: 1.1rem;">作为不写代码的"长官"，为了能顺畅指使你的AI助手沟通或排错，具备这些基础非常关键：</p>
+    <p style="margin-bottom: 1rem; font-size: 1.1rem;">先补齐最小前置知识，再进入实操：搭环境，然后用 Claude Code CLI 写一个小程序。</p>
 
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem;">
         
