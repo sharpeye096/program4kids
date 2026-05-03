@@ -1,128 +1,59 @@
 import { html } from '../app.js';
 
-export const onMount = (container) => {
-    const toggleBtn = container.querySelector('#toggle-prereq');
-    const prereqPanel = container.querySelector('#prereq-panel');
-    if (toggleBtn && prereqPanel) {
-        toggleBtn.addEventListener('click', () => {
-            const isVisible = prereqPanel.style.maxHeight && prereqPanel.style.maxHeight !== '0px';
-            if (isVisible) {
-                prereqPanel.style.maxHeight = '0px';
-                prereqPanel.style.opacity = '0';
-                toggleBtn.querySelector('.arrow').textContent = '▸';
-            } else {
-                prereqPanel.style.maxHeight = prereqPanel.scrollHeight + 'px';
-                prereqPanel.style.opacity = '1';
-                toggleBtn.querySelector('.arrow').textContent = '▾';
-            }
-        });
-    }
-};
-
 export default html`
     <style>
-        .prereq-toggle {
-            cursor: pointer;
-            user-select: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            color: #64748b;
-            font-size: 1.05rem;
-            font-weight: 500;
-            padding: 4px 0;
-            transition: color 0.2s;
-            background: none;
-            border: none;
-            font-family: inherit;
+        .lob-card {
+            background: #fff;
+            border-left: 5px solid #ef4444;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            text-align: left;
         }
-        .prereq-toggle:hover { color: var(--primary); }
-        .prereq-panel {
-            max-height: 0;
-            opacity: 0;
-            overflow: hidden;
-            transition: max-height 0.35s ease, opacity 0.3s ease;
-        }
-        .prereq-grid {
+        .vs-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 0.8rem;
-            margin-top: 0.8rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
         }
-        .prereq-item {
+        .vs-col {
             background: #f8fafc;
             border: 1px solid #e2e8f0;
             border-radius: 8px;
-            padding: 0.8rem;
-            text-align: center;
+            padding: 1.5rem;
         }
-        .prereq-item img {
-            width: 28px;
-            height: 28px;
-            margin-bottom: 4px;
-        }
-        .prereq-item .name { font-weight: 600; font-size: 0.95rem; color: #1e293b; }
-        .prereq-item .desc { font-size: 0.8rem; color: #64748b; margin: 0; line-height: 1.3; }
     </style>
 
-    <h2>5A. 上手第一步：配置 AI Coding 环境</h2>
-    <p>有了前置知识后，下一步是把工具装好。根据不同的网络环境，选择合适的配置方案：</p>
-    
-    <div class="flex-col" style="gap: 1.5rem;">
-        <div class="card">
-            <h3>方案 A：国内网络环境</h3>
-            <p>无需特殊网络设置，体验流畅，响应极快：</p>
-            <ul>
-                <li>
-                    <span class="highlight">Claude Code (客户端) + GLM或者DeepSeek V4</span>
-                    <a href="https://docs.bigmodel.cn/cn/guide/develop/claude" target="_blank" style="margin-left: 0.5rem; color: var(--secondary); text-decoration: none; font-size: 1rem;">[ 📖 GLM ]</a>
-                    <a href="https://api-docs.deepseek.com/zh-cn/quick_start/agent_integrations/claude_code" target="_blank" style="margin-left: 0.5rem; color: var(--secondary); text-decoration: none; font-size: 1rem;">[ 📖 DeepSeek ]</a>
-                </li>
-                <li><span class="highlight">Trae</span> 字节跳动，个人版免费。</li>
+    <h2 class="huge-title" style="font-size: 2.2rem; margin-bottom: 1.5rem; background: linear-gradient(90deg, #ef4444, #f59e0b); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+        3. 番外故事："龙虾 (OpenClaw)"是怎么出圈的？
+    </h2>
+
+    <div class="lob-card">
+        <h3 style="margin-top:0; color: #b91c1c; font-size: 1.5rem; display: flex; align-items: center;"><span style="margin-right: 8px;">🦞</span> 龙虾的故事起因</h3>
+        <p style="font-size: 1.2rem; color: #334155; line-height: 1.6; margin-bottom: 0;">
+            龙虾的作者突发奇想，把 <strong>Claude Code</strong> 接入了 WhatsApp。有一天，他不经意发了一段语音过去，结果发现：
+            这只"龙虾"自己上网搜索了一下怎么把语音转成文字，然后写了段程序转成了文字，再根据指令回复了用户。
+        </p>
+    </div>
+
+    <div class="vs-grid">
+        <div class="vs-col">
+            <h4 style="margin-top: 0; color: #475569; font-size: 1.25rem;">🎭 表面看起来很魔幻</h4>
+            <p style="color: #64748b; font-size: 1.2rem; margin-bottom: 0;">
+                一个全能的虚拟赛博助理出现在了你的微信里，你发一句话，它就像拥有肉身一样全自动帮你去互联网上查资料，做文档，整理文件，回复邮件，甚至点外卖。
+            </p>
+        </div>
+        <div class="vs-col">
+            <h4 style="margin-top: 0; color: #059669; font-size: 1.25rem;">⚙️ 扒开底层的真实逻辑</h4>
+            <ul style="color: #64748b; font-size: 1.15rem; margin-bottom: 0; line-height: 1.6;">
+                <li style="margin-bottom: 0.8rem;">运行在一台 <strong>7×24 小时不断电的电脑（或服务器）</strong>之上。</li>
+                <li style="margin-bottom: 0.8rem;">与日常的 <strong>IM 工具（微信、飞书等）</strong>打通，实时连接。</li>
+                <li style="margin-bottom: 0px;">一旦接收消息，无需人工界面，<strong>直接通过生成代码</strong>来操控电脑完成任务。</li>
             </ul>
         </div>
+    </div>
 
-        <div class="card">
-            <h3>方案 B：具备外网访问条件</h3>
-            <p>直接接驳国际最强模型的原生体验：</p>
-            <ul>
-                <li><span class="highlight">Claude Code + Claude Opus 4.7</span> - 推理能力最强、复杂重构和逻辑分析最为稳妥的组合。</li>
-                <li><span class="highlight">Codex + Gpt-5.5</span> - 这个组合我五一之前刚刚开始使用，体感不输Claude Code。</li>
-                <li>
-                    <span class="highlight">Antigravity</span> - 您现在看到的这份PPT，正是全程直接由 Antigravity 编写和生成的</strong>
-                </li>
-            </ul>
-        </div>
-
-        <!-- 前置环境 -->
-        <div>
-            <button class="prereq-toggle" id="toggle-prereq">
-                <span class="arrow">▸</span> 🛠️ 无论哪种方案，都需要提前安装的软件
-            </button>
-            <div class="prereq-panel" id="prereq-panel">
-                <div class="prereq-grid">
-                    <div class="prereq-item">
-                        <img src="https://www.google.com/s2/favicons?domain=code.visualstudio.com&sz=64" alt="VS Code">
-                        <div class="name">VS Code</div>
-                        <p class="desc">微软出品的代码编辑器，免费、轻量、插件丰富</p>
-                    </div>
-                    <div class="prereq-item">
-                        <img src="https://www.google.com/s2/favicons?domain=nodejs.org&sz=64" alt="Node.js">
-                        <div class="name">Node.js</div>
-                        <p class="desc">JavaScript 运行环境，安装后自带 npm，是跑 Claude Code 的前提</p>
-                    </div>
-                    <div class="prereq-item">
-                        <img src="https://www.google.com/s2/favicons?domain=git-scm.com&sz=64" alt="Git">
-                        <div class="name">Git</div>
-                        <p class="desc">版本控制工具，Claude Code 强制要求</p>
-                    </div>
-                    <div class="prereq-item" style="background: #fefce8; border-color: #fde68a;">
-                        <img src="https://www.google.com/s2/favicons?domain=github.com&sz=64" alt="GitHub">
-                        <div class="name">GitHub 账号</div>
-                        <p class="desc">（可选）远程代码仓库，方便协作与备份</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div style="margin-top: 2rem; background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534; padding: 1.2rem; border-radius: 8px; text-align: center; font-weight: bold; font-size: 1.25rem;">
+        💡 本质结论：折腾"龙虾"与折腾"Coding Agent"的技术代差、原理是一模一样的。<br>不管外面包了什么"神级助手"的外壳，AI 的最高效核打击武器永远在于——它直接越过了你这双肉手，用敲击代码的方式降维操纵了我们创造的信息系统！
     </div>
 `;
