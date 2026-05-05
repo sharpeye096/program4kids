@@ -108,21 +108,21 @@ export default html`
             <div class="rule-num">1</div>
             <div class="text">
                 <strong>重要信息交叉验证</strong>
-                <p>让 AI 给出具体来源（链接/文档名/章节），自己去核实。不能核实的就当它编的。</p>
+                <p>让 AI 给出具体来源（链接/文档名/章节），人进行核实。不能核实的就当它编的。</p>
             </div>
         </div>
         <div class="rule-card">
             <div class="rule-num">2</div>
             <div class="text">
                 <strong>关键计算交给工具</strong>
-                <p>算账、数据分析别让模型心算。让它写 Python 代码执行，代码跑出来才是准的。</p>
+                <p>算账、数据分析别让模型心算。让它写代码执行，代码跑出来才是准的。</p>
             </div>
         </div>
         <div class="rule-card">
             <div class="rule-num">3</div>
             <div class="text">
-                <strong>先问"你有多大把握"</strong>
-                <p>要求 AI 标注置信度：高/中/低。不确定的部分它会自己承认，帮你判断哪些需要复核。</p>
+                <strong>结合知识库</strong>
+                <p>对于专业、私域的问题，准备好知识库（流程、制度文档等）。</p>
             </div>
         </div>
     </div>

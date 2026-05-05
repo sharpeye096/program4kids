@@ -2,7 +2,8 @@ import { html } from '../app.js';
 
 export default html`
     <h2>2. 先理解边界：AI 像智能驾驶</h2>
-    <p>我们不会因为智能驾驶在高速上表现好，就默认它能处理所有路况。现阶段 AI 也是这样：关键不是迷信它，而是知道它在哪些路段最值得交给它。</p>
+    <p>不能看到智能驾驶在高速上表现不错，就默认它能处理所有路况。</p>
+    <p>不能因为智能驾驶处理不好复杂城市路况，就全盘否认其价值。</p>
 
     <div class="grid-2" style="gap: 1.2rem; margin-top: 0.8rem;">
         <div class="card" style="background: linear-gradient(135deg, #ecfdf5, #eff6ff); border-color: #86efac; min-height: 300px;">

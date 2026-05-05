@@ -1,7 +1,7 @@
 import { html } from '../app.js';
 
 export default html`
-    <h2>6. 嵌入原有工作流：最容易被接受的 AI 节点</h2>
+    <h2>6. 嵌入原有工作流</h2>
     <p>这类做法是在原系统里加一个 AI 节点：用户仍然在熟悉的系统里工作，只是某个环节由 AI 自动补全、判断、提取或生成。</p>
 
     <div style="display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: 0.8rem; align-items: center; width: 100%; margin: 1.2rem 0;">

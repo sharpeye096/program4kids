@@ -81,32 +81,37 @@ export default html`
         <h4>❄️ 一句"谢谢"的雪球效应</h4>
         <p style="margin-bottom: 0.3rem;">
             LLM <strong>天生无状态</strong>——每次对话都是独立的，它不认识你，也不记得之前说过什么。
+        </p>
+        <p style="margin-bottom: 0.3rem;">
             所谓<strong>上下文</strong>，就是每次请求都要把全部聊天记录、System Prompt、文件内容一起发给模型。Agent 也不例外。
         </p>
+
+        <br />
         <div class="snowball-line">
             <div class="line-num">1</div>
             <div class="line-text">你输入"谢谢"（2 个字 ≈ 1.2 Token）</div>
         </div>
         <div class="snowball-line">
             <div class="line-num">2</div>
-            <div class="line-text">客户端把<strong>整个对话历史</strong>一起打包：System Prompt + MCP 状态 + 所有文件上下文</div>
+            <div class="line-text">客户端把<strong>整个对话历史</strong>一起打包：几十轮会话+系统提示词+MCP 工具描述+代码文件等</div>
         </div>
         <div class="snowball-line">
             <div class="line-num">3</div>
             <div class="line-text">实际发出去的可能高达 <strong>几十万 Token</strong>——其中新增的只有 1.2</div>
         </div>
-        <p style="margin-top: 0.25rem; color: #92400e; font-size: 0.82rem;">
-            💡 Claude Code 源码证实：没有"简单打断语检测"。"谢谢"和下一个 Bug 的上下文处理成本完全一样。
-        </p>
+        <div class="snowball-line">
+            <div class="line-num">4</div>
+            <div class="line-text">LLM处理完之后回复一个“不客气”。</div>
+        </div>
     </div>
 
     <!-- 提示词缓存 -->
     <div class="cache-card" style="margin-bottom: 0.35rem;">
         <div class="icon">💾</div>
         <div class="body">
-            <strong>Prompt Caching（提示词缓存）—— 真正的省钱英雄</strong>
-            <p>前几十万 Token 和上一轮几乎一样？服务器命中缓存，只算新增 Token 的推理成本。
-            Cache Hit 定价通常只有原价的 <strong>1/10</strong>。网络包虽大，账单不贵——<strong>只要缓存没过期</strong>。</p>
+            <strong>Prompt Caching（提示词缓存）—— 省钱英雄</strong>
+            <p>前几十万 Token 和上一轮几乎一样，通常会直接命中缓存（常规输入的 <strong>1/10</strong>）。</p>
+            <p>注意缓存失效问题（通常几分钟）。失效后按常规输入计费。</p>
         </div>
     </div>
 

@@ -86,7 +86,7 @@ const content = html`
     </style>
 
     <h2 style="font-size: 2rem; margin-bottom: 0.8rem;">9. 开始前必知：六块计算机基础敲门砖</h2>
-    <p style="margin-bottom: 1rem; font-size: 1.1rem;">不需要成为程序员，但要知道 AI 在和哪些“计算机积木”打交道。点击卡片可以看到每个概念的演示。</p>
+    <p style="margin-bottom: 1rem; font-size: 1.1rem;">不需要成为程序员，但要知道 AI 在和哪些“计算机积木”打交道。</p>
 
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem;">
 
